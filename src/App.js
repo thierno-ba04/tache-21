@@ -10,13 +10,21 @@ import Bulletin from './pagesEtudiant/bulletin/Bulletin';
 import Livraison from './pagesEtudiant/livraison/Livraison';
 import UpdProfileCoach from './pagesEtudiant/updProfileEtudiant/UpdProfileEtudiant';
 
+// import React from 'react';
+import Login from "./pages/auth/Login";
+import ForgotPssWrd from "./pages/forgotpasseword/ForgotPssWrd";
+import Registe from './pages/inscription/Registe';
+
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
         <Routes>
+        <Route path="/" element={<Login />} />
+        <Route path="/forgot" element={<ForgotPssWrd />} />
+        <Route path="/inscrire" element={<Registe />} />
           <Route element={<LayoutEtudiant />}>
-            <Route path="/" element={<DashboardEtudiant />} />
+            <Route path="/dashboardEtudiant" element={<DashboardEtudiant />} />
             <Route path="/tache" element={<Tache />} />
             <Route path="/programme" element={<Programme />} />
             <Route path="/tache" element={<Tache />} />
@@ -28,6 +36,7 @@ function App() {
           </Route>
         </Routes>
       </BrowserRouter>
+          
     </div>
   );
 }
