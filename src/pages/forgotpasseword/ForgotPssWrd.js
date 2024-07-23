@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react'
 import { Col, Container, Row, ToastContainer } from 'react-bootstrap';
-import  "./forgotpssword.css"
 import { toast } from 'react-toastify';
+import "./forgotpsswrd.css"
 
 function ForgotPssWrd() {
     const [values, setValues] = useState({
