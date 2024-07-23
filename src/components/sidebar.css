@@ -47,6 +47,12 @@
         text-decoration: none;
         color: #5a5c69;
     }
+
+    .fixed-top{
+      background: white;
+    }
+
+
     a:hover{
         opacity: 0.6;
     }
@@ -69,6 +75,12 @@
         background: #8f8f8f;
         padding: 3px 10px 3px 10px ;
         border-radius: 1rem;
+    }
+
+    .fa-regular{
+      font-size: 22px;
+      color: rgb(20, 154, 207);
+
     }
 
     .title {
@@ -95,8 +107,12 @@
         box-shadow: 0 .5rem 1.5rem rgba(1, 1, 1, 0.6);
         overflow: hidden;
         z-index: 1;
-        background: #026a66;
+        background: rgb(20, 154, 207);
         color: white;
+    }
+
+   .icon{
+      color: white;
     }
 
     .title{

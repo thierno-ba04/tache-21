@@ -1,0 +1,14 @@
+/* .outlet {
+        margin-left: 110px; 
+         padding-top: 30px; 
+        display: flex;
+         flex-direction: column;
+         align-items: flex-start; 
+        overflow-y: auto; 
+          max-height: calc(100vh - 100px); 
+       } */
+    
+      .outlet {
+        transform: translate(75px 100px);
+       }
+      
