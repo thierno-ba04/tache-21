@@ -32,6 +32,6 @@ height: 129vh;
 
 @media screen and (min-width: 1024px) {
     .bodyy{
-        height: 129vh;
+        height: 100%;
         }
 }
