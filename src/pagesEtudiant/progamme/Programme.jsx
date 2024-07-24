@@ -18,7 +18,7 @@ const Programme = () => {
           <Card style={{ width: "18rem", borderRadius:"85px"}}>
               <Card.Img variant="top" src={imghtmlcss} style={{width: "90%"}}  className="ms-4 mt-4"/>
               <Card.Body>
-                <h3>HTML5/CSS3</h3>
+                <h3 className="h3pr">HTML5/CSS3</h3>
                 <h6>
                     Les bases du HTML/CSS
                 </h6>
@@ -31,7 +31,7 @@ const Programme = () => {
           <Card style={{ width: "18rem", borderRadius:"85px"}}>
               <Card.Img variant="top" src={imgboot} style={{ width: "80%"}} className="ms-4 mt-3"/>
               <Card.Body>
-                <h3>BOOTSTRAP</h3>
+                <h3 className="h3pr">BOOTSTRAP</h3>
                 <h6>
                     MAITRISE BOOTSTRAP
                 </h6>
@@ -43,7 +43,7 @@ const Programme = () => {
           <Card style={{ width: "18rem", borderRadius:"85px"}}>
               <Card.Img variant="top" src={ imgjavas } className="mt-4" />
               <Card.Body>
-                <h3> JAVASCRIPT</h3>
+                <h3 className="h3pr"> JAVASCRIPT</h3>
                 <h6>
                     JAVASCRIPT DEBUTANT
                 </h6>
@@ -55,7 +55,7 @@ const Programme = () => {
           <Card style={{ width: "18rem", borderRadius:"85px"}} className="mt-">
               <Card.Img variant="top" src={imgreact} />
               <Card.Body>
-                <h3> REACTJS</h3>
+                <h3 className="h3pr"> REACTJS</h3>
                 <h6>
                     REACTJS DEBUTANT
                 </h6>
@@ -70,7 +70,7 @@ const Programme = () => {
           <Card style={{ width: "18rem", borderRadius:"85px"}} className="mt-">
               <Card.Img variant="top" src={imghtache21} />
               <Card.Body>
-                <h3> TACHE 21</h3>
+                <h3 className="h3pr"> TACHE 21</h3>
                 <h6>
                     DARON DU FRONT-END
                 </h6>
