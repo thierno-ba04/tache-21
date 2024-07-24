@@ -4,35 +4,43 @@ import { FiKey } from 'react-icons/fi'
 import { IoMailOutline } from 'react-icons/io5'
 import { Link } from 'react-router-dom'
 import "./registe.css"
+import { MdOutlinePermIdentity } from 'react-icons/md';
+import imglearning  from "../../assets/img/logo (2).png";
 
 function Registe() {
   return (
-    <div className='body2'>
+    <div >
             <Container fluid>
         <Row>
             <Col lg={6} md={6} className='container-form2'>
-                <h2>S'inscrire</h2>
+                <h2 className='text-dark fw-bold'>S'inscrire</h2>
                 <p className="title" style={{ color: "grey" }}>Créer un compte</p>
                 <form className="form">
-                  <div className='icone1'>
-                    <IoMailOutline />
+                  <div className='icone3'>
+                  <MdOutlinePermIdentity />
                   </div>
                   <input
                     type="name"
                     className="input"
                     placeholder="   Nom complet  "
                   />
+                  <div className='icone4'>
+                    <IoMailOutline />
+                  </div>
                   <input
                     type="e-mail"
                     className="input"
                     placeholder="   Adresse Mail  "
                   />
+                   <div className='icone5'>
+                    <FiKey />
+                  </div>
                   <input
                     type="password"
                     className="input"
                     placeholder="   Mot de passe  "
                   />
-                  <div className='icone2'>
+                  <div className='icone6'>
                     <FiKey />
                   </div>
                   <input
@@ -47,22 +55,11 @@ function Registe() {
                 </form>
             </Col>
       
-            <Col lg={6} md={6} className='texte2'>
-              <div className="">
-                {/* <h3>E-Learning Formation</h3>
-                <p>
-                  Bienvenue sur notre plateforme d'e-learning.
-                  Connectez-vous pour accéder à vos cours, suivre votre progression et
-                  interagir avec vos enseignants et camarades de classe.
-                  Profitez d'une expérience d'apprentissage personnalisée et de ressources pédagogiques de qualité.
-                  Si vous n'avez pas encore de compte, inscrivez-vous dès aujourd'hui
-                  pour commencer votre parcours d'apprentissage !
-                </p>
-                <div>
-                  <button type='submit' className='submit'>
-                    <Link to="/inscription" className='link'>S'inscrire maintenant</Link>
-                  </button>
-                </div> */}
+            <Col lg={6} md={6} className='body2'>
+            <div className="text-center align-items-center pt-4">
+                <h3>Oneline E-Learning</h3>
+                <img src={imglearning} alt="e-learning" className='learningimg'/>
+
               </div>
             </Col>
         </Row>
