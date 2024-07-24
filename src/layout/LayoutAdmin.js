@@ -1,11 +1,17 @@
-import React from 'react'
+import React from 'react';
+import { Outlet } from 'react-router-dom';
+import './layout.css';
+import SidebarAdmin from '../components/SidebarAdmin';
 
-function LayoutAdmin() {
+function LayoutEtudiant() {
   return (
     <div>
-      sdddddd
+      <SidebarAdmin />
+      <div className='outlet'>
+        <Outlet />
+      </div>
     </div>
-  )
+  );
 }
 
-export default LayoutAdmin
+export default LayoutEtudiant;
