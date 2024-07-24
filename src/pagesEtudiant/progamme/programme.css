@@ -1,0 +1,37 @@
+.bodyy{
+background-color: rgb(224, 227, 229);
+height: 129vh;
+}
+
+
+
+
+
+
+
+/* RESPONSIVE */
+
+@media screen and (min-width: 320px) {
+    .bodyy{
+        height: 320vh;
+        }
+}
+
+
+
+
+
+/* responsive mode tablet */
+@media screen and (min-width: 768px) {
+    .bodyy{
+        height: 210vh;
+        }
+}
+
+/* responsive mode laptop */
+
+@media screen and (min-width: 1024px) {
+    .bodyy{
+        height: 129vh;
+        }
+}
