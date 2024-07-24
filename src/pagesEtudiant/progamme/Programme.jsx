@@ -40,7 +40,7 @@ const Programme = () => {
             </Card>
           </Col>
           <Col lg={3} md={6}>
-          <Card style={{ width: "18rem", borderRadius:"85px", height:"46vh"}}>
+          <Card style={{ width: "18rem", borderRadius:"85px"}}>
               <Card.Img variant="top" src={ imgjavas } className="mt-4" />
               <Card.Body>
                 <h3> JAVASCRIPT</h3>
