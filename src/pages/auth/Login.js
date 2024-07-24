@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import './login.css';
 import { IoMailOutline } from 'react-icons/io5';
 import { FiKey } from 'react-icons/fi';
+import imglearning  from "../../assets/img/logo (2).png";
 
 function Login() {
   return (
@@ -12,7 +13,7 @@ function Login() {
       <Container fluid>
         <Row>
             <Col lg={6} md={6} className='container-form'>
-                <h2>Connexion</h2>
+                <h2 className='text-dark fw-bold'>Connexion</h2>
                 <p className="title" style={{ color: "grey" }}>Connectez-vous à votre compte</p>
                 <form className="form">
                   <div className='icone1'>
@@ -42,8 +43,9 @@ function Login() {
       
             <Col lg={6} md={6} className='texte'>
               <div className="text-center align-items-center pt-4">
-                <h3>E-Learning Formation</h3>
-                <p>
+                <h3 className='fw-bold'>Oneline E-Learning</h3>
+                <img src={imglearning} alt="e-learning" className='learningimg'/>
+                <p className='fw-bold'>
                   Bienvenue sur notre plateforme d'e-learning.
                   Connectez-vous pour accéder à vos cours, suivre votre progression et
                   interagir avec vos enseignants et camarades de classe.

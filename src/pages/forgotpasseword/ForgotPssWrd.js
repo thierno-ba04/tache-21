@@ -1,7 +1,9 @@
 import React, { useRef, useState } from 'react'
 import { Col, Container, Row, ToastContainer } from 'react-bootstrap';
 import { toast } from 'react-toastify';
-import "./forgotpsswrd.css"
+import "./forgotpsswrd.css";
+import imglearning  from "../../assets/img/logo (2).png";
+
 
 function ForgotPssWrd() {
     const [values, setValues] = useState({
@@ -36,10 +38,10 @@ function ForgotPssWrd() {
 //   };
 
   return (
-    <div className='body'>
-    <Container className='forgotBox'>
+    <div>
+    <Container fluid >
       <Row className='password shadow'>
-        <Col sm={12} md={12}>
+        <Col sm={6} md={6} className='forgotBox'>
         <div className='text-center'>
           <h3 className='shadow header-pwd p-1'>
             <span>Récupération du mot de passe</span>
@@ -69,6 +71,13 @@ function ForgotPssWrd() {
         </div>
         <div>
           <ToastContainer />
+        </div>
+        </Col>
+        <Col sm={6} md={6} className='body'>
+        <div className="text-center align-items-center pt-4">
+                <h3>Oneline E-Learning</h3>
+                <img src={imglearning} alt="e-learning" className='learningimg'/>
+
         </div>
         </Col>
       </Row>
