@@ -46,7 +46,7 @@ const SidebarEtudiant = () => {
             <ListNested size={20} />
           </span>
         </div>
-        <button onClick={handleShowModal}>
+        <button onClick={handleShowModal} className="modalsend">
           <div className="d-flex">
             <div>
               <i className="fa-regular fa-paper-plane" style={{ color: 'white' }}></i>
