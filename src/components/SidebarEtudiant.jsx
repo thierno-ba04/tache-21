@@ -82,7 +82,7 @@ const SidebarEtudiant = () => {
             </Link>
           </li>
           <li>
-            <Link to="/">
+            <Link to="/dashboardEtudiant">
               <span className="icon">
                 <MdDashboard size={20} />
               </span>
