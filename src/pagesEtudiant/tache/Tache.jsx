@@ -109,38 +109,36 @@ const Tache = () => {
           <Col lg={10} md={12}>
             <div className="bg-tache d-md-flex ">
               <div className="borderReight ms-4 mt-3">
-                Tache N:3
+                Tache N:2
                 <p>durée: 2h</p>
                 <h6>Syllabus</h6>
                 <p>HTML/CSS_2024</p> <br /> <br />
                 <br />
               </div>
               <div className="ms-3 mt-3">
-                <h5 className="h5tache2">
-                  Tâche 02 : Apprendre a créer un site web HTML5/CSS3
+                <h5 className="h5tache1">
+                  Tâche 01 : Les bases du HTML5 et CSS3
                 </h5>
                 <p>
-                  Suivre ce cours et reproduire ce site <br />
-                  https://openclassrooms.com/fr/courses/1603881-apprenez-a-creer-votre-site-web-avec-html5-et-css3
-                  <br />
-                  NB: Pour bien suivre ce tuto, il faut au préalable créer un
-                  compte sur openclassroom.
+                  Faire des recherches sur les éditeurs de textes Suivre ce
+                  tutoriel et reproduire soigneusement tous les exercices sur
+                  votre éditeur <p className="deplace">de texte.</p>{" "}
                 </p>
                 <br />
                 <br />
                 <div className="lienutiles">
-                  <p className="p-lien2">
-                    Liens utiles : <br />
+                  <p className="p-lien">
+                    Liens utiles : <br />{" "}
                   </p>
                   <a
-                    className="a-tache2"
-                    href="https://openclassrooms.com/fr/courses/1603881-apprenez-a-creer-votre-site-web-avec-html5-et-css3
+                    className="a-tache1"
+                    href="https://www.youtube.com/playlist?list=PLwLsbqvBlImHG5yeUCXJ1aqNMgUKi1NK3
 "
                   >
-                    https://openclassrooms.com/fr/courses/1603881-apprenez-a-creer-votre-site-web-avec-html5-et-css3
+                    https://www.youtube.com/playlist?list=PLwLsbqvBlImHG5yeUCXJ1aqNMgUKi1NK3
                   </a>
                 </div>
-                <div className="demarétermifloat d-flex gap-5  mt-3 mb-4">
+                <div className="demarétermi d-flex gap-5 me-5 mt-3">
                   <div>
                     <button className="btn btn-primary">Démarrée</button>
                   </div>
