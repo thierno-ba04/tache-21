@@ -16,7 +16,7 @@ function Login() {
                 <h2 className='text-dark fw-bold'>Connexion</h2>
                 <p className="title" style={{ color: "grey" }}>Connectez-vous à votre compte</p>
                 <form className="form">
-                  <div className='icone1'>
+                  <div className='icone1 ms-3'>
                     <IoMailOutline />
                   </div>
                   <input
@@ -24,7 +24,7 @@ function Login() {
                     className="input"
                     placeholder="   Adresse Mail  "
                   />
-                  <div className='icone2'>
+                  <div className='icone2 ms-3'>
                     <FiKey />
                   </div>
                   <input

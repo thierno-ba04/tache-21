@@ -16,7 +16,7 @@ function Registe() {
                 <h2 className='text-dark fw-bold'>S'inscrire</h2>
                 <p className="title" style={{ color: "grey" }}>Créer un compte</p>
                 <form className="form">
-                  <div className='icone3'>
+                  <div className='icone3 ms-3'>
                   <MdOutlinePermIdentity />
                   </div>
                   <input
@@ -24,7 +24,7 @@ function Registe() {
                     className="input"
                     placeholder="   Nom complet  "
                   />
-                  <div className='icone4'>
+                  <div className='icone4 ms-3'>
                     <IoMailOutline />
                   </div>
                   <input
@@ -32,7 +32,7 @@ function Registe() {
                     className="input"
                     placeholder="   Adresse Mail  "
                   />
-                   <div className='icone5'>
+                   <div className='icone5 ms-3'>
                     <FiKey />
                   </div>
                   <input
@@ -40,7 +40,7 @@ function Registe() {
                     className="input"
                     placeholder="   Mot de passe  "
                   />
-                  <div className='icone6'>
+                  <div className='icone6 ms-3'>
                     <FiKey />
                   </div>
                   <input

@@ -69,7 +69,7 @@ const Programme = () => {
               <Card.Img variant="top" src={imgreact} />
               <Card.Body>
                 <h3 className="h3pr"> REACTJS</h3>
-                <h6>REACTJS DEBUTANT</h6>
+                <h6 className="text-center">REACTJS DEBUTANT</h6>
                 <div className="btnvoircours d-flex justify-content-center">
                   <div className="btnvoircours d-flex justify-content-center">
                     <Button variant="primary">Voir les cours</Button>
@@ -89,7 +89,7 @@ const Programme = () => {
               <Card.Img variant="top" src={imghtache21} />
               <Card.Body>
                 <h3 className="h3pr"> TACHE 21</h3>
-                <h6>DARON DU FRONT-END</h6>
+                <h6 className="text-center">DARON DU FRONT-END</h6>
                 <div className="btnvoircours d-flex justify-content-center">
                   <Button variant="primary">Voir les cours</Button>
                 </div>{" "}

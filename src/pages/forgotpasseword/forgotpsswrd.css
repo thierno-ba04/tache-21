@@ -1,4 +1,4 @@
-.body{
+.bodyfaty{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -6,7 +6,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    /* background-color: skyblue; */
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
