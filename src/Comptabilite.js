@@ -2,13 +2,13 @@ import React from "react";
 import Sidebar from "./Sidebar";
 import { Box, Typography } from "@mui/material";
 
-const Statistique = () => {
+const Comptabilite= () => {
     return ( 
         <Box sx={{display:"flex"}}>
         <Sidebar/>
-         <Box component="main"  sx={{flexGrow:1,marginTop:7,p:3}}>
+         <Box component="main"  sx={{flexGrow:1,marginTop:55,p:3}}>
             <Typography>
-                <h1>Welcome Statistique</h1>   
+                welcome comptabilite
             </Typography>
 
          </Box>
@@ -17,4 +17,4 @@ const Statistique = () => {
      );
 }
  
-export default Statistique;
+export default Comptabilite;
