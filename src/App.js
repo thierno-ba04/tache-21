@@ -7,11 +7,14 @@ import Users from './Users';
 import Statistique from './Statistique';
 import Pointage from './Pointage';
 import Comptabilite from './Comptabilite';
+import '@fontsource/roboto/500.css';
+
 
 
 
 function App() {
   return (
+    <div className='app'> 
     <BrowserRouter>
     <Routes>
       <Route path="/" element={<Dashboard/>}/>
@@ -22,7 +25,7 @@ function App() {
       
     </Routes>
   </BrowserRouter>
-
+  </div>
   );
 }
 
