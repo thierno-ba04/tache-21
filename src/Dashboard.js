@@ -187,7 +187,7 @@ const Dashboard = () => {
     >
       <InputBase
         sx={{ ml: 1, flex: 1 }}
-        placeholder="fliter tasks"
+        placeholder="fliter tasks ..."
         inputProps={{ 'aria-label': 'search google maps' }}
       />
       <IconButton type="button" sx={{ p: '10px' }} aria-label="search">
