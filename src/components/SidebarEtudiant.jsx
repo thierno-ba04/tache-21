@@ -13,8 +13,9 @@ import { MdFilter9Plus } from "react-icons/md";
 
 import { MdDashboard } from "react-icons/md";
 import { Link } from "react-router-dom";
-import { Modal, Button, Form } from "react-bootstrap";
+import { Modal, Button, Form, Badge } from "react-bootstrap";
 import "./sidebar.css";
+import { IoIosNotifications } from "react-icons/io";
 
 const SidebarEtudiant = () => {
   const [isSidebarActive, setSidebarActive] = useState(false);
