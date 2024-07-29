@@ -4,7 +4,7 @@ import "./tache.css";
 const Tache = () => {
   return (
     <div
-      className="mere-tache d-flex "
+      className="mere-tache"
       style={{ marginTop: "80px , paddingTop: 120px" }}
     >
       {/* <div className="d-flex ">

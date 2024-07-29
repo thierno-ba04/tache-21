@@ -35,13 +35,13 @@ const UpdProfileEtudiant = () => {
             <Container>
                 <Row className="justify-content-md-center">
                     <Col md={6}>
-                        <h2>Update Profile</h2>
+                        <h2>Mettre a Jour</h2>
                         <Form onSubmit={handleSubmit}>
                             <Form.Group controlId="formFirstName">
                                 <Form.Label></Form.Label>
                                 <Form.Control 
                                     type="text" 
-                                    placeholder="Enter first name" 
+                                    placeholder="Votre Prenom" 
                                     name="firstName" 
                                     value={profile.firstName} 
                                     onChange={handleChange} 
@@ -52,7 +52,7 @@ const UpdProfileEtudiant = () => {
                                 <Form.Label></Form.Label>
                                 <Form.Control 
                                     type="text" 
-                                    placeholder="Enter last name" 
+                                    placeholder="Nom" 
                                     name="lastName" 
                                     value={profile.lastName} 
                                     onChange={handleChange} 
@@ -63,7 +63,7 @@ const UpdProfileEtudiant = () => {
                                 <Form.Label></Form.Label>
                                 <Form.Control 
                                     type="text" 
-                                    placeholder="Enter phone number" 
+                                    placeholder="Numero de telephone" 
                                     name="phoneNumber" 
                                     value={profile.phoneNumber} 
                                     onChange={handleChange} 
@@ -80,7 +80,7 @@ const UpdProfileEtudiant = () => {
                             </Form.Group>
 
                             <Button variant="primary" type="submit">
-                                Update Profile
+                            Mettre a Jour le  Profile
                             </Button>
                         </Form>
                     </Col>
