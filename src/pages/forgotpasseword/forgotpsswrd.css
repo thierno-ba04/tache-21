@@ -41,9 +41,9 @@
     {
         text-decoration: none;
         cursor: pointer;
-        background-color: rgb(77, 161, 194);
+        background-color: blue;
         border-radius: 15px;
-        border: 1px solid skyblue;
+        border: 1px solid blue;
         padding: 12px 15px;
         color: white;
         width: 80%;

@@ -12,7 +12,6 @@
     padding: 30px 30px;
     padding-top: 90px;
     background-color: #fff;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   }
   
   .title {
@@ -55,31 +54,26 @@
     color: skyblue;;
   }
   
-  .form-btn {
+
+   .form-btn {
     padding: 15px 20px;
     width: 50%;
-    font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
-          "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+    font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
     border-radius: 15px;
     border: 0 !important;
     outline: 0 !important;
-    background: skyblue;
+    background: blue;
     color: white;
     cursor: pointer;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-  }
-  
-  .form-btn:active {
-    box-shadow: none;
-  }
-  
+}
+
   .texte{
     overflow: hidden;
     height: 100vh;
     font-size: 14px;
     color: #fff;
     font-weight: 500;
-    /* background-color: skyblue; */
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -105,9 +99,9 @@
   .submit {
     text-decoration: none;
     cursor: pointer;
-    background-color: rgb(73, 73, 138);
+    background-color: blue;
     border-radius: 15px;
-    border: 1px solid rgb(73, 73, 138);
+    border: 1px solid blue;
     padding: 12px 15px;
     width: 30%;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;

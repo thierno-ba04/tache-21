@@ -3,7 +3,7 @@ import { Outlet } from 'react-router-dom';
 import './layout.css';
 import SidebarAdmin from '../components/SidebarAdmin';
 
-function LayoutEtudiant() {
+function LayoutAdmin() {
   return (
     <div>
       <SidebarAdmin />
@@ -14,4 +14,4 @@ function LayoutEtudiant() {
   );
 }
 
-export default LayoutEtudiant;
+export default LayoutAdmin;

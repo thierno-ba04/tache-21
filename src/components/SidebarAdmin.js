@@ -3,22 +3,23 @@ import {
   Archive,
   BoxArrowLeft,
   Envelope,
-  JournalCode,
   ListNested,
   PeopleFill,
 } from "react-bootstrap-icons";
 import { BsBook } from "react-icons/bs";
-import { FaFileAlt } from "react-icons/fa";
-import { MdFilter9Plus } from "react-icons/md";
-
-import { MdDashboard } from "react-icons/md";
+import { FaChartLine, FaFileAlt, FaFileInvoiceDollar } from "react-icons/fa";
+import { MdFilter9Plus, MdOutlineSupervisorAccount, MdUnfoldLess, MdDashboard, MdOutlineTouchApp } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { Modal, Button, Form } from "react-bootstrap";
-import "./sidebar.css";
+import { FormControl, InputLabel, Select, MenuItem } from "@mui/material";
+import "./SidebarAdmin.css";
 
 const SidebarAdmin = () => {
   const [isSidebarActive, setSidebarActive] = useState(false);
   const [showModal, setShowModal] = useState(false);
+  const [users, setUsers] = useState(10); // Initial value
+  const [description, setDescription] = useState("");
+  const [file, setFile] = useState(null);
 
   const toggleSidebar = () => {
     setSidebarActive(!isSidebarActive);
@@ -32,9 +33,13 @@ const SidebarAdmin = () => {
     setShowModal(false);
   };
 
+  const handleChange = (event) => {
+    setUsers(event.target.value);
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    // Add your form submission logic here
+    // Handle file and description submission here
     handleCloseModal();
   };
 
@@ -46,14 +51,6 @@ const SidebarAdmin = () => {
             <ListNested size={20} />
           </span>
         </div>
-        <button onClick={handleShowModal}>
-          <div className="d-flex">
-            <div>
-              <i className="fa-regular fa-paper-plane" style={{ color: 'white' }}></i>
-            </div>
-            <div className="ms-3">ENVOYER VOTRE TRAVAIL</div>
-          </div>
-        </button>
 
         <div className="fw-bold me-md-4 d-flex align-items-center gap-4">
           <div className="fa-regular">
@@ -82,98 +79,70 @@ const SidebarAdmin = () => {
             </Link>
           </li>
           <li>
-            <Link to="/">
+            <Link to="/dashboardadmin">
               <span className="icon">
                 <MdDashboard size={20} />
               </span>
               <span className="title">Dashboard</span>
             </Link>
           </li>
-          <li>
-            <Link to="/tache">
+          <li >
+            <Link to="/users">
               <span className="icon">
-                <BsBook size={20} />
+                <MdOutlineSupervisorAccount size={25} />
               </span>
-              <span className="title">Tache</span>
+              <span className="title">Users</span>
+              <span sx={{ minWidth: 120 }}  className="dropdown-select">
+                {/* <InputLabel id="demo-simple-select-label">Users</InputLabel> */}
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={users}
+                  label="Users"
+                  onChange={handleChange}
+                >
+
+                  <Link to="eleves">
+                  <MenuItem className="title">Eleves</MenuItem>
+                  
+                  </Link>
+                  <Link to="personnels">
+                  <MenuItem value={20}>Personnels</MenuItem>
+                  </Link>
+                  <Link to="professeurs">
+                  <MenuItem value={20}>Professeurs</MenuItem>
+                  </Link>
+                </Select>
+              </span>
             </Link>
           </li>
           <li>
-            <Link to="/programme">
+            <Link to="/comptabliter">
               <span className="icon">
-                <JournalCode size={20} />
+                <FaFileInvoiceDollar size={20} />
               </span>
-              <span className="title">Programme</span>
-            </Link>
-          </li>
-          <li>
-            <Link to="/demande">
-              <span className="icon">
-                <Envelope size={20} />
-              </span>
-              <span className="title">Demande</span>
-            </Link>
-          </li>
-          <li>
-            <Link to="/livraison">
-              <span className="icon">
-                <MdFilter9Plus size={20} />
-              </span>
-              <span className="title">Livraison</span>
-            </Link>
-          </li>
-          <li>
-            <Link to="/bulletin">
-              <span className="icon">
-                <FaFileAlt size={20} />
-              </span>
-              <span className="title">Bulletin</span>
+              <span className="title">Comptabiliter</span>
             </Link>
           </li>
           <li>
             <Link className="out">
               <span className="icon">
-                <BoxArrowLeft size={30} />
+              <FaChartLine size={20} />
               </span>
-              <span className="title">Deconnecter</span>
+              <span className="title">Statistique</span>
+            </Link>
+          </li>
+          <li>
+            <Link to="/pointage">
+              <span className="icon">
+                <MdOutlineTouchApp size={20} />
+              </span>
+              <span className="title">Pointage</span>
             </Link>
           </li>
         </ul>
       </nav>
 
-      <Modal show={showModal} onHide={handleCloseModal}>
-        <Modal.Header closeButton>
-          <Modal.Title>Envoyer Mon travail</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <Form onSubmit={handleSubmit}>
-            <Form.Group controlId="formTaskSelect">
-              <Form.Label>Choisissez une tâche</Form.Label>
-              <Form.Control as="select">
-                <option value="">Sélectionnez une tâche...</option>
-                <option value="tache1">Tâche 1</option>
-                <option value="tache2">Tâche 2</option>
-                <option value="tache3">Tâche 3</option>
-              </Form.Control>
-            </Form.Group>
-
-            <Form.Group controlId="formDescription" className="mt-3">
-              <Form.Label>Description des livraisons</Form.Label>
-              <Form.Control type="text" placeholder="Entrez la description" />
-            </Form.Group>
-
-            <Form.Group controlId="formFileUpload" className="mt-3">
-              <Form.Label>Ajouter une image</Form.Label>
-              <Form.Control type="file" />
-            </Form.Group>
-              <div className="mt-3 d-flex justify-content-center">
-              <Button variant="primary" type="submit" >
-              Envoyer
-            </Button>
-              </div>
-          
-          </Form>
-        </Modal.Body>
-      </Modal>
     </div>
   );
 };
