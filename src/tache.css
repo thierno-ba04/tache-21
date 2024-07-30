@@ -1,0 +1,168 @@
+.mere-tache{
+    background-color: rgb(224, 227, 229); 
+}
+
+
+
+.bg-tache{
+background-color: white;
+margin-top: 160px;
+border: 1px solid rgb(147, 147, 241);
+border-radius: 15px;
+}
+
+.borderReight{
+    border-right: 1px solid black;
+}
+
+.demarétermi{
+    float: right;
+}
+
+.demarétermifloat{
+    float: right;
+    position: relative;
+    left: 150px;  
+}
+
+
+
+.card {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
+  }
+  
+  .card:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    transform: scale(1.05);
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+/* RESPONSIVE */
+
+@media screen and (min-width: 320px) {
+    .mere-tache{
+        height: 320vh;
+        }
+
+        .bg-tache{
+            height: 90%;
+            } 
+
+        .h5tache{
+            margin-left: -175px;
+        }
+
+        .deplace{
+            margin-left: 2px;
+        }
+
+        .a-tache1{
+            font-size: 13px;
+        }
+
+}
+
+
+
+
+
+/* responsive mode tablet */
+@media screen and (min-width: 768px) {
+    .mere-tache{
+        height: 210vh;
+        }
+
+        .bg-tache{
+            height: 70%;
+            } 
+
+        .h5tache{
+            margin-left: -458px;
+        }
+
+        .lienutiles{
+            margin-left: -115px;
+        }
+
+        .h5tache1{
+            margin-left: -185px;
+        }
+
+        .h5tache2{
+            margin-left: -50px;
+        }
+
+        .deplace{
+            margin-left: -375px;
+        }
+        .a-tache1{
+            margin-left: 70px;
+        }
+}
+
+/* responsive mode laptop */
+
+@media screen and (min-width: 1024px) {
+    .mere-tache{
+        height: 200vh;
+        }
+
+          .bg-tache{
+            height: 65%;
+            } 
+
+        .h5tache{
+            margin-left: -815px;
+        }
+
+        .lienutiles{
+            margin-left: -615px;
+        }
+
+        .h5tache1{
+            margin-left: -550px;
+        }
+
+        .h5tache2{
+            margin-left: -210px;
+        }
+
+        .deplace{
+            margin-left: -840px;
+        }
+
+        .p-lien{
+            margin-left: -200px;
+        }
+
+        .p-lien2{
+            margin-left: 10px;
+        }
+
+        .a-tache1{
+            margin-left: 260px;
+            font-size: 15px;
+        }
+
+        .a-tache2{
+            margin-left: 600px;
+            font-size: 15px;
+        }
+
+        .demarétermi{
+            margin-left: 90px;
+        }
+
+       
+}

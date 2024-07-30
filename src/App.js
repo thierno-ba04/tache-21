@@ -1,31 +1,34 @@
-
+// src/App.js
 import React from 'react';
-import './App.css';
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Dashboard from './Dashboard';
-import Users from './Users';
-import Statistique from './Statistique';
-import Pointage from './Pointage';
-import Comptabilite from './Comptabilite';
-import '@fontsource/roboto/500.css';
+import { BrowserRouter , Route, Routes } from 'react-router-dom';
+import LayoutAdmin from './layout/LayoutAdmin';
 
 
 
 
 function App() {
   return (
-    <div className='app'> 
-    <BrowserRouter>
-    <Routes>
-      <Route path="/" element={<Dashboard/>}/>
-        <Route path='/Users'   element={<Users />} />
-        <Route path="/Comptabilite" element={<Comptabilite />} />
-        <Route path="/Statistique" element={<Statistique />} />
-        <Route path="/Pointage" element={<Pointage />} />
-      
-    </Routes>
-  </BrowserRouter>
-  </div>
+    <div className="App">
+      <BrowserRouter >
+      <Routes>
+
+        <Route element={<LayoutAdmin />}>
+
+
+
+
+            {/* <Route path="/tache" element={<Tache />} />
+            <Route path="/programme" element={<Programme />} />
+            <Route path="/tache" element={<Tache />} />
+            <Route path="/demande" element={<Demande />} />
+            <Route path="/livraison" element={<Livraison />} />
+            <Route path="/bulletin" element={<Bulletin />} />
+            <Route path="/updProfileEtudiant" element={<UpdProfileCoach />} /> */}
+
+          </Route>
+      </Routes>
+      </BrowserRouter>      
+    </div>
   );
 }
 
