@@ -3,9 +3,23 @@ import Box from '@mui/material/Box';
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import "./dashboardadmin.css"
 import { MdOutlineSupervisorAccount } from 'react-icons/md';
-import { Col, Container, Row, Tooltip } from 'react-bootstrap';
-import { BarChart, Line } from 'react-bootstrap-icons';
-import { Bar, CartesianGrid, Legend, LineChart, Rectangle, ResponsiveContainer, XAxis, YAxis } from 'recharts';
+import { Button, Col, Container, Row } from 'react-bootstrap';
+// import { BarChart, Line } from 'react-bootstrap-icons';
+// import { Bar, CartesianGrid, Legend, LineChart, Rectangle, ResponsiveContainer, XAxis, YAxis } from 'recharts';
+import {
+  BarChart,
+  Bar,
+  Rectangle,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+  LineChart,
+  Line,
+} from "recharts";
+import { FaDownload } from 'react-icons/fa';
 
 function DashboardAdmin() {
 
@@ -50,6 +64,13 @@ function DashboardAdmin() {
     { id: 7, lastName: 'Clifford', firstName: 'Ferrara', age: 44 },
     { id: 8, lastName: 'Frances', firstName: 'Rossini', age: 36 },
     { id: 9, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
+    { id: 10, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
+    { id: 1, lastName: 'Snow', firstName: 'Jon', age: 14 },
+    { id: 2, lastName: 'Lannister', firstName: 'Cersei', age: 31 },
+    { id: 3, lastName: 'Lannister', firstName: 'Jaime', age: 31 },
+    { id: 4, lastName: 'Stark', firstName: 'Arya', age: 11 },
+    { id: 5, lastName: 'Targaryen', firstName: 'Daenerys', age: null },
+
   ];
 
   const data = [
@@ -206,6 +227,21 @@ function DashboardAdmin() {
         </ResponsiveContainer>
       </div>
         </Row>
+        <Row>
+          <h6 className='lsteleves'>Liste des éléves</h6>
+          <Col md={6} className="mt-3">
+            <div className="buttexport">
+                <Button><FaDownload className="me-2 mb-1" />
+                    Export to csv</Button>
+                  </div>
+          </Col>
+          <Col md={6}>
+          <style name="TextAppearance.App.Button" parent="TextAppearance.MaterialComponents.Button">
+    <item name="fontFamily">@font/rubik</item>
+    <item name="android:fontFamily">@font/rubik</item>
+</style>
+          </Col>
+        </Row>
   <Row className='dashboardtab'>
        <Box sx={{ height: 400, width: '70%' }}>
       <DataGrid
@@ -214,11 +250,11 @@ function DashboardAdmin() {
         initialState={{
           pagination: {
             paginationModel: {
-              pageSize: 5,
+              pageSize: 10,
             },
           },
         }}
-        pageSizeOptions={[5]}
+        pageSizeOptions={[10]}
         checkboxSelection
         disableRowSelectionOnClick
       />

@@ -133,6 +133,15 @@
     height: 300px;
 }
 
+.lsteleves{
+    color: #179fd4;
+    font-weight: 500; 
+    font-size: 2rem;
+}
+
+.buttexport{
+    /* margin-left: auto; */
+}
 
 
 @media screen and (max-width: 320px){

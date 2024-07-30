@@ -13,6 +13,9 @@ import Professeurs from "./pages/pageadmine/users/professeurs/Professeurs";
 import Statistique from './pages/pageadmine/statistique/Statistique';
 import Pointage from './pages/pageadmine/pointage/Pointage';
 import Comptabliter from './pages/pageadmine/comptablité/Comptabliter';
+import Calendrier from './pages/pageadmine/calendrier/Calendrier';
+import Profile from './pages/pageadmine/profile/Profile';
+import { Message } from '@mui/icons-material';
 
 
 
@@ -35,18 +38,9 @@ function App() {
             <Route path="/comptabliter" element={<Comptabliter />} />
             <Route path="/statistique" element={<Statistique />} />
             <Route path="/pointage" element={<Pointage />} />
-
-
-
-
-            {/* <Route path="/tache" element={<Tache />} />
-            <Route path="/programme" element={<Programme />} />
-            <Route path="/tache" element={<Tache />} />
-            <Route path="/demande" element={<Demande />} />
-            <Route path="/livraison" element={<Livraison />} />
-            <Route path="/bulletin" element={<Bulletin />} />
-            <Route path="/updProfileEtudiant" element={<UpdProfileCoach />} /> */}
-
+            <Route path="/calendar" element={<Calendrier />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/message" element={<Message />} />
           </Route>
       </Routes>
       </BrowserRouter>      
