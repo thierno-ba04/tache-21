@@ -139,10 +139,34 @@
     font-size: 2rem;
 }
 
-.buttexport{
-    /* margin-left: auto; */
+.deuxbutt{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
+/*  */
+.btnajoute{
+    width: 110px;
+    margin-left: auto;
+    background-color: none;
+    color: #575252;
+    background: none;
+    
+}
+.btnajoute:hover{
+    width: 110px;
+    margin-left: auto;
+    background-color: none;
+    color: #575252;
+    background: none;
+}
+
+.iconajoute{
+    color: #194cf7;
+    font-weight: 500; 
+    font-size: 1.5rem;
+}
 
 @media screen and (max-width: 320px){
     .div-2 p{
