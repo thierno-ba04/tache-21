@@ -37,6 +37,11 @@
     font-weight: bold;
     font-size: 1rem;
   }
+
+  .main-card2-bg{
+    background: #198754;
+  }
+  
   
   .div_mer {
     display: flex;
@@ -104,7 +109,7 @@
   }
   
   .main-card2 {
-    background: linear-gradient(180deg, #ffffff 0%, #ffffff 100%);
+    /* background: linear-gradient(180deg, #ffffff 0%, #ffffff 100%); */
     border-radius: 28px;
     margin: auto;
     margin-top: 2rem;
@@ -138,6 +143,49 @@
     font-weight: bold;
     font-size: 2rem;
   }
+
+
+
+.searchdate{
+    gap: 50px;
+    background: white;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    height: 70px;
+}
+
+/* dashboard.css */
+.date-input-container {
+    margin-left: auto;
+  }
+  
+
+
+.search-input {
+    border: none;
+    outline: none; /* Supprime également le contour de focus */
+  }
+
+  .search-input::placeholder {
+    font-size: 1.5rem; /* Augmente la taille du texte du placeholder */
+    }
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   
   @media screen and (max-width: 320px) {
     .div-2 p {
