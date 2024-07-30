@@ -70,6 +70,12 @@ const DashboardEtudiant = () => {
             </div>
           </Col>
         </Row>
+
+        <Row>
+            <Col md={12}>
+
+            </Col>
+        </Row>
       </Container>
     </div>
   );

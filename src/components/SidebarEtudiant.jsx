@@ -16,6 +16,7 @@ import { Link } from "react-router-dom";
 import { Modal, Button, Form, Badge } from "react-bootstrap";
 import "./sidebar.css";
 import { IoIosNotifications } from "react-icons/io";
+import { IoPerson } from "react-icons/io5";
 
 const SidebarEtudiant = () => {
   const [isSidebarActive, setSidebarActive] = useState(false);
@@ -64,7 +65,7 @@ const SidebarEtudiant = () => {
             <Link to="/updProfileEtudiant">
               <div>
                 <div className="userIcon me-3 d-flex align-items-center">
-                  <div className="me-md-4 me-3 nomUser"></div>
+                <IoPerson />
                 </div>
               </div>
             </Link>

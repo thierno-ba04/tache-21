@@ -1,7 +1,7 @@
 import React from "react";
 import { Col, Container, Row, Table, Button, Pagination } from "react-bootstrap";
 import "./demande.css";
-import { FaDownload, FaEye } from "react-icons/fa";
+import { FaDownload, FaEye, FaFacebookMessenger } from "react-icons/fa";
 
 const Demande = () => {
     // Fonction pour générer les items de pagination
@@ -20,19 +20,28 @@ const Demande = () => {
     return (
         <div className="" style={{ paddingTop: "120px" }}>
             <Container>
-              
                 <Row>
                     <Col md={4}>
-                    <div className="dashboarddemaandeabsences">
-                    <p>dashboard/ demaandes absences</p>
-                </div>
+                        <div className="dashboarddemaandeabsences">
+                            <p>dashboard/ demaandes absences</p>
+                        </div>
                     </Col>
                 </Row>
-                <Row>
-                    <Col md={2} className="mt-3">
+                <Row className="mt-3">
+                    <Col md={6}>
                         <div className="buttoncsv">
-                            <Button><FaDownload className="me-2 mb-1" />
-                            Export CSV</Button>
+                            <Button>
+                                <FaDownload className="me-2 mb-1" />
+                                Export CSV
+                            </Button>
+                        </div>
+                    </Col>
+                    <Col md={6} className="text-end">
+                        <div className="buttondemande">
+                            <Button>
+                                <FaFacebookMessenger className="me-2 mb-1" />
+                                Faire une Demande
+                            </Button>
                         </div>
                     </Col>
                 </Row>
@@ -56,7 +65,7 @@ const Demande = () => {
                                     <td>05/12/2024</td>
                                     <td>Approuvé</td>
                                     <td>
-                                    <FaEye />
+                                        <FaEye />
                                     </td>
                                 </tr>
                                 {/* Ajoutez plus de lignes selon vos besoins */}

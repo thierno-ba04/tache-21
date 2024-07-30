@@ -8,6 +8,38 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.buttoncsv{
-    margin-left: -88px;
+
+
+
+
+
+
+
+@media screen and (min-width: 320px){
+    .buttoncsv{
+        margin-left: 100px;
+    }  
+}
+
+
+
+
+@media screen and (min-width: 768px){
+    .buttoncsv{
+        margin-left: -200px;
+    }
+}
+
+
+
+
+
+
+
+
+
+@media screen and (min-width: 1024px){
+    .buttoncsv{
+        margin-left: -500px;
+    } 
 }
