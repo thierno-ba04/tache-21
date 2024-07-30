@@ -1,8 +1,9 @@
 // src/App.js
 import React from 'react';
 import { BrowserRouter , Route, Routes } from 'react-router-dom';
-import LayoutAdmin from './layout/LayoutAdmin';
-
+import Dashboard from './Dashboard';
+import Users from './Users';
+import Statistique from './Statistique';
 
 
 
@@ -12,20 +13,13 @@ function App() {
       <BrowserRouter >
       <Routes>
 
-        <Route element={<LayoutAdmin />}>
+
+          <Route path="/" element={<Dashboard/>} />
+          <Route path="/users" element={<Users/>} />
+          <Route path="/Statistique" element={<Statistique/>} />
 
 
-
-
-            {/* <Route path="/tache" element={<Tache />} />
-            <Route path="/programme" element={<Programme />} />
-            <Route path="/tache" element={<Tache />} />
-            <Route path="/demande" element={<Demande />} />
-            <Route path="/livraison" element={<Livraison />} />
-            <Route path="/bulletin" element={<Bulletin />} />
-            <Route path="/updProfileEtudiant" element={<UpdProfileCoach />} /> */}
-
-          </Route>
+        
       </Routes>
       </BrowserRouter>      
     </div>
