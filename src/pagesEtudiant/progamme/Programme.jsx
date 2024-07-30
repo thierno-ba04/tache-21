@@ -1,9 +1,15 @@
 import { Col, Container, Row } from "react-bootstrap";
-import imgjavas from "../../assets/img/kisspng-javascript2503058546-removebg-preview.png";
-import imgreact from "../../assets/img/o2switch-deployer-react.js.png";
-import imgboot from "../../assets/img/imagesbootstrap__1_-removebg-preview.png";
-import imghtmlcss from "../../assets/img/CSS3_and_HTML5_logos_and_wordmarks.svg-removebg-preview.png";
-import imghtache21 from "../../assets/img/ZxXAau2iuhYw-removebg-preview.png";
+import imgjavas from "../../assets/img/kisspng-javascript2503058546-removebg-preview.png"
+import imgreact from "../../assets/img/o2switch-deployer-react.js.png"
+import imgboot from "../../assets/img/imagesbootstrap__1_-removebg-preview.png"
+import imghtmlcss from "../../assets/img/CSS3_and_HTML5_logos_and_wordmarks.svg-removebg-preview.png"
+import imghtache21 from "../../assets/img/ZxXAau2iuhYw-removebg-preview.png"
+import imgnodejs from "../../assets/img/1200px-Node.js_logo.svg-removebg-preview.png"
+import imgphp from "../../assets/img/images-removebg-preview.png"
+import imgpython from "../../assets/img/logo-python-removebg-preview.png"
+
+
+
 
 import "./programme.css";
 import Button from "react-bootstrap/Button";
@@ -11,9 +17,10 @@ import Card from "react-bootstrap/Card";
 
 const Programme = () => {
   return (
-    <div className="bodyy" style={{ marginTop: "80px", paddingTop: "120px" }}>
+    <div className="bodyy" style={{ paddingTop: "90px" }}>
       <Container>
-        <Row className="gy-5">
+      <h1 className="h1Programme fw-bold">Programme</h1>
+        <Row className="gy-5 mt-5">
           <Col lg={3} md={6}>
             <Card style={{ width: "18rem", borderRadius: "85px" }}>
               <Card.Img
@@ -80,7 +87,7 @@ const Programme = () => {
           </Col>
         </Row>
 
-        <Row className="mt-5">
+        <Row className="mt-5 gy-5">
           <Col lg={3} md={6}>
             <Card
               style={{ width: "18rem", borderRadius: "85px" }}
@@ -96,6 +103,56 @@ const Programme = () => {
               </Card.Body>
             </Card>
           </Col>
+
+          <Col lg={3} md={6}>
+            <Card
+              style={{ width: "18rem", borderRadius: "85px" }}
+              className="mt-"
+            >
+              <Card.Img variant="top" src={imgnodejs} className="mt-5" />
+              <Card.Body>
+                <h3 className="h3pr"> TACHE 21</h3>
+                <h6 className="text-center mt-5">APPRENDRE LE NODEJS</h6>
+                <div className="btnvoircours d-flex justify-content-center">
+                  <Button variant="primary">Voir les cours</Button>
+                </div>{" "}
+              </Card.Body>
+            </Card>
+          </Col>
+
+          <Col lg={3} md={6}>
+            <Card
+              style={{ width: "18rem", borderRadius: "85px" }}
+              className="mt-"
+            >
+              <Card.Img variant="top" src={imgphp} className="mt-5"/>
+              <Card.Body>
+                <h3 className="h3pr"> TACHE 21</h3>
+                <h6 className="text-center">DARON DU FRONT-END</h6>
+                <div className="btnvoircours d-flex justify-content-center">
+                  <Button variant="primary">Voir les cours</Button>
+                </div>{" "}
+              </Card.Body>
+            </Card>
+          </Col>
+
+          <Col lg={3} md={6}>
+            <Card
+              style={{ width: "18rem", borderRadius: "88px" }}
+              className="mt-"
+            >
+              <Card.Img variant="top" src={imgpython} className="mt-5" />
+              <Card.Body>
+                <h3 className="h3pr"> TACHE 21</h3>
+                <h6 className="text-center mt-5">DARON DU FRONT-END</h6>
+                <div className="btnvoircours d-flex justify-content-center">
+                  <Button variant="primary">Voir les cours</Button>
+                </div>{" "}
+              </Card.Body>
+            </Card>
+          </Col>
+
+          
         </Row>
       </Container>
     </div>

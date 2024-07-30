@@ -3,10 +3,7 @@ import "./tache.css";
 
 const Tache = () => {
   return (
-    <div
-      className="mere-tache d-flex "
-      style={{ marginTop: "80px , paddingTop: 120px" }}
-    >
+    <div className="mere-tache" style={{ marginTop: "80px", paddingTop: "120px" }}>
       {/* <div className="d-flex ">
         <div className="">
             <p>DASHBOARD / TACHE</p>
@@ -23,19 +20,20 @@ const Tache = () => {
                 Tache N:00
                 <p>durée: 2h</p>
                 <h6>Syllabus</h6>
-                <p>HTML/CSS_2024</p> <br /> <br />
+                <p>HTML/CSS_2024</p>
+                <br />
                 <br />
                 <p>démarée il y a un an</p>
               </div>
               <div className="ms-3 mt-3">
                 <h5 className="h5tache">Tache:00</h5>
                 <p>
-                  1. Vous créez un dossier sur Google Drive nommé Prénom Nom .
+                  1. Vous créez un dossier sur Google Drive nommé Prénom Nom.
                   Vous créez à l’intérieur un dossier pour chaque projet. Vous y
                   mettrez vos captures d’écran et vos réalisations par la suite.
                   Vous partagez le dossier avec le mail
                   contact.elearnign@gmail.com.
-                </p>{" "}
+                </p>
                 <br />
                 <br />
                 <div className="lienutiles">
@@ -69,19 +67,18 @@ const Tache = () => {
                 Tache N:00
                 <p>durée: 2h</p>
                 <h6>Syllabus</h6>
-                <p>HTML/CSS_2024</p> <br /> <br />
+                <p>HTML/CSS_2024</p>
+                <br />
                 <br />
                 <p>démarée il y a un an</p>
               </div>
               <div className="ms-3 mt-3">
                 <h5 className="h5tache">Tache:00</h5>
                 <p>
-                  1. Vous créez un dossier sur Google Drive nommé Prénom Nom .
-                  Vous créez à l’intérieur un dossier pour chaque projet. Vous y
-                  mettrez vos captures d’écran et vos réalisations par la suite.
-                  Vous partagez le dossier avec le mail
-                  contact.elearnign@gmail.com.
-                </p>{" "}
+                  Faire des recherches sur les éditeurs de textes. Suivre ce
+                  tutoriel et reproduire soigneusement tous les exercices sur
+                  votre éditeur de texte.
+                </p>
                 <br />
                 <br />
                 <div className="lienutiles">
@@ -89,8 +86,8 @@ const Tache = () => {
                     Liens utiles : <br />
                   </p>
                   <a
-                    className="a-tache"
-                    href="https://drive.google.com/drive/my-drive"
+                    className="a-tache1"
+                    href="https://www.youtube.com/playlist?list=PLwLsbqvBlImHG5yeUCXJ1aqNMgUKi1NK3"
                   >
                     https://drive.google.com/drive/my-drive
                   </a>
@@ -116,31 +113,29 @@ const Tache = () => {
                 Tache N:3
                 <p>durée: 2h</p>
                 <h6>Syllabus</h6>
-                <p>HTML/CSS_2024</p> <br /> <br />
+                <p>HTML/CSS_2024</p>
+                <br />
                 <br />
                 <p>démarée il y a un an</p>
               </div>
               <div className="ms-3 mt-3">
-                <h5 className="h5tache2">
-                  Tâche 02 : Apprendre a créer un site web HTML5/CSS3
+                <h5 className="h5tache1">
+                  Tâche 02 : Les bases du HTML5 et CSS3
                 </h5>
                 <p>
-                  Suivre ce cours et reproduire ce site <br />
-                  https://openclassrooms.com/fr/courses/1603881-apprenez-a-creer-votre-site-web-avec-html5-et-css3
-                  <br />
-                  NB: Pour bien suivre ce tuto, il faut au préalable créer un
-                  compte sur openclassroom.
+                  Faire des recherches sur les éditeurs de textes. Suivre ce
+                  tutoriel et reproduire soigneusement tous les exercices sur
+                  votre éditeur de texte.
                 </p>
                 <br />
                 <br />
                 <div className="lienutiles">
-                  <p className="p-lien2">
+                  <p className="p-lien">
                     Liens utiles : <br />
                   </p>
                   <a
-                    className="a-tache2"
-                    href="https://openclassrooms.com/fr/courses/1603881-apprenez-a-creer-votre-site-web-avec-html5-et-css3
-"
+                    className="a-tache1"
+                    href="https://www.youtube.com/playlist?list=PLwLsbqvBlImHG5yeUCXJ1aqNMgUKi1NK3"
                   >
                     https://openclassrooms.com/fr/courses/1603881-apprenez-a-creer-votre-site-web-avec-html5-et-css3
                   </a>
