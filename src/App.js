@@ -1,4 +1,5 @@
 import React from 'react';
+import './App.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import DashboardEtudiant from './pagesEtudiant/dashboard/DashboardEtudiant';
 import LayoutEtudiant from './layout/LayoutEtudiant';
@@ -9,21 +10,35 @@ import Bulletin from './pagesEtudiant/bulletin/Bulletin';
 import Livraison from './pagesEtudiant/livraison/Livraison';
 import UpdProfileCoach from './pagesEtudiant/updProfileEtudiant/UpdProfileEtudiant';
 
-// import React from 'react';
+
+
+
+
+
+
+
+
+
+
 import Login from "./pages/auth/Login";
 import ForgotPssWrd from "./pages/forgotpasseword/ForgotPssWrd";
 import Registe from './pages/inscription/Registe';
-
+import LayoutAdmin from './layout/LayoutAdmin';
+import DashboardAdmin from './pages/pageadmine/dashboardadmin/DashboardAdmin';
+import Users from "./pages/pageadmine/users/Users";
+import Eleves from "./pages/pageadmine/users/eleves/Eleves";
+import Personnels from "./pages/pageadmine/users/personnels/Personnels";
+import Professeurs from "./pages/pageadmine/users/professeurs/Professeurs";
+import Statistique from './pages/pageadmine/statistique/Statistique';
+import Pointage from './pages/pageadmine/pointage/Pointage';
+import Comptabliter from './pages/pageadmine/comptablité/Comptabliter';
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
         <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path="/forgot" element={<ForgotPssWrd />} />
-        <Route path="/inscrire" element={<Registe />} />
           <Route element={<LayoutEtudiant />}>
-            <Route path="/dashboardEtudiant" element={<DashboardEtudiant />} />
+            <Route path="/" element={<DashboardEtudiant />} />
             <Route path="/tache" element={<Tache />} />
             <Route path="/programme" element={<Programme />} />
             <Route path="/tache" element={<Tache />} />
@@ -33,9 +48,22 @@ function App() {
             <Route path="/updProfileEtudiant" element={<UpdProfileCoach />} />
 
           </Route>
-        </Routes>
+
+          <Route element={<LayoutAdmin />}>
+            <Route path="/dashboardadmin" element={<DashboardAdmin />} />
+            <Route path="/users" element={<Users />} />
+            <Route path="/eleves" element={<Eleves />} />
+            <Route path="/personnels" element={<Personnels />} />
+            <Route path="/professeurs" element={<Professeurs />} />
+            <Route path="/comptabliter" element={<Comptabliter />} />
+            <Route path="/statistique" element={<Statistique />} />
+            <Route path="/pointage" element={<Pointage />} />
+
+
+          </Route>
+      </Routes>
+
       </BrowserRouter>
-          
     </div>
   );
 }

@@ -75,8 +75,8 @@ function ForgotPssWrd() {
         </Col>
         <Col sm={6} md={6} className='bodyfaty'>
         <div className="text-center align-items-center pt-4">
-                <h3>Oneline E-Learning</h3>
-                <img src={imglearning} alt="e-learning" className='learningimg'/>
+        <img src={imglearning} alt="e-learning" className='learningimg'/>
+          <h3>Oneline E-Learning</h3>
         </div>
         </Col>
       </Row>

@@ -57,9 +57,8 @@ function Registe() {
       
             <Col lg={6} md={6} className='body2'>
             <div className="text-center align-items-center pt-4">
+            <img src={imglearning} alt="e-learning" className='learningimg'/>
                 <h3>Oneline E-Learning</h3>
-                <img src={imglearning} alt="e-learning" className='learningimg'/>
-
               </div>
             </Col>
         </Row>
