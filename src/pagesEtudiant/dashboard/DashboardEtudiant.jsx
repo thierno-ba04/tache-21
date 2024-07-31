@@ -1,10 +1,11 @@
-import React from 'react';
-import { Col, Container, Row } from 'react-bootstrap';
-import SidebarEtudiant from '../../components/SidebarEtudiant';
-import { MdOutlineDoneOutline } from 'react-icons/md';
-import './dashboard.css';
-import { FaFileAlt, FaSearch } from 'react-icons/fa';
-import { BsBook } from 'react-icons/bs';
+import React from "react";
+import { Col, Container, Row } from "react-bootstrap";
+import SidebarEtudiant from "../../components/SidebarEtudiant";
+import { MdOutlineDoneOutline } from "react-icons/md";
+import "./dashboard.css";
+import { FaFileAlt, FaSearch } from "react-icons/fa";
+import { BsBook } from "react-icons/bs";
+import { IoPersonSharp } from "react-icons/io5";
 
 const DashboardEtudiant = () => {
   return (
@@ -64,7 +65,7 @@ const DashboardEtudiant = () => {
                   placeholder="Recherche"
                 />
               </div>
-              <div className="mt-4 date-input-container">
+              <div className="date-input-container mt-4">
                 <input type="date" />
               </div>
             </div>
@@ -72,9 +73,46 @@ const DashboardEtudiant = () => {
         </Row>
 
         <Row>
-            <Col md={12}>
-
-            </Col>
+          <Col md={4} className="mt-5">
+            <div className="mere-dashboard-livr">
+              <div className="d-flex gap-5">
+                <div>
+                  <IoPersonSharp />
+                </div>
+                <div>
+                  <h4>Thierno Ba</h4>
+                </div>
+                <div>
+                  <p>31 juil 2024, 15:41</p>
+                </div>
+              </div>
+            </div>
+          </Col>
+        </Row>
+        <Row className="mt-5">
+          <Col md={4}>
+            <h5 className="h5textpropsetcycle">
+              Props et cycle de vie d'un composant class
+            </h5>
+          </Col>
+        </Row>
+        <Row className="mt-5">
+          <Col md={6}>
+          </Col>
+          <Col md={6}></Col>
+        </Row>
+        <Row>
+          <Col md={12} className="mt-5">
+            <div className="input-commentaire d-flex">
+              <div className="input-comment mt-3 ms-5">
+                <input
+                  type="text"
+                  className="search-input"
+                  placeholder=" Commentaire"
+                />
+              </div>
+            </div>
+          </Col>
         </Row>
       </Container>
     </div>

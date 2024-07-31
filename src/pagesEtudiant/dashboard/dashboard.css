@@ -153,6 +153,16 @@
     height: 70px;
 }
 
+
+
+.input-commentaire{
+  gap: 50px;
+  background: white;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  height: 50px;
+  border-radius: 20px;
+}
+
 /* dashboard.css */
 .date-input-container {
     margin-left: auto;
@@ -191,6 +201,10 @@
     .div-2 p {
       font-size: 9px;
       color: #bbb6b6;
+    }
+
+    .date-input-container{
+      margin-left: -200px;
     }
   
     .div-2 h2 {
