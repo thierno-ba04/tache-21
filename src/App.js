@@ -38,7 +38,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route element={<LayoutEtudiant />}>
-            <Route path="/" element={<DashboardEtudiant />} />
+            <Route path="/DashboardEtudiant" element={<DashboardEtudiant />} />
             <Route path="/tache" element={<Tache />} />
             <Route path="/programme" element={<Programme />} />
             <Route path="/tache" element={<Tache />} />

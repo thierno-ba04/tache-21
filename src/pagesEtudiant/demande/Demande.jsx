@@ -29,7 +29,7 @@ const Demande = () => {
                 </Row>
                 <Row className="mt-3">
                     <Col md={6}>
-                        <div className="buttoncsv">
+                        <div className="buttoncsv2">
                             <Button>
                                 <FaDownload className="me-2 mb-1" />
                                 Export CSV

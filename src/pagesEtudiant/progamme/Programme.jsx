@@ -21,22 +21,22 @@ const Programme = () => {
       <Container>
       <h1 className="h1Programme fw-bold">Programme</h1>
         <Row className="gy-5 mt-5">
-          <Col lg={3} md={6}>
+        <Col lg={3} md={6}>
           <Card style={{ width: "18rem", borderRadius:"85px"}}>
-              <Card.Img variant="top" src={imghtmlcss} style={{width: "90%"}}  className="ms-4 mt-4"/>
+              <Card.Img variant="top" src={imghtmlcss} style={{ width: "80%"}} className="ms-4 mt-3"/>
               <Card.Body>
-                <h3>HTML5/CSS3</h3>
-                <h6>
-                    Les bases du HTML/CSS
+                <h3  className="h6bootstrap text-center">BOOTSTRAP</h3>
+                <h6 className="h6bootstrap text-center">
+                    LES BASES DU HTML & CSS
                 </h6>
-                <Button variant="primary">Voir les cours</Button>
+                <Button variant="primary" className="text-center">Voir les cours</Button>
               </Card.Body>
             </Card>
           </Col>
 
           <Col lg={3} md={6}>
           <Card style={{ width: "18rem", borderRadius:"85px"}}>
-              <Card.Img variant="top" src={imgboot} style={{ width: "80%"}} className="ms-4 mt-3"/>
+              <Card.Img variant="top" src={imgboot} style={{ width: "65%"}} className="ms-5 mt-3"/>
               <Card.Body>
                 <h3  className="h6bootstrap text-center">BOOTSTRAP</h3>
                 <h6 className="h6bootstrap text-center">
@@ -47,80 +47,79 @@ const Programme = () => {
             </Card>
           </Col>
           <Col lg={3} md={6}>
-          <Card style={{ width: "18rem", borderRadius:"85px", height:"46vh"}}>
-              <Card.Img variant="top" src={ imgjavas } className="mt-4" />
+          <Card style={{ width: "18rem", borderRadius:"85px"}}>
+              <Card.Img variant="top" src={imgjavas} style={{ width: "85%"}} className="ms-4 mt-3"/>
               <Card.Body>
-                <h3> JAVASCRIPT</h3>
-                <h6>
-                    JAVASCRIPT DEBUTANT
+                <h3  className="h6bootstrap text-center">JAVASCRIPT</h3>
+                <h6 className="h6bootstrap text-center">
+                    MAITRISE BOOTSTRAP
                 </h6>
-                <Button variant="primary">Voir les cours</Button>
+                <Button variant="primary" className="text-center">Voir les cours</Button>
               </Card.Body>
             </Card>
           </Col>
           <Col lg={3} md={6}>
-          <Card style={{ width: "18rem", borderRadius:"85px"}} className="mt-">
-              <Card.Img variant="top" src={imgreact} />
+          <Card style={{ width: "18rem", borderRadius:"85px"}}>
+              <Card.Img variant="top" src={ imgreact} style={{ width: "80%"}} className="ms-4 mt-3"/>
               <Card.Body>
-                <h3> REACTJS</h3>
-                <h6>
-                    REACTJS DEBUTANT
+                <h3  className="h6bootstrap text-center">REACTJS</h3>
+                <h6 className="h6bootstrap text-center">
+                    MAITRISE BOOTSTRAP
                 </h6>
-                <Button variant="primary">Voir les cours</Button>
+                <Button variant="primary" className="text-center">Voir les cours</Button>
               </Card.Body>
             </Card>
           </Col>
         </Row>
 
         <Row className="mt-5 gy-5">
-          <Col lg={3} md={6}>
-          <Card style={{ width: "18rem", borderRadius:"85px"}} className="mt-">
-              <Card.Img variant="top" src={imghtache21} />
+        <Col lg={3} md={6}>
+          <Card style={{ width: "18rem", borderRadius:"85px"}}>
+              <Card.Img variant="top" src={ imghtache21} style={{ width: "68%"}} className="ms-5 mt-3"/>
               <Card.Body>
-                <h3> TACHE 21</h3>
-                <h6>
-                    DARON DU FRONT-END
+                <h3  className="h6bootstrap text-center">TACHE 21</h3>
+                <h6 className="h6bootstrap text-center">
+                    LE DARON DU FRONT-END
                 </h6>
-                <Button variant="primary">Voir les cours</Button>
+                <Button variant="primary" className="text-center">Voir les cours</Button>
               </Card.Body>
             </Card>
           </Col>
 
           <Col lg={3} md={6}>
-          <Card style={{ width: "18rem", borderRadius:"85px", height:"24rem"}} className="mt-">
-              <Card.Img variant="top" src={ imgnodejs} className="mt-5" />
+          <Card style={{ width: "18rem", borderRadius:"85px"}}>
+              <Card.Img variant="top" src={ imgnodejs} style={{ width: "89%"}} className="ms-4 mt-3"/>
               <Card.Body>
-                <h3 className="h3nodejs mt-3"> NODEJS</h3>
-                <h6>
-                    Apprendre NodeJS
+                <h3  className="h6bootstrap text-center">NODEJS</h3>
+                <h6 className="h6bootstrap text-center">
+                    APPRENDRE NODEJS
                 </h6>
-                <Button variant="primary">Voir les cours</Button>
+                <Button variant="primary" className="text-center">Voir les cours</Button>
+              </Card.Body>
+            </Card>
+          </Col>
+          <Col lg={3} md={6}>
+          <Card style={{ width: "18rem", borderRadius:"85px"}}>
+              <Card.Img variant="top" src={ imgphp} style={{ width: "80%"}} className="ms-4 mt-3"/>
+              <Card.Body>
+                <h3  className="h6bootstrap text-center">PHP</h3>
+                <h6 className="h6bootstrap text-center">
+                    APPRENDRE PHP
+                </h6>
+                <Button variant="primary" className="text-center">Voir les cours</Button>
               </Card.Body>
             </Card>
           </Col>
 
           <Col lg={3} md={6}>
-          <Card style={{ width: "18rem", borderRadius:"85px", height:"24rem"}} className="mt-">
-              <Card.Img variant="top" src={ imgphp} className="mt-3" />
+          <Card style={{ width: "18rem", borderRadius:"85px"}}>
+              <Card.Img variant="top" src={ imgpython} style={{ width: "89%"}} className="ms-4 mt-3"/>
               <Card.Body>
-                <h3 className="h3php mt-4"> PHP</h3>
-                <h6 className="h6Apprendrephp mt-3">
-                    Apprendre PHP
+                <h3  className="h6bootstrap text-center">PYTHON</h3>
+                <h6 className="h6bootstrap text-center">
+                    APPRENDRE PYTHON
                 </h6>
-                <Button variant="primary">Voir les cours</Button>
-              </Card.Body>
-            </Card>
-          </Col>
-
-          <Col lg={3} md={6}>
-          <Card style={{ width: "18rem", borderRadius:"85px", height:"24rem"}} className="mt-">
-              <Card.Img variant="top" src={ imgpython} className="mt-5" />
-              <Card.Body>
-                <h3 className="h3php mt-4"> PHP</h3>
-                <h6 className="h6Apprendrephp mt-3">
-                    Apprendre PHP
-                </h6>
-                <Button variant="primary">Voir les cours</Button>
+                <Button variant="primary" className="text-center">Voir les cours</Button>
               </Card.Body>
             </Card>
           </Col>
