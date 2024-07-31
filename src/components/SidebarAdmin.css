@@ -71,25 +71,12 @@
           border-radius: 2px;
       }
   
-      /* .userIcon{
-          background: #8f8f8f;
-          padding: 3px 10px 3px 10px ;
-          border-radius: 1rem;
-      }
-  
-      .fa-regular{
-        font-size: 22px;
-        color: rgb(20, 154, 207);
-  
-      } */
-  
       .title {
           text-align: center;
           font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
           margin: 9px 0 10px 0;
           font-size: 13px;
           font-weight: 800;
-          /* margin-top: 35px; */
       }
       .title:hover{
         color: white;
@@ -97,7 +84,7 @@
       
       nav{
           position: fixed;
-          width: 60px;
+          width: 50px;
           height: 100%;
           top: 0;
           left: 0px;
@@ -211,8 +198,35 @@
           background: #8f8f8f;
           border-radius: 0.5rem;
       }
+
   }
-  
+
+  .iconProfile {
+    vertical-align: middle;
+    line-height: 1px;
+    font-size: 20px;
+    color: #5a5c69;
+}
+
+
+.iconProfile, .iconProfile-header {
+    margin-right: 5px;
+} 
+
+/* Header */
+.header {
+    /* grid-area: header;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 30px 0 30px;
+    box-shadow: 0 6px 7px -3px rgba(0, 0, 0, 0.35); */
+}
+.menu-iconProfile {
+    display: none;
+}
+
   @media only screen and (max-width: 1399px){
       .CardDash .myContent1 {
           margin-top: 20px;
@@ -275,6 +289,7 @@
               margin: auto;
             }
   }
+
   @media only screen and (max-width: 567px){
           .mysiderbar header{
               display: flex;
@@ -320,8 +335,3 @@
               margin: auto;
             }
   }
-
-  i
-  {
-    border: none;
-}

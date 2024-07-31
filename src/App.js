@@ -32,6 +32,14 @@ import Professeurs from "./pages/pageadmine/users/professeurs/Professeurs";
 import Statistique from './pages/pageadmine/statistique/Statistique';
 import Pointage from './pages/pageadmine/pointage/Pointage';
 import Comptabliter from './pages/pageadmine/comptablité/Comptabliter';
+import Calendrier from './pages/pageadmine/calendrier/Calendrier';
+import Profile from './pages/pageadmine/profile/Profile';
+import { Message } from '@mui/icons-material';
+import AjoutElv from './pages/pageadmine/ajouteréléves/AjoutElv';
+
+
+
+
 function App() {
   return (
     <div className="App">
@@ -60,6 +68,10 @@ function App() {
             <Route path="/pointage" element={<Pointage />} />
 
 
+            <Route path="/calendar" element={<Calendrier />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/message" element={<Message />} />
+            <Route path="/ajoutelv" element={<AjoutElv />} />
           </Route>
       </Routes>
 

@@ -3,16 +3,19 @@ import {
   Archive,
   BoxArrowLeft,
   Envelope,
-  ListNested,
   PeopleFill,
+  SendCheckFill,
 } from "react-bootstrap-icons";
-import { BsBook } from "react-icons/bs";
+import { ListNested } from 'react-bootstrap-icons';
+
+import { BsBook, BsFillBellFill, BsFillEnvelopeFill, BsJustify, BsPersonCircle, BsSearch } from "react-icons/bs";
 import { FaChartLine, FaFileAlt, FaFileInvoiceDollar } from "react-icons/fa";
 import { MdFilter9Plus, MdOutlineSupervisorAccount, MdUnfoldLess, MdDashboard, MdOutlineTouchApp } from "react-icons/md";
 import { Link } from "react-router-dom"; 
 import { Modal, Button, Form } from "react-bootstrap";
 import { FormControl, InputLabel, Select, MenuItem } from "@mui/material";
 import "./SidebarAdmin.css";
+import { IoCalendarNumberOutline } from "react-icons/io5";
 
 const SidebarAdmin = () => {
   const [isSidebarActive, setSidebarActive] = useState(false);
@@ -57,13 +60,37 @@ const SidebarAdmin = () => {
             <i className="fa-regular fa-bell"></i>
           </div>
           <span>
-            <Link to="/updProfileEtudiant">
-              <div>
-                <div className="userIcon me-3 d-flex align-items-center">
-                  <div className="me-md-4 me-3 nomUser"></div>
-                </div>
-              </div>
+            {/* <Link to="/"> */}
+              {/* <div> */}
+                {/* <div className="userIcon me-3 d-flex align-items-center"> */}
+                  <div className="me-md-4 me-3 nomUser">
+                    
+                      <div className='menu-iconProfile'>
+                        <BsJustify className='iconProfile'/> 
+                      </div>
+                      <div className='header-left'>
+                          <BsSearch className='iconProfile'/>
+                      </div>
+                      <div className='header-right'>
+            <Link to="/">
+
+                          <BsFillBellFill className='iconProfile'/>
             </Link>
+            <Link to="/message">
+
+                          <BsFillEnvelopeFill className='iconProfile'/>
+            </Link>
+            <Link to="/profile">
+
+                          <BsPersonCircle className='iconProfile'/>
+            </Link>
+
+                      </div>
+
+                  </div>
+                {/* </div> */}
+              {/* </div> */}
+            {/* </Link> */}
           </span>
         </div>
       </header>
@@ -103,7 +130,7 @@ const SidebarAdmin = () => {
                 >
 
                   <Link to="eleves">
-                  <MenuItem className="title">Eleves</MenuItem>
+                  <MenuItem >Eleves</MenuItem>
                   
                   </Link>
                   <Link to="personnels">
@@ -122,6 +149,14 @@ const SidebarAdmin = () => {
                 <FaFileInvoiceDollar size={20} />
               </span>
               <span className="title">Comptabiliter</span>
+            </Link>
+          </li>
+          <li>
+            <Link to="/calendar">
+              <span className="icon">
+                <IoCalendarNumberOutline size={20} />
+              </span>
+              <span className="title">Calendrier</span>
             </Link>
           </li>
           <li>

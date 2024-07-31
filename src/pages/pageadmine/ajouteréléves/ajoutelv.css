@@ -1,0 +1,61 @@
+/* Styles pour le conteneur de la classe */
+.laclasse {
+    margin-top: 5rem;
+    width: 80%;
+    background-color: #179fd4;
+    box-sizing: border-box;
+    color: aliceblue;
+    border-radius: 10px;
+    padding: 0.5rem; /* Ajouté pour mieux aligner le contenu */
+}
+
+/* Styles pour le conteneur d'ajout d'étudiant */
+.addetudiant {
+    margin-top: 0rem;
+    padding: 30px;
+    background: white;
+    box-shadow: rgba(221, 203, 203, 0.6) 0px 0px 10px; /* Corrigé la syntaxe de box-shadow */
+}
+
+/* Styles pour les champs de formulaire */
+.forme-input {
+    width: 100%; /* Changé à 100% pour occuper toute la largeur disponible dans le conteneur */
+    height: 50px;
+    padding-right: 2.5rem; /* Assurez-vous qu'il y a assez d'espace pour l'icône */
+}
+
+/* Styles pour le conteneur de sélection avec icône */
+.select-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+/* Styles pour l'icône dans le champ de sélection */
+.select-icon {
+    position: absolute;
+    right: 0.5rem; /* Ajustez cette valeur pour aligner l'icône correctement */
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none; /* Permet de cliquer sur le champ derrière l'icône */
+}
+
+/* Styles pour le conteneur du bouton pour éviter la barre de défilement horizontale */
+.addetudiant {
+    margin-top: 0rem;
+    padding: 30px;
+    background: white;
+    box-shadow: rgba(221, 203, 203, 0.6) 0px 0px 10px;
+    overflow: hidden; /* Pour éviter les barres de défilement horizontales */
+}
+
+/* Styles pour le bouton ajouter */
+.add-btn-container {
+    display: flex;
+    justify-content: flex-end; /* Aligne le bouton à droite */
+    margin-top: 1rem; /* Espacement au-dessus du bouton */
+}
+
+.add-btn-container button {
+    margin: 0; /* Assure que le bouton ne dépasse pas du conteneur */
+}
