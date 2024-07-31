@@ -3,8 +3,6 @@ import Sidebar from "./Sidebar";
 import { Box, Typography } from "@mui/material";
 import Paper from '@mui/material/Paper';
 import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
-import Face3Icon from '@mui/icons-material/Face3';
-import Face6Icon from '@mui/icons-material/Face6';
 import SchoolIcon from '@mui/icons-material/School';
 import'./App.css';
 
@@ -13,13 +11,16 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { StaticDatePicker } from '@mui/x-date-pickers/StaticDatePicker';
 
 
-
+import PersonIcon from '@mui/icons-material/Person';
+import Person2Icon from '@mui/icons-material/Person2';
 
 
   
 
 
 const Dashboard = () => {
+
+  
     return ( 
         <Box sx={{display:"flex"}}>
         <Sidebar/>
@@ -60,7 +61,7 @@ const Dashboard = () => {
             <div class="card bg-c-green order-card">
                 <div class="card-block">
                     <h6 class="m-b-20">Total Filles</h6>
-                    <h2 class="text-right"><Face3Icon sx={{float:'right',fontSize:50}}/><span>25</span></h2>
+                    <h2 class="text-right"><Person2Icon sx={{float:'right',fontSize:50}}/><span>25</span></h2>
                     <p class="m-b-0"><span class="f-right"></span></p>
                 </div>
             </div>
@@ -70,7 +71,7 @@ const Dashboard = () => {
             <div class="card bg-c-yellow order-card">
                 <div class="card-block">
                     <h6 class="m-b-20">Total Graçons</h6>
-                    <h2 class="text-right"><Face6Icon sx={{float:'right',fontSize:50}}/><span>25</span></h2>
+                    <h2 class="text-right"><PersonIcon sx={{float:'right',fontSize:50}}/><span>25</span></h2>
                     <p class="m-b-0"><span class="f-right"></span></p>
                 </div>
             </div>
@@ -100,11 +101,53 @@ const Dashboard = () => {
 
     </div>
     <div class="col">
-      
+    <div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card card-white">
+                <div class="card-body">
+                    <form action="javascript:void(0);">
+                        <input type="text" class="form-control add-task" placeholder="New Task..."/>
+                    </form>
+                    <ul class="nav nav-pills todo-nav">
+                        <li role="presentation" class="nav-item all-task active"><a href="#" class="nav-link">All</a></li>
+                        <li role="presentation" class="nav-item active-task"><a href="#" class="nav-link">Active</a></li>
+                        <li role="presentation" class="nav-item completed-task"><a href="#" class="nav-link">Completed</a></li>
+                    </ul>
+                    <div class="todo-list">
+                        <div class="todo-item">
+                            <div class="checker"><span class=""><input type="checkbox"/></span></div>
+                            <span>Create theme</span>
+                            <a href="javascript:void(0);" class="float-right remove-todo-item"><i class="icon-close"></i></a>
+                        </div>
+                        <div class="todo-item">
+                            <div class="checker"><span class=""><input type="checkbox"/></span></div>
+                            <span>Work on wordpress</span>
+                            <a href="javascript:void(0);" class="float-right remove-todo-item"><i class="icon-close"></i></a>
+                        </div>
+                        
+                        <div class="todo-item">
+                            <div class="checker"><span class=""><input type="checkbox"/></span></div>
+                            <span>Organize office main department</span>
+                            <a href="javascript:void(0);" class="float-right remove-todo-item"><i class="icon-close"></i></a>
+                        </div>
+                        <div class="todo-item">
+                            <div class="checker"><span><input type="checkbox"/></span></div>
+                            <span>Error solve in HTML template</span>
+                            <a href="javascript:void(0);" class="float-right remove-todo-item"><i class="icon-close"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     </div>
     
   </div>
 </div>
+</div>
+<br/>
 
 
     </Typography>

@@ -6,9 +6,12 @@ import { DataGrid } from '@mui/x-data-grid';
 import { Avatar } from '@mui/material';
 import Stack from '@mui/material/Stack';
 import IconButton from '@mui/material/IconButton';
-import DeleteIcon from '@mui/icons-material/Delete';
-import { FaPen } from "react-icons/fa";
-import { FaSave } from "react-icons/fa";
+import Img from"./1.jpg";
+import { FcCheckmark } from "react-icons/fc";
+import { MdClear } from "react-icons/md";
+import { FcCalendar } from "react-icons/fc";
+
+
 
 
 
@@ -25,7 +28,7 @@ const columns = [
       field: 'photoULR',
       headerName: 'Profil',
       width: 90,
-      renderCell: (params) =><Avatar src={params.row.photoURL} sx={{mt:1}} />,
+      renderCell: (params) =><Avatar src={Img} sx={{mt:1}} />,
       sortable:false ,
       filterrable:false
     },
@@ -50,16 +53,19 @@ const columns = [
     { field: 'Actions',
     headerName: 'Action', 
     renderCell: (params) =>    <Stack spacing={2} direction="row">
-       <IconButton aria-label="delete">
-          <DeleteIcon />
-        </IconButton>
+
         <IconButton aria-label="delete">
-        <FaPen />
+        <FcCalendar />
+        </IconButton>
+
+       <IconButton aria-label="delete">
+       <FcCheckmark />
+        </IconButton>
+
+        <IconButton aria-label="delete" style={{color:'red'}}>
+        <MdClear />
         </IconButton>
   
-        <IconButton aria-label="delete">
-        <FaSave />
-        </IconButton>
   
   </Stack>,
   
@@ -169,8 +175,8 @@ const Users = () => {
       <div style={{ width: '100%' }}>
        <Typography sx={{p:5,textAlign:'justify',mb:5}}> 
        <br/>
-         <h1  >Liste des professeurs<br/>
-         <h6 style={{color:'#939597'}}>Here's a list of your tasks for this month!</h6></h1>
+         <h1  >Liste des Elèves<br/>
+         <h6 style={{color:'#939597'}}></h6></h1>
          <br/> <br/>
 
    

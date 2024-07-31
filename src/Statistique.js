@@ -3,8 +3,6 @@ import Sidebar from "./Sidebar";
 import { Box, Typography } from "@mui/material";
 
 import Paper from '@mui/material/Paper';
-import { Avatar } from '@mui/material';
-import Stack from '@mui/material/Stack';
 import { BarChart } from '@mui/x-charts/BarChart';
 
 
@@ -25,11 +23,8 @@ const Statistique = () => {
       <div style={{ width: '100%' }}>
        <Typography sx={{p:5,textAlign:'justify',mb:5}}> 
        <br/>
-         <h1 >Statistique<br/>
-         <h6 style={{color:'#939597'}}>Here's a list of your tasks for this month!</h6>
-         <Stack direction="row" className="Stack" spacing={2}  style={{justifyContent:'flex-end',marginTop:'-45px',marginRight:10}} >
-      <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
-    </Stack>
+         <h1 >Statistique des notes par semestre<br/>
+         <h6 style={{color:'#939597'}}></h6>
 </h1>
          <br/> <br/>
 

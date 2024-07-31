@@ -16,11 +16,10 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import React from 'react';
 import SpaceDashboardIcon from '@mui/icons-material/SpaceDashboard';
-import PeopleIcon from '@mui/icons-material/People';
-import PriceChangeIcon from '@mui/icons-material/PriceChange';
 import ShowChartIcon from '@mui/icons-material/ShowChart';
-import TouchAppIcon from '@mui/icons-material/TouchApp';
 import { useNavigate } from 'react-router-dom';
+import LibraryBooksIcon from '@mui/icons-material/LibraryBooks';
+import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
 
 const drawerWidth = 240;
 
@@ -72,6 +71,14 @@ const AppBar = styled(MuiAppBar, {
   }),
 }));
 
+const styles = {
+  paper: {
+  background: "blue"
+  }
+  }
+  
+  
+
 const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
   ({ theme, open }) => ({
     width: drawerWidth,
@@ -109,10 +116,10 @@ export default function Sidebar() {
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
-      <AppBar position="fixed" open={open}>
+      <AppBar position="fixed" open={open} >
         <Toolbar>
           <IconButton
-            color="inherit"
+            color="primary"
             aria-label="open drawer"
             onClick={handleDrawerOpen}
             edge="start"
@@ -124,7 +131,7 @@ export default function Sidebar() {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap component="div">
-            Dashboard
+            Tableau de Bord
           </Typography>
         </Toolbar>
       </AppBar>
@@ -155,7 +162,7 @@ export default function Sidebar() {
                   <SpaceDashboardIcon/>
                 </ListItemIcon>
                 
-                <ListItemText primary="Dashboard" sx={{ opacity: open ? 1 : 0 }} />
+                <ListItemText primary="Tableau de Bord" sx={{ opacity: open ? 1 : 0 }} />
               </ListItemButton>
             </ListItem>
 
@@ -174,34 +181,14 @@ export default function Sidebar() {
                     justifyContent: 'center',
                   }}
                 >
-                  <PeopleIcon/> 
+                  <PeopleAltIcon/> 
                 </ListItemIcon>
-                <ListItemText primary="Users" sx={{ opacity: open ? 1 : 0 }} />
+                <ListItemText primary="Elèves" sx={{ opacity: open ? 1 : 0 }} />
               </ListItemButton>
             </ListItem>
 
 
 
-            <ListItem  disablePadding sx={{ display: 'block' }}onClick={()=>{navigate('/Comptabilite')}}>
-              <ListItemButton
-                sx={{
-                  minHeight: 48,
-                  justifyContent: open ? 'initial' : 'center',
-                  px: 2.5,
-                }}
-              >
-                <ListItemIcon
-                  sx={{
-                    minWidth: 0,
-                    mr: open ? 3 : 'auto',
-                    justifyContent: 'center',
-                  }}
-                >
-                    <PriceChangeIcon/>
-                </ListItemIcon>
-                <ListItemText primary="Comptabilite" sx={{ opacity: open ? 1 : 0 }} />
-              </ListItemButton>
-            </ListItem>
 
 
 
@@ -227,7 +214,7 @@ export default function Sidebar() {
             </ListItem>
 
 
-            <ListItem  disablePadding sx={{ display: 'block' }} onClick={()=>{navigate('/Pointage')}}>
+            <ListItem  disablePadding sx={{ display: 'block' }} onClick={()=>{navigate('/Devoirs')}}>
               <ListItemButton
                 sx={{
                   minHeight: 48,
@@ -242,9 +229,10 @@ export default function Sidebar() {
                     justifyContent: 'center',
                   }}
                 >
-                    <TouchAppIcon/>
+                  <LibraryBooksIcon/>
+
                 </ListItemIcon>
-                <ListItemText primary="Pointage" sx={{ opacity: open ? 1 : 0 }} />
+                <ListItemText primary="Devoirs" sx={{ opacity: open ? 1 : 0 }} />
               </ListItemButton>
             </ListItem>
 
