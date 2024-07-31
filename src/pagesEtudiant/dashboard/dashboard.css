@@ -154,6 +154,12 @@
 }
 
 
+.mere-dashboard-livr{
+  background: white;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+
 
 .input-commentaire{
   gap: 50px;

@@ -52,6 +52,8 @@ const DashboardEtudiant = () => {
             </div>
           </Col>
         </Row>
+
+
         <Row>
           <Col md={12} className="mt-5">
             <div className="searchdate d-flex">
@@ -71,12 +73,12 @@ const DashboardEtudiant = () => {
             </div>
           </Col>
         </Row>
-
-        <Row>
+          <div className="mere-dashboard-livr">
+        <Row className="mt-5">
           <Col md={4} className="mt-5">
-            <div className="mere-dashboard-livr">
+            <div className="">
               <div className="d-flex gap-5">
-                <div>
+                <div className="ms-3">
                   <IoPersonSharp />
                 </div>
                 <div>
@@ -101,6 +103,7 @@ const DashboardEtudiant = () => {
           </Col>
           <Col md={6}></Col>
         </Row>
+        </div>
         <Row>
           <Col md={12} className="mt-5">
             <div className="input-commentaire d-flex">
