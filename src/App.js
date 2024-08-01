@@ -1,6 +1,6 @@
 // src/App.js
 import React from 'react';
-import { BrowserRouter , Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Login from "./pages/auth/Login";
 import ForgotPssWrd from "./pages/forgotpasseword/ForgotPssWrd";
 import Registe from './pages/inscription/Registe';
@@ -17,20 +17,21 @@ import Calendrier from './pages/pageadmine/calendrier/Calendrier';
 import Profile from './pages/pageadmine/profile/Profile';
 import { Message } from '@mui/icons-material';
 import AjoutElv from './pages/pageadmine/ajouteréléves/AjoutElv';
-
-
-
+import { MyContextProvider } from './context/MyContext';
+import Bulletin from './pages/pageadmine/users/bulletin/Bulletin';
+// import UpdateUser from './pages/pageadmine/dashboardadmin/updateusers/UpdateUser';
+// import Voix from './pages/pageadmine/dashboardadmin/voir/Voix';
+// import Archived from './pages/pageadmine/dashboardadmin/arhiver/Archived';
 
 function App() {
   return (
-    <div className="App">
-      <BrowserRouter >
-      <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path="/forgot" element={<ForgotPssWrd />} />
-        <Route path="/inscrire" element={<Registe />} />
-
-        <Route element={<LayoutAdmin />}>
+    <MyContextProvider>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Login />} />
+          <Route path="/forgot" element={<ForgotPssWrd />} />
+          <Route path="/inscrire" element={<Registe />} />
+          <Route element={<LayoutAdmin />}>
             <Route path="/dashboardadmin" element={<DashboardAdmin />} />
             <Route path="/users" element={<Users />} />
             <Route path="/eleves" element={<Eleves />} />
@@ -43,10 +44,15 @@ function App() {
             <Route path="/profile" element={<Profile />} />
             <Route path="/message" element={<Message />} />
             <Route path="/ajoutelv" element={<AjoutElv />} />
+            <Route path="/bulletin" element={<Bulletin />} />
+
+            {/* <Route path="/updateUser" element={<UpdateUser />} />
+            <Route path="/voir" element={<Voix />} />
+            <Route path="/archiveUser" element={<Archived />} /> */}
           </Route>
-      </Routes>
-      </BrowserRouter>      
-    </div>
+        </Routes>
+      </Router>
+    </MyContextProvider>
   );
 }
 

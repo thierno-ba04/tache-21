@@ -113,7 +113,7 @@ const SidebarAdmin = () => {
             </Link>
           </li>
           <li >
-            <Link to="/users">
+            <Link /*to="/eleves"*/>
               <span className="icon">
                 <MdOutlineSupervisorAccount size={25} />
               </span>
@@ -128,7 +128,7 @@ const SidebarAdmin = () => {
                   onChange={handleChange}
                 >
 
-                  <Link to="eleves">
+                  <Link to="/eleves">
                   <MenuItem >Eleves</MenuItem>
                   
                   </Link>
@@ -159,7 +159,7 @@ const SidebarAdmin = () => {
             </Link>
           </li>
           <li>
-            <Link className="out">
+            <Link to="/statistique" className="out">
               <span className="icon">
               <FaChartLine size={20} />
               </span>
