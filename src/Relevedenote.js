@@ -9,9 +9,7 @@ import { emphasize, styled } from '@mui/material/styles';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
 import Chip from '@mui/material/Chip';
 import DashboardIcon from '@mui/icons-material/Dashboard';
-import AddToDriveIcon from '@mui/icons-material/AddToDrive';
-import'./App.css';
-import Img1 from './google-drive.png';
+import Img2 from './exceller.png';
 
 const StyledBreadcrumb = styled(Chip)(({ theme }) => {
   const backgroundColor =
@@ -91,12 +89,10 @@ const customTheme = createTheme({
   
 
 
-const Devoirs= () => {
+const Relevedenote= () => {
 
   const navigate=useNavigate();
     return ( 
-
-      
         <Box sx={{display:"flex"}}>
         <Sidebar/>
          <Box component="main"  sx={{flexGrow:1,marginTop:7,p:3,bgcolor:"#eaeff1" }}>
@@ -121,10 +117,9 @@ const Devoirs= () => {
         />
         
         <StyledBreadcrumb
-            sx={{p:2}}
-
-          label="Devoirs"
-          onClick={()=>{navigate('/Devoirs')}}
+          sx={{p:2}}
+          label="Releve de note"
+          onClick={()=>{navigate('/Relevedenote')}}
         />
       </Breadcrumbs>
     </div>
@@ -133,28 +128,19 @@ const Devoirs= () => {
          <br/>
        </Typography>
 
-
     </div>
-
-     <Typography sx={{p:5}} className="bg ">
-
+     <Typography sx={{p:5}}>
+        
      <ThemeProvider theme={customTheme}>
       <MyThemeComponent sx={{ m: 1 }} color="primary" variant="dashed" style={{height:400}}>
-        
-      <Box sx={{ textAlign: 'center', m: 1 ,margin:10,}} >
-
-      
-
-       Clickez sur le button pour recuperez les devoirs <br/><br/>
+      <Box sx={{ textAlign: 'center', m: 1 ,margin:10}}>
     
-    <a href={"https://drive.google.com/drive/home?sjid=200973102585411076-EU"}><img src={Img1}  width={35} height={35}/>  </a>
-  
+       Clickez sur le button pour voir le relevé de note  <br/><br/>
+    
+       <a href={"https://drive.google.com/drive/home?sjid=200973102585411076-EU"}><img src={Img2}  width={35} height={35}/>  </a>
+
 
       </Box>
-
-
-
-
 
       </MyThemeComponent>
       
@@ -172,10 +158,8 @@ const Devoirs= () => {
          </Box>
 
         </Box>
-
-        
      );
 
 }
  
-export default Devoirs;
+export default Relevedenote;

@@ -1,15 +1,70 @@
 import React from "react";
 import Sidebar from "./Sidebar";
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, colors } from "@mui/material";
 import Paper from '@mui/material/Paper';
 import { DataGrid } from '@mui/x-data-grid';
 import { Avatar } from '@mui/material';
 import Stack from '@mui/material/Stack';
 import IconButton from '@mui/material/IconButton';
 import Img from"./1.jpg";
-import { FcCheckmark } from "react-icons/fc";
-import { MdClear } from "react-icons/md";
-import { FcCalendar } from "react-icons/fc";
+import dayjs from 'dayjs';
+import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import Button from '@mui/material/Button';
+import Modal from '@mui/material/Modal';
+import {  useNavigate } from "react-router-dom";
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+import DashboardIcon from '@mui/icons-material/Dashboard';
+
+import { emphasize, styled } from '@mui/material/styles';
+import Breadcrumbs from '@mui/material/Breadcrumbs';
+import Chip from '@mui/material/Chip';
+import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
+
+
+const StyledBreadcrumb = styled(Chip)(({ theme }) => {
+  const backgroundColor =
+    theme.palette.mode === 'light'
+      ? theme.palette.grey[100]
+      : theme.palette.grey[800];
+  return {
+    backgroundColor,
+    height: theme.spacing(3),
+    color: theme.palette.text.primary,
+    fontWeight: theme.typography.fontWeightRegular,
+    '&:hover, &:focus': {
+      backgroundColor: emphasize(backgroundColor, 0.06),
+    },
+    '&:active': {
+      boxShadow: theme.shadows[1],
+      backgroundColor: emphasize(backgroundColor, 0.12),
+    },
+  };
+}); // TypeScript only: need a type cast here because https://github.com/Microsoft/TypeScript/issues/26591
+
+function handleClick(event) {
+  event.preventDefault();
+  console.info('You clicked a breadcrumb.');
+}
+
+
+
+const style = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 400,
+  bgcolor: 'background.paper',
+  border: '2px solid #000',
+  boxShadow: 24,
+  p: 4,
+};
 
 
 
@@ -17,11 +72,29 @@ import { FcCalendar } from "react-icons/fc";
 
 
 
+  
 
 
+const Users = () => {
+
+  const navigate = useNavigate();
+
+  const [listpresence, setlistepresence] = React.useState('');
+
+  const handleChange = (event) => {
+    setlistepresence(event.target.value);
+  };
 
 
-const columns = [
+  const Navigate =useNavigate();
+
+  const [value, setValue] = React.useState(dayjs('2022-04-17'));
+
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
+  const columns = [
  
 
     {
@@ -51,25 +124,71 @@ const columns = [
     { field: 'Statut',headerName: 'statut', width: 150 },
     
     { field: 'Actions',
-    headerName: 'Action', 
-    renderCell: (params) =>    <Stack spacing={2} direction="row">
+    headerName: 'Liste de presence', 
+    renderCell: (params) =>  
+    
+<Stack spacing={0} direction="row">
 
-        <IconButton aria-label="delete">
-        <FcCalendar />
-        </IconButton>
+<div>
+  <IconButton sx={{fontSize:30,ml: 3}} onClick={handleOpen} ><FormatListBulletedIcon/></IconButton> 
+        <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <Typography id="modal-modal-title" variant="h6" component="h2">
+          <LocalizationProvider dateAdapter={AdapterDayjs} >
+      <DemoContainer components={['DatePicker', 'DatePicker']} >
+        <DatePicker
+          
+          label="Controlled picker"
+          value={value}
+          onChange={(newValue) => setValue(newValue)}
+        />
+      </DemoContainer>
+    </LocalizationProvider>
+          </Typography>
+       
+       <br/>
+          <Typography>
 
-       <IconButton aria-label="delete">
-       <FcCheckmark />
-        </IconButton>
+               <Box sx={{ minWidth: 120 }}>
+      <FormControl sx={{width:245}}>
+        <InputLabel id="demo-simple-select-label">presence</InputLabel>
+        <Select
+          labelId="demo-simple-select-label"
+          id="demo-simple-select"
+          value={listpresence}
+          label="liste presence"
+          onChange={handleChange}
+        >
+          <MenuItem value={'Présent'}>Présent</MenuItem>
+          <MenuItem value={'Absent'}>Absent</MenuItem>
+        </Select>
+      </FormControl>
+    </Box>
 
-        <IconButton aria-label="delete" style={{color:'red'}}>
-        <MdClear />
-        </IconButton>
+          </Typography>
+
+
+
+          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+          <Button   onClick={()=>{Navigate('/')}} variant="contained">Envoyer</Button>
+
+          </Typography>
+        </Box>
+      </Modal>
+    </div>
+
+
+
   
   
   </Stack>,
   
-    width: 180 },
+    width: 150},
 
   
   
@@ -157,10 +276,6 @@ const columns = [
   },
     
   ];
-  
-
-
-const Users = () => {
     return ( 
         <Box sx={{display:"flex"}}>
         <Sidebar/>
@@ -173,18 +288,35 @@ const Users = () => {
        
     
       <div style={{ width: '100%' }}>
+
+
        <Typography sx={{p:5,textAlign:'justify',mb:5}}> 
        <br/>
-         <h1  >Liste des Elèves<br/>
-         <h6 style={{color:'#939597'}}></h6></h1>
-         <br/> <br/>
 
-   
+       <div role="presentation">
+      <Breadcrumbs aria-label="breadcrumb">
+        <StyledBreadcrumb
+           sx={{p:2}}
+          component="a"
+          href="#"
+          label="Dashaord"
+          onClick={()=>{navigate('/')}}
 
-  
+          icon={<DashboardIcon fontSize="small" />}
+        />
+        
+        <StyledBreadcrumb
+           sx={{p:2}}
+          label="Liste des élèves"
+          onClick={()=>{navigate('/users')}}
+        />
+      </Breadcrumbs>
+    </div>
+
+        <br/>
+   </Typography>
 
 
-       </Typography>
       <DataGrid  sx={{m:5}}
         rows={rows}
         columns={columns}
@@ -195,12 +327,9 @@ const Users = () => {
             paginationModel: { page: 0, pageSize: 5 },
           },
         }}
-        pageSizeOptions={[5, 10]}
-        
-        
+        pageSizeOptions={[5, 10]}  
       />
       <br/>
-
     </div>
 
 

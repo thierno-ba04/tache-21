@@ -3,24 +3,62 @@
     margin-top:20px;
     background:#FAFAFA;
 }
+
+/*animation card*/
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+
+}
+
+/* ---------------  */
+
+
+
+
+/*  card  */
+
 .order-card {
     color: #fff;
 }
 
 .bg-c-blue {
-    background: linear-gradient(45deg,#4099ff,#73b4ff);
+  background: linear-gradient(-45deg, #73b4ff ,#4099ff, #016183, #1f7ee3);
+	background-size: 400% 400%;
+	animation: gradient 15s ease infinite;
+	height: 100vh;
 }
 
 .bg-c-green {
-    background: linear-gradient(45deg,#2ed8b6,#59e0c5);
+  background: linear-gradient(-45deg,#2ed8b6,#59e0c5, #048063,#23a6d5);
+	background-size: 400% 400%;
+	animation: gradient 15s ease infinite;
+	height: 100vh;
+
 }
 
 .bg-c-yellow {
-    background: linear-gradient(45deg,#FFB64D,#ffcb80);
+  background: linear-gradient(-45deg, #e8c18b,#FFB64D,#946119,#ab6504 );
+	background-size: 400% 400%;
+	animation: gradient 15s ease infinite;
+	height: 100vh;
+
 }
 
 .bg-c-pink {
-    background: linear-gradient(45deg,#FF5370,#ff869a);
+  background: linear-gradient(-45deg, #e09cb6, #cd3972,#740619,#ff869a);
+	background-size: 400% 400%;
+	animation: gradient 15s ease infinite;
+	height: 100vh;
+
+    background: linear-gradient(45deg);
 }
 
 
@@ -49,6 +87,9 @@
 .f-right {
     float: right;
 }
+
+
+
 
 
 
@@ -158,3 +199,42 @@ div.button, div.checker, div.radio, div.selector, div.uploader {
 }
 
 
+
+
+/*liens page dashboard/liste des eleves*/
+
+.li::before, li::after {
+  width: 0%;
+  height: 3px;
+  content: "";
+  position: absolute;
+  top: 40%;
+  display: block;
+  background: transparent;
+  transition: all 500ms cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.li::before{
+  left: -1.5px;
+}
+
+.li::after {
+  left: 1.5px;
+  background: transparent;
+}
+
+.li:hover::before{
+  background: #2979ff;
+  width: 100%;
+}
+
+.li:hover::after {
+  background: transparent;
+  width: 100%;
+  transition: 0s;
+}
+
+
+
+
+  

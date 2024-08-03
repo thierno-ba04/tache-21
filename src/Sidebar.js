@@ -20,6 +20,18 @@ import ShowChartIcon from '@mui/icons-material/ShowChart';
 import { useNavigate } from 'react-router-dom';
 import LibraryBooksIcon from '@mui/icons-material/LibraryBooks';
 import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
+import'./App.css';
+import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
+import MarkEmailUnreadIcon from '@mui/icons-material/MarkEmailUnread';
+import Button from '@mui/material/Button';
+import Avatar from '@mui/material/Avatar';
+import { deepOrange, deepPurple } from '@mui/material/colors';
+import Badge from '@mui/material/Badge';
+import MailIcon from '@mui/icons-material/Mail';
+import Stack from '@mui/material/Stack';
+import NotificationsIcon from '@mui/icons-material/Notifications';
+
+
 
 const drawerWidth = 240;
 
@@ -71,11 +83,6 @@ const AppBar = styled(MuiAppBar, {
   }),
 }));
 
-const styles = {
-  paper: {
-  background: "blue"
-  }
-  }
   
   
 
@@ -95,6 +102,9 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
     }),
   }),
 );
+
+
+
 
 export default function Sidebar() {
 
@@ -116,10 +126,10 @@ export default function Sidebar() {
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
-      <AppBar position="fixed" open={open} >
+      <AppBar position="fixed" open={open}  >
         <Toolbar>
           <IconButton
-            color="primary"
+            color="white"
             aria-label="open drawer"
             onClick={handleDrawerOpen}
             edge="start"
@@ -131,13 +141,35 @@ export default function Sidebar() {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap component="div">
-            Tableau de Bord
+            Dashaord
           </Typography>
+
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+            
+          </Typography>
+          <Stack direction="row" spacing={2}>
+         
+                    <Badge  badgeContent={4} color='error'>
+          <NotificationsIcon  sx={{mt:1}} color="action" />
+          </Badge>
+
+          
+          <Badge  badgeContent={4} color='error'  >
+          <MailIcon  sx={{mt:1}} color="action" />
+          </Badge>
+
+        
+          <Avatar sx={{ bgcolor: deepPurple[500] }}>OP</Avatar>
+    </Stack>
+
+
+
         </Toolbar>
+
       </AppBar>
 
-      <Drawer variant="permanent" open={open}>
-        <DrawerHeader>
+      <Drawer variant="permanent" open={open}  color='error'>
+        <DrawerHeader >
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
           </IconButton>
@@ -187,33 +219,6 @@ export default function Sidebar() {
               </ListItemButton>
             </ListItem>
 
-
-
-
-
-
-            <ListItem  disablePadding sx={{ display: 'block' }} onClick={()=>{navigate('/Statistique')}}>
-              <ListItemButton
-                sx={{
-                  minHeight: 48,
-                  justifyContent: open ? 'initial' : 'center',
-                  px: 2.5,
-                }}
-              >
-                <ListItemIcon
-                  sx={{
-                    minWidth: 0,
-                    mr: open ? 3 : 'auto',
-                    justifyContent: 'center',
-                  }}
-                >
-                  <ShowChartIcon/> 
-                </ListItemIcon>
-                <ListItemText primary="Statistique" sx={{ opacity: open ? 1 : 0 }} />
-              </ListItemButton>
-            </ListItem>
-
-
             <ListItem  disablePadding sx={{ display: 'block' }} onClick={()=>{navigate('/Devoirs')}}>
               <ListItemButton
                 sx={{
@@ -237,8 +242,51 @@ export default function Sidebar() {
             </ListItem>
 
 
+            <ListItem  disablePadding sx={{ display: 'block' }} onClick={()=>{navigate('/Relevedenote')}}>
+              <ListItemButton
+                sx={{
+                  minHeight: 48,
+                  justifyContent: open ? 'initial' : 'center',
+                  px: 2.5,
+                }}
+              >
+                <ListItemIcon
+                  sx={{
+                    minWidth: 0,
+                    mr: open ? 3 : 'auto',
+                    justifyContent: 'center',
+                  }}
+                >
+                  <AppRegistrationIcon/>
+                    </ListItemIcon>
+                <ListItemText primary="Releve de note" sx={{ opacity: open ? 1 : 0 }} />
+              </ListItemButton>
+            </ListItem>
 
-     
+            <ListItem  disablePadding sx={{ display: 'block' }} onClick={()=>{navigate('/Notedeservice')}}>
+              <ListItemButton
+                sx={{
+                  minHeight: 48,
+                  justifyContent: open ? 'initial' : 'center',
+                  px: 2.5,
+                }}
+              >
+                <ListItemIcon
+                  sx={{
+                    minWidth: 0,
+                    mr: open ? 3 : 'auto',
+                    justifyContent: 'center',
+                  }}
+                >
+                    <MarkEmailUnreadIcon/>
+                    </ListItemIcon>
+                <ListItemText primary="Note de service" sx={{ opacity: open ? 1 : 0 }} />
+              </ListItemButton>
+            </ListItem>
+
+
+
+
           
         </List>
 

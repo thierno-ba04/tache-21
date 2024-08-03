@@ -3,8 +3,9 @@ import React from 'react';
 import { BrowserRouter , Route, Routes } from 'react-router-dom';
 import Dashboard from './Dashboard';
 import Users from './Users';
-import Statistique from './Statistique';
 import Devoirs from './Devoirs';
+import Relevedenote from './Relevedenote';
+import Notedeservice from './Notedeservice';
 
 
 
@@ -17,8 +18,10 @@ function App() {
 
           <Route path="/" element={<Dashboard/>} />
           <Route path="/users" element={<Users/>} />
-          <Route path="/Statistique" element={<Statistique/>} />
           <Route path="/Devoirs" element={<Devoirs/>} />
+          <Route path="/Relevedenote" element={<Relevedenote/>} />
+          <Route path="/Notedeservice" element={<Notedeservice/>} />
+
 
 
 

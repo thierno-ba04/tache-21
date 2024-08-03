@@ -2,16 +2,16 @@ import React from "react";
 import Sidebar from "./Sidebar";
 import { Box, Typography } from "@mui/material";
 import Paper from '@mui/material/Paper';
-import {  createTheme, ThemeProvider } from '@mui/system';
-import {  useNavigate } from "react-router-dom";
-
+import {  createTheme} from '@mui/system';
+import { useNavigate } from "react-router-dom";
 import { emphasize, styled } from '@mui/material/styles';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
 import Chip from '@mui/material/Chip';
 import DashboardIcon from '@mui/icons-material/Dashboard';
-import AddToDriveIcon from '@mui/icons-material/AddToDrive';
-import'./App.css';
-import Img1 from './google-drive.png';
+import'./chat.css';
+import Img from"./1.jpg";
+
+
 
 const StyledBreadcrumb = styled(Chip)(({ theme }) => {
   const backgroundColor =
@@ -91,12 +91,10 @@ const customTheme = createTheme({
   
 
 
-const Devoirs= () => {
+const Notedeservice= () => {
 
   const navigate=useNavigate();
     return ( 
-
-      
         <Box sx={{display:"flex"}}>
         <Sidebar/>
          <Box component="main"  sx={{flexGrow:1,marginTop:7,p:3,bgcolor:"#eaeff1" }}>
@@ -111,7 +109,8 @@ const Devoirs= () => {
        <div role="presentation">
       <Breadcrumbs aria-label="breadcrumb">
         <StyledBreadcrumb
-           sx={{p:2}}
+         sx={{p:2}}
+
           component="a"
           href="#"
           label="Dashaord"
@@ -121,44 +120,71 @@ const Devoirs= () => {
         />
         
         <StyledBreadcrumb
-            sx={{p:2}}
+           sx={{p:2}}
 
-          label="Devoirs"
-          onClick={()=>{navigate('/Devoirs')}}
+          label="Note de service"
+          onClick={()=>{navigate('/Notedeservice')}}
         />
       </Breadcrumbs>
     </div>
+    <br/>  
+      <br/>
+      <br/>
 
-       
+
+    <main role="main" class="container bootdey.com">
+  <div class="d-flex align-items-center p-3 my-3 text-white-50 bg-blue rounded box-shadow">
+    <img class="mr-3" src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="" width="48" height="48"/>
+    <div class="lh-100">
+      <h6 class="mb-0 text-white lh-100">John Doe</h6>
+      <small>Messages</small>
+    </div>
+  </div>
+
+  <div class="my-3 p-3 bg-white rounded box-shadow">
+    <h6 class="border-bottom border-gray pb-2 mb-0">Recent updates</h6>
+    <div class="media text-muted pt-3">
+      <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="" class="mr-2 rounded" width="32" height="32"/>
+      <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+        <strong class="d-block text-gray-dark">@username</strong>
+        Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
+      </p>
+    </div>
+    <div class="media text-muted pt-3">
+      <img src={Img} alt="" class="mr-2 rounded" width="32" height="32"/>
+      <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+        <strong class="d-block text-gray-dark">@username</strong>
+        Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
+      </p>
+    </div>
+    <div class="media text-muted pt-3">
+      <img src="https://bootdey.com/img/Content/avatar/avatar5.png" alt="" class="mr-2 rounded" width="32" height="32"/>
+      <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+        <strong class="d-block text-gray-dark">@username</strong>
+        Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
+      </p>
+    </div>
+    <div class="media text-muted pt-3">
+      <img src="https://bootdey.com/img/Content/avatar/avatar4.png" alt="" class="mr-2 rounded" width="32" height="32"/>
+      <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+        <strong class="d-block text-gray-dark">@username</strong>
+        Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
+      </p>
+    </div>
+    <small class="d-block text-right mt-3">
+      <a href="#">All messages</a>
+    </small>
+  </div>
+</main>
+
          <br/>
        </Typography>
 
 
+
     </div>
+     <Typography sx={{p:5}}>
 
-     <Typography sx={{p:5}} className="bg ">
-
-     <ThemeProvider theme={customTheme}>
-      <MyThemeComponent sx={{ m: 1 }} color="primary" variant="dashed" style={{height:400}}>
-        
-      <Box sx={{ textAlign: 'center', m: 1 ,margin:10,}} >
-
-      
-
-       Clickez sur le button pour recuperez les devoirs <br/><br/>
-    
-    <a href={"https://drive.google.com/drive/home?sjid=200973102585411076-EU"}><img src={Img1}  width={35} height={35}/>  </a>
-  
-
-      </Box>
-
-
-
-
-
-      </MyThemeComponent>
-      
-    </ThemeProvider>
 
     </Typography>
 
@@ -172,10 +198,8 @@ const Devoirs= () => {
          </Box>
 
         </Box>
-
-        
      );
 
 }
  
-export default Devoirs;
+export default Notedeservice;
