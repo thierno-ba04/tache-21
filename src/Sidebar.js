@@ -32,7 +32,6 @@ import Stack from '@mui/material/Stack';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 
 
-
 const drawerWidth = 240;
 
 const openedMixin = (theme) => ({
@@ -124,9 +123,9 @@ export default function Sidebar() {
   };
 
   return (
-    <Box sx={{ display: 'flex' }}>
-      <CssBaseline />
-      <AppBar position="fixed" open={open}  >
+    <Box  sx={{ display: 'flex' }}>
+      <CssBaseline  />
+      <AppBar position="fixed" open={open}  sx={{bgcolor:'white'}} >
         <Toolbar>
           <IconButton
             color="white"
@@ -140,7 +139,7 @@ export default function Sidebar() {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap component="div">
+          <Typography variant="h6" noWrap component="div" style={{color:'black'}}>
             Dashaord
           </Typography>
 
@@ -168,7 +167,7 @@ export default function Sidebar() {
 
       </AppBar>
 
-      <Drawer variant="permanent" open={open}  color='error'>
+      <Drawer variant="permanent" open={open} >
         <DrawerHeader >
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
@@ -188,13 +187,14 @@ export default function Sidebar() {
                     minWidth: 0,
                     mr: open ? 3 : 'auto',
                     justifyContent: 'center',
+                    color:'white'
                   }}
                   
                 >
                   <SpaceDashboardIcon/>
                 </ListItemIcon>
                 
-                <ListItemText primary="Tableau de Bord" sx={{ opacity: open ? 1 : 0 }} />
+                <ListItemText primary="Tableau de Bord" sx={{ opacity: open ? 1 : 0 ,color:'white'}} />
               </ListItemButton>
             </ListItem>
 
@@ -204,6 +204,7 @@ export default function Sidebar() {
                   minHeight: 48,
                   justifyContent: open ? 'initial' : 'center',
                   px: 2.5,
+
                 }}
               >
                 <ListItemIcon
@@ -211,11 +212,13 @@ export default function Sidebar() {
                     minWidth: 0,
                     mr: open ? 3 : 'auto',
                     justifyContent: 'center',
+                    color:'white'
+
                   }}
                 >
                   <PeopleAltIcon/> 
                 </ListItemIcon>
-                <ListItemText primary="Elèves" sx={{ opacity: open ? 1 : 0 }} />
+                <ListItemText primary="Elèves" sx={{ opacity: open ? 1 : 0 ,color:'white'}} />
               </ListItemButton>
             </ListItem>
 
@@ -225,6 +228,7 @@ export default function Sidebar() {
                   minHeight: 48,
                   justifyContent: open ? 'initial' : 'center',
                   px: 2.5,
+
                 }}
               >
                 <ListItemIcon
@@ -232,12 +236,14 @@ export default function Sidebar() {
                     minWidth: 0,
                     mr: open ? 3 : 'auto',
                     justifyContent: 'center',
+                    color:'white',
+
                   }}
                 >
                   <LibraryBooksIcon/>
 
                 </ListItemIcon>
-                <ListItemText primary="Devoirs" sx={{ opacity: open ? 1 : 0 }} />
+                <ListItemText primary="Devoirs" sx={{ opacity: open ? 1 : 0,color:'white' }} />
               </ListItemButton>
             </ListItem>
 
@@ -255,11 +261,13 @@ export default function Sidebar() {
                     minWidth: 0,
                     mr: open ? 3 : 'auto',
                     justifyContent: 'center',
+                    color:'white',
+
                   }}
                 >
                   <AppRegistrationIcon/>
                     </ListItemIcon>
-                <ListItemText primary="Releve de note" sx={{ opacity: open ? 1 : 0 }} />
+                <ListItemText primary="Releve de note" sx={{ opacity: open ? 1 : 0,color:'white' }} />
               </ListItemButton>
             </ListItem>
 
@@ -276,11 +284,12 @@ export default function Sidebar() {
                     minWidth: 0,
                     mr: open ? 3 : 'auto',
                     justifyContent: 'center',
+                    color:'white'
                   }}
                 >
                     <MarkEmailUnreadIcon/>
                     </ListItemIcon>
-                <ListItemText primary="Note de service" sx={{ opacity: open ? 1 : 0 }} />
+                <ListItemText primary="Note de service" sx={{ opacity: open ? 1 : 0,color:'white' }} />
               </ListItemButton>
             </ListItem>
 

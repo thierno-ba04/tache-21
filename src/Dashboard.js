@@ -86,36 +86,6 @@ const Dashboard = () => {
 
           icon={<DashboardIcon fontSize="small" />}
         />
-        
-        <StyledBreadcrumb
-               sx={{p:2}}
-          label="Liste des élèves"
-          onClick={()=>{navigate('/users')}}
-        />
-
-
-       <StyledBreadcrumb
-            sx={{p:2}}
-          label="Devoirs"
-          onClick={()=>{navigate('/Devoirs')}}
-        />
-
-     <StyledBreadcrumb
-       sx={{p:2}}
-          label="Relevé de note"
-          onClick={()=>{navigate('/Relevedenote')}}
-        />
-
-
-<StyledBreadcrumb
-                sx={{p:2}}
-          label="Note de service"
-          onClick={()=>{navigate('/Notedeservice')}}
-        />
-
-
-            
-
 
       </Breadcrumbs>
     </div>
@@ -170,51 +140,189 @@ const Dashboard = () => {
   </div>
   <br/>
 
-  <div class="container  " style={{padding:'4vh'}}>
+  <div class="container  ">
   <div class="row">
-    <div class="col-6">
-    <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <StaticDatePicker orientation="landscape" />
-    </LocalizationProvider>
+    <div class="col">
+    <div class="container">
+                <div class="timetable-img text-center">
+                    <img src="img/content/timetable.png" alt=""/>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-bordered text-center">
+                        <thead>
+                            <tr class="bg-light-gray">
+                                <th class="text-uppercase">Heure
+                                </th>
+                                <th class="text-uppercase">Lundi</th>
+                                <th class="text-uppercase">Mardi</th>
+                                <th class="text-uppercase">Mercredi</th>
+                                <th class="text-uppercase">Jeudi</th>
+                                <th class="text-uppercase">Vendredi</th>
+                                <th class="text-uppercase">Samedi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="align-middle">09:00am</td>
+                                <td>
+                                    <span class="bg-sky padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16 xs-font-size13">Dance</span>
+                                    <div class="margin-10px-top font-size14">9:00-10:00</div>
+                                    <div class="font-size13 text-light-gray">Ivana Wong</div>
+                                </td>
+                                <td>
+                                    <span class="bg-green padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">Yoga</span>
+                                    <div class="margin-10px-top font-size14">9:00-10:00</div>
+                                    <div class="font-size13 text-light-gray">Marta Healy</div>
+                                </td>
+
+                                <td>
+                                    <span class="bg-yellow padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">Music</span>
+                                    <div class="margin-10px-top font-size14">9:00-10:00</div>
+                                    <div class="font-size13 text-light-gray">Ivana Wong</div>
+                                </td>
+                                <td>
+                                    <span class="bg-sky padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">Dance</span>
+                                    <div class="margin-10px-top font-size14">9:00-10:00</div>
+                                    <div class="font-size13 text-light-gray">Ivana Wong</div>
+                                </td>
+                                <td>
+                                    <span class="bg-purple padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">Art</span>
+                                    <div class="margin-10px-top font-size14">9:00-10:00</div>
+                                    <div class="font-size13 text-light-gray">Kate Alley</div>
+                                </td>
+                                <td>
+                                    <span class="bg-pink padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">English</span>
+                                    <div class="margin-10px-top font-size14">9:00-10:00</div>
+                                    <div class="font-size13 text-light-gray">James Smith</div>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="align-middle">10:00am</td>
+                                <td>
+                                    <span class="bg-yellow padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">Music</span>
+                                    <div class="margin-10px-top font-size14">10:00-11:00</div>
+                                    <div class="font-size13 text-light-gray">Ivana Wong</div>
+                                </td>
+                                <td class="bg-light-gray">
+
+                                </td>
+                                <td>
+                                    <span class="bg-purple padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">Art</span>
+                                    <div class="margin-10px-top font-size14">10:00-11:00</div>
+                                    <div class="font-size13 text-light-gray">Kate Alley</div>
+                                </td>
+                                <td>
+                                    <span class="bg-green padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">Yoga</span>
+                                    <div class="margin-10px-top font-size14">10:00-11:00</div>
+                                    <div class="font-size13 text-light-gray">Marta Healy</div>
+                                </td>
+                                <td>
+                                    <span class="bg-pink padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">English</span>
+                                    <div class="margin-10px-top font-size14">10:00-11:00</div>
+                                    <div class="font-size13 text-light-gray">James Smith</div>
+                                </td>
+                                <td class="bg-light-gray">
+
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="align-middle">11:00am</td>
+                                <td>
+                                    <span class="bg-lightred padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">Break</span>
+                                    <div class="margin-10px-top font-size14">11:00-12:00</div>
+                                </td>
+                                <td>
+                                    <span class="bg-lightred padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">Break</span>
+                                    <div class="margin-10px-top font-size14">11:00-12:00</div>
+                                </td>
+                                <td>
+                                    <span class="bg-lightred padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">Break</span>
+                                    <div class="margin-10px-top font-size14">11:00-12:00</div>
+                                </td>
+                                <td>
+                                    <span class="bg-lightred padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">Break</span>
+                                    <div class="margin-10px-top font-size14">11:00-12:00</div>
+                                </td>
+                                <td>
+                                    <span class="bg-lightred padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">Break</span>
+                                    <div class="margin-10px-top font-size14">11:00-12:00</div>
+                                </td>
+                                <td>
+                                    <span class="bg-lightred padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">Break</span>
+                                    <div class="margin-10px-top font-size14">11:00-12:00</div>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="align-middle">12:00pm</td>
+                                <td class="bg-light-gray">
+
+                                </td>
+                                <td>
+                                    <span class="bg-purple padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">Art</span>
+                                    <div class="margin-10px-top font-size14">12:00-1:00</div>
+                                    <div class="font-size13 text-light-gray">Kate Alley</div>
+                                </td>
+                                <td>
+                                    <span class="bg-sky padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">Dance</span>
+                                    <div class="margin-10px-top font-size14">12:00-1:00</div>
+                                    <div class="font-size13 text-light-gray">Ivana Wong</div>
+                                </td>
+                                <td>
+                                    <span class="bg-yellow padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">Music</span>
+                                    <div class="margin-10px-top font-size14">12:00-1:00</div>
+                                    <div class="font-size13 text-light-gray">Ivana Wong</div>
+                                </td>
+                                <td class="bg-light-gray">
+
+                                </td>
+                                <td>
+                                    <span class="bg-green padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">Yoga</span>
+                                    <div class="margin-10px-top font-size14">12:00-1:00</div>
+                                    <div class="font-size13 text-light-gray">Marta Healy</div>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="align-middle">01:00pm</td>
+                                <td>
+                                    <span class="bg-pink padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">English</span>
+                                    <div class="margin-10px-top font-size14">1:00-2:00</div>
+                                    <div class="font-size13 text-light-gray">James Smith</div>
+                                </td>
+                                <td>
+                                    <span class="bg-yellow padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">Music</span>
+                                    <div class="margin-10px-top font-size14">1:00-2:00</div>
+                                    <div class="font-size13 text-light-gray">Ivana Wong</div>
+                                </td>
+                                <td class="bg-light-gray">
+
+                                </td>
+                                <td>
+                                    <span class="bg-pink padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">English</span>
+                                    <div class="margin-10px-top font-size14">1:00-2:00</div>
+                                    <div class="font-size13 text-light-gray">James Smith</div>
+                                </td>
+                                <td>
+                                    <span class="bg-green padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">Yoga</span>
+                                    <div class="margin-10px-top font-size14">1:00-2:00</div>
+                                    <div class="font-size13 text-light-gray">Marta Healy</div>
+                                </td>
+                                <td>
+                                    <span class="bg-yellow padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">Music</span>
+                                    <div class="margin-10px-top font-size14">1:00-2:00</div>
+                                    <div class="font-size13 text-light-gray">Ivana Wong</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                </div>
 
     </div>
-    <div class="col-6">
-            <div class="  card card-white ">
-                <div class=" card-body  ">
-                    <form action="javascript:void(0);">
-                        <input type="text" class="form-control add-task" placeholder="New Task..."/>
-                    </form>
-                    <ul class="nav nav-pills todo-nav">
-                        <li role="presentation" class="nav-item all-task active"><a href="#" class="nav-link">All</a></li>
-                        <li role="presentation" class="nav-item active-task"><a href="#" class="nav-link">Active</a></li>
-                        <li role="presentation" class="nav-item completed-task"><a href="#" class="nav-link">Completed</a></li>
-                    </ul>
-                    <div class="todo-list ">
-                        <div class="todo-item">
-                            <div class="checker"><span class=""><input type="checkbox"/></span></div>
-                            <span>Create theme</span>
-                            <a href="javascript:void(0);" class="float-right remove-todo-item"><i class="icon-close"></i></a>
-                        </div>
-                        <div class="todo-item">
-                            <div class="checker"><span class=""><input type="checkbox"/></span></div>
-                            <span>Work on wordpress</span>
-                            <a href="javascript:void(0);" class="float-right remove-todo-item"><i class="icon-close"></i></a>
-                        </div>
-                        
-                        <div class="todo-item">
-                            <div class="checker"><span class=""><input type="checkbox"/></span></div>
-                            <span>Organize office main department</span>
-                            <a href="javascript:void(0);" class="float-right remove-todo-item"><i class="icon-close"></i></a>
-                        </div>
-                        <div class="todo-item">
-                            <div class="checker"><span><input type="checkbox"/></span></div>
-                            <span>Error solve in HTML template</span>
-                            <a href="javascript:void(0);" class="float-right remove-todo-item"><i class="icon-close"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+
     </div>
 
     </div>
