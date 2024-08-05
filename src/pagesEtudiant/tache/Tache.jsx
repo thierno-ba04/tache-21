@@ -1,18 +1,32 @@
-import { Col, Container, Row } from "react-bootstrap";
+import { Button, Col, Container, Row } from "react-bootstrap";
 import "./tache.css";
 
 const Tache = () => {
   return (
-    <div className="mere-tache" style={{ marginTop: "80px", paddingTop: "120px" }}>
-      {/* <div className="d-flex ">
-        <div className="">
-            <p>DASHBOARD / TACHE</p>
-        </div>
-     <div className="inputsearch ">
-              <input type="search" placeholder="Recherche tache" />
-            </div>
-            </div> */}
+    <div className="mere-tache" style={{ marginTop: "80px", paddingTop: "10px" }}>
+    
       <Container>
+      <Row>
+                    <Col md={4}>
+                        <div className="dashboarddemaandeabsences">
+                            <p>dashboard/ Taches</p>
+                        </div>
+                    </Col>
+                </Row>
+                <Row className="mt-3">
+                    <Col lg={2}  md={4} >
+                        <div className="liste-des-taches">
+                           <h4>Listes des Taches</h4>
+                        </div>
+                    </Col>
+                    <Col md={6} className=" Tache-Validés">
+                        <div className="button-des-tache-valides">
+                            <Button className="btn btn-success">
+                               Tache Validés
+                            </Button>
+                        </div>
+                    </Col>
+                </Row>
         <Row>
           <Col lg={10} md={12}>
             <div className="bg-tache d-md-flex ">
