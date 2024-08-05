@@ -68,6 +68,11 @@ border-radius: 15px;
             font-size: 13px;
         }
 
+        .Tache-Validés{
+            position: relative;
+            left: 10px;
+        }
+
 }
 
 
@@ -106,7 +111,6 @@ border-radius: 15px;
         .a-tache1{
             margin-left: 70px;
         }
-      
 }
 
 /* responsive mode laptop */
@@ -163,6 +167,10 @@ border-radius: 15px;
             position: relative;
             left: 120px;
         }
-
+        
+.Tache-Validés{
+    position: relative;
+    left: 480px;
+}
        
 }

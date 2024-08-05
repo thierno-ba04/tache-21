@@ -1,5 +1,10 @@
 import { useState } from 'react';
 import { Col, Container, Row, Form, Button } from 'react-bootstrap';
+import imgprofil from "../../assets/img/téléchargement.jpg"
+import "./updProfileEtudiant.css"
+
+
+
 
 const UpdProfileEtudiant = () => {
     const [profile, setProfile] = useState({
@@ -34,6 +39,9 @@ const UpdProfileEtudiant = () => {
         <div style={{marginTop: "120px"}}>
             <Container>
                 <Row className="justify-content-md-center">
+                    <Col md={6} className='imguprofile'>
+                        <img src={imgprofil} alt="" />
+                    </Col>
                     <Col md={6}>
                         <h2>Mettre a Jour</h2>
                         <Form onSubmit={handleSubmit}>
