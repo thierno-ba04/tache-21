@@ -1,0 +1,23 @@
+.courstitre h3{
+    margin-top: 6rem;
+    color: #179fd4;
+}
+
+.div_h4{
+    color: #179fd4;
+    font-weight: 600;
+    text-align: center;
+}
+
+.courshtml{
+    margin-top: 5rem;
+}
+.coursbootstrap{
+    margin-top: 5rem;
+}
+
+.coursimg{
+    width: 100%;
+    height: 50vh;
+    margin-top: 20px;
+}

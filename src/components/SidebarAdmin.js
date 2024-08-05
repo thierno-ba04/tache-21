@@ -1,18 +1,23 @@
 import React, { useState } from "react";
 import {
-  Archive,
-  BoxArrowLeft,
-  Envelope,
   ListNested,
-  PeopleFill,
-  SendCheckFill,
 } from "react-bootstrap-icons";
-import { BsBook, BsFillBellFill, BsFillEnvelopeFill, BsJustify, BsPersonCircle, BsSearch } from "react-icons/bs";
-import { FaChartLine, FaFileAlt, FaFileInvoiceDollar } from "react-icons/fa";
-import { MdFilter9Plus, MdOutlineSupervisorAccount, MdUnfoldLess, MdDashboard, MdOutlineTouchApp } from "react-icons/md";
+import {
+  BsFillBellFill,
+  BsFillEnvelopeFill,
+  BsJustify,
+  BsPersonCircle,
+  BsSearch,
+} from "react-icons/bs";
+import { FaChartLine, FaFileInvoiceDollar } from "react-icons/fa";
+import {
+  MdOutlineSupervisorAccount,
+  MdDashboard,
+  MdOutlineTouchApp,
+} from "react-icons/md";
 import { Link } from "react-router-dom";
-import { Modal, Button, Form } from "react-bootstrap";
-import { FormControl, InputLabel, Select, MenuItem } from "@mui/material";
+// import { Modal, Button, Form } from "react-bootstrap";
+import { Select, MenuItem } from "@mui/material";
 import "./SidebarAdmin.css";
 import { IoCalendarNumberOutline } from "react-icons/io5";
 
@@ -59,37 +64,26 @@ const SidebarAdmin = () => {
             <i className="fa-regular fa-bell"></i>
           </div>
           <span>
-            {/* <Link to="/"> */}
-              {/* <div> */}
-                {/* <div className="userIcon me-3 d-flex align-items-center"> */}
-                  <div className="me-md-4 me-3 nomUser">
-                    
-                      <div className='menu-iconProfile'>
-                        <BsJustify className='iconProfile'/> 
-                      </div>
-                      <div className='header-left'>
-                          <BsSearch className='iconProfile'/>
-                      </div>
-                      <div className='header-right'>
-            <Link to="/">
-
-                          <BsFillBellFill className='iconProfile'/>
-            </Link>
-            <Link to="/message">
-
-                          <BsFillEnvelopeFill className='iconProfile'/>
-            </Link>
-            <Link to="/profile">
-
-                          <BsPersonCircle className='iconProfile'/>
-            </Link>
-
-                      </div>
-
-                  </div>
-                {/* </div> */}
-              {/* </div> */}
-            {/* </Link> */}
+            <div className="me-md-4 me-3 nomUser">
+              <div className="menu-iconProfile">
+                <BsJustify className="iconProfile" />
+              </div>
+              {/* <div className="header-left">
+                <BsSearch className="iconProfile" />
+              </div> */}
+              <div className="header-right">
+                <Link to="/">
+                  <BsFillBellFill className="iconProfile" />
+                </Link>
+                <Link to="/message">
+                  <BsFillEnvelopeFill className="iconProfile" />
+                </Link>
+                <Link to="/profile">
+                  <BsPersonCircle className="iconProfile" />
+                </Link>
+              </div>
+            </div>
+    
           </span>
         </div>
       </header>
@@ -112,14 +106,13 @@ const SidebarAdmin = () => {
               <span className="title">Dashboard</span>
             </Link>
           </li>
-          <li >
-            <Link /*to="/eleves"*/>
+          <li>
+            <Link to="/eleves">
               <span className="icon">
                 <MdOutlineSupervisorAccount size={25} />
               </span>
               <span className="title">Users</span>
-              <span sx={{ minWidth: 120 }}  className="dropdown-select">
-                {/* <InputLabel id="demo-simple-select-label">Users</InputLabel> */}
+              <span sx={{ minWidth: 120 }} className="dropdown-select">
                 <Select
                   labelId="demo-simple-select-label"
                   id="demo-simple-select"
@@ -127,16 +120,14 @@ const SidebarAdmin = () => {
                   label="Users"
                   onChange={handleChange}
                 >
-
                   <Link to="/eleves">
-                  <MenuItem >Eleves</MenuItem>
-                  
+                    <MenuItem>Eleves</MenuItem>
                   </Link>
-                  <Link to="personnels">
-                  <MenuItem value={20}>Personnels</MenuItem>
+                  <Link to="/personnels">
+                    <MenuItem value={20}>Personnels</MenuItem>
                   </Link>
-                  <Link to="professeurs">
-                  <MenuItem value={20}>Professeurs</MenuItem>
+                  <Link to="/professeurs">
+                    <MenuItem value={20}>Professeurs</MenuItem>
                   </Link>
                 </Select>
               </span>
@@ -161,7 +152,7 @@ const SidebarAdmin = () => {
           <li>
             <Link to="/statistique" className="out">
               <span className="icon">
-              <FaChartLine size={20} />
+                <FaChartLine size={20} />
               </span>
               <span className="title">Statistique</span>
             </Link>
@@ -176,7 +167,6 @@ const SidebarAdmin = () => {
           </li>
         </ul>
       </nav>
-
     </div>
   );
 };

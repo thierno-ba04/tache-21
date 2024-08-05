@@ -246,15 +246,8 @@ function DashboardAdmin() {
         </Row>
         <Row>
         <Col lg={12} md={12}>
-
-          {/* <Col lg={4} md={4}>
-            <div className='data-grid-info'>
-              <p>Informations sur les élèves et les données associées</p>
-            </div>
-          </Col> */}
             <div className='data-grid-container'>
               <Box sx={{ height: '60vh', width: '93%', margin: "auto" }}>
-              {/* <div style={{ width: '100%' }}> */}
       <DataGrid
         rows={rows}
         columns={columns}
@@ -264,11 +257,8 @@ function DashboardAdmin() {
             
           },
         }}
-        pageSizeOptions={[5, 10]}
-        
+        pageSizeOptions={[5, 10]} 
       />
-
-    {/* </div> */}
               </Box>
             </div>
           </Col>

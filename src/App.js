@@ -19,6 +19,9 @@ import { Message } from '@mui/icons-material';
 import AjoutElv from './pages/pageadmine/ajouteréléves/AjoutElv';
 import { MyContextProvider } from './context/MyContext';
 import Bulletin from './pages/pageadmine/users/bulletin/Bulletin';
+import Cours from './pages/pageadmine/users/cours/Cours';
+import MesCours from './pages/pageadmine/users/mescours/MesCours';
+import AjoutPrfs from './pages/pageadmine/users/ajoutprfs/AjoutPrfs';
 // import UpdateUser from './pages/pageadmine/dashboardadmin/updateusers/UpdateUser';
 // import Voix from './pages/pageadmine/dashboardadmin/voir/Voix';
 // import Archived from './pages/pageadmine/dashboardadmin/arhiver/Archived';
@@ -45,6 +48,9 @@ function App() {
             <Route path="/message" element={<Message />} />
             <Route path="/ajoutelv" element={<AjoutElv />} />
             <Route path="/bulletin" element={<Bulletin />} />
+            <Route path="/cours" element={<Cours />} />
+            <Route path="/mescours" element={<MesCours />} />
+            <Route path="/ajoutprfs" element={<AjoutPrfs />} />
 
             {/* <Route path="/updateUser" element={<UpdateUser />} />
             <Route path="/voir" element={<Voix />} />
