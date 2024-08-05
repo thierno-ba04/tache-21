@@ -2,14 +2,28 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { Container, Row, Col, Button, Form } from 'react-bootstrap';
 import { TbSelector } from 'react-icons/tb';
+import { useMyContext } from '../../../context/MyContext'; // Assurez-vous que le chemin est correct
 import './ajoutelv.css';
+import { Link, useNavigate } from 'react-router-dom';
 
-function AddStudentForm() {
+function AjoutElv() {
   const { register, handleSubmit, formState: { errors }, setValue } = useForm();
+  const { addStudent } = useMyContext(); // Utiliser le contexte pour ajouter un élève
+  const navigate = useNavigate(); // Pour la navigation après la soumission
 
   const onSubmit = (data) => {
     console.log(data);
-    // Vous pouvez envoyer `data` à un serveur ou effectuer d'autres actions ici.
+    if (addStudent) {
+      // Créer un objet FormData si vous avez besoin de gérer des fichiers
+      // const formData = new FormData();
+      // formData.append('photo', data.photo[0]); // Ex: ajout du fichier photo
+      // formData.append('data', JSON.stringify({ ...data, id: Date.now() }));
+
+      addStudent({ ...data, id: Date.now() }); // Ajouter un ID unique temporaire
+      navigate('/dashboardadmin'); // Rediriger après ajout
+    } else {
+      console.error('addStudent function is not available');
+    }
   };
 
   return (
@@ -22,7 +36,6 @@ function AddStudentForm() {
           <h2>Ajouter un Élève</h2>
           <Form onSubmit={handleSubmit(onSubmit)}>
             <Row>
-              {/* Partie gauche */}
               <Col md={6}>
                 <Form.Group controlId="formName">
                   <Form.Label>Nom</Form.Label>
@@ -82,12 +95,10 @@ function AddStudentForm() {
                 </Form.Group>
               </Col>
 
-              {/* Espace au milieu */}
               <Col md={1}>
                 <div style={{ height: '100%' }}></div> {/* Espace vide au milieu */}
               </Col>
 
-              {/* Partie droite */}
               <Col md={5}>
                 <Form.Group controlId="formBirthPlace">
                   <Form.Label>Lieu de naissance</Form.Label>
@@ -132,12 +143,9 @@ function AddStudentForm() {
                   />
                 </Form.Group>
 
-                {/* Conteneur pour le bouton Ajouter */}
-                <div className="add-btn-container">
-                  <Button variant="primary" type="submit">
-                    Ajouter
-                  </Button>
-                </div>
+                <Button variant="primary" type="submit" className="add-btn-container">
+                  Ajouter
+                </Button>
               </Col>
             </Row>
           </Form>
@@ -147,4 +155,4 @@ function AddStudentForm() {
   );
 }
 
-export default AddStudentForm;
+export default AjoutElv;

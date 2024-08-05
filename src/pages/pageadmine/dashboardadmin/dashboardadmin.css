@@ -147,7 +147,7 @@
 
 /*  */
 .btnajoute{
-    width: 110px;
+    width: 120px;
     margin-left: auto;
     background-color: none;
     color: #575252;
@@ -155,18 +155,57 @@
     
 }
 .btnajoute:hover{
-    width: 110px;
+    width: 120px;
     margin-left: auto;
     background-color: none;
     color: #575252;
     background: none;
 }
 
+/* Tableau css */
+
 .iconajoute{
     color: #194cf7;
     font-weight: 500; 
     font-size: 1.5rem;
 }
+
+/* Ajuste l'espacement autour des icônes d'action */
+.button-update,
+.button-delete,
+.button-archive {
+  margin: 0 4px; 
+}
+
+.data-grid-container {
+  height: 400px; 
+  overflow: auto;
+  margin-top: 20px; 
+}
+
+/* Assure que le tableau n'affecte pas les autres éléments */
+.main {
+  padding: 20px;
+}
+
+.main-card {
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+/* .icones-perso {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+} */
+
+/* .border {
+  height: 1px;
+  background-color: #ddd;
+  margin: 20px 0;
+} */
+
 
 @media screen and (max-width: 320px){
     .div-2 p{

@@ -1,4 +1,5 @@
 import React from 'react';
+<<<<<<< HEAD
 import './App.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import DashboardEtudiant from './pagesEtudiant/dashboard/DashboardEtudiant';
@@ -20,6 +21,9 @@ import UpdProfileCoach from './pagesEtudiant/updProfileEtudiant/UpdProfileEtudia
 
 
 
+=======
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+>>>>>>> b52b9d5dc3f21f1218442fcfea776ea24d996483
 import Login from "./pages/auth/Login";
 import ForgotPssWrd from "./pages/forgotpasseword/ForgotPssWrd";
 import Registe from './pages/inscription/Registe';
@@ -36,12 +40,15 @@ import Calendrier from './pages/pageadmine/calendrier/Calendrier';
 import Profile from './pages/pageadmine/profile/Profile';
 import { Message } from '@mui/icons-material';
 import AjoutElv from './pages/pageadmine/ajouteréléves/AjoutElv';
-
-
-
+import { MyContextProvider } from './context/MyContext';
+import Bulletin from './pages/pageadmine/users/bulletin/Bulletin';
+// import UpdateUser from './pages/pageadmine/dashboardadmin/updateusers/UpdateUser';
+// import Voix from './pages/pageadmine/dashboardadmin/voir/Voix';
+// import Archived from './pages/pageadmine/dashboardadmin/arhiver/Archived';
 
 function App() {
   return (
+<<<<<<< HEAD
     <div className="App">
       <BrowserRouter>
         <Routes>
@@ -57,6 +64,14 @@ function App() {
 
           </Route>
 
+=======
+    <MyContextProvider>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Login />} />
+          <Route path="/forgot" element={<ForgotPssWrd />} />
+          <Route path="/inscrire" element={<Registe />} />
+>>>>>>> b52b9d5dc3f21f1218442fcfea776ea24d996483
           <Route element={<LayoutAdmin />}>
             <Route path="/dashboardadmin" element={<DashboardAdmin />} />
             <Route path="/users" element={<Users />} />
@@ -72,11 +87,22 @@ function App() {
             <Route path="/profile" element={<Profile />} />
             <Route path="/message" element={<Message />} />
             <Route path="/ajoutelv" element={<AjoutElv />} />
+            <Route path="/bulletin" element={<Bulletin />} />
+
+            {/* <Route path="/updateUser" element={<UpdateUser />} />
+            <Route path="/voir" element={<Voix />} />
+            <Route path="/archiveUser" element={<Archived />} /> */}
           </Route>
+<<<<<<< HEAD
       </Routes>
 
       </BrowserRouter>
     </div>
+=======
+        </Routes>
+      </Router>
+    </MyContextProvider>
+>>>>>>> b52b9d5dc3f21f1218442fcfea776ea24d996483
   );
 }
 
