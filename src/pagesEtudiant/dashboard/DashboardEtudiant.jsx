@@ -6,6 +6,8 @@ import "./dashboard.css";
 import { FaFileAlt, FaSearch } from "react-icons/fa";
 import { BsBook } from "react-icons/bs";
 import { IoPersonSharp } from "react-icons/io5";
+import capture1 from "../../assets/img/Capture d'écran 2024-07-11 171047.png";
+import capture2 from "../../assets/img/Capture d'écran 2024-07-23 171650.png";
 
 const DashboardEtudiant = () => {
   return (
@@ -53,7 +55,6 @@ const DashboardEtudiant = () => {
           </Col>
         </Row>
 
-
         <Row>
           <Col md={12} className="mt-5">
             <div className="searchdate d-flex">
@@ -73,36 +74,81 @@ const DashboardEtudiant = () => {
             </div>
           </Col>
         </Row>
-          <div className="mere-dashboard-livr">
-        <Row className="mt-5">
-          <Col md={4} className="mt-5">
-            <div className="">
-              <div className="d-flex gap-5">
-                <div className="ms-3">
-                  <IoPersonSharp />
-                </div>
-                <div>
-                  <h4>Thierno Ba</h4>
-                </div>
-                <div>
-                  <p>31 juil 2024, 15:41</p>
+        <div className="mere-dashboard-livr">
+          <Row className="mt-5">
+            <Col md={4} className="mt-5">
+              <div className="">
+                <div className="d-flex gap-5">
+                  <div className="ms-3">
+                    <IoPersonSharp />
+                  </div>
+                  <div>
+                    <h4>Thierno Ba</h4>
+                  </div>
+                  <div>
+                    <p>31 juil 2024, 15:41</p>
+                  </div>
                 </div>
               </div>
-            </div>
-          </Col>
-        </Row>
-        <Row className="mt-5">
-          <Col md={4}>
-            <h5 className="h5textpropsetcycle">
-              Props et cycle de vie d'un composant class
-            </h5>
-          </Col>
-        </Row>
-        <Row className="mt-5">
-          <Col md={6}>
-          </Col>
-          <Col md={6}></Col>
-        </Row>
+            </Col>
+          </Row>
+          <Row className="mt-5">
+            <Col md={4}>
+              <h5 className="h5textpropsetcycle">
+                Props et cycle de vie d'un composant class
+              </h5>
+            </Col>
+          </Row>
+          <Row className="mt-5">
+            <Col md={6}>
+              <div className="">
+                <img src={capture1} alt="" className="capture1" />
+              </div>
+            </Col>
+            <Col md={6}>
+              <div className="">
+                <img src={capture2} alt="" className="capture1"/>
+              </div>
+            </Col>
+          </Row>
+
+
+          <Row className="mt-5">
+            <Col md={4} className="mt-5">
+              <div className="">
+                <div className="d-flex gap-5">
+                  <div className="ms-3">
+                    <IoPersonSharp />
+                  </div>
+                  <div>
+                    <h4>Faty</h4>
+                  </div>
+                  <div>
+                    <p>03 juil 2024, 10:41</p>
+                  </div>
+                </div>
+              </div>
+            </Col>
+          </Row>
+          <Row className="mt-5">
+            <Col md={4}>
+              <h5 className="h5textpropsetcycle">
+                Props et cycle de vie d'un composant class
+              </h5>
+            </Col>
+          </Row>
+          <Row className="mt-5">
+            <Col md={6}>
+              <div className="">
+                <img src={capture1} alt="" className="capture1" />
+              </div>
+            </Col>
+            <Col md={6}>
+              <div className="">
+                <img src={capture2} alt="" className="capture1"/>
+              </div>
+            </Col>
+          </Row>
         </div>
         <Row>
           <Col md={12} className="mt-5">
