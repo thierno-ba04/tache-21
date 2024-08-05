@@ -1,11 +1,14 @@
 .bulletin{
     /* border: 1px solid black; */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
 
 }
 
 .table-shadow {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    margin-top: 2rem;
 }
 
 .btnbulletin{
@@ -13,4 +16,17 @@
 }
 .resultat{
     border: 2px solid gray;
+}
+.div_bultin{
+    display: flex;
+    justify-content: space-between;
+}
+.forminput{
+    margin: 0px;
+    border: none; 
+  background-color: transparent; 
+  outline: none;
+}
+label{
+    margin-left: auto;
 }

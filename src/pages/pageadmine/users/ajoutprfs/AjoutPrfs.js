@@ -2,11 +2,10 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { Container, Row, Col, Button, Form } from 'react-bootstrap';
 import { TbSelector } from 'react-icons/tb';
-import { useMyContext } from '../../../context/MyContext';
-import './ajoutelv.css';
+import { useMyContext } from '../../../../context/MyContext';
 import { Link, useNavigate } from 'react-router-dom';
 
-function AjoutElv() {
+function AjoutPrfs() {
   const { register, handleSubmit, formState: { errors }, setValue } = useForm();
   const { addStudent } = useMyContext();
   const navigate = useNavigate(); 
@@ -26,10 +25,10 @@ function AjoutElv() {
     <Container>
       <Row className="justify-content-center">
         <div className='laclasse'>
-          <h2 className='mt-2'>Les élèves de la classe</h2>
+          <h2 className='mt-2'>Professeurs</h2>
         </div>
         <Col md={10} className='addetudiant'>
-          <h2>Ajouter un Élève</h2>
+          <h2>Ajouter un professeur</h2>
           <Form onSubmit={handleSubmit(onSubmit)}>
             <Row>
               <Col md={6}>
@@ -151,4 +150,4 @@ function AjoutElv() {
   );
 }
 
-export default AjoutElv;
+export default AjoutPrfs;

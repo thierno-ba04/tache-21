@@ -7,10 +7,7 @@
     "@emotion/styled": "^11.13.0",
     "@fontsource/roboto": "^5.0.13",
     "@mui/icons-material": "^5.16.5",
-<<<<<<< HEAD
     "@mui/material": "^5.16.6",
-=======
->>>>>>> b52b9d5dc3f21f1218442fcfea776ea24d996483
     "@mui/styled-engine-sc": "^6.0.0-alpha.18",
     "@mui/x-data-grid": "^7.11.0",
     "@testing-library/jest-dom": "^5.17.0",
