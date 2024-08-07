@@ -22,6 +22,10 @@ import Bulletin from './pages/pageadmine/users/bulletin/Bulletin';
 import Cours from './pages/pageadmine/users/cours/Cours';
 import MesCours from './pages/pageadmine/users/mescours/MesCours';
 import AjoutPrfs from './pages/pageadmine/users/ajoutprfs/AjoutPrfs';
+import Voix from './pages/pageadmine/dashboardadmin/voir/Voix';
+import Classe from './pages/pageadmine/users/classe/Classe';
+import CoursPrfs from './pages/pageadmine/users/coursprfs/CoursPrfs';
+import AjoutCours from './pages/pageadmine/users/ajoutcours/AjoutCours';
 // import UpdateUser from './pages/pageadmine/dashboardadmin/updateusers/UpdateUser';
 // import Voix from './pages/pageadmine/dashboardadmin/voir/Voix';
 // import Archived from './pages/pageadmine/dashboardadmin/arhiver/Archived';
@@ -45,16 +49,18 @@ function App() {
             <Route path="/pointage" element={<Pointage />} />
             <Route path="/calendar" element={<Calendrier />} />
             <Route path="/profile" element={<Profile />} />
-            <Route path="/message" element={<Message />} />
+            {/* <Route path="/message" element={<Message />} /> */}
             <Route path="/ajoutelv" element={<AjoutElv />} />
             <Route path="/bulletin" element={<Bulletin />} />
             <Route path="/cours" element={<Cours />} />
             <Route path="/mescours" element={<MesCours />} />
             <Route path="/ajoutprfs" element={<AjoutPrfs />} />
-
-            {/* <Route path="/updateUser" element={<UpdateUser />} />
-            <Route path="/voir" element={<Voix />} />
-            <Route path="/archiveUser" element={<Archived />} /> */}
+            <Route path="/coursprfs" element={<CoursPrfs />} />
+            <Route path="/classe" element={<Classe />} />
+            <Route path="/voix" element={<Voix />} />
+            <Route path="/ajoutcours" element={<AjoutCours />} />
+            {/* <Route path="/updateUser" element={<UpdateUser />} /> */}
+            {/* <Route path="/archiveUser" element={<Archived />} /> */}
           </Route>
         </Routes>
       </Router>

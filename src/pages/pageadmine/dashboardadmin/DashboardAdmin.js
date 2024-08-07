@@ -131,7 +131,7 @@ function DashboardAdmin() {
 
         return (
           <Stack spacing={2} direction="row">
-            <Link to={`/voir/${id}`}>
+            <Link to="/voix">
               <EyeFill size={18} color="skyblue" className="ms-2" />
             </Link>
             <Link onClick={() => handleUpdateUser(id)} className="button-update">

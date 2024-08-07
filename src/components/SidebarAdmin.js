@@ -1,90 +1,104 @@
 import React, { useState } from "react";
 import {
-  ListNested,
+  ListNested, BoxArrowLeft
 } from "react-bootstrap-icons";
 import {
   BsFillBellFill,
   BsFillEnvelopeFill,
   BsJustify,
   BsPersonCircle,
-  BsSearch,
 } from "react-icons/bs";
 import { FaChartLine, FaFileInvoiceDollar } from "react-icons/fa";
 import {
   MdOutlineSupervisorAccount,
   MdDashboard,
-  MdOutlineTouchApp,
 } from "react-icons/md";
-import { Link } from "react-router-dom";
-// import { Modal, Button, Form } from "react-bootstrap";
+import { Link, useNavigate } from "react-router-dom";
 import { Select, MenuItem } from "@mui/material";
 import "./SidebarAdmin.css";
 import { IoCalendarNumberOutline } from "react-icons/io5";
+import { Popover, OverlayTrigger } from 'react-bootstrap';
+
+// import Message from "../pages/pageadmine/message/Message";
 
 const SidebarAdmin = () => {
   const [isSidebarActive, setSidebarActive] = useState(false);
-  const [showModal, setShowModal] = useState(false);
-  const [users, setUsers] = useState(10); // Initial value
-  const [description, setDescription] = useState("");
-  const [file, setFile] = useState(null);
+  const [users, setUsers] = useState(10); 
+  const navigate = useNavigate(); 
+
+  const logOut = async () => {}
 
   const toggleSidebar = () => {
     setSidebarActive(!isSidebarActive);
   };
 
-  const handleShowModal = () => {
-    setShowModal(true);
-  };
-
-  const handleCloseModal = () => {
-    setShowModal(false);
-  };
-
   const handleChange = (event) => {
-    setUsers(event.target.value);
+    const value = event.target.value;
+    setUsers(value);
+    switch (value) {
+      case 10:
+        navigate("/eleves");
+        break;
+      case 20:
+        navigate("/personnels");
+        break;
+      case 30:
+        navigate("/professeurs");
+        break;
+      default:
+        navigate("/eleves");
+    }
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // Handle file and description submission here
-    handleCloseModal();
-  };
+  const notificationPopover = (
+    <Popover id="notification-popover">
+      <Popover.Header className="h3">Notifications</Popover.Header>
+      <Popover.Body>
+        <ul>
+          <li>Bonjour notification 1</li>
+          <li>Bonjour notification 2</li>
+        </ul>
+      </Popover.Body>
+    </Popover>
+  );
+
+  const messagePopover = (
+    <Popover id="message-popover">
+      <Popover.Header className="h3">Messages</Popover.Header>
+      <Popover.Body>
+        <ul>
+          <li>Bonjour message 1</li>
+          <li>Bonjour message 2</li>
+        </ul>
+      </Popover.Body>
+    </Popover>
+  );
 
   return (
     <div className="mysiderbar">
-      <header className="fixed-top">
+     <header className="fixed-top">
         <div className="toggle ms-md-3 d-flex gap-3" onClick={toggleSidebar}>
-          <span>
-            <ListNested size={20} />
-          </span>
+          <ListNested size={20} />
         </div>
 
         <div className="fw-bold me-md-4 d-flex align-items-center gap-4">
-          <div className="fa-regular">
-            <i className="fa-regular fa-bell"></i>
-          </div>
-          <span>
-            <div className="me-md-4 me-3 nomUser">
-              <div className="menu-iconProfile">
-                <BsJustify className="iconProfile" />
-              </div>
-              {/* <div className="header-left">
-                <BsSearch className="iconProfile" />
-              </div> */}
-              <div className="header-right">
-                <Link to="/">
-                  <BsFillBellFill className="iconProfile" />
-                </Link>
-                <Link to="/message">
-                  <BsFillEnvelopeFill className="iconProfile" />
-                </Link>
-                <Link to="/profile">
-                  <BsPersonCircle className="iconProfile" />
-                </Link>
-              </div>
+          <OverlayTrigger trigger="click" placement="bottom" overlay={notificationPopover}>
+            <div className="icon-wrapper">
+              <BsFillBellFill className="iconProfile" />
+              <span className="nbrmssg">4</span>
             </div>
-    
-          </span>
+          </OverlayTrigger>
+
+          <OverlayTrigger trigger="click" placement="bottom" overlay={messagePopover}>
+            <div className="icon-wrapper">
+              <BsFillEnvelopeFill className="iconProfile" />
+              <span className="nbrmssg">2</span>
+            </div>
+          </OverlayTrigger>
+
+          <Link to="/profile">
+            <BsPersonCircle className="iconProfile" />
+          </Link>
         </div>
       </header>
 
@@ -107,12 +121,12 @@ const SidebarAdmin = () => {
             </Link>
           </li>
           <li>
-            <Link to="/eleves">
+            <a>
               <span className="icon">
                 <MdOutlineSupervisorAccount size={25} />
               </span>
               <span className="title">Users</span>
-              <span sx={{ minWidth: 120 }} className="dropdown-select">
+              <span className="dropdown-select">
                 <Select
                   labelId="demo-simple-select-label"
                   id="demo-simple-select"
@@ -120,18 +134,12 @@ const SidebarAdmin = () => {
                   label="Users"
                   onChange={handleChange}
                 >
-                  <Link to="/eleves">
-                    <MenuItem>Eleves</MenuItem>
-                  </Link>
-                  <Link to="/personnels">
+                    <MenuItem value={10}>Eleves</MenuItem>
                     <MenuItem value={20}>Personnels</MenuItem>
-                  </Link>
-                  <Link to="/professeurs">
-                    <MenuItem value={20}>Professeurs</MenuItem>
-                  </Link>
+                    <MenuItem value={30}>Professeurs</MenuItem>
                 </Select>
               </span>
-            </Link>
+            </a>
           </li>
           <li>
             <Link to="/comptabliter">
@@ -158,13 +166,19 @@ const SidebarAdmin = () => {
             </Link>
           </li>
           <li>
+            <Link to="/" className='out' onClick={logOut}>
+              <span className='icon'><BoxArrowLeft size={30}/></span>
+              <span className='title'>Deconnecter</span>
+            </Link>
+          </li>
+          {/* <li>
             <Link to="/pointage">
               <span className="icon">
                 <MdOutlineTouchApp size={20} />
               </span>
               <span className="title">Pointage</span>
             </Link>
-          </li>
+          </li> */}
         </ul>
       </nav>
     </div>

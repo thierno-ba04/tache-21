@@ -12,9 +12,9 @@ function Eleves() {
       <Row className="partiselevs">
         <Col lg={1} md={1} className=""></Col>
 
-        <Col lg={6} md={6} className="">
+        <Col lg={5} md={5} className="">
           <h2>Bullettins</h2>
-          <Card style={{ width: "25rem" }}>
+          <Card>
             <Card.Img variant="top" src={imgbulletin} className="imgeleves" />
             <Link to="/bulletin">
               <Card.Body>
@@ -23,9 +23,11 @@ function Eleves() {
             </Link>
           </Card>
         </Col>
+        <Col lg={1} md={1} className=""></Col>
+
         <Col lg={5} md={5} className="">
           <h2>Cours</h2>
-          <Card style={{ width: "25rem" }}>
+          <Card>
             <Card.Img variant="top" src={imgbcours} className="imgeleves" />
             <Link to="/cours">
             <Card.Body>

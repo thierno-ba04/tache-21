@@ -18,19 +18,21 @@ import { IoIosAddCircleOutline } from 'react-icons/io';
 import "./personnels.css"
 
 
-const archiveUser = async (id) => {
-  console.log(`Archiving user with ID: ${id}`);
-};
-
-const deleteUser = async (id) => {
-  console.log(`Deleting user with ID: ${id}`);
-};
-
-const updateUser = (id) => {
-  console.log(`Updating user with ID: ${id}`);
-};
 
 function Personnels() {
+
+  const archiveUser = async (id) => {
+    console.log(`Archiving user with ID: ${id}`);
+  };
+  
+  const deleteUser = async (id) => {
+    console.log(`Deleting user with ID: ${id}`);
+  };
+  
+  const updateUser = (id) => {
+    console.log(`Updating user with ID: ${id}`);
+  };
+  
 
   const [rows, setRows] = useState([
     { id: 1, Nom: 'Niang', Prenom: 'Faty', Mail: 'fatyniang4@gmail.com', Numero: 777778899, Adresse: 'Thiés', Statut: 'prof anglais' },
@@ -116,7 +118,7 @@ function Personnels() {
 
         return (
           <Stack spacing={2} direction="row">
-            <Link to={`/voir/${id}`}>
+            <Link to="/voix">
               <EyeFill size={18} color="skyblue" className="ms-2" />
             </Link>
             <Link onClick={() => handleUpdateUser(id)} className="button-update">
@@ -135,7 +137,7 @@ function Personnels() {
   ];
 
   return (
-    <div className='main'>
+    <div className='main2'>
 
     <Container>
     <Row className="justify-content-center tabpersonl">

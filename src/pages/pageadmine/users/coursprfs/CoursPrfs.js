@@ -1,24 +1,37 @@
 import React from "react";
-import { Col, Container, Row } from "react-bootstrap";
-import "./cours.css";
+import { Col, Container, Row, Button } from "react-bootstrap";
+import { LiaFileExportSolid } from 'react-icons/lia';
+import { IoIosAddCircleOutline } from 'react-icons/io';
 import imgcour from "../../../../assets/img/imgcour.jpg";
 import imgboots from "../../../../assets/img/imgboots.jpeg";
 import imgbjs from "../../../../assets/img/imgjs.jpg";
 import imgreact from "../../../../assets/img/imgreact.jpg";
 import { Link } from "react-router-dom";
 
-function Cours() {
+function CoursPrfs() {
   return (
     <Container>
       <Row>
-        <div className="courstitre">
-          <Col lg={1} md={1}></Col>
-          <Col lg={11} md={11}>
-            <h2>Mes cours</h2>
-          </Col>
-        </div>
+      <Col lg={1} md={1}></Col>
+        <Col lg={10} md={10}>
+          <div className="classe">
+            <h6>Liste des Cours</h6>
+            <div className="rowsbutt mt-3">
+              <Link to="/ajoutcours">
+                <Button className="btnajoute">
+                  Ajouter <IoIosAddCircleOutline className="iconajoute ms-2 mb-1" />
+                </Button>
+              </Link>
+            </div>
+            <div className="ms-2 mt-3">
+              <Button>
+                <LiaFileExportSolid className="buttexport me-2 mb-1" /> Imprimer to CSV
+              </Button>
+            </div>
+          </div>
+        </Col>
         <Col lg={1} md={1}></Col>
-
+        <Col lg={1} md={1}></Col>
         <Col lg={5} md={5} className="courshtml">
           <div className="div_h4">
             <h4>Html/css</h4>
@@ -67,4 +80,4 @@ function Cours() {
   );
 }
 
-export default Cours;
+export default CoursPrfs;

@@ -1,0 +1,45 @@
+.professeurs{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 8rem;
+    padding: 10px;
+}
+
+.imgprfs{
+    width: 100%;
+    margin: auto;
+}
+
+.prfsrdiv{
+    width: 80%;
+    height: 100%;
+    box-shadow: #2D9CDB;
+    background: #fff;
+    box-shadow: #fff;
+    justify-content: center;
+    border-radius: 20px;
+    border: 1px solid #2D9CDB;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+/* height: 294px; */
+}
+
+.prfsrdiv img{
+    display: flex;
+    margin: auto;
+    padding: 10px;
+    margin-top: 20px;
+}
+.linkcours{
+    text-decoration: none;
+    margin-top: 20px;
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+.courstitre h2{
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: #179fd4;
+    margin-left: 6rem;
+}
