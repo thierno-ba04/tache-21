@@ -123,8 +123,8 @@ const Agenda = () => {
                 <h1>Mon Agenda</h1>
             </div>
             <div className="agenda-nav">
-                <button onClick={() => changeWeek(-7)}>&lt; Semaine précédente</button>
-                <button onClick={() => changeWeek(7)}>Semaine suivante &gt;</button>
+                <button onClick={() => changeWeek(-7)}> Semaine précédente</button>
+                <button onClick={() => changeWeek(7)}>Semaine suivante</button>
             </div>
             <div className="agenda-body">
                 {renderWeek()}

@@ -25,6 +25,19 @@ import { emphasize, styled } from '@mui/material/styles';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
 import Chip from '@mui/material/Chip';
 import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
+import'./Notification.css';
+
+const Notification = ({ message, onClose }) => {
+  return (
+    <div className="notification">
+      <span>{message}</span>
+      <button className="notification-close" onClick={onClose}>&times;</button>
+    </div>
+  );
+};
+
+
+
 
 
 const StyledBreadcrumb = styled(Chip)(({ theme }) => {
@@ -76,6 +89,21 @@ const style = {
 
 
 const Users = () => {
+
+  const [showNotification, setShowNotification] = React.useState(false);
+  const [notificationMessage, setNotificationMessage] = React.useState('');
+
+  const displayNotification = (message) => {
+    setNotificationMessage(message);
+    setShowNotification(true);
+
+    // Automatically hide the notification after 3 seconds
+    setTimeout(() => {
+      setShowNotification(false);
+    }, 3000);
+  };
+
+
 
   const navigate = useNavigate();
 
@@ -175,8 +203,20 @@ const Users = () => {
 
 
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-          <Button   onClick={()=>{Navigate('/')}} variant="contained">Envoyer</Button>
+    
+          
+    
+      <button onClick={() => displayNotification(' Enregistrer avec succes!')}>
+        envoyer
+      </button>
 
+      {showNotification && (
+        <Notification
+          message={notificationMessage}
+          onClose={() => setShowNotification(false)}
+        />
+      )}
+    
           </Typography>
         </Box>
       </Modal>
@@ -279,9 +319,8 @@ const Users = () => {
     return ( 
         <Box sx={{display:"flex"}}>
         <Sidebar/>
-         <Box component="main"  sx={{flexGrow:1,marginTop:7,p:3,bgcolor:"#eaeff1" }}>
+         <Box component="main"  sx={{flexGrow:1}}>
             <Typography>
-            <Paper >
       <Typography
       sx={{textAlign:'center',mt:3,mb:3}}
       >
@@ -290,7 +329,7 @@ const Users = () => {
       <div style={{ width: '100%' }}>
 
 
-       <Typography sx={{p:5,textAlign:'justify',mb:5}}> 
+       <Typography sx={{p:2,textAlign:'justify',mb:5}}> 
        <br/>
 
        <div role="presentation">
@@ -335,7 +374,6 @@ const Users = () => {
 
     
       </Typography>
-    </Paper>
 
             </Typography>
 

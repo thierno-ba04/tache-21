@@ -95,13 +95,12 @@ const Relevedenote= () => {
     return ( 
         <Box sx={{display:"flex"}}>
         <Sidebar/>
-         <Box component="main"  sx={{flexGrow:1,marginTop:7,p:3,bgcolor:"#eaeff1" }}>
+         <Box component="main"  sx={{flexGrow:1 }}>
             <Typography>
-            <Paper >
       <Typography
       sx={{textAlign:'center',mt:3,mb:5}} >
       <div style={{ width: '100%' }}>
-       <Typography sx={{p:5,textAlign:'justify',mb:5}}> 
+       <Typography sx={{p:2,textAlign:'justify',mb:5}}> 
       
        <br/>
        <div role="presentation">
@@ -151,7 +150,7 @@ const Relevedenote= () => {
 
 
       </Typography>
-    </Paper>
+    
 
             </Typography>
 
