@@ -16,18 +16,18 @@
 
 
 @media screen and (min-width: 320px){
-    .buttoncsv2{
-        margin-left: 100px; 
-       }  
+    .buttoncsv{
+        margin-left: 100px;
+    }  
 }
 
 
 
 
 @media screen and (min-width: 768px){
-    .buttoncsv2{
-        margin-left: -190px; 
-       } 
+    .buttoncsv{
+        margin-left: -200px;
+    }
 }
 
 
@@ -39,7 +39,7 @@
 
 
 @media screen and (min-width: 1024px){
-    .buttoncsv2{
-        margin-left: -487px; 
-       } 
+    .buttoncsv{
+        margin-left: -500px;
+    } 
 }

@@ -1,22 +1,18 @@
 import React, { useState } from "react";
-import { Col, Container, Row, Table, Button, Pagination, Modal, Form } from "react-bootstrap";
+import { Col, Container, Row, Table, Button, Pagination } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import "./demande.css";
 import { FaDownload, FaEye, FaFacebookMessenger } from "react-icons/fa";
 
 const Demande = () => {
-    const [show, setShow] = useState(false);
     const [motif, setMotif] = useState("");
     const [startDate, setStartDate] = useState("");
     const [endDate, setEndDate] = useState("");
-
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
 
     const handleSubmit = (e) => {
         e.preventDefault();
         // Gérer l'envoi des données ici
         console.log({ motif, startDate, endDate });
-        handleClose();
     };
 
     const renderPaginationItems = () => {
@@ -43,7 +39,7 @@ const Demande = () => {
                 </Row>
                 <Row className="mt-3">
                     <Col md={6}>
-                        <div className="buttoncsv2">
+                        <div className="button_csv">
                             <Button>
                                 <FaDownload className="me-2 mb-1" />
                                 Export CSV
@@ -52,10 +48,12 @@ const Demande = () => {
                     </Col>
                     <Col md={6} className="text-end">
                         <div className="buttondemande">
-                            <Button onClick={handleShow}>
-                                <FaFacebookMessenger className="me-2 mb-1" />
-                                Faire une Demande
-                            </Button>
+                            <Link to="/fairedemande">
+                                <Button>
+                                    <FaFacebookMessenger className="me-2 mb-1" />
+                                    Faire une Demande
+                                </Button>
+                            </Link>
                         </div>
                     </Col>
                 </Row>
@@ -93,41 +91,6 @@ const Demande = () => {
                     </Col>
                 </Row>
             </Container>
-
-            {/* Modal pour faire une demande */}
-            <Modal show={show} onHide={handleClose}>
-                <Modal.Header closeButton>
-                    <Modal.Title>Faire une Demande</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    <Form onSubmit={handleSubmit}>
-                        <Form.Group className="mb-3" controlId="motifSelect">
-                            <Form.Label>Motif</Form.Label>
-                            <Form.Control as="select" value={motif} onChange={(e) => setMotif(e.target.value)} required>
-                                <option value="">Sélectionner un motif</option>
-                                <option value="Absence">Absence</option>
-                                <option value="Changement Horaire">Changement Horaire</option>
-                                <option value="Abandon">Abandon</option>
-                                <option value="Pause Formation">Pause Formation</option>
-                            </Form.Control>
-                        </Form.Group>
-                        <Form.Group className="mb-3" controlId="startDate">
-                            <Form.Label>Date de début</Form.Label>
-                            <Form.Control type="date" value={startDate} onChange={(e) => setStartDate(e.target.value)} required />
-                        </Form.Group>
-                        <Form.Group className="mb-3" controlId="endDate">
-                            <Form.Label>Date de fin</Form.Label>
-                            <Form.Control type="date" value={endDate} onChange={(e) => setEndDate(e.target.value)} required />
-                        </Form.Group>
-                        <Button variant="primary" type="submit">
-                            Envoyer
-                        </Button>
-                        <Button variant="secondary" onClick={handleClose} className="ms-2">
-                            Annuler
-                        </Button>
-                    </Form>
-                </Modal.Body>
-            </Modal>
         </div>
     );
 }

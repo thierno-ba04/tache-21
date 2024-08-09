@@ -10,6 +10,8 @@ import Demande from './pagesEtudiant/demande/Demande';
 import BulletinEtudiant from './pagesEtudiant/bulletin/Bulletin';
 import Livraison from './pagesEtudiant/livraison/Livraison';
 import UpdProfileEtudiant from './pagesEtudiant/updProfileEtudiant/UpdProfileEtudiant';
+import VoirBulletin from './pagesEtudiant/voirbulletin/VoirBulletin';
+import FaireDemande from './pagesEtudiant/fairedemande/FaireDemande';
 
 import Login from "./pages/auth/Login";
 import ForgotPssWrd from "./pages/forgotpasseword/ForgotPssWrd";
@@ -43,7 +45,8 @@ function App() {
             <Route path="/" element={<Login />} />
             <Route path="/forgot" element={<ForgotPssWrd />} />
             <Route path="/inscrire" element={<Registe />} />
-            
+
+            {/* Student Layout Routes */}
             <Route element={<LayoutEtudiant />}>
               <Route path="/DashboardEtudiant" element={<DashboardEtudiant />} />
               <Route path="/tache" element={<Tache />} />
@@ -51,9 +54,12 @@ function App() {
               <Route path="/demande" element={<Demande />} />
               <Route path="/livraison" element={<Livraison />} />
               <Route path="/bulletin" element={<BulletinEtudiant />} />
+              <Route path="/voirbulletin" element={<VoirBulletin />} />
               <Route path="/updProfileEtudiant" element={<UpdProfileEtudiant />} />
+              <Route path="/fairedemande" element={<FaireDemande />} />
             </Route>
 
+            {/* Admin Layout Routes */}
             <Route element={<LayoutAdmin />}>
               <Route path="/dashboardadmin" element={<DashboardAdmin />} />
               <Route path="/users" element={<Users />} />
@@ -71,12 +77,6 @@ function App() {
               <Route path="/mescours" element={<MesCours />} />
               <Route path="/ajoutprfs" element={<AjoutPrfs />} />
             </Route>
-
-            <Route path="/dashboard" element={<DashboardAdmin />} />
-            <Route path="/users" element={<Users />} />
-            <Route path="/devoirs" element={<DashboardEtudiant />} />
-            <Route path="/relevedenote" element={<BulletinEtudiant />} />
-            <Route path="/notedeservice" element={<Statistique />} />
           </Routes>
         </Router>
       </MyContextProvider>

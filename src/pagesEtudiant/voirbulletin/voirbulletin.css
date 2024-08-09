@@ -1,0 +1,21 @@
+.moyenne-container {
+    border: 2px solid #000; /* Black outer border */
+    padding: 10px;
+    border-radius: 5px;
+    max-width: 250px; /* Adjust the width if needed */
+}
+
+.moyenne-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 2px solid #000; /* Border between the two items */
+}
+
+.moyenne-item:last-child {
+    border-bottom: none; /* Remove the border from the last item */
+}
+
+.moyenne-item h6 {
+    margin: 0;
+}
