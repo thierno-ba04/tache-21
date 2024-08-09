@@ -9,6 +9,9 @@ import {
 } from "react-bootstrap";
 import "./bulletin.css";
 import { FaEye, FaFileAlt } from "react-icons/fa";
+import { Link } from "react-router-dom";
+
+
 
 const Bulletin = () => {
   // Fonction pour générer les items de pagination
@@ -57,8 +60,8 @@ const Bulletin = () => {
                 <tr>
                   <td>Bulletin trimestre 1</td>
                   <td>
-                    <FaFileAlt size={20}  className="me-2" />
-                    Vusialiser
+                    <FaFileAlt size={20} className="me-2" />
+                    <Link to="/voirbulletin">Vusialiser</Link>
                   </td>
                 </tr>
 
@@ -66,7 +69,8 @@ const Bulletin = () => {
                   <td>Bulletin trimestre 2</td>
                   <td>
                     <FaFileAlt size={20} className="me-2" />
-                    Vusialiser
+
+                    <Link to="/voirbulletin">Vusialiser</Link>
                   </td>
                 </tr>
                 {/* Ajoutez plus de lignes selon vos besoins */}

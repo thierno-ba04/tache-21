@@ -55,7 +55,7 @@ const DashboardEtudiant = () => {
           </Col>
         </Row>
 
-        <Row>
+        <Row className="">
           <Col md={12} className="mt-5">
             <div className="searchdate d-flex">
               <div className="input-search mt-4 ms-5">
@@ -66,7 +66,7 @@ const DashboardEtudiant = () => {
                   type="search"
                   className="search-input"
                   placeholder="Recherche"
-                />
+                   />
               </div>
               <div className="date-input-container mt-4">
                 <input type="date" />
@@ -92,6 +92,8 @@ const DashboardEtudiant = () => {
               </div>
             </Col>
           </Row>
+
+          
           <Row className="mt-5">
             <Col md={4}>
               <h5 className="h5textpropsetcycle">
@@ -111,46 +113,9 @@ const DashboardEtudiant = () => {
               </div>
             </Col>
           </Row>
-
-
-          <Row className="mt-5">
-            <Col md={4} className="mt-5">
-              <div className="">
-                <div className="d-flex gap-5">
-                  <div className="ms-3">
-                    <IoPersonSharp />
-                  </div>
-                  <div>
-                    <h4>Faty</h4>
-                  </div>
-                  <div>
-                    <p>03 juil 2024, 10:41</p>
-                  </div>
-                </div>
-              </div>
-            </Col>
-          </Row>
-          <Row className="mt-5">
-            <Col md={4}>
-              <h5 className="h5textpropsetcycle">
-                Props et cycle de vie d'un composant class
-              </h5>
-            </Col>
-          </Row>
-          <Row className="mt-5">
-            <Col md={6}>
-              <div className="">
-                <img src={capture1} alt="" className="capture1" />
-              </div>
-            </Col>
-            <Col md={6}>
-              <div className="">
-                <img src={capture2} alt="" className="capture1"/>
-              </div>
-            </Col>
-          </Row>
-        </div>
-        <Row>
+          
+          </div>
+          <Row>
           <Col md={12} className="mt-5">
             <div className="input-commentaire d-flex">
               <div className="input-comment mt-3 ms-5">
@@ -163,6 +128,65 @@ const DashboardEtudiant = () => {
             </div>
           </Col>
         </Row>
+
+{/* LIVRAISON FATY */}
+
+        <div className="mere-dashboard-livr">
+          <Row className="mt-5">
+            <Col md={4} className="mt-5">
+              <div className="">
+                <div className="d-flex gap-5">
+                  <div className="ms-3">
+                    <IoPersonSharp />
+                  </div>
+                  <div>
+                    <h4>Faty</h4>
+                  </div>
+                  <div>
+                    <p>28 juil 2024, 10:41</p>
+                  </div>
+                </div>
+              </div>
+            </Col>
+          </Row>
+
+          
+          <Row className="mt-5">
+            <Col md={4}>
+              <h5 className="h5textpropsetcycle">
+                Les bases du html & css
+              </h5>
+            </Col>
+          </Row>
+          <Row className="mt-5">
+            <Col md={6}>
+              <div className="">
+                <img src={capture1} alt="" className="capture1" />
+              </div>
+            </Col>
+            <Col md={6}>
+              <div className="">
+                <img src={capture2} alt="" className="capture1"/>
+              </div>
+            </Col>
+          </Row>
+          
+          </div>
+          <Row>
+          <Col md={12} className="mt-5">
+            <div className="input-commentaire d-flex">
+              <div className="input-comment mt-3 ms-5">
+                <input
+                  type="text"
+                  className="search-input"
+                  placeholder=" Commentaire"
+                />
+              </div>
+            </div>
+          </Col>
+        </Row>
+
+        {/* FIN LIVRAISON */}
       </Container>
     </div>
   );
