@@ -53,3 +53,8 @@
     margin: 5px;
   }
   
+
+  .custom-modal .modal-body {
+    padding: 20px;
+  }
+  

@@ -1,6 +1,8 @@
-import { Col, Container, Pagination, Row } from "react-bootstrap";
+import React, { useState } from "react";
+import { Col, Container, Pagination, Row, Modal, Button, Form } from "react-bootstrap";
 import "./livraison.css";
 import capture1 from "../../assets/img/164153.png";
+
 
 const cardData = [
   {
@@ -65,11 +67,23 @@ const cardData = [
     imgSrc: capture1,
   },
   // Add more items as needed
-];
+];  
 
 const Livraison = () => {
-   // Fonction pour générer les items de pagination
-   const renderPaginationItems = () => {
+  const [showModal, setShowModal] = useState(false);
+  const [selectedTask, setSelectedTask] = useState(null);
+
+  const handleShowModal = (task) => {
+    setSelectedTask(task);
+    setShowModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
+
+  // Fonction pour générer les items de pagination
+  const renderPaginationItems = () => {
     let items = [];
     for (let number = 1; number <= 10; number++) {
       items.push(
@@ -81,11 +95,9 @@ const Livraison = () => {
     return items;
   };
 
-
-
   return (
     <div className="livraison-container" style={{ paddingTop: "130px" }}>
-         <Container>
+      <Container>
         <Row>
           <Col md={4}>
             <div className="dashboarddemaandeabsences">
@@ -95,39 +107,74 @@ const Livraison = () => {
         </Row>
       </Container>
       <Container>
-      <div className="" style={{ paddingTop: "90px" }}>
-        <Row className=" ms-5 gy-5 d-flex justify-content-center">
-          {cardData.map((card) => (
-            <Col lg={4} md={6} key={card.id}>
-              <div className="card-wrapper">
-                <div className="card" style={{ width: "18rem" }}>
-                  <img src={card.imgSrc} alt={card.title} />
-                  <div className="card-body">
-                    <h5 className="card-title">{card.title}</h5>
-                    <p className="card-text">{card.description}</p>
-                    <div className="d-flex gap-3">
-                      <a href="#" className="btn btn-primary">
-                        commentaire
-                      </a>
-                      <a href="#" className="btn btn-success">
-                        livrables
-                      </a>
+        <div className="" style={{ paddingTop: "90px" }}>
+          <Row className="ms-5 gy-5 d-flex justify-content-center">
+            {cardData.map((card) => (
+              <Col lg={4} md={6} key={card.id}>
+                <div className="card-wrapper">
+                  <div className="card" style={{ width: "18rem" }}>
+                    <img src={card.imgSrc} alt={card.title} />
+                    <div className="card-body">
+                      <h5 className="card-title">{card.title}</h5>
+                      <p className="card-text">{card.description}</p>
+                      <div className="d-flex gap-3">
+                        <a href="#" className="btn btn-primary">
+                          commentaire
+                        </a>
+                        <Button 
+                          className="btn btn-success"
+                          onClick={() => handleShowModal(card)}
+                        >
+                          livrables
+                        </Button>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
+              </Col>
+            ))}
+          </Row>
+          <Row className="mt-5">
+            <Col>
+              <Pagination>{renderPaginationItems()}</Pagination>
             </Col>
-          ))}
-        </Row>
-        <Row className="mt-5">
-          <Col>
-            <Pagination>{renderPaginationItems()}</Pagination>
-          </Col>
-        </Row>
+          </Row>
         </div>
       </Container>
+
+      {/* Modal for Livrables */}
+      <Modal show={showModal} onHide={handleCloseModal} centered>
+        <Modal.Body className="custom-modal">
+          <Container>
+            <Row className="justify-content-center">
+              <Col md={8}>
+                <Modal.Header closeButton>
+                  <Modal.Title>Livrables for {selectedTask?.title}</Modal.Title>
+                </Modal.Header>
+                <Form>
+                  <Form.Group controlId="livrableInput">
+                    <Form.Label>Tache N1 : les bases du HTML & CSS</Form.Label>
+                    <img src={capture1} alt="" className="img-fluid mt-3" />
+                  </Form.Group>
+                </Form>
+                <Modal.Footer>
+                  <Button variant="secondary" onClick={handleCloseModal}>
+                    Close
+                  </Button>
+                  <Button variant="primary" onClick={handleCloseModal}>
+                    Submit
+                  </Button>
+                </Modal.Footer>
+              </Col>
+            </Row>
+          </Container>
+        </Modal.Body>
+      </Modal>
     </div>
   );
 };
 
 export default Livraison;
+
+
+
