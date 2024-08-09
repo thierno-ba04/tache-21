@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+
 import DashboardEtudiant from './pagesEtudiant/dashboard/DashboardEtudiant';
 import LayoutEtudiant from './layout/LayoutEtudiant';
 import Tache from './pagesEtudiant/tache/Tache';
@@ -13,6 +14,7 @@ import UpdProfileEtudiant from './pagesEtudiant/updProfileEtudiant/UpdProfileEtu
 import Login from "./pages/auth/Login";
 import ForgotPssWrd from "./pages/forgotpasseword/ForgotPssWrd";
 import Registe from './pages/inscription/Registe';
+
 import LayoutAdmin from './layout/LayoutAdmin';
 import DashboardAdmin from './pages/pageadmine/dashboardadmin/DashboardAdmin';
 import Users from "./pages/pageadmine/users/Users";
@@ -29,6 +31,7 @@ import BulletinAdmin from './pages/pageadmine/users/bulletin/Bulletin';
 import Cours from './pages/pageadmine/users/cours/Cours';
 import MesCours from './pages/pageadmine/users/mescours/MesCours';
 import AjoutPrfs from './pages/pageadmine/users/ajoutprfs/AjoutPrfs';
+
 import { MyContextProvider } from './context/MyContext';
 
 function App() {
@@ -68,6 +71,12 @@ function App() {
               <Route path="/mescours" element={<MesCours />} />
               <Route path="/ajoutprfs" element={<AjoutPrfs />} />
             </Route>
+
+            <Route path="/dashboard" element={<DashboardAdmin />} />
+            <Route path="/users" element={<Users />} />
+            <Route path="/devoirs" element={<DashboardEtudiant />} />
+            <Route path="/relevedenote" element={<BulletinEtudiant />} />
+            <Route path="/notedeservice" element={<Statistique />} />
           </Routes>
         </Router>
       </MyContextProvider>

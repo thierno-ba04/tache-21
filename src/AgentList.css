@@ -1,0 +1,64 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 20px;
+}
+
+
+h4{
+    color: #2c3e50;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.agent-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.agent-item {
+    border-radius: 4px;
+    margin-bottom: 10px;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    transition: transform 0.2s ease-in-out;
+}
+
+.agent-item:hover {
+    transform: translateX(5px);
+    background-color: #e8f4fd;
+}
+
+.agent-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 15px;
+    object-fit: cover;
+}
+
+.agent-info {
+    flex-grow: 1;
+}
+
+.agent-name {
+    font-weight: bold;
+    color: #34495e;
+    margin: 0 0 5px 0;
+}
+
+.agent-role {
+    color: #7f8c8d;
+    font-size: 0.9em;
+    margin: 0;
+}
+
+.search-bar {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #bdc3c7;
+    border-radius: 4px;
+    font-size: 16px;
+}
