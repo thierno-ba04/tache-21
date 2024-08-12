@@ -1,5 +1,6 @@
 import { Col, Container, Row, Table } from "react-bootstrap";
 import "./voirbulletin.css";
+import imglogo from "../../assets/img/education-technology-logo-design-vector.jpg"
 
 const VoirBulletin = () => {
     return (
@@ -14,6 +15,20 @@ const VoirBulletin = () => {
                 </Row>
             </Container>
             <Container>
+                <Row>
+                    <Col md={4}>
+                        <img src={imglogo} alt="" />
+                    </Col>
+                    <Col md={4} className="mt-5">
+                        <h5>EDUCATION-TECH</h5>
+                        <h5>HML GRAND YOFF, VILLA N241</h5>
+                        <h5>TEL: 77 xxx xx xx</h5>
+                    </Col>
+                    <Col md={4} className="mt-5">
+                    <h5>REPUBLIQUE DU SENEGAL</h5>
+                    <h5>MINISTERE DE LA FORMATION PROFESIONNEL</h5>
+                    </Col>
+                </Row>
                 <Row className="mt-5">
                     <Col md={3}>
                         <h6>Prenom</h6>

@@ -11,6 +11,7 @@ import Livraison from './pagesEtudiant/livraison/Livraison';
 import UpdProfileCoach from './pagesEtudiant/updProfileEtudiant/UpdProfileEtudiant';
 import FaireDemande from './pagesEtudiant/fairedemande/FaireDemande';
 import VoirBulletin from './pagesEtudiant/voirbulletin/VoirBulletin';
+import TacheValide from './pagesEtudiant/tache-valide/TacheValide';
 
 function App() {
   return (
@@ -28,6 +29,8 @@ function App() {
             <Route path="/voirbulletin" element={<VoirBulletin />} />
             <Route path="/updProfileEtudiant" element={<UpdProfileCoach />} />
             <Route path="/fairedemande" element={<FaireDemande />} />
+            <Route path="/tachevalide" element={<TacheValide />} />
+
 
 
           </Route>

@@ -73,6 +73,9 @@ const Livraison = () => {
   const [showModal, setShowModal] = useState(false);
   const [selectedTask, setSelectedTask] = useState(null);
 
+  const [showCommentModal, setShowCommentModal] = useState(false);
+  const [selectedComment, setSelectedComment] = useState("");
+
   const handleShowModal = (task) => {
     setSelectedTask(task);
     setShowModal(true);
@@ -80,6 +83,16 @@ const Livraison = () => {
 
   const handleCloseModal = () => {
     setShowModal(false);
+  };
+
+
+  const handleShowCommentModal = (comment) => {
+    setSelectedComment(comment);
+    setShowCommentModal(true);
+  };
+
+  const handleCloseCommentModal = () => {
+    setShowCommentModal(false);
   };
 
   // Fonction pour générer les items de pagination
@@ -118,9 +131,12 @@ const Livraison = () => {
                       <h5 className="card-title">{card.title}</h5>
                       <p className="card-text">{card.description}</p>
                       <div className="d-flex gap-3">
-                        <a href="#" className="btn btn-primary">
+                      <Button 
+                          className="btn btn-primary" 
+                          onClick={() => handleShowCommentModal(card.comment)}
+                        >
                           commentaire
-                        </a>
+                        </Button>
                         <Button 
                           className="btn btn-success"
                           onClick={() => handleShowModal(card)}
@@ -147,7 +163,7 @@ const Livraison = () => {
         <Modal.Body className="custom-modal">
           <Container>
             <Row className="justify-content-center">
-              <Col md={8}>
+              <Col md={12}>
                 <Modal.Header closeButton>
                   <Modal.Title>Livrables for {selectedTask?.title}</Modal.Title>
                 </Modal.Header>
@@ -161,14 +177,30 @@ const Livraison = () => {
                   <Button variant="secondary" onClick={handleCloseModal}>
                     Close
                   </Button>
-                  <Button variant="primary" onClick={handleCloseModal}>
-                    Submit
-                  </Button>
                 </Modal.Footer>
               </Col>
             </Row>
           </Container>
         </Modal.Body>
+      </Modal>
+
+        {/* Modal for Commentaire */}
+        <Modal 
+        show={showCommentModal} 
+        onHide={handleCloseCommentModal} 
+        centered
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>Commentaire</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <p>{selectedComment}</p>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleCloseCommentModal}>
+            Close
+          </Button>
+        </Modal.Footer>
       </Modal>
     </div>
   );

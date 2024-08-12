@@ -58,3 +58,20 @@
     padding: 20px;
   }
   
+
+
+  /* modal */
+  /* CSS for full-page modal */
+.custom-modal-lg .modal-dialog {
+  max-width: 90%; /* Take 90% of the width */
+  width: 100%;
+}
+
+.custom-modal-lg .modal-content {
+  height: 65vh; /* Take 80% of the viewport height */
+}
+
+.custom-modal-body {
+  height: 100%;
+  overflow-y: auto; /* Add scrolling if the content is too large */
+}
