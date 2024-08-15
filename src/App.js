@@ -13,12 +13,18 @@ import FaireDemande from './pagesEtudiant/fairedemande/FaireDemande';
 import VoirBulletin from './pagesEtudiant/voirbulletin/VoirBulletin';
 import TacheValide from './pagesEtudiant/tache-valide/TacheValide';
 
-import Login from "./pages/auth/Login";
+import Dashboard from './Dashboard';
+import Users from './Users';
+import Devoirs from './Devoirs';
+import Relevedenote from './Relevedenote';
+import Notedeservice from './Notedeservice';
+
+import Login from "./pages/auth/Login"; // Conservé cet import
 import ForgotPssWrd from "./pages/forgotpasseword/ForgotPssWrd";
 import Registe from './pages/inscription/Registe';
 import LayoutAdmin from './layout/LayoutAdmin';
 import DashboardAdmin from './pages/pageadmine/dashboardadmin/DashboardAdmin';
-import UsersAdmin from "./pages/pageadmine/users/Users"; // Renommé pour éviter le conflit
+import UsersAdmin from "./pages/pageadmine/users/Users"; 
 import Eleves from "./pages/pageadmine/users/eleves/Eleves";
 import Personnels from "./pages/pageadmine/users/personnels/Personnels";
 import Professeurs from "./pages/pageadmine/users/professeurs/Professeurs";
@@ -42,7 +48,6 @@ import AjoutClasse from './pages/pageadmine/users/ajoutclasse/AjoutClasse';
 import UpdateStudent from './pages/pageadmine/users/updateUsers/UpdateStudent';
 import VoixClasse from './pages/pageadmine/users/vuclasse/VoixClasse';
 import UpdateClasse from './pages/pageadmine/users/modifierclasse/UpdateClasse';
-import { Dashboard } from '@mui/icons-material';
 
 function App() {
   return (
@@ -94,12 +99,11 @@ function App() {
             <Route path="/archiveUsers" element={<ArchiveUsers />} />
           </Route>
 
-          
-          <Route path="/" element={<Dashboard/>} />
-          <Route path="/users" element={<Users/>} />
-          <Route path="/Devoirs" element={<Devoirs/>} />
-          <Route path="/Relevedenote" element={<Relevedenote/>} />
-          <Route path="/Notedeservice" element={<Notedeservice/>} />
+          {/* Autres routes */}
+          <Route path="/Dashboard" element={<Dashboard />} />
+          <Route path="/Devoirs" element={<Devoirs />} />
+          <Route path="/Relevedenote" element={<Relevedenote />} />
+          <Route path="/Notedeservice" element={<Notedeservice />} />
         </Routes>
       </Router>
     </MyContextProvider>

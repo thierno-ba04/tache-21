@@ -1,21 +1,13 @@
 import React from "react";
 import Sidebar from "./Sidebar";
 import { Box, Typography } from "@mui/material";
-import Paper from '@mui/material/Paper';
-import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
-import SchoolIcon from '@mui/icons-material/School';
 import'./App.css';
-import Button from '@mui/material/Button';
-import PersonIcon from '@mui/icons-material/Person';
-import Person2Icon from '@mui/icons-material/Person2';
 import { useNavigate } from "react-router-dom";
 import'./App.css';
-import TextField from '@mui/material/TextField';
 import { emphasize, styled } from '@mui/material/styles';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
 import Chip from '@mui/material/Chip';
 import DashboardIcon from '@mui/icons-material/Dashboard';
-import Modal from '@mui/material/Modal';
 import Agenda from'./Agenda';
 import AgentList from "./AgentList";
 
@@ -122,7 +114,7 @@ const Dashboard = () => {
 					<div>
 						<p class="mb-0 text-secondary">Total Elèves</p>
 						<h4 class="my-1 text-info">4805</h4>
-						<p class="mb-0 font-13">+2.5% from last week</p>
+						<p class="mb-0 font-13"></p>
 					</div>
 					<div class="widgets-icons-2 rounded-circle bg-gradient-scooter text-white ms-auto"> <i class="fa fa-users"></i>
 					</div>
@@ -136,8 +128,8 @@ const Dashboard = () => {
 			   <div class="d-flex align-items-center">
 				   <div>
 					   <p class="mb-0 text-secondary">Total Fille</p>
-					   <h4 class="my-1 text-danger">$84,245</h4>
-					   <p class="mb-0 font-13">+5.4% from last week</p>
+					   <h4 class="my-1 text-danger">4245</h4>
+					   <p class="mb-0 font-13"></p>
 				   </div>
 				   <div class="widgets-icons-2 rounded-circle bg-gradient-bloody text-white ms-auto"> <i class="fa fa-users"></i>
 				   </div>
@@ -151,8 +143,8 @@ const Dashboard = () => {
 			   <div class="d-flex align-items-center">
 				   <div>
 					   <p class="mb-0 text-secondary">Total Graçon</p>
-					   <h4 class="my-1 text-success">34.6%</h4>
-					   <p class="mb-0 font-13">-4.5% from last week</p>
+					   <h4 class="my-1 text-success">3446</h4>
+					   <p class="mb-0 font-13"></p>
 				   </div>
 				   <div class="widgets-icons-2 rounded-circle bg-gradient-ohhappiness text-white ms-auto"> <i class="fa fa-users"></i>
 				   </div>
@@ -166,8 +158,8 @@ const Dashboard = () => {
 			   <div class="d-flex align-items-center">
 				   <div>
 					   <p class="mb-0 text-secondary">Total Classe</p>
-					   <h4 class="my-1 text-warning">8.4K</h4>
-					   <p class="mb-0 font-13">+8.4% from last week</p>
+					   <h4 class="my-1 text-warning">8444</h4>
+					   <p class="mb-0 font-13"></p>
 				   </div>
 				   <div class="widgets-icons-2 rounded-circle bg-gradient-blooker text-white ms-auto"><i class="fa fa-users"></i>
 				   </div>
