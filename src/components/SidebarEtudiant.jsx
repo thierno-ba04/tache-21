@@ -124,7 +124,7 @@ const SidebarEtudiant = () => {
             </Link>
           </li>
           <li>
-            <Link to="/bulletin">
+            <Link to="/bulletinelv">
               <span className="icon">
                 <FaFileAlt size={20} />
               </span>
