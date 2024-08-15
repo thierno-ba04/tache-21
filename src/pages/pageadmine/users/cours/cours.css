@@ -1,0 +1,35 @@
+.courstitre h2{
+    margin-top: 5rem;
+    color: #179fd4;
+}
+
+.div_h4{
+    color: #179fd4;
+    font-weight: 600;
+    /* text-align: end; */
+}
+
+.courshtml{
+    margin-top: 2rem;
+}
+.coursbootstrap{
+    margin-top: 2rem;
+}
+
+.coursimg{
+    width: 100%;
+    height: 100%;
+    margin-top: 20px;
+    margin: auto;
+    padding: 10px;
+}
+
+.card{
+width: 85%;
+height: 100%;
+box-sizing: border-box;
+border: 2px solid #95d1e9;
+border-radius: 20px;
+box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+}

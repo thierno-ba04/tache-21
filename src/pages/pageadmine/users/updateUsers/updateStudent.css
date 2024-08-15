@@ -1,0 +1,17 @@
+.titrmodifier{
+color: #4e73df;
+font-weight: bold;
+font-size: 1.5rem;
+}
+
+.updatestudent{
+    margin-top: 1rem;
+    padding: 30px;
+    background: white;
+    box-shadow: rgba(221, 203, 203, 0.6) 0px 0px 10px; 
+}
+
+.updatestudent .forme-input{
+    margin: 10px;
+    
+}

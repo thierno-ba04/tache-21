@@ -1,0 +1,30 @@
+.profile{
+    display: flex;
+margin: auto;
+
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+    width: 70%;
+    margin-top: 8rem;
+}
+
+.titr_profile{
+    color: hsl(197, 80%, 46%);
+    font-weight: bold;
+}
+
+.profile-details{
+}
+
+.profile-photo{
+   width: 80%;
+   height: 50%;
+   border-radius: 50%;
+   margin-top: 20px;
+   margin-left: auto;
+}
+.change-password-button{
+    text-decoration: none;
+    color: gray;
+}

@@ -1,0 +1,23 @@
+.Détails{
+    width: 85%;
+    height: 65vh;
+    margin: auto;
+}
+.titre_details{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 9rem;
+    color: #179fd4;
+    font-weight: 600;
+    padding-top: 20px;
+}
+.voir_details{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+}
+.btnvoir{
+    margin-top: 20px;
+}
