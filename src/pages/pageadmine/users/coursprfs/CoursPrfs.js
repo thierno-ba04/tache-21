@@ -2,13 +2,18 @@ import React from "react";
 import { Col, Container, Row, Button } from "react-bootstrap";
 import { LiaFileExportSolid } from 'react-icons/lia';
 import { IoIosAddCircleOutline } from 'react-icons/io';
-import imgcour from "../../../../assets/img/imgcour.jpg";
-import imgboots from "../../../../assets/img/imgboots.jpeg";
-import imgbjs from "../../../../assets/img/imgjs.jpg";
-import imgreact from "../../../../assets/img/imgreact.jpg";
+import imgcour from "../../../../assets/img/CSS3_and_HTML5_logos_and_wordmarks.svg-removebg-preview.png";
+import imgboots from "../../../../assets/img/imagesbootstrap__1_-removebg-preview.png";
+import imgbjs from "../../../../assets/img/kisspng-javascript2503058546-removebg-preview.png";
+import imgreact from "../../../../assets/img/o2switch-deployer-react.js.png";
 import { Link } from "react-router-dom";
+import { useMyContext } from '../../../../context/MyContext';
+import './coursprfs.css'
+
 
 function CoursPrfs() {
+  
+  const { CoursPrfs} = useMyContext();
   return (
     <Container>
       <Row>

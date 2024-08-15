@@ -1,25 +1,33 @@
+// src/components/AjoutCours.js
 import React from 'react';
-import { useForm } from "react-hook-form";
-import { Container, Row, Col, Button, Form, InputGroup } from "react-bootstrap";
-import { AiOutlineClockCircle, AiOutlineUpload } from "react-icons/ai";
-import { useMyContext } from "../../../../context/MyContext";
-import { useNavigate } from "react-router-dom";
-import "./ajoutcours.css";
+import { useForm } from 'react-hook-form';
+import { Container, Row, Col, Button, Form, InputGroup } from 'react-bootstrap';
+import { AiOutlineUpload } from 'react-icons/ai';
+import { FaImage } from "react-icons/fa6";
+import { useMyContext } from '../../../../context/MyContext';
+import { useNavigate } from 'react-router-dom';
+import './ajoutcours.css';
 
 export default function AjoutCours() {
   const { register, handleSubmit, formState: { errors } } = useForm();
-  const { addCourse } = useMyContext();  // Assurez-vous que addCourse est défini ici
+  const { addCours } = useMyContext();
   const navigate = useNavigate();
 
   const onSubmit = (data) => {
-    console.log(data);
-    if (addCourse) {
-      addCourse({ ...data, id: Date.now() });
-      navigate("/coursprfs"); // Redirection vers la section CoursPrfs
-    } else {
-      console.error("addCourse function is not available");
-    }
+    console.log('Form Data:', data);
+    if (addCours) {
+      // Exclure le fichier des données envoyées si vous ne le gérez pas pour l'instant
+      const { fichier, ...coursData } = data;
+      const newCours = { ...coursData, id: Date.now() };
+      addCours(newCours);
+      console.log('Cours Add');
+      navigate('/coursprfs', { state: { addCours: newCours } });
+    } 
+    // else {
+      // console.error('addCourse function is not available');
+    // }
   };
+  
 
   return (
     <Container>
@@ -37,7 +45,7 @@ export default function AjoutCours() {
                   <Form.Control
                     type="text"
                     placeholder="Nom du cours"
-                    {...register('nom', { required: "Le nom du cours est requis" })}
+                    {...register('nom', { required: 'Le nom du cours est requis' })}
                   />
                   {errors.nom && <Form.Text className="text-danger">{errors.nom.message}</Form.Text>}
                 </Form.Group>
@@ -47,24 +55,24 @@ export default function AjoutCours() {
                   <Form.Control
                     as="textarea"
                     placeholder="Ajouter une description"
-                    {...register('description', { required: "La description est requise" })}
+                    {...register('description', { required: 'La description est requise' })}
                   />
                   {errors.description && <Form.Text className="text-danger">{errors.description.message}</Form.Text>}
                 </Form.Group>
 
                 <Form.Group controlId="formDuree">
-                  <Form.Label>Durée</Form.Label>
+                  <Form.Label>Choisir une photo</Form.Label>
                   <InputGroup>
                     <Form.Control
-                      type="text"
-                      placeholder="Durée"
-                      {...register('duree', { required: "La durée est requise" })}
+                      type="file"
+                      placeholder="img"
+                      {...register('img', { required: 'L\'image est requise' })}
                     />
                     <InputGroup.Text>
-                      <AiOutlineClockCircle />
+                    <FaImage />
                     </InputGroup.Text>
                   </InputGroup>
-                  {errors.duree && <Form.Text className="text-danger">{errors.duree.message}</Form.Text>}
+                  {errors.image && <Form.Text className="text-danger">{errors.duree.message}</Form.Text>}
                 </Form.Group>
 
                 <Form.Group controlId="formFichier">

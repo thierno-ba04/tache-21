@@ -1,20 +1,57 @@
 // src/components/Login.js
 import React, { useState } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate  } from 'react-router-dom';
 import './login.css';
 import { IoMailOutline } from 'react-icons/io5';
 import { FiKey } from 'react-icons/fi';
-import imglearning from '../../assets/img/logo (2).png';
+import imglearning from '../../assets/img/education-technology-logo-design-vector.jpg';
+import { toast } from "react-toastify";
+import { auth, db } from "../../firebase/firebase";
+
 
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate(); // Initialize useNavigate
+
+
 
   const handleEmailChange = (e) => setEmail(e.target.value);
   const handlePasswordChange = (e) => setPassword(e.target.value);
 
   const isFormValid = email !== '' && password !== '';
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    try {
+      const userCredential = await auth.signInWithEmailAndPassword(email, password);
+      const user = userCredential.user;
+
+      // Récupérer le rôle de l'utilisateur depuis Firestore
+      const userDoc = await db.collection("users").doc(user.uid).get();
+      const userData = userDoc.data();
+
+      if (userData && userData.role === "admin") {
+        navigate("/dashboardadmin");
+        toast.success("Login successful! Welcome to admin.");
+      } else if (userData && userData.role === "student") {
+        navigate("/etuduantdashboard");
+        toast.success("Login successful! Welcome Student.");
+      } else {
+        alert("Rôle utilisateur non défini");
+      }
+    } catch (error) {
+      if (error.code === "auth/wrong-password") {
+        toast.error("Incorrect password. Please try again.");
+      } else {
+        toast.error(error.message);
+      }
+      console.error(error);
+    }
+  };
+
+
 
   return (
     <div>

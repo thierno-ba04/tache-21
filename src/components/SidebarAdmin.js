@@ -1,33 +1,24 @@
 import React, { useState } from "react";
-import {
-  ListNested, BoxArrowLeft
-} from "react-bootstrap-icons";
+import { ListNested, BoxArrowLeft } from "react-bootstrap-icons";
 import {
   BsFillBellFill,
   BsFillEnvelopeFill,
-  BsJustify,
   BsPersonCircle,
 } from "react-icons/bs";
 import { FaChartLine, FaFileInvoiceDollar } from "react-icons/fa";
-import {
-  MdOutlineSupervisorAccount,
-  MdDashboard,
-} from "react-icons/md";
+import { MdOutlineSupervisorAccount, MdDashboard } from "react-icons/md";
 import { Link, useNavigate } from "react-router-dom";
 import { Select, MenuItem } from "@mui/material";
 import "./SidebarAdmin.css";
 import { IoCalendarNumberOutline } from "react-icons/io5";
-import { Popover, OverlayTrigger } from 'react-bootstrap';
-
-// import Message from "../pages/pageadmine/message/Message";
+import { Popover, OverlayTrigger } from "react-bootstrap";
 
 const SidebarAdmin = () => {
   const [isSidebarActive, setSidebarActive] = useState(false);
-  const [users, setUsers] = useState(10); 
-  const navigate = useNavigate(); 
+  const [users, setUsers] = useState(10);
+  const navigate = useNavigate();
 
-  const logOut = async () => {}
-
+  const logOut = async () => {};
   const toggleSidebar = () => {
     setSidebarActive(!isSidebarActive);
   };
@@ -57,6 +48,8 @@ const SidebarAdmin = () => {
         <ul>
           <li>Bonjour notification 1</li>
           <li>Bonjour notification 2</li>
+          <li>Bonjour notification 3</li>
+          <li>Bonjour notification 4</li>
         </ul>
       </Popover.Body>
     </Popover>
@@ -76,26 +69,32 @@ const SidebarAdmin = () => {
 
   return (
     <div className="mysiderbar">
-     <header className="fixed-top">
+      <header className="fixed-top">
         <div className="toggle ms-md-3 d-flex gap-3" onClick={toggleSidebar}>
           <ListNested size={20} />
+          <h4>Dashboard /</h4>
         </div>
-
         <div className="fw-bold me-md-4 d-flex align-items-center gap-4">
-          <OverlayTrigger trigger="click" placement="bottom" overlay={notificationPopover}>
+          <OverlayTrigger
+            trigger="click"
+            placement="bottom"
+            overlay={notificationPopover}
+          >
             <div className="icon-wrapper">
               <BsFillBellFill className="iconProfile" />
               <span className="nbrmssg">4</span>
             </div>
           </OverlayTrigger>
-
-          <OverlayTrigger trigger="click" placement="bottom" overlay={messagePopover}>
+          <OverlayTrigger
+            trigger="click"
+            placement="bottom"
+            overlay={messagePopover}
+          >
             <div className="icon-wrapper">
               <BsFillEnvelopeFill className="iconProfile" />
               <span className="nbrmssg">2</span>
             </div>
           </OverlayTrigger>
-
           <Link to="/profile">
             <BsPersonCircle className="iconProfile" />
           </Link>
@@ -133,10 +132,11 @@ const SidebarAdmin = () => {
                   value={users}
                   label="Users"
                   onChange={handleChange}
+                  className="dropdown-select"
                 >
-                    <MenuItem value={10}>Eleves</MenuItem>
-                    <MenuItem value={20}>Personnels</MenuItem>
-                    <MenuItem value={30}>Professeurs</MenuItem>
+                  <MenuItem value={10}>Eleves</MenuItem>
+                  <MenuItem value={20}>Personnels</MenuItem>
+                  <MenuItem value={30}>Professeurs</MenuItem>
                 </Select>
               </span>
             </a>
@@ -166,19 +166,13 @@ const SidebarAdmin = () => {
             </Link>
           </li>
           <li>
-            <Link to="/" className='out' onClick={logOut}>
-              <span className='icon'><BoxArrowLeft size={30}/></span>
-              <span className='title'>Deconnecter</span>
+            <Link to="/" className="out" onClick={logOut}>
+              <span className="icon">
+                <BoxArrowLeft size={30} />
+              </span>
+              <span className="title">Deconnecter</span>
             </Link>
           </li>
-          {/* <li>
-            <Link to="/pointage">
-              <span className="icon">
-                <MdOutlineTouchApp size={20} />
-              </span>
-              <span className="title">Pointage</span>
-            </Link>
-          </li> */}
         </ul>
       </nav>
     </div>

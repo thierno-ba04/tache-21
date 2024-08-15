@@ -2,10 +2,10 @@ import React from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
 import { FiKey } from 'react-icons/fi'
 import { IoMailOutline } from 'react-icons/io5'
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 import "./registe.css"
 import { MdOutlinePermIdentity } from 'react-icons/md';
-import imglearning  from "../../assets/img/logo (2).png";
+import imglearning  from "../../assets/img/education-technology-logo-design-vector.jpg";
 
 function Registe() {
   return (

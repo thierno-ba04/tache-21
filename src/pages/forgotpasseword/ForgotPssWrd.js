@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import { Col, Container, Row, ToastContainer } from 'react-bootstrap';
 import { toast } from 'react-toastify';
 import "./forgotpsswrd.css";
-import imglearning from "../../assets/img/logo (2).png";
+import imglearning from "../../assets/img/education-technology-logo-design-vector.jpg";
 
 function ForgotPssWrd() {
     const [email, setEmail] = useState('');

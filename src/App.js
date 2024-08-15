@@ -15,7 +15,6 @@ import Pointage from './pages/pageadmine/pointage/Pointage';
 import Comptabliter from './pages/pageadmine/comptablité/Comptabliter';
 import Calendrier from './pages/pageadmine/calendrier/Calendrier';
 import Profile from './pages/pageadmine/profile/Profile';
-import { Message } from '@mui/icons-material';
 import AjoutElv from './pages/pageadmine/ajouteréléves/AjoutElv';
 import { MyContextProvider } from './context/MyContext';
 import Bulletin from './pages/pageadmine/users/bulletin/Bulletin';
@@ -26,6 +25,11 @@ import Voix from './pages/pageadmine/dashboardadmin/voir/Voix';
 import Classe from './pages/pageadmine/users/classe/Classe';
 import CoursPrfs from './pages/pageadmine/users/coursprfs/CoursPrfs';
 import AjoutCours from './pages/pageadmine/users/ajoutcours/AjoutCours';
+import ArchiveUsers from './pages/pageadmine/users/archiver/ArchiveUsers';
+import AjoutClasse from './pages/pageadmine/users/ajoutclasse/AjoutClasse';
+import UpdateStudent from './pages/pageadmine/users/updateUsers/UpdateStudent';
+import VoixClasse from './pages/pageadmine/users/vuclasse/VoixClasse';
+import UpdateClasse from './pages/pageadmine/users/modifierclasse/UpdateClasse';
 // import UpdateUser from './pages/pageadmine/dashboardadmin/updateusers/UpdateUser';
 // import Voix from './pages/pageadmine/dashboardadmin/voir/Voix';
 // import Archived from './pages/pageadmine/dashboardadmin/arhiver/Archived';
@@ -49,18 +53,21 @@ function App() {
             <Route path="/pointage" element={<Pointage />} />
             <Route path="/calendar" element={<Calendrier />} />
             <Route path="/profile" element={<Profile />} />
-            {/* <Route path="/message" element={<Message />} /> */}
             <Route path="/ajoutelv" element={<AjoutElv />} />
             <Route path="/bulletin" element={<Bulletin />} />
             <Route path="/cours" element={<Cours />} />
             <Route path="/mescours" element={<MesCours />} />
             <Route path="/ajoutprfs" element={<AjoutPrfs />} />
             <Route path="/coursprfs" element={<CoursPrfs />} />
-            <Route path="/classe" element={<Classe />} />
-            <Route path="/voix" element={<Voix />} />
             <Route path="/ajoutcours" element={<AjoutCours />} />
-            {/* <Route path="/updateUser" element={<UpdateUser />} /> */}
-            {/* <Route path="/archiveUser" element={<Archived />} /> */}
+            <Route path="/classe" element={<Classe />} />
+            <Route path="/ajoutclasse" element={<AjoutClasse />} />
+            <Route path="classes/voix/:id" element={<VoixClasse />} />
+            <Route path="classes/update/:id" element={<UpdateClasse />} />
+            <Route path="classes/ajout" element={<AjoutClasse />} />
+            <Route path="/voix/:id" element={<Voix />} />
+            <Route path="/updateStudent/:id" element={<UpdateStudent />} />
+            <Route path="/archiveUsers" element={<ArchiveUsers />} />
           </Route>
         </Routes>
       </Router>

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useEffect } from 'react';
 import Box from '@mui/material/Box';
 import { DataGrid } from '@mui/x-data-grid';
 import "./dashboardadmin.css";
@@ -23,72 +23,61 @@ import { Link, useNavigate } from "react-router-dom";
 import { Avatar } from '@mui/material';
 import Stack from '@mui/material/Stack';
 import Img from "../../../assets/img/prflimg.jpeg";
-import { useEffect, useState } from "react";
+import { useMyContext } from '../../../context/MyContext';
 import {
   ArchiveFill,
   EyeFill,
   PencilFill,
   TrashFill,
 } from "react-bootstrap-icons";
-import { useMyContext } from '../../../context/MyContext';
-
 
 // Dummy functions to simulate user actions
 const archiveUser = async (id) => {
-  console.log(`Archiving user with ID: ${id}`);
+  // console.log(`Archiving user with ID: ${id}`);
 };
 
 const deleteUser = async (id) => {
   console.log(`Deleting user with ID: ${id}`);
 };
 
-const updateUser = (id) => {
-  console.log(`Updating user with ID: ${id}`);
-};
-
 function DashboardAdmin() {
-  const [rows, setRows] = useState([
-    { id: 1, Nom: 'Niang', Prenom: 'Faty', Mail: 'fatyniang4@gmail.com', Numero: 777778899, Adresse: 'Thiés', Statut: 'prof anglais' },
-    { id: 2, Nom: 'Ba', Prenom: 'Thiérno', Mail: 'thiérnoba56@gmail.com', Numero: 771001897, Adresse: 'zone Thiés', Statut: 'prof anglais' },
-    { id: 3, Nom: 'Lannister', Prenom: 'Gervais', Mail: 'akoinenzegervais7@gmail.com', Numero: 771001897, Adresse: 'zone captage', Statut: 'prof anglais' },
-    { id: 4, Nom: 'Stark', Prenom: 'Moriss', Mail: 'maorrissstark27@gmail.com', Numero: 771001897, Adresse: 'zone captage', Statut: 'prof anglais' },
-    { id: 5, Nom: 'Diop', Prenom: 'Marie', Mail: 'diopmarie457@gmail.com', Numero: 771001897, Adresse: 'zone mbour2', Statut: 'prof anglais' },
-    { id: 6, Nom: 'Morin', Prenom: 'Viral', Mail: 'viralmorrin7@gmail.com', Numero: 771001897, Adresse: 'Konakry', Statut: 'prof anglais' },
-    { id: 7, Nom: 'Clifford', Prenom: 'Clédore', Mail: 'cledore227@gmail.com', Numero: 771001897, Adresse: 'Hlmgrand yoof', Statut: 'prof anglais' },
-    { id: 8, Nom: 'Françoi', Prenom: 'Leader', Mail: 'franchoislearder7@gmail.com', Numero: 771001897, Adresse: 'ThiésRsant', Statut: 'prof anglais' },
-    { id: 9, Nom: 'Nze', Prenom: 'Gervais', Mail: 'akoinenzegervais7@gmail.com', Numero: 771001897, Adresse: 'zone captage', Statut: 'prof anglais' },
-  ]);
+  const {
+    students,
+    updateStudent,
+    removeStudent,
+  } = useMyContext();
 
   const navigate = useNavigate();
 
   useEffect(() => {
-    console.log("Fetching data...");
+    // console.log("Fetching data...");
+    // Fetch data if necessary
   }, []);
 
   const handleArchiveUser = async (id) => {
     try {
       await archiveUser(id);
-      setRows(rows.filter(row => row.id !== id));
-      console.log("Utilisateur archivé avec succès");
+      navigate(`/archiveUsers`);
     } catch (error) {
       console.error("Erreur lors de l'archivage de l'utilisateur", error);
     }
   };
 
   const handleDeleteUser = async (id) => {
-    try {
-      await deleteUser(id);
-      setRows(rows.filter(row => row.id !== id));
-      console.log("Utilisateur supprimé avec succès");
-    } catch (error) {
-      console.error("Erreur lors de la suppression de l'utilisateur", error);
+    if (window.confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur?')) {
+      try {
+        await deleteUser(id);
+        removeStudent(id);
+        console.log("Utilisateur supprimé avec succès");
+      } catch (error) {
+        console.error("Erreur lors de la suppression de l'utilisateur", error);
+      }
     }
   };
 
-  const handleUpdateUser = (id) => {
-    updateUser(id);
-    // Navigate to update user page
-    navigate(`/updateUser/{id}`);
+  const handleUpdateStudent = (updatedStudent) => {
+    updateStudent(updatedStudent);
+    navigate(`/updateStudent/${updatedStudent.id}`);
   };
 
   const data = [
@@ -110,39 +99,41 @@ function DashboardAdmin() {
       sortable: false,
       filterable: false,
     },
-    { field: 'Nom', headerName: 'Nom', width: 100 },
-    { field: 'Prenom', headerName: 'Prenom', width: 100 },
-    { field: 'Mail', headerName: 'Mail', width: 200 },
+    { field: 'Nom', headerName: 'Nom', width: 150 },
+    { field: 'Prenom', headerName: 'Prénom', width: 150 },
+    { field: 'Mail', headerName: 'E-mail', width: 200 },
+    { field: 'Lieu_de_naissance', headerName: 'Lieu de naissance', width: 200 },
+    { field: 'Niveau_de_classe', headerName: 'Niveau de classe', width: 150 },
+    { field: 'Numero', headerName: 'Numéro', type: 'number', width: 150 },
+    { field: 'Adresse', headerName: 'Adresse', width: 200 },
     {
-      field: 'Numero',
-      headerName: 'Numero',
-      type: 'number',
-      width: 100,
-      editable: true,
-    },
-    { field: 'Adresse', headerName: 'Adresse', width: 130 },
-    { field: 'Statut', headerName: 'Statut', width: 100 },
-    {
-      field: 'Actions',
+      field: 'actions',
       headerName: 'Actions',
-      width: 180,
+      width: 250,
       renderCell: (params) => {
         const { id } = params.row;
-
         return (
           <Stack spacing={2} direction="row">
-            <Link to="/voix">
+            <Link to={`/voix/${id}`}>
               <EyeFill size={18} color="skyblue" className="ms-2" />
             </Link>
-            <Link onClick={() => handleUpdateUser(id)} className="button-update">
+            <Link to={`/updateStudent/${id}`} className="button-update">
               <PencilFill size={18} color="yellow" className="ms-2" />
             </Link>
-            <Link onClick={() => handleDeleteUser(id)} className="button-delete">
+            <Button
+              onClick={() => handleDeleteUser(id)}
+              className="button-delete"
+              variant="link"
+            >
               <TrashFill size={18} color="red" className="ms-2" />
-            </Link>
-            <Link onClick={() => handleArchiveUser(id)} className="button-archive">
+            </Button>
+            <Button
+              onClick={() => handleArchiveUser(id)}
+              className="button-archive"
+              variant="link"
+            >
               <ArchiveFill size={18} color="green" className="ms-2" />
-            </Link>
+            </Button>
           </Stack>
         );
       },
@@ -227,38 +218,37 @@ function DashboardAdmin() {
         </Row>
         <Row>
           <Col lg={12} md={12}>
-          <h6 className='lsteleves'>Liste des élèves</h6>
-          <div className="deuxbutt">
-            <div className="ms-2 mt-3">
-              <Button>
-                <LiaFileExportSolid className="buttexport me-2 mb-1" /> Export to CSV
-              </Button>
-            </div>
-            <div className="rowsbutt mt-3">
-              <Link to="/ajoutelv">
-                <Button className="btnajoute">
-                  Ajouter <IoIosAddCircleOutline className="iconajoute ms-2 mb-1" />
+            <h6 className='lsteleves'>Liste des élèves</h6>
+            <div className="deuxbutt">
+              <div className="ms-2 mt-3">
+                <Button>
+                  <LiaFileExportSolid className="buttexport me-2 mb-1" /> Export to CSV
                 </Button>
-              </Link>
+              </div>
+              <div className="rowsbutt mt-3">
+                <Link to="/ajoutelv">
+                  <Button className="btnajoute">
+                    Ajouter <IoIosAddCircleOutline className="iconajoute ms-2 mb-1" />
+                  </Button>
+                </Link>
+              </div>
             </div>
-          </div>
           </Col>
         </Row>
         <Row>
-        <Col lg={12} md={12}>
+          <Col lg={12} md={12}>
             <div className='data-grid-container'>
               <Box sx={{ height: '60vh', width: '93%', margin: "auto" }}>
-      <DataGrid
-        rows={rows}
-        columns={columns}
-        initialState={{
-          pagination: {
-            paginationModel: { page: 0, pageSize: 6 },
-            
-          },
-        }}
-        pageSizeOptions={[5, 10]} 
-      />
+                <DataGrid
+                  rows={students}
+                  columns={columns}
+                  initialState={{
+                    pagination: {
+                      paginationModel: { page: 0, pageSize: 5 },
+                    },
+                  }}
+                  pageSizeOptions={[5, 6, 10]}
+                />
               </Box>
             </div>
           </Col>

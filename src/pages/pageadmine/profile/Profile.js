@@ -23,7 +23,7 @@ const Profile = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     // Enregistrez les modifications ici
-    navigate('/editProfileCoach');
+    navigate('/DashboardAdmin');
   };
 
   return (
@@ -52,7 +52,7 @@ const Profile = () => {
             <span className="detail-label">Rôle:</span> {formData.role}
           </div>
         </div>
-        <Link to="/forgot" className="change-password-button" onClick={() => navigate('/editPassword')}>
+        <Link to="/forgot" className="change-password-button" onClick={() => navigate('/DashboardAdmin')}>
         Modifier mon mot de passe !
       </Link>
         </Col>

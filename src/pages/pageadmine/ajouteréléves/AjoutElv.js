@@ -4,7 +4,7 @@ import { Container, Row, Col, Button, Form } from 'react-bootstrap';
 import { TbSelector } from 'react-icons/tb';
 import { useMyContext } from '../../../context/MyContext';
 import './ajoutelv.css';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 function AjoutElv() {
   const { register, handleSubmit, formState: { errors }, setValue } = useForm();
@@ -12,9 +12,8 @@ function AjoutElv() {
   const navigate = useNavigate(); 
 
   const onSubmit = (data) => {
-    console.log(data);
+    // console.log(data); // Vérifiez les données soumises ici
     if (addStudent) {
-
       addStudent({ ...data, id: Date.now() }); 
       navigate('/dashboardadmin'); 
     } else {
@@ -25,7 +24,7 @@ function AjoutElv() {
   return (
     <Container>
       <Row className="justify-content-center">
-        <div className='laclasse'>
+        <div className='laclasses'>
           <h2 className='mt-2'>Les élèves de la classe</h2>
         </div>
         <Col md={10} className='addetudiant'>
@@ -59,15 +58,16 @@ function AjoutElv() {
                   </Form.Control.Feedback>
                 </Form.Group>
 
-                <Form.Group controlId="formBirthDate">
-                  <Form.Label>Date de naissance</Form.Label>
+                <Form.Group controlId="formEmail">
+                  <Form.Label>Mail</Form.Label>
                   <Form.Control className='forme-input'
-                    type="date"
-                    {...register('birthDate', { required: 'Date de naissance est requise' })}
-                    isInvalid={!!errors.birthDate}
+                    type="email"
+                    placeholder="Entrez votre mail"
+                    {...register('email', { required: 'E-mail est requise' })}
+                    isInvalid={!!errors.email}
                   />
                   <Form.Control.Feedback type="invalid">
-                    {errors.birthDate?.message}
+                    {errors.email?.message}
                   </Form.Control.Feedback>
                 </Form.Group>
 

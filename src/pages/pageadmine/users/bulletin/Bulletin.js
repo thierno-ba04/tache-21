@@ -3,6 +3,7 @@ import { Col, Container, Row, Table, Pagination } from "react-bootstrap";
 import "./bulletin.css";
 // eslint-disable-next-line no-unused-vars
 import { FaEye, FaFileAlt } from "react-icons/fa";
+import imgtech from '../../../../assets/img/education-technology-logo-design-vector.jpg'
 
 const Bulletin = () => {
   // Fonction pour générer les items de pagination
@@ -34,17 +35,19 @@ const Bulletin = () => {
           <Col lg={11} md={11} className="mt-3">
             <div className="h5">
               <h5 className="">Liste des bulletins</h5>
+              <img src={imgtech} alt="educationtech" className="tichedu" />
+              
             </div>
           </Col>
         </Row>
         <Row className="justify-content-center">
           <Col lg={1} md={1} className="mt-3"></Col>
-          <Col lg={11} md={11} className="mt-5">
+          <Col lg={11} md={11} className="mt-2">
             <div className="div_bultin">
               <div>
                 <h6>E-leaning formation</h6>
                 <p>
-                  Bargny, villa n°241 <br />
+                  Thiés, villa n°241 <br />
                   Tel : +221 77 777 67 88
                 </p>
               </div>

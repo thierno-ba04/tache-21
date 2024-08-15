@@ -1,0 +1,16 @@
+.laclasse{
+    margin-top: 2rem;
+    width: 65%;
+    background-color: #179fd4;
+    box-sizing: border-box;
+    color: aliceblue;
+    border-radius: 10px;
+    /* padding: 0.5rem; */
+}
+.addvux{
+    margin-top: 5rem;
+    padding: 20px;
+    background: white;
+    box-shadow: rgba(221, 203, 203, 0.6) 0px 0px 10px; 
+    /* height: 50%; */
+}

@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { Container, Row, Col, Button, Form } from "react-bootstrap";
 import { TbSelector } from "react-icons/tb";
 import { useMyContext } from "../../../../context/MyContext";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function AjoutPrfs() {
   const {
@@ -18,8 +18,20 @@ function AjoutPrfs() {
   const onSubmit = (data) => {
     console.log(data);
     if (addStudent) {
-      addStudent({ ...data, id: Date.now() });
-      navigate("/dashboardadmin");
+      // Handle file uploads separately if needed
+      const student = {
+        id: Date.now(),
+        Nom: data.lastName,
+        Prenom: data.firstName,
+        Mail: data.email,
+        Numero: data.birthnum,
+        Adresse: data.address,
+        Statut: data.grade,
+        // Add more fields if needed
+        // Handle photo if required
+      };
+      addStudent(student);
+      navigate("/personnels");
     } else {
       console.error("addStudent function is not available");
     }
@@ -28,7 +40,7 @@ function AjoutPrfs() {
   return (
     <Container>
       <Row className="justify-content-center">
-        <div className="laclasse">
+        <div className="laclasses">
           <h2 className="mt-2">Professeurs</h2>
         </div>
         <Col md={10} className="addetudiant">
@@ -56,9 +68,7 @@ function AjoutPrfs() {
                     className="forme-input"
                     type="text"
                     placeholder="Entrez le prénom"
-                    {...register("firstName", {
-                      required: "Prénom est requis",
-                    })}
+                    {...register("firstName", { required: "Prénom est requis" })}
                     isInvalid={!!errors.firstName}
                   />
                   <Form.Control.Feedback type="invalid">
@@ -66,16 +76,32 @@ function AjoutPrfs() {
                   </Form.Control.Feedback>
                 </Form.Group>
 
-                <Form.Group controlId="formBirthDate">
+                <Form.Group controlId="formEmail">
+                  <Form.Label>Mail</Form.Label>
+                  <Form.Control
+                    className="forme-input"
+                    type="email"
+                    placeholder="Entrez votre adresse mail"
+                    {...register("email", { required: "E-mail est requis" })}
+                    isInvalid={!!errors.email}
+                  />
+                  <Form.Control.Feedback type="invalid">
+                    {errors.email?.message}
+                  </Form.Control.Feedback>
+                </Form.Group>
+
+                <Form.Group controlId="formPhoneNumber">
                   <Form.Label>Numéro de téléphone</Form.Label>
                   <Form.Control
                     className="forme-input"
-                    type="number"
-                    {...register("birthnum", {
-                      required: "Numero de telephone est requis",
-                    })}
+                    type="text"
+                    placeholder="Entrez le numéro"
+                    {...register("birthnum", { required: "Numéro de téléphone est requis" })}
                     isInvalid={!!errors.birthnum}
                   />
+                  <Form.Control.Feedback type="invalid">
+                    {errors.birthnum?.message}
+                  </Form.Control.Feedback>
                 </Form.Group>
               </Col>
 
@@ -84,6 +110,20 @@ function AjoutPrfs() {
               </Col>
 
               <Col md={5}>
+                <Form.Group controlId="formAddress">
+                  <Form.Label>Adresse</Form.Label>
+                  <Form.Control
+                    className="forme-input"
+                    type="text"
+                    placeholder="Entrez votre adresse"
+                    {...register("address", { required: "Adresse est requise" })}
+                    isInvalid={!!errors.address}
+                  />
+                  <Form.Control.Feedback type="invalid">
+                    {errors.address?.message}
+                  </Form.Control.Feedback>
+                </Form.Group>
+
                 <Form.Group controlId="formGender">
                   <Form.Label>Genre</Form.Label>
                   <div className="select-container">
@@ -103,18 +143,14 @@ function AjoutPrfs() {
                     {errors.gender?.message}
                   </Form.Control.Feedback>
                 </Form.Group>
-                <Form.Group controlId="formBirthPlace">
-                  <Form.Label>Domaine</Form.Label>
-                </Form.Group>
 
                 <Form.Group controlId="formGrade">
+                  <Form.Label>Domaine</Form.Label>
                   <div className="select-container">
                     <Form.Control
                       className="forme-input select-input"
                       as="select"
-                      {...register("grade", {
-                        required: "Niveau de classe est requis",
-                      })}
+                      {...register("grade", { required: "Domaine est requis" })}
                       isInvalid={!!errors.grade}
                     >
                       <option value="">Choisissez...</option>

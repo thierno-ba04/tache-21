@@ -6,6 +6,12 @@
     font-size: 1.5rem;
 }
 
+.tichedu{
+    width: 100px;
+    height: 70px;
+    /* margin-left: auto; */
+}
+
 .h5{
     color: hsl(197, 80%, 46%);
     font-weight: 700; 

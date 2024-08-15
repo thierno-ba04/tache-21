@@ -7,6 +7,7 @@ import { DataGrid } from '@mui/x-data-grid';
 import { Link, useNavigate } from "react-router-dom";
 import Stack from '@mui/material/Stack';
 import { EyeFill, PencilFill, TrashFill } from "react-bootstrap-icons";
+import { useMyContext } from '../../../../context/MyContext';
 import './classe.css';
 
 const Classe = () => {
@@ -30,7 +31,6 @@ const Classe = () => {
 
   const handleDeleteUser = async (id) => {
     try {
-      // Simulate delete operation
       console.log(`Deleting user with ID: ${id}`);
       setRows(rows.filter(row => row.id !== id));
       console.log("Utilisateur supprimé avec succès");
@@ -39,10 +39,11 @@ const Classe = () => {
     }
   };
 
-  const handleUpdateUser = (id) => {
-    console.log(`Updating user with ID: ${id}`);
-    navigate(`/updateUser/${id}`);
+  const handleUpdateClasse = (updateClasse) => {
+    navigate(`/classes/update/${updateClasse.id}`);
   };
+
+  
 
   const columns = [
     { field: 'Classe', headerName: 'Classe', flex: 1 },
@@ -57,15 +58,15 @@ const Classe = () => {
 
         return (
           <Stack spacing={2} direction="row">
-            <Link to="/voix">
+            <Link to={`/classes/voix/${id}`}>
               <EyeFill size={18} color="skyblue" className="ms-2" />
             </Link>
-            <Link onClick={() => handleUpdateUser(id)} className="button-update">
+            <Link to={`/classes/update/${id}`} className="button-update">
               <PencilFill size={18} color="yellow" className="ms-2" />
             </Link>
-            <Link onClick={() => handleDeleteUser(id)} className="button-delete">
+            <span onClick={() => handleDeleteUser(id)} className="button-delete">
               <TrashFill size={18} color="red" className="ms-2" />
-            </Link>
+            </span>
           </Stack>
         );
       },
@@ -80,7 +81,7 @@ const Classe = () => {
           <div className="classe">
             <h6>Liste des classes</h6>
             <div className="rowsbutt mt-3">
-              <Link to="/ajoutprfs">
+              <Link to="/classes/ajout">
                 <Button className="btnajoute">
                   Ajouter <IoIosAddCircleOutline className="iconajoute ms-2 mb-1" />
                 </Button>
@@ -108,17 +109,6 @@ const Classe = () => {
                 onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
                 paginationMode="client"
                 disableSelectionOnClick
-                components={{
-                  ColumnHeaders: () => (
-                    <div>
-                      <Stack spacing={2} direction="row">
-                        <div style={{ flex: 1 }}>Classe</div>
-                        <div style={{ flex: 1 }}>Matiére</div>
-                        <div style={{ flex: 0, width: 180 }}>Actions</div>
-                      </Stack>
-                    </div>
-                  ),
-                }}
               />
             </Box>
           </div>
