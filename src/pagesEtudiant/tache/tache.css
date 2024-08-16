@@ -1,6 +1,4 @@
-.mere-tache{
-    /* background-color: rgb(224, 227, 229); */
-}
+
 
 
 
@@ -36,6 +34,7 @@ border-radius: 15px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
     transform: scale(1.05);
   }
+  
 
 
 
@@ -60,7 +59,7 @@ border-radius: 15px;
             } 
 
         .h5tache{
-            margin-left: -175px;
+            margin-left: -5px;
         }
 
         .deplace{
@@ -93,7 +92,7 @@ border-radius: 15px;
             } 
 
         .h5tache{
-            margin-left: -458px;
+            margin-left: -370px;
         }
 
         .lienutiles{
@@ -129,15 +128,29 @@ border-radius: 15px;
         }
 
           .bg-tache{
-            height: 65%;
+            height: 20rem;
             } 
 
+            .agentlist-coach{
+                margin-top: 8rem;
+            }
+
+            .col-bottom{
+                position: relative;
+                bottom: 40rem;
+            }
+
+            /* .col-bottom2{
+                position: relative;
+                bottom: 45rem;
+            } */
+
         .h5tache{
-            margin-left: -815px;
+            margin-left: -565px;
         }
 
         .lienutiles{
-            margin-left: -615px;
+            margin-left: -375px;
         }
 
         .h5tache1{
