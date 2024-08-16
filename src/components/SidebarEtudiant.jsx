@@ -17,6 +17,7 @@ import { Modal, Button, Form, Badge } from "react-bootstrap";
 import "./sidebar.css";
 import { IoIosNotifications } from "react-icons/io";
 import { IoPerson } from "react-icons/io5";
+import { GiBrain } from "react-icons/gi";
 
 const SidebarEtudiant = () => {
   const [isSidebarActive, setSidebarActive] = useState(false);
@@ -129,6 +130,14 @@ const SidebarEtudiant = () => {
                 <FaFileAlt size={20} />
               </span>
               <span className="title">Bulletin</span>
+            </Link>
+          </li>
+          <li>
+            <Link to="/programmequizz">
+              <span className="icon">
+                <GiBrain size={30} />
+              </span>
+              <span className="title">Test de Connaissance</span>
             </Link>
           </li>
           <li>

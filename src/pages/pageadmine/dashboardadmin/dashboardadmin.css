@@ -96,7 +96,7 @@
 }
 
 .main-card2{
-    background: linear-gradient(180deg, #FFFFFF 0%, #FFFFFF 100%);
+    /* background: linear-gradient(180deg, #FFFFFF 0%, #FFFFFF 100%); */
     border-radius: 28px;
     margin: auto;
     margin-top: 2rem;

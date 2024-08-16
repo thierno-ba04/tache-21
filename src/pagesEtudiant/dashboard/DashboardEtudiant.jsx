@@ -34,7 +34,7 @@ const DashboardEtudiant = () => {
             </div>
           </Col>
           <Col lg={4} md={4}>
-            <div className="main-card2-bg main-card2">
+            <div className="main-card2-bgg main-card2">
               <h5>Taches Validées</h5>
               <p>Nombre de Taches validées</p>
               <h4>37/68</h4>
