@@ -67,8 +67,8 @@ const Programme = () => {
                 className=" mt-3"
               />
               <Card.Body>
-                <h3 className="text-center">BOOTSTRAP</h3>
-                <h6 className="text-center">MAITRISE BOOTSTRAP</h6>
+                <h3 className="text-center">JAVASCRIPT</h3>
+                <h6 className="text-center">JAVASCRIPT DEBUTANT</h6>
                 <Button variant="primary" className="ms-5">
                   Voir les cours
                 </Button>
