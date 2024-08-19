@@ -1,0 +1,56 @@
+
+
+
+
+.logout-button {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background-color: #2979ff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  .logout-button:hover {
+    background-color: #ff6b81;
+    transform: scale(1.05);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+  }
+  .logout-button:active {
+    transform: scale(0.95);
+  }
+  .logout-button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  .logout-icon {
+    width: 15px;
+    height: 15px;
+    fill: white;
+  }
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  .spinner {
+    animation: spin 1s linear infinite;
+  }
+  .tooltip {
+    position: absolute;
+    background-color: #333;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 14px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+  }
+  .logout-button:hover + .tooltip {
+    opacity: 1;
+  }

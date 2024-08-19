@@ -26,6 +26,9 @@ import Breadcrumbs from '@mui/material/Breadcrumbs';
 import Chip from '@mui/material/Chip';
 import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 import'./Notification.css';
+import { useState, useEffect} from "react";
+import ClipLoader from "react-spinners/ClipLoader";
+
 
 const Notification = ({ message, onClose }) => {
   return (
@@ -79,6 +82,12 @@ const style = {
   p: 4,
 };
 
+const override: CSSProperties = {
+  display: "block",
+  margin: "0 auto",
+  borderColor: "#2979ff",
+  marginTop:300
+};
 
 
 
@@ -88,7 +97,16 @@ const style = {
   
 
 
-const Users = () => {
+const Eleves = () => {
+
+  const [loading, setLoading] = useState(false);
+  useEffect(()=>{
+    setLoading(true)
+    setTimeout(()=>{
+      setLoading(false)
+    },3000)
+  },[])
+  
 
   const [showNotification, setShowNotification] = React.useState(false);
   const [notificationMessage, setNotificationMessage] = React.useState('');
@@ -317,8 +335,26 @@ const Users = () => {
     
   ];
     return ( 
+
+
+      <div>
+
+
         <Box sx={{display:"flex"}}>
         <Sidebar/>
+        {
+         loading ?
+         < ClipLoader
+      loading={loading}
+      cssOverride={override}
+      size={70}
+      aria-label="Loading Spinner"
+      data-testid="loader"
+      color="#2979ff"
+    />
+ 
+     :
+
          <Box component="main"  sx={{flexGrow:1}}>
             <Typography>
       <Typography
@@ -335,19 +371,19 @@ const Users = () => {
        <div role="presentation">
       <Breadcrumbs aria-label="breadcrumb">
         <StyledBreadcrumb
-           sx={{p:2}}
+           sx={{p:2,borderRadius:2}}
           component="a"
           href="#"
-          label="Dashaord"
+          label="Tableau de bord"
           onClick={()=>{navigate('/')}}
 
           icon={<DashboardIcon fontSize="small" />}
         />
         
         <StyledBreadcrumb
-           sx={{p:2}}
+           sx={{p:2,borderRadius:2}}
           label="Liste des élèves"
-          onClick={()=>{navigate('/users')}}
+          onClick={()=>{navigate('/Eleves')}}
         />
       </Breadcrumbs>
     </div>
@@ -378,9 +414,11 @@ const Users = () => {
             </Typography>
 
          </Box>
+        }
 
         </Box>
+        </div>
      );
 }
  
-export default Users;
+export default Eleves;

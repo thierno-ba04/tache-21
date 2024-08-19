@@ -12,6 +12,16 @@ import DashboardIcon from '@mui/icons-material/Dashboard';
 import AddToDriveIcon from '@mui/icons-material/AddToDrive';
 import'./App.css';
 import Img1 from './google-drive.png';
+import { useState,useEffect,CSSProperties } from "react";
+import ClipLoader from "react-spinners/ClipLoader";
+
+const override: CSSProperties = {
+  display: "block",
+  margin: "0 auto",
+  borderColor: "#2979ff",
+  marginTop:300
+};
+
 
 const StyledBreadcrumb = styled(Chip)(({ theme }) => {
   const backgroundColor =
@@ -89,16 +99,41 @@ const customTheme = createTheme({
     padding: theme.spacing(1),
   }));
   
+  
 
 
 const Devoirs= () => {
 
+  const [loading, setLoading] = useState(false);
+      useEffect(()=>{
+
+         setLoading(true)
+         setTimeout(()=>{
+          setLoading(false)
+         } ,3000)
+      },[])
+
   const navigate=useNavigate();
     return ( 
+      <div>
 
-      
+        
         <Box sx={{display:"flex"}}>
+
         <Sidebar/>
+        {
+        loading ?
+        <ClipLoader
+        loading={loading}
+        cssOverride={override}
+        size={70}
+        aria-label="Loading Spinner"
+        data-testid="loader"
+        color= "#2979ff"
+      />
+      
+      :
+
          <Box component="main"  sx={{flexGrow:1}}>
             <Typography>
             
@@ -111,17 +146,17 @@ const Devoirs= () => {
        <div role="presentation">
       <Breadcrumbs aria-label="breadcrumb">
         <StyledBreadcrumb
-           sx={{p:2}}
+           sx={{p:2,borderRadius:2}}
           component="a"
           href="#"
-          label="Dashaord"
+          label="Tableau de bord"
           onClick={()=>{navigate('/')}}
 
           icon={<DashboardIcon fontSize="small" />}
         />
         
         <StyledBreadcrumb
-            sx={{p:2}}
+            sx={{p:2,borderRadius:2}}
 
           label="Devoirs"
           onClick={()=>{navigate('/Devoirs')}}
@@ -169,10 +204,11 @@ const Devoirs= () => {
             </Typography>
 
          </Box>
+        }
 
         </Box>
-
         
+  </div>
      );
 
 }

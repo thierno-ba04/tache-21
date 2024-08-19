@@ -1,12 +1,13 @@
 // src/App.js
 import React from 'react';
 import { BrowserRouter , Route, Routes } from 'react-router-dom';
-import Dashboard from './Dashboard';
-import Users from './Users';
+import DashboardProf from './DashboardProf';
+import Eleves from './Eleves';
 import Devoirs from './Devoirs';
 import Relevedenote from './Relevedenote';
 import Notedeservice from './Notedeservice';
-import Login from './Login ';
+import LoginProf from './LoginProf ';
+import Page404 from './Page404';
 
 
 function App() {
@@ -14,13 +15,12 @@ function App() {
     <div className="App">
       <BrowserRouter >
       <Routes>
-
-         <Route path="/Login" element={<Login/>} />
-          <Route path="/" element={<Dashboard/>} />
-          <Route path="/users" element={<Users/>} />
+         <Route path="/LoginProf" element={<LoginProf/>} />
+         <Route path="/" element={<DashboardProf/>} />
+          <Route path="/Eleves" element={<Eleves/>} />
           <Route path="/Devoirs" element={<Devoirs/>} />
           <Route path="/Relevedenote" element={<Relevedenote/>} />
-          <Route path="/Notedeservice" element={<Notedeservice/>} />
+          <Route path="/*" element={<Page404/>} />
 
 
 
