@@ -194,6 +194,11 @@
   border-radius: 8px;
 }
 
+Link .button-add{
+    display: flex;
+    margin: auto;
+}
+
 @media screen and (max-width: 320px){
     .div-2 p{
         font-size: 9px;

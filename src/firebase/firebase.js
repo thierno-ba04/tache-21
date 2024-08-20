@@ -1,7 +1,8 @@
 // firebase.js
 import { initializeApp, getApp, getApps } from 'firebase/app';
 import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth';
-import { getFirestore, collection, getDocs, onSnapshot } from 'firebase/firestore';
+import { getFirestore, collection, getDocs, onSnapshot, addDoc } from 'firebase/firestore';
+import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 
 const firebaseConfig = {
   apiKey: "AIzaSyAE18AIjip3S6jJC3Hhsdla9hctkwz53MM",
@@ -17,5 +18,9 @@ const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApp();
 
 const auth = getAuth(app);
 const db = getFirestore(app);
+
+const storage = getStorage(app);
+
+export { storage, addDoc, ref, uploadBytes, getDownloadURL };
 
 export { auth, db, signInWithEmailAndPassword, createUserWithEmailAndPassword, collection, getDocs, onSnapshot };
