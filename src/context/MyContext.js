@@ -33,9 +33,9 @@ export const MyContextProvider = ({ children }) => {
   };
 
   // Fonction pour ajouter un étudiant
-  const addStudent = (student) => {
-    setStudents((prevStudents) => [...prevStudents, student]);
-  };
+  // const addStudent = (student) => {
+  //   setStudents((prevStudents) => [...prevStudents, student]);
+  // };
 
   // Fonction pour ajouter un cours
   const addCours = (cours) => {
@@ -85,19 +85,13 @@ export const MyContextProvider = ({ children }) => {
     );
   };
 
-  useEffect(() => {
-    const fetchStudents = async () => {
-      try {
-        const response = await fetch('/api/students'); // Assurez-vous que ce chemin est correct
-        const data = await response.json();
-        setStudents(data);
-      } catch (error) {
-        console.error('Erreur lors de la récupération des étudiants:', error);
-      }
-    };
+  const addStudent = async (student) => {
+    try {
+    } catch (error) {
+      console.error('Erreur lors de l\'ajout d\'un étudiant:', error);
+    }
+  };
 
-    fetchStudents();
-  }, []);
 
   const value = {
     students,

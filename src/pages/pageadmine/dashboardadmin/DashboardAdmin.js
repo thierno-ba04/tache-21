@@ -215,19 +215,19 @@ function DashboardAdmin() {
               </LineChart>
             </ResponsiveContainer>
           </div>
-        </Row>
-        <Row>
+        {/* </Row>
+        <Row> */}
           <Col lg={12} md={12}>
-            <h6 className='lsteleves'>Liste des élèves</h6>
+            <h6 className='lsteleves ms-5 mt-4'>Liste des élèves</h6>
             <div className="deuxbutt">
-              <div className="ms-2 mt-3">
+              <div className="ms-5 mt-3">
                 <Button>
                   <LiaFileExportSolid className="buttexport me-2 mb-1" /> Export to CSV
                 </Button>
               </div>
               <div className="rowsbutt mt-3">
                 <Link to="/ajoutelv">
-                  <Button className="btnajoute">
+                  <Button className="btnajoute me-5">
                     Ajouter <IoIosAddCircleOutline className="iconajoute ms-2 mb-1" />
                   </Button>
                 </Link>

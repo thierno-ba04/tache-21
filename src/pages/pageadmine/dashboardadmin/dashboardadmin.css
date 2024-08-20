@@ -177,9 +177,10 @@
 }
 
 .data-grid-container {
-  height: 400px; 
-  overflow: auto;
-  margin-top: 20px; 
+    width: 100%;
+  height: 420px; 
+  overflow: hidden;
+  margin-top: 3rem; 
 }
 
 /* Assure que le tableau n'affecte pas les autres éléments */
@@ -192,19 +193,6 @@
   border: 1px solid #ddd;
   border-radius: 8px;
 }
-
-/* .icones-perso {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-} */
-
-/* .border {
-  height: 1px;
-  background-color: #ddd;
-  margin: 20px 0;
-} */
-
 
 @media screen and (max-width: 320px){
     .div-2 p{
@@ -240,20 +228,28 @@
         margin-top: -5px;
         height: 160px;
     }
+    .deuxbutt Button{
+        width: 110px;
+        font-size: 11px;
+        margin-left: -30px;        
+    }
+    .deuxbutt{
+        gap: 2rem;
+        margin: auto;
+    }
   }
 
   @media screen and (max-width: 768px){
     .div-2 p{
         font-size: 9px;
         color: #bbb6b6;
-    
     }
     
     .div-2 h2{
         color: #179fd4;
         font-weight: 500; 
         font-size: 1.7rem;
-    margin-top: -15px;
+        margin-top: -15px;
     }
 
     .icones-perso2{
@@ -262,6 +258,13 @@
         font-weight: 700;
         margin-top: -30px;
     }
+ 
+
+.deuxbutt Button{
+    font-size: 11px; 
+    height: 40px;       
+}
+
 
   }
 

@@ -10,6 +10,7 @@ function AjoutElv() {
   const { register, handleSubmit, formState: { errors }, setValue } = useForm();
   const { addStudent } = useMyContext();
   const navigate = useNavigate(); 
+  
 
   const onSubmit = (data) => {
     // console.log(data); // Vérifiez les données soumises ici

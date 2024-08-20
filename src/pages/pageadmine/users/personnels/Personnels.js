@@ -119,16 +119,16 @@ function Personnels() {
       <Container>
         <Row className="justify-content-center tabpersonl">
           <Col lg={12} md={12}>
-            <h6 className='lsteleves'>Liste des professeurs</h6>
+            <h6 className='lsteleves ms-5'>Liste des professeurs</h6>
             <div className="deuxbutt">
-              <div className="ms-2 mt-3">
+              <div className="ms-5 mt-3">
                 <Button>
                   <LiaFileExportSolid className="buttexport me-2 mb-1" /> Export to CSV
                 </Button>
               </div>
               <div className="rowsbutt mt-3">
                 <Link to="/ajoutprfs">
-                  <Button className="btnajoute">
+                  <Button className="btnajoute me-5">
                     Ajouter <IoIosAddCircleOutline className="iconajoute ms-2 mb-1" />
                   </Button>
                 </Link>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ListNested, BoxArrowLeft } from "react-bootstrap-icons";
 import {
   BsFillBellFill,
@@ -12,44 +12,70 @@ import { Select, MenuItem } from "@mui/material";
 import "./SidebarAdmin.css";
 import { IoCalendarNumberOutline } from "react-icons/io5";
 import { Popover, OverlayTrigger } from "react-bootstrap";
+import { db, collection, onSnapshot } from '../firebase/firebase'; // Importez les fonctions nécessaires
+
 
 const SidebarAdmin = () => {
   const [isSidebarActive, setSidebarActive] = useState(false);
   const [users, setUsers] = useState(10);
   const navigate = useNavigate();
+  const [notifications, setNotifications] = useState([]);
+  const [messages, setMessages] = useState([]);
 
-  const logOut = async () => {};
+  const logOut = async () => {
+    // Logique de déconnexion ici
+  };
+
   const toggleSidebar = () => {
     setSidebarActive(!isSidebarActive);
   };
 
+
   const handleChange = (event) => {
     const value = event.target.value;
     setUsers(value);
-    switch (value) {
-      case 10:
-        navigate("/eleves");
-        break;
-      case 20:
-        navigate("/personnels");
-        break;
-      case 30:
-        navigate("/professeurs");
-        break;
-      default:
-        navigate("/eleves");
-    }
+    navigate(value === 10 ? "/eleves" : value === 20 ? "/personnels" : "/professeurs");
   };
+
+  useEffect(() => {
+    // Récupérer les notifications
+    const notificationsCol = collection(db, 'notifications');
+    const unsubscribeNotifications = onSnapshot(notificationsCol, (snapshot) => {
+      const notificationsData = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+      setNotifications(notificationsData);
+    }, (error) => {
+      console.error("Erreur lors de la récupération des notifications: ", error);
+    });
+
+    // Récupérer les messages
+    const messagesCol = collection(db, 'messages');
+    const unsubscribeMessages = onSnapshot(messagesCol, (snapshot) => {
+      const messagesData = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+      setMessages(messagesData);
+    }, (error) => {
+      console.error("Erreur lors de la récupération des messages: ", error);
+    });
+
+    // Nettoyage des abonnements lors du démontage du composant
+    return () => {
+      unsubscribeNotifications();
+      unsubscribeMessages();
+    };
+  }, []);
+  
 
   const notificationPopover = (
     <Popover id="notification-popover">
       <Popover.Header className="h3">Notifications</Popover.Header>
       <Popover.Body>
         <ul>
-          <li>Bonjour notification 1</li>
-          <li>Bonjour notification 2</li>
-          <li>Bonjour notification 3</li>
-          <li>Bonjour notification 4</li>
+          {notifications.length > 0 ? (
+            notifications.map((notification) => (
+              <li key={notification.id}>{notification.text}</li>
+            ))
+          ) : (
+            <li>Aucune notification</li>
+          )}
         </ul>
       </Popover.Body>
     </Popover>
@@ -60,8 +86,13 @@ const SidebarAdmin = () => {
       <Popover.Header className="h3">Messages</Popover.Header>
       <Popover.Body>
         <ul>
-          <li>Bonjour message 1</li>
-          <li>Bonjour message 2</li>
+          {messages.length > 0 ? (
+            messages.map((message) => (
+              <li key={message.id}>{message.text}</li>
+            ))
+          ) : (
+            <li>Aucun message</li>
+          )}
         </ul>
       </Popover.Body>
     </Popover>
@@ -82,7 +113,7 @@ const SidebarAdmin = () => {
           >
             <div className="icon-wrapper">
               <BsFillBellFill className="iconProfile" />
-              <span className="nbrmssg">4</span>
+              <span className="nbrmssg">{notifications.length}</span>
             </div>
           </OverlayTrigger>
           <OverlayTrigger
@@ -92,7 +123,7 @@ const SidebarAdmin = () => {
           >
             <div className="icon-wrapper">
               <BsFillEnvelopeFill className="iconProfile" />
-              <span className="nbrmssg">2</span>
+              <span className="nbrmssg">{messages.length}</span>
             </div>
           </OverlayTrigger>
           <Link to="/profile">
@@ -125,14 +156,14 @@ const SidebarAdmin = () => {
                 <MdOutlineSupervisorAccount size={25} />
               </span>
               <span className="title">Users</span>
-              <span className="dropdown-select">
+              <span className="dropdown-select border-0 bg-transparent">
                 <Select
                   labelId="demo-simple-select-label"
                   id="demo-simple-select"
                   value={users}
                   label="Users"
                   onChange={handleChange}
-                  className="dropdown-select"
+                  className="dropdown-select "
                 >
                   <MenuItem value={10}>Eleves</MenuItem>
                   <MenuItem value={20}>Personnels</MenuItem>

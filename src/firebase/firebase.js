@@ -1,7 +1,7 @@
-import { initializeApp } from "firebase/app";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import { getFirestore, collection, addDoc } from "firebase/firestore";
-
+// firebase.js
+import { initializeApp, getApp, getApps } from 'firebase/app';
+import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth';
+import { getFirestore, collection, getDocs, onSnapshot } from 'firebase/firestore';
 
 const firebaseConfig = {
   apiKey: "AIzaSyAE18AIjip3S6jJC3Hhsdla9hctkwz53MM",
@@ -12,8 +12,10 @@ const firebaseConfig = {
   appId: "1:571795702707:web:f62e57ab23a6ce393b81c6"
 };
 
+// Vérifiez si Firebase a déjà été initialisé avant d'appeler initializeApp
+const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApp();
 
-const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
-export { auth, db, createUserWithEmailAndPassword, collection, addDoc, firebaseConfig };
+
+export { auth, db, signInWithEmailAndPassword, createUserWithEmailAndPassword, collection, getDocs, onSnapshot };
