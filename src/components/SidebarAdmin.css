@@ -342,8 +342,8 @@ a .dropdown-select{
             }
   }
 
-  a:active{
+  /* a:active{
     color: #000;
     background-color: #0d0d0f;
     width: 200px;
-  }
+  } */
