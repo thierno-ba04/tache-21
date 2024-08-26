@@ -61,7 +61,9 @@ const ProgrammeQuizz = () => {
                 <h6>
                     JAVASCRIPT DEBUTANT
                 </h6>
+                <Link to="/quizzjavascript">
                 <Button variant="primary">Commencer le Quizz</Button>
+                </Link>
               </Card.Body>
             </Card>
           </Col>

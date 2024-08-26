@@ -123,27 +123,17 @@ border-radius: 15px;
 /* responsive mode laptop */
 
 @media screen and (min-width: 1024px) {
-    .mere-tache{
-        height: 200vh;
-        }
+   
 
           .bg-tache{
             height: 20rem;
             } 
 
             .agentlist-coach{
-                margin-top: 8rem;
+              
             }
 
-            .col-bottom{
-                position: relative;
-                bottom: 40rem;
-            }
-
-            /* .col-bottom2{
-                position: relative;
-                bottom: 45rem;
-            } */
+          
 
         .h5tache{
             margin-left: -565px;
