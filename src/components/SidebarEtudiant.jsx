@@ -18,6 +18,7 @@ import "./sidebar.css";
 import { IoIosNotifications } from "react-icons/io";
 import { IoPerson } from "react-icons/io5";
 import { GiBrain } from "react-icons/gi";
+import { toast } from "react-toastify";
 
 const SidebarEtudiant = () => {
   const [isSidebarActive, setSidebarActive] = useState(false);
@@ -41,6 +42,20 @@ const SidebarEtudiant = () => {
     handleCloseModal();
   };
 
+   // État pour gérer les commentaires
+   const [comments, setComments] = useState([]);
+
+   // Fonction pour gérer la soumission du commentaire
+   const handleCommentSubmit = (e) => {
+     e.preventDefault();
+     const newComment = e.target.comment.value;
+     if (newComment.trim()) {
+       setComments([...comments, newComment]);
+       toast.info("Nouveau commentaire ajouté!");
+       e.target.comment.value = ""; // Réinitialiser le champ de commentaire
+     }
+   };
+
   return (
     <div className="mysiderbar">
       <header className="fixed-top">
@@ -59,9 +74,15 @@ const SidebarEtudiant = () => {
         </button>
 
         <div className="fw-bold me-md-4 d-flex align-items-center gap-4">
-          <div className="fa-regular">
-            <i className="fa-regular fa-bell"></i>
-          </div>
+           {/* Autres contenus de la barre latérale */}
+      <div className="fa-regular">
+        <i className="fa-regular fa-bell"></i>
+        {/* Affichage dynamique du nombre de commentaires */}
+        {comments.length > 0 && (
+          <div className="notification-count">{comments.length}</div>
+        )}
+      </div>
+      {/* Autres contenus de la barre latérale */}
           <span>
             <Link to="/updProfileEtudiant">
               <div>
