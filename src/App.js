@@ -16,6 +16,7 @@ import AgentList from './pagesEtudiant/AgentList/AgentList';
 import ProgrammeQuizz from './pagesEtudiant/programmequizz/ProgrammeQuizz';
 import QuizzHtmlcss from './pagesEtudiant/quizzhtmlcss/QuizzHtmlcss';
 import QuizzBootstrap from './pagesEtudiant/quizzbootstrap/QuizzBootstrap';
+import QuizzJavascript from './pagesEtudiant/quizzjavascript/QuizzJavascript';
 
 import Dashboard from './Dashboard';
 import Users from './Users';
@@ -71,9 +72,11 @@ function App() {
             <Route path="/fairedemande" element={<FaireDemande />} />
             <Route path="/tachevalide" element={<TacheValide />} />
             <Route path="/agentlist" element={<AgentList />} />
+
             <Route path="/programmequizz" element={<ProgrammeQuizz />} />
             <Route path="/quizzhtmlcss" element={<QuizzHtmlcss />} />
             <Route path="/quizzbootstrap" element={<QuizzBootstrap />} />
+            <Route path="/quizzjavascript" element={<QuizzJavascript />} />
 
 
 

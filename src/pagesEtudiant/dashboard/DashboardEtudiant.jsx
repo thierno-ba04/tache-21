@@ -1,6 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
-import SidebarEtudiant from "../../components/SidebarEtudiant";
 import { MdOutlineDoneOutline } from "react-icons/md";
 import "./dashboard.css";
 import { FaFileAlt, FaSearch } from "react-icons/fa";
@@ -10,6 +9,53 @@ import capture1 from "../../assets/img/Capture d'écran 2024-07-11 171047.png";
 import capture2 from "../../assets/img/Capture d'écran 2024-07-23 171650.png";
 
 const DashboardEtudiant = () => {
+  const [livraisons, setLivraisons] = useState([
+    {
+      id: 1,
+      nom: "Thierno Ba",
+      date: "31 juil 2024, 15:41",
+      titre: "Props et cycle de vie d'un composant class",
+      images: [capture1, capture2],
+      commentaires: [],
+      commentaireTexte: "",
+    },
+    {
+      id: 2,
+      nom: "Faty",
+      date: "28 juil 2024, 10:41",
+      titre: "Les bases du html & css",
+      images: [capture1, capture2],
+      commentaires: [],
+      commentaireTexte: "",
+    },
+  ]);
+
+  const handleCommentSubmit = (e, livraisonId) => {
+    e.preventDefault();
+    setLivraisons((prevLivraisons) =>
+      prevLivraisons.map((livraison) =>
+        livraison.id === livraisonId && livraison.commentaireTexte.trim() !== ""
+          ? {
+              ...livraison,
+              commentaires: [...livraison.commentaires, livraison.commentaireTexte],
+              commentaireTexte: "",
+            }
+          : livraison
+      )
+    );
+  };
+
+  const handleInputChange = (e, livraisonId) => {
+    const { value } = e.target;
+    setLivraisons((prevLivraisons) =>
+      prevLivraisons.map((livraison) =>
+        livraison.id === livraisonId
+          ? { ...livraison, commentaireTexte: value }
+          : livraison
+      )
+    );
+  };
+
   return (
     <div className="main">
       <Container>
@@ -74,119 +120,73 @@ const DashboardEtudiant = () => {
             </div>
           </Col>
         </Row>
-        <div className="mere-dashboard-livr">
-          <Row className="mt-5">
-            <Col md={4} className="mt-5">
-              <div className="">
+
+        {livraisons.map((livraison) => (
+          <div key={livraison.id} className="mere-dashboard-livr mt-5">
+            <Row className="mt-5">
+              <Col md={4} className="mt-5">
                 <div className="d-flex gap-5">
                   <div className="ms-3">
                     <IoPersonSharp />
                   </div>
                   <div>
-                    <h4>Thierno Ba</h4>
+                    <h4>{livraison.nom}</h4>
                   </div>
                   <div>
-                    <p>31 juil 2024, 15:41</p>
+                    <p>{livraison.date}</p>
                   </div>
                 </div>
-              </div>
-            </Col>
-          </Row>
+              </Col>
+            </Row>
 
-          
-          <Row className="mt-5">
-            <Col md={4}>
-              <h5 className="h5textpropsetcycle">
-                Props et cycle de vie d'un composant class
-              </h5>
-            </Col>
-          </Row>
-          <Row className="mt-5">
-            <Col md={6}>
-              <div className="">
-                <img src={capture1} alt="" className="capture1" />
-              </div>
-            </Col>
-            <Col md={6}>
-              <div className="">
-                <img src={capture2} alt="" className="capture1"/>
-              </div>
-            </Col>
-          </Row>
-          
-          </div>
-          <Row>
-          <Col md={12} className="mt-5">
-            <div className="input-commentaire d-flex">
-              <div className="input-comment mt-3 ms-5">
-                <input
-                  type="text"
-                  className="search-input"
-                  placeholder=" Commentaire"
-                />
-              </div>
-            </div>
-          </Col>
-        </Row>
+            <Row className="mt-5">
+              <Col md={4}>
+                <h5 className="h5textpropsetcycle">{livraison.titre}</h5>
+              </Col>
+            </Row>
+            <Row className="mt-5">
+              {livraison.images.map((image, index) => (
+                <Col md={6} key={index}>
+                  <div className="">
+                    <img src={image} alt="" className="capture1" />
+                  </div>
+                </Col>
+              ))}
+            </Row>
+                <Row>
+              <Col md={12} className="mt-3">
+                {livraison.commentaires.map((comm, index) => (
+                  <div key={index} className="commentaire mt-3">
+                    <p>{comm}</p>
+                  </div>
+                ))}
+              </Col>
+            </Row>
 
-{/* LIVRAISON FATY */}
-
-        <div className="mere-dashboard-livr">
-          <Row className="mt-5">
-            <Col md={4} className="mt-5">
-              <div className="">
-                <div className="d-flex gap-5">
-                  <div className="ms-3">
-                    <IoPersonSharp />
-                  </div>
-                  <div>
-                    <h4>Faty</h4>
-                  </div>
-                  <div>
-                    <p>28 juil 2024, 10:41</p>
-                  </div>
+            <Row>
+              <Col md={12} className="mt-5">
+                <div className="input-commentaire d-flex">
+                  <form
+                    onSubmit={(e) => handleCommentSubmit(e, livraison.id)}
+                    className="d-flex w-100"
+                  >
+                    <div className="input-comment mt-3 ms-5 w-100">
+                      <input
+                        type="text"
+                        className="search-input w-100"
+                        placeholder="Commentaire"
+                        value={livraison.commentaireTexte}
+                        onChange={(e) => handleInputChange(e, livraison.id)}
+                      />
+                    </div>
+                  </form>
                 </div>
-              </div>
-            </Col>
-          </Row>
+              </Col>
+            </Row>
 
-          
-          <Row className="mt-5">
-            <Col md={4}>
-              <h5 className="h5textpropsetcycle">
-                Les bases du html & css
-              </h5>
-            </Col>
-          </Row>
-          <Row className="mt-5">
-            <Col md={6}>
-              <div className="">
-                <img src={capture1} alt="" className="capture1" />
-              </div>
-            </Col>
-            <Col md={6}>
-              <div className="">
-                <img src={capture2} alt="" className="capture1"/>
-              </div>
-            </Col>
-          </Row>
           
           </div>
-          <Row>
-          <Col md={12} className="mt-5">
-            <div className="input-commentaire d-flex">
-              <div className="input-comment mt-3 ms-5">
-                <input
-                  type="text"
-                  className="search-input"
-                  placeholder=" Commentaire"
-                />
-              </div>
-            </div>
-          </Col>
-        </Row>
-
-        {/* FIN LIVRAISON */}
+        ))}
       </Container>
     </div>
   );
