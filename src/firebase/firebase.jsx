@@ -2,9 +2,6 @@
 import { initializeApp } from "firebase/app";
 import { getStorage } from "firebase/storage";
 import { getFirestore } from "firebase/firestore";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import { getFirestore, collection, addDoc } from "firebase/firestore";
-
 
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -28,5 +25,3 @@ const db = getFirestore(app);
 
 
 export { db, storage };
-
-

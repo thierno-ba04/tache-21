@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Box from '@mui/material/Box';
 import { DataGrid } from '@mui/x-data-grid';
 import "./dashboardadmin.css";
@@ -7,10 +7,9 @@ import { Button, Col, Container, Row } from 'react-bootstrap';
 import {
   BarChart,
   Bar,
-  Rectangle,
+  CartesianGrid,
   XAxis,
   YAxis,
-  CartesianGrid,
   Tooltip,
   Legend,
   ResponsiveContainer,
@@ -30,6 +29,8 @@ import {
   PencilFill,
   TrashFill,
 } from "react-bootstrap-icons";
+import { db } from '../../../firebase/firebase'; // Importez db
+import { collection, getDocs, doc, setDoc } from 'firebase/firestore';
 
 // Dummy functions to simulate user actions
 const archiveUser = async (id) => {
@@ -49,9 +50,33 @@ function DashboardAdmin() {
 
   const navigate = useNavigate();
 
+  const [studentList, setStudentList] = useState([]);
+  const [Nom, setNom] = useState('');
+  const [Prenom, setPrenom] = useState('');
+  const [Email, setEmail] = useState('');
+  const [photoURL, setphotoURL] = useState('');
+  const [Lieu_de_naissance, setLieu_de_naissance] = useState('');
+  const [Niveau_de_classe, setNiveau_de_classe] = useState('');
+  const [Numero, setNumero] = useState('');
+  const [Adresse, setAdresse] = useState('');
+  const [Actions, setActions] = useState('');
+  const [error, setError] = useState('');
+
+  const fetchStudents = async () => {
+    try {
+      const studentCollection = collection(db, 'students');
+      const studentSnapshot = await getDocs(studentCollection);
+      const students = studentSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+      console.log("Données des étudiants : ", students); // Vérifiez les données récupérées
+      setStudentList(students);
+    } catch (error) {
+      console.error("Erreur lors de la récupération des étudiants : ", error);
+    }
+  };
+  
+
   useEffect(() => {
-    // console.log("Fetching data...");
-    // Fetch data if necessary
+    fetchStudents();
   }, []);
 
   const handleArchiveUser = async (id) => {
@@ -80,6 +105,30 @@ function DashboardAdmin() {
     navigate(`/updateStudent/${updatedStudent.id}`);
   };
 
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    if (Actions !== 'TouchList') {
+      setError("Les informations ne sont pas correctes");
+      return;
+    }
+    try {
+      await setDoc(doc(db, "students", Nom), {
+        photoURL,
+        Nom,
+        Prenom,
+        Email,
+        Lieu_de_naissance,
+        Niveau_de_classe,
+        Numero,
+        Adresse,
+        Actions
+      });
+      fetchStudents();
+    } catch (error) {
+      console.error("Erreur lors de l'ajout de l'utilisateur", error);
+    }
+  };
+
   const data = [
     { name: "Page A", uv: 4000, pv: 2400, amt: 2400 },
     { name: "Page B", uv: 3000, pv: 1398, amt: 2210 },
@@ -101,7 +150,7 @@ function DashboardAdmin() {
     },
     { field: 'Nom', headerName: 'Nom', width: 150 },
     { field: 'Prenom', headerName: 'Prénom', width: 150 },
-    { field: 'Mail', headerName: 'E-mail', width: 200 },
+    { field: 'Email', headerName: 'E-mail', width: 200 },
     { field: 'Lieu_de_naissance', headerName: 'Lieu de naissance', width: 200 },
     { field: 'Niveau_de_classe', headerName: 'Niveau de classe', width: 150 },
     { field: 'Numero', headerName: 'Numéro', type: 'number', width: 150 },
@@ -189,67 +238,63 @@ function DashboardAdmin() {
             </div>
           </Col>
         </Row>
+      
         <Row>
-          <div className="charts">
-            <ResponsiveContainer width="100%" height={300}>
-              <BarChart data={data} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="name" />
-                <YAxis />
-                <Tooltip />
-                <Legend />
-                <Bar dataKey="pv" fill="#8884d8" activeBar={<Rectangle fill="pink" stroke="blue" />} />
-                <Bar dataKey="uv" fill="#82ca9d" activeBar={<Rectangle fill="gold" stroke="purple" />} />
-              </BarChart>
-            </ResponsiveContainer>
-
-            <ResponsiveContainer width="100%" height={300}>
-              <LineChart data={data} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="name" />
-                <YAxis />
-                <Tooltip />
-                <Legend />
-                <Line type="monotone" dataKey="pv" stroke="#8884d8" activeDot={{ r: 8 }} />
-                <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
-              </LineChart>
-            </ResponsiveContainer>
-          </div>
-        </Row>
-        <Row>
-          <Col lg={12} md={12}>
-            <h6 className='lsteleves'>Liste des élèves</h6>
-            <div className="deuxbutt">
-              <div className="ms-2 mt-3">
-                <Button>
-                  <LiaFileExportSolid className="buttexport me-2 mb-1" /> Export to CSV
-                </Button>
-              </div>
-              <div className="rowsbutt mt-3">
-                <Link to="/ajoutelv">
-                  <Button className="btnajoute">
-                    Ajouter <IoIosAddCircleOutline className="iconajoute ms-2 mb-1" />
-                  </Button>
-                </Link>
-              </div>
+          <Col lg={6} md={6}>
+            <div className='chart-div mt-5'>
+              <h6>Statistiques des Inscrits</h6>
+              <ResponsiveContainer width="100%" height={300} className="mt-4">
+                <BarChart data={data}>
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <XAxis dataKey="name" />
+                  <YAxis />
+                  <Tooltip />
+                  <Legend />
+                  <Bar dataKey="pv" fill="#8884d8" />
+                  <Bar dataKey="uv" fill="#82ca9d" />
+                </BarChart>
+              </ResponsiveContainer>
+            </div>
+          </Col>
+          <Col lg={6} md={6}>
+            <div className='chart-div mt-5'>
+              <h6>Performance des Élèves</h6>
+              <ResponsiveContainer width="100%" height={300} className="mt-4">
+                <LineChart data={data}>
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <XAxis dataKey="name" />
+                  <YAxis />
+                  <Tooltip />
+                  <Legend />
+                  <Line type="monotone" dataKey="uv" stroke="#8884d8" />
+                  <Line type="monotone" dataKey="pv" stroke="#82ca9d" />
+                </LineChart>
+              </ResponsiveContainer>
             </div>
           </Col>
         </Row>
+  
         <Row>
+         
+
           <Col lg={12} md={12}>
-            <div className='data-grid-container'>
-              <Box sx={{ height: '60vh', width: '93%', margin: "auto" }}>
+            <div className='header-div d-flex mt-5'>
+                <h5>Liste des élèves</h5>
+                <div className="ms-auto">
+                <Link to="/ajoutelv">
+                  <IoIosAddCircleOutline className='button-add  ms-auto' size={30} color="green" />
+                </Link>
+                </div>
+            </div>
+            <div className='table-div mt-5'>
+              <div style={{ height: 400, width: '100%' }} className="mt-4">
                 <DataGrid
-                  rows={students}
+                  rows={studentList}
                   columns={columns}
-                  initialState={{
-                    pagination: {
-                      paginationModel: { page: 0, pageSize: 5 },
-                    },
-                  }}
-                  pageSizeOptions={[5, 6, 10]}
+                  pageSize={5}
+                  rowsPerPageOptions={[5]}
                 />
-              </Box>
+              </div>
             </div>
           </Col>
         </Row>

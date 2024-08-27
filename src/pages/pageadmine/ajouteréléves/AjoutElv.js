@@ -11,13 +11,28 @@ function AjoutElv() {
   const { addStudent } = useMyContext();
   const navigate = useNavigate(); 
 
-  const onSubmit = (data) => {
-    // console.log(data); // Vérifiez les données soumises ici
-    if (addStudent) {
-      addStudent({ ...data, id: Date.now() }); 
-      navigate('/dashboardadmin'); 
-    } else {
-      console.error('addStudent function is not available');
+  const onSubmit = async (data) => {
+    try {
+      // Traiter le téléchargement de la photo si nécessaire
+      let photoURL = '';
+      if (data.photo && data.photo[0]) {
+        // Ajoutez ici le code pour uploader la photo et obtenir l'URL
+        // Exemple : photoURL = await uploadPhoto(data.photo[0]);
+      }
+
+      // Préparer les données de l'étudiant
+      const studentData = { ...data, photoURL };
+      
+
+      // Ajouter l'étudiant via le contexte
+      if (addStudent) {
+        await addStudent(studentData); // Attendre la réponse si nécessaire
+        navigate('/dashboardadmin'); 
+      } else {
+        console.error('addStudent function is not available');
+      }
+    } catch (error) {
+      console.error('Erreur lors de l\'ajout de l\'élève :', error);
     }
   };
 
@@ -34,7 +49,8 @@ function AjoutElv() {
               <Col md={6}>
                 <Form.Group controlId="formName">
                   <Form.Label>Nom</Form.Label>
-                  <Form.Control className='forme-input'
+                  <Form.Control 
+                    className='forme-input'
                     type="text"
                     placeholder="Entrez le nom"
                     {...register('lastName', { required: 'Nom est requis' })}
@@ -47,7 +63,8 @@ function AjoutElv() {
 
                 <Form.Group controlId="formFirstName">
                   <Form.Label>Prénom</Form.Label>
-                  <Form.Control className='forme-input'
+                  <Form.Control 
+                    className='forme-input'
                     type="text"
                     placeholder="Entrez le prénom"
                     {...register('firstName', { required: 'Prénom est requis' })}
@@ -60,7 +77,8 @@ function AjoutElv() {
 
                 <Form.Group controlId="formEmail">
                   <Form.Label>Mail</Form.Label>
-                  <Form.Control className='forme-input'
+                  <Form.Control 
+                    className='forme-input'
                     type="email"
                     placeholder="Entrez votre mail"
                     {...register('email', { required: 'E-mail est requise' })}
@@ -74,7 +92,8 @@ function AjoutElv() {
                 <Form.Group controlId="formGender">
                   <Form.Label>Genre</Form.Label>
                   <div className="select-container">
-                    <Form.Control className='forme-input select-input'
+                    <Form.Control 
+                      className='forme-input select-input'
                       as="select"
                       {...register('gender', { required: 'Genre est requis' })}
                       isInvalid={!!errors.gender}
@@ -98,7 +117,8 @@ function AjoutElv() {
               <Col md={5}>
                 <Form.Group controlId="formBirthPlace">
                   <Form.Label>Lieu de naissance</Form.Label>
-                  <Form.Control className='forme-input'
+                  <Form.Control 
+                    className='forme-input'
                     type="text"
                     placeholder="Entrez le lieu de naissance"
                     {...register('birthPlace', { required: 'Lieu de naissance est requis' })}
@@ -112,7 +132,8 @@ function AjoutElv() {
                 <Form.Group controlId="formGrade">
                   <Form.Label>Niveau de classe</Form.Label>
                   <div className="select-container">
-                    <Form.Control className='forme-input select-input'
+                    <Form.Control 
+                      className='forme-input select-input'
                       as="select"
                       {...register('grade', { required: 'Niveau de classe est requis' })}
                       isInvalid={!!errors.grade}
@@ -132,7 +153,8 @@ function AjoutElv() {
 
                 <Form.Group controlId="formPhoto">
                   <Form.Label>Photo</Form.Label>
-                  <Form.Control className='forme-input'
+                  <Form.Control 
+                    className='forme-input'
                     type="file"
                     accept="image/*"
                     onChange={(e) => setValue('photo', e.target.files[0])}

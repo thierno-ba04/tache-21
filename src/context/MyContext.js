@@ -1,4 +1,5 @@
 import React, { useEffect, createContext, useContext, useState } from 'react';
+import { db, collection, addDoc } from '../firebase/firebase'; // Assurez-vous que le chemin est correct
 
 const MyContext = createContext();
 
@@ -15,7 +16,7 @@ export const MyContextProvider = ({ children }) => {
     { id: 7, Nom: 'Clifford', Prenom: 'Clédore', Mail: 'cledore227@gmail.com', Lieu_de_naissance:'Louga', Niveau_de_classe: "Terminale", Numero: 771001897, Adresse: 'Hlmgrand yoof', Statut: 'prof anglais' },
     { id: 8, Nom: 'Françoi', Prenom: 'Leader', Mail: 'franchoislearder7@gmail.com', Lieu_de_naissance:'Louga', Niveau_de_classe: "Terminale", Numero: 771001897, Adresse: 'ThiésRsant', Statut: 'prof anglais' },
     { id: 9, Nom: 'Nze', Prenom: 'Gervais', Mail: 'akoinenzegervais7@gmail.com', Lieu_de_naissance:'Louga', Niveau_de_classe: "Terminale", Numero: 771001897, Adresse: 'zone captage', Statut: 'prof anglais' },
-   
+    // ... autres étudiants ...
   ]);
 
   const [cours, setCours] = useState([]);
@@ -33,8 +34,15 @@ export const MyContextProvider = ({ children }) => {
   };
 
   // Fonction pour ajouter un étudiant
-  const addStudent = (student) => {
-    setStudents((prevStudents) => [...prevStudents, student]);
+  const addStudent = async (student) => {
+    try {
+      // Ajout de l'étudiant dans Firestore
+      const docRef = await addDoc(collection(db, 'students'), student);
+      // Mise à jour de l'état local avec l'étudiant ajouté
+      setStudents((prevStudents) => [...prevStudents, { ...student, id: docRef.id }]);
+    } catch (error) {
+      // console.error('Erreur lors de l\'ajout d\'un étudiant:', error);
+    }
   };
 
   // Fonction pour ajouter un cours
@@ -84,20 +92,6 @@ export const MyContextProvider = ({ children }) => {
       )
     );
   };
-
-  useEffect(() => {
-    const fetchStudents = async () => {
-      try {
-        const response = await fetch('/api/students'); // Assurez-vous que ce chemin est correct
-        const data = await response.json();
-        setStudents(data);
-      } catch (error) {
-        console.error('Erreur lors de la récupération des étudiants:', error);
-      }
-    };
-
-    fetchStudents();
-  }, []);
 
   const value = {
     students,

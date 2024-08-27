@@ -188,18 +188,22 @@
 }
   
 /* Personnaliser le Select */
-.dropdown-select{
+a .dropdown-select{
     outline: none;
     background: transparent; 
     color: #fff;
     border: none;
   }
 
+
+
   .dropdown-select .MuiSelect-select .MuiSelect-outlined .MuiInputBase-input .MuiOutlinedInput-input .css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input{
     outline: none;
     border: none;
     border-radius: none;
     background-color: transparent;
+    color: #fff;
+
   }
 
   /* Message et Notification */
@@ -337,3 +341,9 @@
               margin: auto;
             }
   }
+
+  /* a:active{
+    color: #000;
+    background-color: #0d0d0f;
+    width: 200px;
+  } */
