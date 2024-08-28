@@ -3,26 +3,17 @@ import Sidebar from "./Sidebar";
 import { Box, Typography } from "@mui/material";
 import'./App.css';
 import { useNavigate } from "react-router-dom";
-import'./App.css';
 import { emphasize, styled } from '@mui/material/styles';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
 import Chip from '@mui/material/Chip';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import Agenda from'./Agenda';
 import AgentList from "./AgentList";
+import { useState, useEffect} from "react";
+import ClipLoader from "react-spinners/ClipLoader";
 
 
-const style = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: 400,
-  bgcolor: 'background.paper',
-  border: '2px solid #000',
-  boxShadow: 24,
-  p: 4,
-};
+
 
 
 const StyledBreadcrumb = styled(Chip)(({ theme }) => {
@@ -50,11 +41,25 @@ function handleClick(event) {
   console.info('You clicked a breadcrumb.');
 }
 
+const override: CSSProperties = {
+  display: "block",
+  margin: "0 auto",
+  borderColor: "2979ff",
+  marginTop:300
+};
 
 
-const Dashboard = () => {
 
-  
+const DashboardProf = () => {
+
+  const [loading, setLoading] = useState(false);
+useEffect(()=>{
+  setLoading(true)
+  setTimeout(()=>{
+    setLoading(false)
+  },3000)
+},[])
+
   
 
 
@@ -67,8 +72,25 @@ const Dashboard = () => {
    const [name, setName] = React.useState();
 
     return ( 
+      <div>
+
+
+
+
         <Box sx={{display:"flex"}}>
         <Sidebar/>
+        {
+           loading ?
+        < ClipLoader
+        loading={loading}
+        cssOverride={override}
+        size={70}
+        aria-label="Loading Spinner"
+        data-testid="loader"
+        color="#2979ff"
+      />
+   
+       :
          <Box component="main"  
          sx={{flexGrow:1 }}>
             <Typography>
@@ -88,11 +110,11 @@ const Dashboard = () => {
        <div role="presentation" style={{marginLeft:35}}>
       <Breadcrumbs aria-label="breadcrumb">
         <StyledBreadcrumb
-               sx={{p:2}}
+               sx={{p:2,borderRadius:2,marginLeft:"2"}}
           component="a"
           href="#"
-          label="Dashaord"
-          onClick={()=>{navigate('/')}}
+          label="Tableau de bord"
+          onClick={()=>{navigate('/dashboardprof')}}
          
           icon={<DashboardIcon fontSize="small" />}
         />
@@ -204,9 +226,12 @@ const Dashboard = () => {
      </Typography>
 
      </Box >
+             }
 
      </Box>
+
+     </div>
      );
 }
  
-export default Dashboard;
+export default DashboardProf;

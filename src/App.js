@@ -1,6 +1,7 @@
 import React from 'react';
-import './App.css';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+
+// Importations des pages et composants
 import DashboardEtudiant from './pagesEtudiant/dashboard/DashboardEtudiant';
 import LayoutEtudiant from './layout/LayoutEtudiant';
 import Tache from './pagesEtudiant/tache/Tache';
@@ -18,13 +19,7 @@ import QuizzHtmlcss from './pagesEtudiant/quizzhtmlcss/QuizzHtmlcss';
 import QuizzBootstrap from './pagesEtudiant/quizzbootstrap/QuizzBootstrap';
 import QuizzJavascript from './pagesEtudiant/quizzjavascript/QuizzJavascript';
 
-import Dashboard from './Dashboard';
-import Users from './Users';
-import Devoirs from './Devoirs';
-import Relevedenote from './Relevedenote';
-import Notedeservice from './Notedeservice';
-
-import Login from "./pages/auth/Login"; // Conservé cet import
+import Login from "./pages/auth/Login";
 import ForgotPssWrd from "./pages/forgotpasseword/ForgotPssWrd";
 import Registe from './pages/inscription/Registe';
 import LayoutAdmin from './layout/LayoutAdmin';
@@ -39,7 +34,6 @@ import Comptabliter from './pages/pageadmine/comptablité/Comptabliter';
 import Calendrier from './pages/pageadmine/calendrier/Calendrier';
 import Profile from './pages/pageadmine/profile/Profile';
 import AjoutElv from "./pages/pageadmine/ajouteréléves/AjoutElv";
-import { MyContextProvider } from './context/MyContext';
 import Bulletin from './pages/pageadmine/users/bulletin/Bulletin';
 import Cours from './pages/pageadmine/users/cours/Cours';
 import MesCours from './pages/pageadmine/users/mescours/MesCours';
@@ -53,6 +47,19 @@ import AjoutClasse from './pages/pageadmine/users/ajoutclasse/AjoutClasse';
 import UpdateStudent from './pages/pageadmine/users/updateUsers/UpdateStudent';
 import VoixClasse from './pages/pageadmine/users/vuclasse/VoixClasse';
 import UpdateClasse from './pages/pageadmine/users/modifierclasse/UpdateClasse';
+import Page404 from './Page404';
+import { MyContextProvider } from './context/MyContext';
+import DashboardProf from './DashboardProf';
+// import Eleves from './Eleves';
+import Devoirs from './Devoirs';
+import Relevedenote from './Relevedenote'
+import Elevess from './Eleves';
+
+
+
+
+
+
 
 function App() {
   return (
@@ -72,18 +79,10 @@ function App() {
             <Route path="/fairedemande" element={<FaireDemande />} />
             <Route path="/tachevalide" element={<TacheValide />} />
             <Route path="/agentlist" element={<AgentList />} />
-
             <Route path="/programmequizz" element={<ProgrammeQuizz />} />
             <Route path="/quizzhtmlcss" element={<QuizzHtmlcss />} />
             <Route path="/quizzbootstrap" element={<QuizzBootstrap />} />
             <Route path="/quizzjavascript" element={<QuizzJavascript />} />
-
-
-
-
-
-
-
           </Route>
 
           {/* Routes pour les admins */}
@@ -92,7 +91,7 @@ function App() {
           <Route path="/inscrire" element={<Registe />} />
           <Route element={<LayoutAdmin />}>
             <Route path="/dashboardadmin" element={<DashboardAdmin />} />
-            <Route path="/users" element={<UsersAdmin />} /> {/* Utilisation du composant renommé */}
+            <Route path="/users" element={<UsersAdmin />} />
             <Route path="/eleves" element={<Eleves />} />
             <Route path="/personnels" element={<Personnels />} />
             <Route path="/professeurs" element={<Professeurs />} />
@@ -117,11 +116,15 @@ function App() {
             <Route path="/archiveUsers" element={<ArchiveUsers />} />
           </Route>
 
-          {/* Autres routes */}
-          <Route path="/Dashboard" element={<Dashboard />} />
+          {/* Routes pour les professeurs */}
+          {/* <Route path="/LoginProf" element={<LoginProf />} />  */}
+          <Route path="/dashboardProf" element={<DashboardProf />} />
+          <Route path="/Elevess" element={<Elevess />} />
           <Route path="/Devoirs" element={<Devoirs />} />
           <Route path="/Relevedenote" element={<Relevedenote />} />
-          <Route path="/Notedeservice" element={<Notedeservice />} />
+
+          {/* Route 404 */}
+          <Route path="*" element={<Page404 />} />
         </Routes>
       </Router>
     </MyContextProvider>

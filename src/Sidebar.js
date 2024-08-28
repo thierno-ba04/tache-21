@@ -23,13 +23,19 @@ import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
 import'./App.css';
 import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
 import MarkEmailUnreadIcon from '@mui/icons-material/MarkEmailUnread';
-import Button from '@mui/material/Button';
 import Avatar from '@mui/material/Avatar';
 import { deepOrange, deepPurple } from '@mui/material/colors';
 import Badge from '@mui/material/Badge';
 import MailIcon from '@mui/icons-material/Mail';
 import Stack from '@mui/material/Stack';
 import NotificationsIcon from '@mui/icons-material/Notifications';
+import LogoutButton from './LogoutButton';
+import Popover from '@mui/material/Popover';
+import PopupState, { bindTrigger, bindPopover } from 'material-ui-popup-state';
+import Button from '@mui/material/Button';
+
+
+
 
 
 const drawerWidth = 240;
@@ -107,6 +113,13 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 
 export default function Sidebar() {
 
+  
+
+  const handleLogout = () => {
+    alert('Vous avez été déconnecté avec succès !');
+  };
+
+
   const theme = useTheme();
   const [open, setOpen] = React.useState(true);
     
@@ -122,10 +135,14 @@ export default function Sidebar() {
     setOpen(false);
   };
 
+
   return (
+    
     <Box  sx={{ display: 'flex' }}>
+      
       <CssBaseline  />
       <AppBar position="fixed" open={open}  sx={{bgcolor:'white'}} >
+        
         <Toolbar>
           <IconButton
             color="white"
@@ -139,26 +156,78 @@ export default function Sidebar() {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap component="div" style={{color:'black'}}>
-            Dashaord
+          <Typography variant="h6" noWrap component="div" style={{color:'black'}} > 
+            Tableau de bord 
           </Typography>
 
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             
           </Typography>
-          <Stack direction="row" spacing={2}>
+          <Stack direction="row" spacing={3}>
          
-                    <Badge  badgeContent={4} color='error'>
-          <NotificationsIcon  sx={{mt:1}} color="action" />
-          </Badge>
+                  
+   
 
-          
-          <Badge  badgeContent={4} color='error'  >
-          <MailIcon  sx={{mt:1}} color="action" />
-          </Badge>
+        <PopupState variant="popover" popupId="demo-popup-popover">
+      {(popupState) => (
+        <div>
+
+          <Badge  badgeContent={4} color='error'>
+          <NotificationsIcon  {...bindTrigger(popupState)} sx={{mt:1,cursor:'pointer'}} color="action" ></NotificationsIcon>
+          </Badge> 
+
+          <Popover
+            {...bindPopover(popupState)}
+            anchorOrigin={{
+              vertical: 'bottom',
+              horizontal: 'center',
+            }}
+            transformOrigin={{
+              vertical: 'top',
+              horizontal: 'center',
+            }}
+          >
+            <Typography sx={{ p: 2 }}>
+            <div className="notification-header">
+            Notifications
+          </div>
+
+              <div className="notification-list">
+              Le contenu du Popover. Le contenu du Popover.
+
+              </div>
+             
+              <div className="notification-list">
+              Le contenu du Popover. Le contenu du Popover.
+
+              </div>
+
+              <div className="notification-list">
+              Le contenu du Popover. Le contenu du Popover.
+
+              </div>
+              <div className="notification-list">
+              Le contenu du Popover. Le contenu du Popover.
+
+              </div>
+
+
+
+            
+
+
+
+
+            </Typography>
+          </Popover>
+        </div>
+      )}
+    </PopupState>
+
+
+          <LogoutButton onLogout={handleLogout} />
 
         
-          <Avatar sx={{ bgcolor: deepPurple[500] }}>OP</Avatar>
     </Stack>
 
 
@@ -174,7 +243,7 @@ export default function Sidebar() {
           </IconButton>
         </DrawerHeader>
         <List>
-            <ListItem  disablePadding sx={{ display: 'block' } }  onClick={()=>{navigate('/')}}>
+            <ListItem  disablePadding sx={{ display: 'block' } }  onClick={()=>{navigate('/dashboardProf')}}>
               <ListItemButton
                 sx={{
                   minHeight: 48,
@@ -198,7 +267,7 @@ export default function Sidebar() {
               </ListItemButton>
             </ListItem>
 
-            <ListItem  disablePadding sx={{ display: 'block' }} onClick={()=>{navigate('/Users')}}>
+            <ListItem  disablePadding sx={{ display: 'block' }} onClick={()=>{navigate('/Elevess')}}>
               <ListItemButton
                 sx={{
                   minHeight: 48,
@@ -271,27 +340,7 @@ export default function Sidebar() {
               </ListItemButton>
             </ListItem>
 
-            <ListItem  disablePadding sx={{ display: 'block' }} onClick={()=>{navigate('/Notedeservice')}}>
-              <ListItemButton
-                sx={{
-                  minHeight: 48,
-                  justifyContent: open ? 'initial' : 'center',
-                  px: 2.5,
-                }}
-              >
-                <ListItemIcon
-                  sx={{
-                    minWidth: 0,
-                    mr: open ? 3 : 'auto',
-                    justifyContent: 'center',
-                    color:'white'
-                  }}
-                >
-                    <MarkEmailUnreadIcon/>
-                    </ListItemIcon>
-                <ListItemText primary="Note de service" sx={{ opacity: open ? 1 : 0,color:'white' }} />
-              </ListItemButton>
-            </ListItem>
+
 
 
 

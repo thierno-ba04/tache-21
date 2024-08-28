@@ -11,6 +11,10 @@ import Chip from '@mui/material/Chip';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import Img2 from './exceller.png';
 
+import { useState, useEffect} from "react";
+import ClipLoader from "react-spinners/ClipLoader";
+
+
 const StyledBreadcrumb = styled(Chip)(({ theme }) => {
   const backgroundColor =
     theme.palette.mode === 'light'
@@ -87,14 +91,45 @@ const customTheme = createTheme({
     padding: theme.spacing(1),
   }));
   
-
+  const override: CSSProperties = {
+    display: "block",
+    margin: "0 auto",
+    borderColor: "#2979ff",
+    marginTop:300
+  };
+  
 
 const Relevedenote= () => {
 
+  const [loading, setLoading] = useState(false);
+  useEffect(()=>{
+    setLoading(true)
+    setTimeout(()=>{
+      setLoading(false)
+    },3000)
+  },[])
+
+
   const navigate=useNavigate();
     return ( 
+      
+
+
         <Box sx={{display:"flex"}}>
         <Sidebar/>
+        {
+         loading ?
+         < ClipLoader
+      loading={loading}
+      cssOverride={override}
+      size={70}
+      aria-label="Loading Spinner"
+      data-testid="loader"
+      color="#2979ff"
+    />
+ 
+     :
+
          <Box component="main"  sx={{flexGrow:1 }}>
             <Typography>
       <Typography
@@ -106,17 +141,17 @@ const Relevedenote= () => {
        <div role="presentation">
       <Breadcrumbs aria-label="breadcrumb">
         <StyledBreadcrumb
-           sx={{p:2}}
+           sx={{p:2,borderRadius:2}}
           component="a"
           href="#"
-          label="Dashaord"
-          onClick={()=>{navigate('/')}}
+          label="Tableau de bord"
+          onClick={()=>{navigate('/dashboardProf')}}
 
           icon={<DashboardIcon fontSize="small" />}
         />
         
         <StyledBreadcrumb
-          sx={{p:2}}
+          sx={{p:2,borderRadius:2}}
           label="Releve de note"
           onClick={()=>{navigate('/Relevedenote')}}
         />
@@ -155,8 +190,10 @@ const Relevedenote= () => {
             </Typography>
 
          </Box>
+        }
 
         </Box>
+        
      );
 
 }
