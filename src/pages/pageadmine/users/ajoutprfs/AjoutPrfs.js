@@ -1,39 +1,78 @@
-import React from "react";
-import { useForm } from "react-hook-form";
+import React, { useState } from "react";
 import { Container, Row, Col, Button, Form } from "react-bootstrap";
 import { TbSelector } from "react-icons/tb";
-import { useMyContext } from "../../../../context/MyContext";
-import { useNavigate } from "react-router-dom";
+import { addDoc, collection } from "firebase/firestore";
+import { db, imageDb } from "../../../../firebase/firebase";
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { v4 } from "uuid";
+import { Link, useNavigate } from "react-router-dom";
 
 function AjoutPrfs() {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    setValue,
-  } = useForm();
-  const { addStudent } = useMyContext();
+  const [img, setImg] = useState(null);
   const navigate = useNavigate();
 
-  const onSubmit = (data) => {
-    console.log(data);
-    if (addStudent) {
-      // Handle file uploads separately if needed
-      const student = {
-        id: Date.now(),
-        Nom: data.lastName,
-        Prenom: data.firstName,
-        Mail: data.email,
-        Numero: data.birthnum,
-        Adresse: data.address,
-        Statut: data.grade,
-        // Add more fields if needed
-        // Handle photo if required
-      };
-      addStudent(student);
-      navigate("/personnels");
-    } else {
-      console.error("addStudent function is not available");
+  const [newTable, setNewTable] = useState({
+    Nom: "",
+    Prenom: "",
+    Mail: "",
+    Number: "",
+    Genre: "",
+    Adress: "",
+    Domaine: "",
+  });
+
+  const handleChange = (e) => {
+    setNewTable({ ...newTable, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const { Nom, Prenom, Mail, Number, Genre, Adress, Domaine } = newTable;
+
+    // Vérification des champs vides
+    if (!Nom || !Prenom || !Mail || !Number || !Genre || !Adress || !Domaine) {
+      toast.error("Veuillez remplir tous les champs", {
+        position: "top-center",
+      });
+      return;
+    }
+
+    try {
+      let imgUrl = null;
+
+      // Upload image s'il existe et puis obtenir l'URL
+      if (img) {
+        const imgRef = ref(imageDb, `files/${v4()}`);
+        const uploadResult = await uploadBytes(imgRef, img);
+        imgUrl = await getDownloadURL(uploadResult.ref);
+      }
+
+      // Ajouter le document dans Firebase
+      await addDoc(collection(db, "personnels"), {
+        Nom,
+        Prenom,
+        Mail,
+        Number,
+        Genre,
+        Adress,
+        Domaine,
+        imgUrl,
+      });
+
+      toast.success("Utilisateur ajouté avec succès", {
+        position: "top-center",
+      });
+      setTimeout(() => {
+        navigate("/personnels");
+      }, 1000);
+    } catch (error) {
+      console.error("Erreur lors de l'ajout :", error);
+      toast.error("Erreur lors de l'ajout de l'utilisateur", {
+        position: "top-center",
+      });
     }
   };
 
@@ -41,11 +80,11 @@ function AjoutPrfs() {
     <Container>
       <Row className="justify-content-center">
         <div className="laclasses">
-          <h2 className="mt-2">Professeurs</h2>
+          <h2 className="mt-0">Le Personnels</h2>
         </div>
-        <Col md={10} className="addetudiant">
-          <h2>Ajouter un professeur</h2>
-          <Form onSubmit={handleSubmit(onSubmit)}>
+        <Col lg={10} md={10} className="addetudiant">
+          <h2>Ajouter un Professeur</h2>
+          <Form onSubmit={handleSubmit}>
             <Row>
               <Col md={6}>
                 <Form.Group controlId="formName">
@@ -53,13 +92,11 @@ function AjoutPrfs() {
                   <Form.Control
                     className="forme-input"
                     type="text"
-                    placeholder="Entrez le nom"
-                    {...register("lastName", { required: "Nom est requis" })}
-                    isInvalid={!!errors.lastName}
+                    name="Nom"
+                    value={newTable.Nom}
+                    onChange={handleChange}
+                    placeholder="Nom"
                   />
-                  <Form.Control.Feedback type="invalid">
-                    {errors.lastName?.message}
-                  </Form.Control.Feedback>
                 </Form.Group>
 
                 <Form.Group controlId="formFirstName">
@@ -67,13 +104,11 @@ function AjoutPrfs() {
                   <Form.Control
                     className="forme-input"
                     type="text"
-                    placeholder="Entrez le prénom"
-                    {...register("firstName", { required: "Prénom est requis" })}
-                    isInvalid={!!errors.firstName}
+                    name="Prenom"
+                    value={newTable.Prenom}
+                    onChange={handleChange}
+                    placeholder="Prénom"
                   />
-                  <Form.Control.Feedback type="invalid">
-                    {errors.firstName?.message}
-                  </Form.Control.Feedback>
                 </Form.Group>
 
                 <Form.Group controlId="formEmail">
@@ -81,47 +116,23 @@ function AjoutPrfs() {
                   <Form.Control
                     className="forme-input"
                     type="email"
-                    placeholder="Entrez votre adresse mail"
-                    {...register("email", { required: "E-mail est requis" })}
-                    isInvalid={!!errors.email}
+                    name="Mail"
+                    value={newTable.Mail}
+                    onChange={handleChange}
+                    placeholder="Entrer votre mail"
                   />
-                  <Form.Control.Feedback type="invalid">
-                    {errors.email?.message}
-                  </Form.Control.Feedback>
                 </Form.Group>
 
                 <Form.Group controlId="formPhoneNumber">
                   <Form.Label>Numéro de téléphone</Form.Label>
                   <Form.Control
                     className="forme-input"
-                    type="text"
-                    placeholder="Entrez le numéro"
-                    {...register("birthnum", { required: "Numéro de téléphone est requis" })}
-                    isInvalid={!!errors.birthnum}
+                    type="text" // Changed to text to handle phone numbers more flexibly
+                    name="Number"
+                    value={newTable.Number}
+                    onChange={handleChange}
+                    placeholder="Entrer votre numéro de téléphone"
                   />
-                  <Form.Control.Feedback type="invalid">
-                    {errors.birthnum?.message}
-                  </Form.Control.Feedback>
-                </Form.Group>
-              </Col>
-
-              <Col md={1}>
-                <div style={{ height: "100%" }}></div>
-              </Col>
-
-              <Col md={5}>
-                <Form.Group controlId="formAddress">
-                  <Form.Label>Adresse</Form.Label>
-                  <Form.Control
-                    className="forme-input"
-                    type="text"
-                    placeholder="Entrez votre adresse"
-                    {...register("address", { required: "Adresse est requise" })}
-                    isInvalid={!!errors.address}
-                  />
-                  <Form.Control.Feedback type="invalid">
-                    {errors.address?.message}
-                  </Form.Control.Feedback>
                 </Form.Group>
 
                 <Form.Group controlId="formGender">
@@ -130,8 +141,9 @@ function AjoutPrfs() {
                     <Form.Control
                       className="forme-input select-input"
                       as="select"
-                      {...register("gender", { required: "Genre est requis" })}
-                      isInvalid={!!errors.gender}
+                      name="Genre"
+                      value={newTable.Genre}
+                      onChange={handleChange}
                     >
                       <option value="">Choisissez...</option>
                       <option value="male">Homme</option>
@@ -139,31 +151,44 @@ function AjoutPrfs() {
                     </Form.Control>
                     <TbSelector className="select-icon" />
                   </div>
-                  <Form.Control.Feedback type="invalid">
-                    {errors.gender?.message}
-                  </Form.Control.Feedback>
+                </Form.Group>
+              </Col>
+
+              <Col md={1}>
+                {/* Espace vide au milieu */}
+              </Col>
+
+              <Col md={5}>
+                <Form.Group controlId="formAddress">
+                  <Form.Label>Adresse</Form.Label>
+                  <Form.Control
+                    className="forme-input"
+                    type="text"
+                    name="Adress"
+                    value={newTable.Adress}
+                    onChange={handleChange}
+                    placeholder="Entrer l'adresse"
+                  />
                 </Form.Group>
 
-                <Form.Group controlId="formGrade">
+                <Form.Group controlId="formDomaine">
                   <Form.Label>Domaine</Form.Label>
                   <div className="select-container">
                     <Form.Control
                       className="forme-input select-input"
                       as="select"
-                      {...register("grade", { required: "Domaine est requis" })}
-                      isInvalid={!!errors.grade}
+                      name="Domaine"
+                      value={newTable.Domaine}
+                      onChange={handleChange}
                     >
                       <option value="">Choisissez...</option>
-                      <option value="programmation">Programmation</option>
-                      <option value="marketing">Marketing digital</option>
-                      <option value="design">Design</option>
-                      <option value="bureautique">Bureautique</option>
+                      <option value="Coach Programmation">Coach Programmation</option>
+                      <option value="Coach Marketing">Coach Marketing</option>
+                      <option value="Coach Design">Coach Design</option>
+                      <option value="Coach Infographie">Coach Infographie</option>
                     </Form.Control>
                     <TbSelector className="select-icon" />
                   </div>
-                  <Form.Control.Feedback type="invalid">
-                    {errors.grade?.message}
-                  </Form.Control.Feedback>
                 </Form.Group>
 
                 <Form.Group controlId="formPhoto">
@@ -172,22 +197,37 @@ function AjoutPrfs() {
                     className="forme-input"
                     type="file"
                     accept="image/*"
-                    onChange={(e) => setValue("photo", e.target.files[0])}
+                    onChange={(e) => setImg(e.target.files[0])}
                   />
                 </Form.Group>
 
-                <Button
-                  variant="primary"
-                  type="submit"
-                  className="add-btn-container"
-                >
-                  Ajouter
-                </Button>
+                <div className="d-flex add_ajouts">
+                  <Button variant="primary" type="submit" className="mt-4">
+                    Ajouter
+                  </Button>
+                  <Link to="/personnels">
+                    <Button variant="secondary" className="mt-4">
+                      Go Back
+                    </Button>
+                  </Link>
+                </div>
               </Col>
             </Row>
           </Form>
         </Col>
       </Row>
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        style={{ width: "auto", textAlign: "center" }}
+      />
     </Container>
   );
 }

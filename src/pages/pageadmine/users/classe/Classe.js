@@ -7,18 +7,27 @@ import { DataGrid } from '@mui/x-data-grid';
 import { Link, useNavigate } from "react-router-dom";
 import Stack from '@mui/material/Stack';
 import { EyeFill, PencilFill, TrashFill } from "react-bootstrap-icons";
-import { useMyContext } from '../../../../context/MyContext';
+import {
+  collection,
+  getDocs,
+  addDoc,
+  updateDoc,
+  doc,
+  deleteDoc,
+} from "firebase/firestore";
+import { db } from "../../../../firebase/firebase";
+
+// import { useMyContext } from '../../../../context/MyContext';
 import './classe.css';
 
 const Classe = () => {
   const [rows, setRows] = useState([
-    { id: 1, Classe: 'Sixiéme', Matiére: 'Anglais' },
-    { id: 2, Classe: 'Cinquiéme', Matiére: 'Français' },
-    { id: 3, Classe: 'Quatriéme', Matiére: 'Anglais' },
-    { id: 4, Classe: 'Troisiéme', Matiére: 'Français' },
-    { id: 5, Classe: 'Seconde', Matiére: 'Anglais' },
-    { id: 6, Classe: 'Premiére', Matiére: 'Français' },
-    { id: 7, Classe: 'Terminal', Matiére: 'Anglais' },
+    { id: 1, Classe: 'formation1', Matiére: 'Programmation' },
+    { id: 2, Classe: 'formation2', Matiére: 'Design' },
+    { id: 3, Classe: 'formation3', Matiére: 'Marketing-digitale' },
+    { id: 4, Classe: 'formation4', Matiére: 'Inphographie' },
+    { id: 5, Classe: 'formation5', Matiére: 'Photoshop' },
+    { id: 5, Classe: 'formation6', Matiére: 'Bureautique' },
   ]);
 
   const [pageSize, setPageSize] = useState(6);
@@ -39,11 +48,18 @@ const Classe = () => {
     }
   };
 
-  const handleUpdateClasse = (updateClasse) => {
-    navigate(`/classes/update/${updateClasse.id}`);
+  const addClasseToDb = async (classe) => {
+    try {
+      await addDoc(collection(db, "classes"), classe);
+      console.log("classe added successfully");
+    } catch (error) {
+      console.error("Error adding classe: ", error);
+    }
   };
 
-  
+  const handleAddClasse = async (classe) => {
+    await addClasseToDb(classe);
+  };
 
   const columns = [
     { field: 'Classe', headerName: 'Classe', flex: 1 },
@@ -78,15 +94,31 @@ const Classe = () => {
       <Row>
         <Col lg={1} md={1}></Col>
         <Col lg={10} md={10}>
-          <div className="classe">
+          <div className="classe mt-5">
             <h6>Liste des classes</h6>
-            <div className="rowsbutt mt-3">
+
+            <Button className="rowsbutt mt-3">
+                <Link to="/classes/ajout" className="rowsbutt">
+                  Ajouter
+                  <IoIosAddCircleOutline
+                    className="button-add ms-auto"
+                    size={30}
+                    color="white"
+                    onClick={() =>
+                      handleAddClasse({
+                      
+                      })
+                    }
+                  />
+                </Link>
+              </Button>
+            {/* <div className="rowsbutt mt-3">
               <Link to="/classes/ajout">
                 <Button className="btnajoute">
                   Ajouter <IoIosAddCircleOutline className="iconajoute ms-2 mb-1" />
                 </Button>
               </Link>
-            </div>
+            </div> */}
             <div className="ms-2 mt-3">
               <Button>
                 <LiaFileExportSolid className="buttexport me-2 mb-1" /> Export to CSV

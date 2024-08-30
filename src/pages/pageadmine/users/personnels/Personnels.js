@@ -1,160 +1,303 @@
-import React, { useEffect } from 'react';
-import { useMyContext } from '../../../../context/MyContext'; // Ajustez le chemin si nécessaire
-import { Container, Row, Col, Button } from 'react-bootstrap';
-import Box from '@mui/material/Box';
-import { DataGrid } from '@mui/x-data-grid';
-import { Link, useNavigate } from 'react-router-dom';
-import { Avatar } from '@mui/material';
-import Stack from '@mui/material/Stack';
-import Img from "../../../../assets/img/prflimg.jpeg";
-import { ArchiveFill, EyeFill, PencilFill, TrashFill } from "react-bootstrap-icons";
-import { LiaFileExportSolid } from 'react-icons/lia';
-import { IoIosAddCircleOutline } from 'react-icons/io';
+import React, { useEffect, useState } from "react";
+import { Container, Row, Col, Button } from "react-bootstrap";
+import { Link, useNavigate } from "react-router-dom";
+import {
+  ArchiveFill,
+  EyeFill,
+  PencilFill,
+  TrashFill,
+} from "react-bootstrap-icons";
+import { LiaFileExportSolid } from "react-icons/lia";
+import { IoIosAddCircleOutline } from "react-icons/io";
 import "./personnels.css";
+import { db, imageDb } from "../../../../firebase/firebase";
+import {
+  collection,
+  getDocs,
+  addDoc,
+  updateDoc,
+  doc,
+  deleteDoc,
+} from "firebase/firestore";
+import { getDownloadURL, listAll, ref } from "firebase/storage";
+import ReactPaginate from "react-paginate";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-// Dummy functions to simulate user actions
-const archiveUser = async (id) => {
-  console.log(`Archiving user with ID: ${id}`);
+const addProfesseurToDb = async (personnel) => {
+  try {
+    await addDoc(collection(db, "personnels"), personnel);
+    console.log("Personnel added successfully");
+  } catch (error) {
+    console.error("Error adding personnel: ", error);
+  }
 };
 
-const deleteStudent = async (id) => {
-  console.log(`Deleting user with ID: ${id}`);
-};
-
-const UpdateStudent = (id) => {
-  console.log(`Updating user with ID: ${id}`);
-};
-
-
-function Personnels() {
-  const {
-    students,
-    ajoutprfs,
-    updateStudent,
-    removeStudent, // Assurez-vous de définir une fonction de suppression dans votre contexte
-  } = useMyContext();
-
+const Personnels = () => {
   const navigate = useNavigate();
+  const [personnels, setPersonnels] = useState([]);
+  const [error, setError] = useState(null);
+  const [recherche, setRecherche] = useState("");
+  const [imgUrls, setImgUrls] = useState([]);
+  const [currentPage, setCurrentPage] = useState(0);
+  const itemsPerPage = 5;
+
+  useEffect(() => {
+    getData();
+  }, []);
+
+  useEffect(() => {
+    const fetchImages = async () => {
+      setImgUrls([]);
+      const imgListRef = ref(imageDb, "files");
+      const imgs = await listAll(imgListRef);
+      const urls = await Promise.all(
+        imgs.items.map((val) => getDownloadURL(val))
+      );
+      setImgUrls(urls);
+    };
+    fetchImages();
+  }, []);
+
+  const personnelCollection = collection(db, "personnels");
+
+  const getData = async () => {
+    try {
+      const querySnapshot = await getDocs(personnelCollection);
+      const data = querySnapshot.docs
+        .map((doc) => ({ ...doc.data(), id: doc.id }))
+        .filter((personnel) => !personnel.archived);
+      setPersonnels(data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+      setError("Erreur lors de la récupération des données");
+    }
+  };
 
   const handleArchiveUser = async (id) => {
     try {
-      await archiveUser(id);
-      // Navigate to archived users page
-      navigate(`/archiveUsers`);
+      const userDoc = doc(db, "personnels", id);
+      await updateDoc(userDoc, { archived: true });
+      getData();
+      toast.success("Utilisateur archivé avec succès");
     } catch (error) {
       console.error("Erreur lors de l'archivage de l'utilisateur", error);
     }
   };
 
   const handleDeleteUser = async (id) => {
-    if (window.confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur?')) {
+    if (window.confirm("Êtes-vous sûr de vouloir supprimer cet utilisateur?")) {
       try {
-        await deleteStudent(id);
-        // Logic to update the state after deletion, e.g., calling a function from the context
-        removeStudent(id); // Assurez-vous que removeStudent est bien défini dans le contexte
-        console.log("Utilisateur supprimé avec succès");
+        await deleteDoc(doc(db, "personnels", id));
+        getData();
+        toast.success("Utilisateur supprimé avec succès");
       } catch (error) {
         console.error("Erreur lors de la suppression de l'utilisateur", error);
       }
     }
   };
-  
 
-  const handleUpdateStudent = (updatedStudent) => {
-    updateStudent(updatedStudent);
-    navigate(`/updateStudent/${updatedStudent.id}`);
+  const handleUpdatePrsnl = (id) => {
+    navigate(`/UpdatePrsnl/${id}`);
   };
 
-  const columns = [
-    {
-      field: 'photoURL',
-      headerName: 'Profil',
-      width: 95,
-      renderCell: () => <Avatar src={Img} sx={{ mt: 1 }} />,
-      sortable: false,
-      filterable: false,
-    },
-    { field: 'Nom', headerName: 'Nom', width: 100 },
-    { field: 'Prenom', headerName: 'Prenom', width: 100 },
-    { field: 'Mail', headerName: 'Mail', width: 200 },
-    {
-      field: 'Numero',
-      headerName: 'Numero',
-      type: 'number',
-      width: 100,
-      editable: true,
-    },
-    { field: 'Adresse', headerName: 'Adresse', width: 130 },
-    { field: 'Statut', headerName: 'Statut', width: 100 },
-    {
-      field: 'Actions',
-      headerName: 'Actions',
-      width: 180,
-      renderCell: (params) => {
-        const { id } = params.row;
-    
-        return (
-          <Stack spacing={2} direction="row">
-            <Link to={`/voix/${id}`}>
-              <EyeFill size={18} color="skyblue" className="ms-2" />
-            </Link>
-            <Link to={`/updateStudent/${id}`} className="button-update">
-              <PencilFill size={18} color="yellow" className="ms-2" />
-            </Link>
-            <span onClick={() => handleDeleteUser(id)} className="button-delete" style={{ cursor: 'pointer' }}>
-              <TrashFill size={18} color="red" className="ms-2" />
-            </span>
-            <span onClick={() => handleArchiveUser(id)} className="button-archive" style={{ cursor: 'pointer' }}>
-              <ArchiveFill size={18} color="green" className="ms-2" />
-            </span>
-          </Stack>
-        );
-      },
+  const handleAddPrfs = async (personnel) => {
+    await addProfesseurToDb(personnel);
+  };
+
+  const filteredPersonnels = personnels.filter((personnel) => {
+    return (
+      (personnel.Nom &&
+        personnel.Nom.toLowerCase().includes(recherche.toLowerCase())) ||
+      (personnel.Prenom &&
+        personnel.Prenom.toLowerCase().includes(recherche.toLowerCase())) ||
+      (personnel.Mail &&
+        personnel.Mail.toLowerCase().includes(recherche.toLowerCase())) ||
+      (personnel.Number &&
+        personnel.Number.toLowerCase().includes(recherche.toLowerCase())) ||
+      (personnel.Genre &&
+        personnel.Genre.toLowerCase().includes(recherche.toLowerCase())) ||
+      (personnel.Adress &&
+        personnel.Adress.toLowerCase().includes(recherche.toLowerCase())) ||
+      (personnel.Domaine &&
+        String(personnel.Domaine).toLowerCase().includes(recherche.toLowerCase()))
+    );
+  });
+
+  useEffect(() => {
+    if (recherche && filteredPersonnels.length === 0) {
+      setError("Aucun utilisateur n'est trouvé");
+    } else {
+      setError("");
     }
-    
-  ];
+  }, [recherche, filteredPersonnels]);
+
+  const pageCount = Math.ceil(filteredPersonnels.length / itemsPerPage);
+  const startOffset = currentPage * itemsPerPage;
+  const endOffset = startOffset + itemsPerPage;
+  const currentItems = filteredPersonnels.slice(startOffset, endOffset);
+
+  const handlePageClick = (event) => {
+    setCurrentPage(event.selected);
+  };
 
   return (
-    <div className='main2'>
+    <div className="main2">
       <Container>
         <Row className="justify-content-center tabpersonl">
-          <Col lg={12} md={12}>
-            <h6 className='lsteleves ms-5'>Liste des professeurs</h6>
+          <Col lg={1} md={1}></Col>
+
+          <Col lg={11} md={11}>
+            <h6 className="lsteleves mt-4">Liste des Coachs</h6>
             <div className="deuxbutt">
-              <div className="ms-5 mt-3">
+              <div className="mt-3">
                 <Button>
-                  <LiaFileExportSolid className="buttexport me-2 mb-1" /> Export to CSV
+                  <LiaFileExportSolid className="buttexport me-2 mb-1" /> Export
+                  to CSV
                 </Button>
               </div>
-              <div className="rowsbutt mt-3">
-                <Link to="/ajoutprfs">
-                  <Button className="btnajoute me-5">
-                    Ajouter <IoIosAddCircleOutline className="iconajoute ms-2 mb-1" />
-                  </Button>
+              <form style={{ display: "inline", marginLeft: "20%" }}>
+                <input
+                  type="text"
+                  placeholder="Rechercher..."
+                  value={recherche}
+                  onChange={(e) => setRecherche(e.target.value)}
+                />
+              </form>
+              <Button className="rowsbutt mt-3">
+                <Link to="/ajoutprfs" className="rowsbutt">
+                  Ajouter
+                  <IoIosAddCircleOutline
+                    className="button-add ms-auto"
+                    size={30}
+                    color="white"
+                    onClick={() =>
+                      handleAddPrfs({
+                      
+                      })
+                    }
+                  />
                 </Link>
-              </div>
+              </Button>
             </div>
           </Col>
-          <Col lg={12} md={12}>
-            <div className='data-grid-container'>
-              <Box sx={{ height: '60vh', width: '93%', margin: "auto" }}>
-                <DataGrid
-                  rows={students} // Use students from context
-                  columns={columns}
-                  initialState={{
-                    pagination: {
-                      paginationModel: { page: 0, pageSize: 5 }, // Ensure this pageSize is in pageSizeOptions
-                    },
-                  }}
-                  pageSizeOptions={[5, 6, 10]} // Include pageSize 6 here
-                />
-              </Box>
+          <Col lg={1} md={1}></Col>
+
+          <Col lg={11} md={11}>
+            <ToastContainer />
+            <table className="tableau-stylePrs ">
+              <thead>
+                <tr>
+                  <th>Image</th>
+                  <th>Nom</th>
+                  <th>Prenom</th>
+                  <th>E-mail</th>
+                  <th>Numéro-Tel</th>
+                  <th>Genre</th>
+                  <th>Adress</th>
+                  <th>Domaine</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {currentItems.length > 0 ? (
+                  currentItems.map((personnel, index) => (
+                    <tr key={personnel.id}>
+                      <td>
+                        {imgUrls[index] ? (
+                          <img
+                            src={imgUrls[index]}
+                            width="100%"
+                            height="25px"
+                            alt={`Uploaded ${index}`}
+                          />
+                        ) : (
+                          "No Image"
+                        )}
+                      </td>
+                      <td>{personnel.Nom}</td>
+                      <td>{personnel.Prenom}</td>
+                      <td>{personnel.Mail}</td>
+                      <td>{personnel.Number}</td>
+                      <td>{personnel.Genre}</td>
+                      <td>{personnel.Adress}</td>
+                      <td>{personnel.Domaine}</td>
+                      <td className="icons">
+                        <Link to={`/voixPrs/${personnel.id}`}>
+                          <EyeFill
+                            size={18}
+                            color="skyblue"
+                            className="ms-4 mt-2"
+                          />
+                        </Link>
+                        <button
+                          onClick={() => handleUpdatePrsnl(personnel.id)}
+                          className="button-delete"
+                        >
+                          <PencilFill
+                            size={18}
+                            color="yellow"
+                            className="ms-2"
+                          />
+                        </button>
+                        <Button
+                          onClick={() => handleDeleteUser(personnel.id)}
+                          className="button-delete"
+                          variant="link"
+                        >
+                          <TrashFill size={18} color="red" className="ms-2" />
+                        </Button>
+                        <Link
+                          to="/archived"
+                          onClick={() => handleArchiveUser(personnel.id)}
+                          className="button-archive"
+                          variant="link"
+                        >
+                          <ArchiveFill
+                            size={18}
+                            color="green"
+                            className="mt-2"
+                          />
+                        </Link>
+                      </td>
+                    </tr>
+                  ))
+                ) : (
+                  <tr>
+                    <td
+                      colSpan="9"
+                      style={{ textAlign: "center", color: "red" }}
+                    >
+                      {error}
+                    </td>
+                  </tr>
+                )}
+              </tbody>
+            </table>
+
+            {/* PAGINATION */}
+            <div className="showing mt-4">
+              <h6>
+                Showing {currentItems.length} out of {filteredPersonnels.length}{" "}
+                entries
+              </h6>
+              <ReactPaginate
+                previousLabel={"Précédent"}
+                nextLabel={"Suivant"}
+                breakLabel={"..."}
+                pageCount={pageCount}
+                marginPagesDisplayed={2}
+                pageRangeDisplayed={3}
+                onPageChange={handlePageClick}
+                containerClassName={"pagination"}
+                activeClassName={"active"}
+              />
             </div>
           </Col>
         </Row>
       </Container>
     </div>
   );
-}
+};
 
 export default Personnels;

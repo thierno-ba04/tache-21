@@ -20,7 +20,7 @@ function CoursPrfs() {
       <Col lg={1} md={1}></Col>
         <Col lg={10} md={10}>
           <div className="classe">
-            <h6>Liste des Cours</h6>
+            <h6>Liste des Domaines</h6>
             <div className="rowsbutt mt-3">
               <Link to="/ajoutcours">
                 <Button className="btnajoute">

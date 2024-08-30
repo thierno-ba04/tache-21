@@ -169,11 +169,88 @@
     font-size: 1.5rem;
 }
 
+.tableau-style{
+    display: block;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    border-collapse: collapse;
+    /* min-width: 600px; */
+    cursor: pointer;
+    /* margin: auto; */
+    margin-top: 100px;
+  }
+  
+  th, td {
+    padding:  10px;
+  }
+  
+  tbody tr, td, th {
+    border: 1px solid #ddd;
+    text-align: center;
+  }
+  
+
+
+.button-delete{
+    background: none;
+    border: none;
+  }
+
 /* Ajuste l'espacement autour des icônes d'action */
-.button-update,
-.button-delete,
-.button-archive {
-  margin: 0 4px; 
+
+  .icons{
+    display: flex;
+    gap: 15px;
+  }
+
+    /* PAGINATION */
+
+  .showing{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap: 40rem;
+  }
+  .showing h6{
+    font-size: 14px;
+    margin-left: 1%;
+
+  }
+  .showing p{
+    font-size: 13px;
+  }
+
+.pagination {
+  display: flex;
+  margin-left: -13%;
+  padding: 0;
+}
+
+.pagination li {
+  margin: 0 5px; /* Espacement entre les éléments de pagination */
+}
+
+.pagination li a {
+  display: block;
+  padding: 5px 5px;
+  border: 1px solid #ddd;
+  color: #007bff;
+  text-decoration: none;
+  background-color: #f9f9f9; /* Background pour les pages non actives */
+  border-radius: 5px;
+}
+
+.pagination li a:hover {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.pagination li.active a {
+  background-color: #007bff; /* Background pour la page active */
+  color: white;
+  border-color: #007bff;
 }
 
 .data-grid-container {
