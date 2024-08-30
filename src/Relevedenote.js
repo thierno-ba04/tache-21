@@ -1,14 +1,11 @@
 import React from "react";
 import Sidebar from "./Sidebar";
-import { Box, Typography } from "@mui/material";
-import Paper from '@mui/material/Paper';
+import { Box, Link, Typography } from "@mui/material";
 import {  createTheme, ThemeProvider } from '@mui/system';
 import {  useNavigate } from "react-router-dom";
-
 import { emphasize, styled } from '@mui/material/styles';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
 import Chip from '@mui/material/Chip';
-import DashboardIcon from '@mui/icons-material/Dashboard';
 import Img2 from './exceller.png';
 
 import { useState, useEffect} from "react";
@@ -138,23 +135,12 @@ const Relevedenote= () => {
        <Typography sx={{p:2,textAlign:'justify',mb:5}}> 
       
        <br/>
-       <div role="presentation">
+       <div role="presentation" onClick={handleClick} style={{marginLeft:"35px"}}>
       <Breadcrumbs aria-label="breadcrumb">
-        <StyledBreadcrumb
-           sx={{p:2,borderRadius:2}}
-          component="a"
-          href="#"
-          label="Tableau de bord"
-          onClick={()=>{navigate('/')}}
-
-          icon={<DashboardIcon fontSize="small" />}
-        />
-        
-        <StyledBreadcrumb
-          sx={{p:2,borderRadius:2}}
-          label="Releve de note"
-          onClick={()=>{navigate('/Relevedenote')}}
-        />
+        <Link underline="hover" color="inherit" href="/"  onClick={()=>{navigate('/')}}>
+          Dashboard
+        </Link>
+        <Typography color="text.primary">Releve de note</Typography>
       </Breadcrumbs>
     </div>
 

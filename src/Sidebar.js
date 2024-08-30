@@ -16,23 +16,21 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import React from 'react';
 import SpaceDashboardIcon from '@mui/icons-material/SpaceDashboard';
-import ShowChartIcon from '@mui/icons-material/ShowChart';
 import { useNavigate } from 'react-router-dom';
 import LibraryBooksIcon from '@mui/icons-material/LibraryBooks';
 import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
 import'./App.css';
 import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
-import MarkEmailUnreadIcon from '@mui/icons-material/MarkEmailUnread';
-import Avatar from '@mui/material/Avatar';
-import { deepOrange, deepPurple } from '@mui/material/colors';
 import Badge from '@mui/material/Badge';
-import MailIcon from '@mui/icons-material/Mail';
 import Stack from '@mui/material/Stack';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import LogoutButton from './LogoutButton';
 import Popover from '@mui/material/Popover';
 import PopupState, { bindTrigger, bindPopover } from 'material-ui-popup-state';
-import Button from '@mui/material/Button';
+import {addDoc ,collection,doc, getDoc, getDocs} from "firebase/firestore";
+import { useState } from "react";
+import {database} from "./firebase";
+import { useEffect } from 'react';
 
 
 
@@ -111,9 +109,14 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 
 
 
+
 export default function Sidebar() {
 
-  
+
+
+
+  const[data,setData]=useState([]);
+
 
   const handleLogout = () => {
     alert('Vous avez été déconnecté avec succès !');
@@ -134,6 +137,20 @@ export default function Sidebar() {
   const handleDrawerClose = () => {
     setOpen(false);
   };
+
+  useEffect(()=>{
+    const getvalue =async()=>{
+      const val = doc(database, "gervais",'post')
+      const collectinval =collection(val,"feedback")
+     
+      const getvalue = await getDocs(collectinval)
+      setData(getvalue.docs.map((doc)=>({...doc.data(),id:doc.id})))
+  
+     }
+     getvalue()
+  
+  },[])
+  
 
 
   return (
@@ -157,7 +174,7 @@ export default function Sidebar() {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap component="div" style={{color:'black'}} > 
-            Tableau de bord 
+            Bienvenue 
           </Typography>
 
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
@@ -172,7 +189,7 @@ export default function Sidebar() {
       {(popupState) => (
         <div>
 
-          <Badge  badgeContent={4} color='error'>
+          <Badge  badgeContent= {data.length} color='error'>
           <NotificationsIcon  {...bindTrigger(popupState)} sx={{mt:1,cursor:'pointer'}} color="action" ></NotificationsIcon>
           </Badge> 
 
@@ -187,31 +204,23 @@ export default function Sidebar() {
               horizontal: 'center',
             }}
           >
-            <Typography sx={{ p: 2 }}>
+            <Typography >
             <div className="notification-header">
             Notifications
+
           </div>
+          <div className="notification-item">
 
-              <div className="notification-list">
-              Le contenu du Popover. Le contenu du Popover.
-
-              </div>
-             
-              <div className="notification-list">
-              Le contenu du Popover. Le contenu du Popover.
-
-              </div>
-
-              <div className="notification-list">
-              Le contenu du Popover. Le contenu du Popover.
-
-              </div>
-              <div className="notification-list">
-              Le contenu du Popover. Le contenu du Popover.
-
-              </div>
+          {
+          data.map((val)=>
+          <div className="notification-list"> {val.title} </div>
+)
+        }
 
 
+
+
+               </div>
 
             
 
@@ -263,7 +272,7 @@ export default function Sidebar() {
                   <SpaceDashboardIcon/>
                 </ListItemIcon>
                 
-                <ListItemText primary="Tableau de Bord" sx={{ opacity: open ? 1 : 0 ,color:'white'}} />
+                <ListItemText primary="Dashboard" sx={{ opacity: open ? 1 : 0 ,color:'white'}} />
               </ListItemButton>
             </ListItem>
 

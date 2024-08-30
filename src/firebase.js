@@ -1,21 +1,27 @@
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
+// Importez Firebase
+import {initializeApp} from "firebase/app";
+import { getFirestore } from "firebase/firestore";
+import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth';
 
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
+// Configuration Firebase
 // Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyAE18AIjip3S6jJC3Hhsdla9hctkwz53MM",
   authDomain: "tache-21-a9241.firebaseapp.com",
+  databaseURL: "https://tache-21-a9241-default-rtdb.firebaseio.com",
   projectId: "tache-21-a9241",
   storageBucket: "tache-21-a9241.appspot.com",
   messagingSenderId: "571795702707",
   appId: "1:571795702707:web:f62e57ab23a6ce393b81c6"
 };
 
-// Initialize Firebase
+
+// Initialisation de Firebase
 const app = initializeApp(firebaseConfig);
-const auth= getAuth(app);
-export {auth}
+// Initialisation de Firestore
+const auth = getAuth(app);
+const database = getFirestore(app);
+const db = getFirestore(app);
+
+export{database}
+export { auth, db, signInWithEmailAndPassword, createUserWithEmailAndPassword, };

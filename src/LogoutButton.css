@@ -17,7 +17,7 @@
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
   .logout-button:hover {
-    background-color: #ff6b81;
+    background-color: 'red';
     transform: scale(1.05);
     box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
   }

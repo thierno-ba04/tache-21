@@ -11,6 +11,7 @@ import Agenda from'./Agenda';
 import AgentList from "./AgentList";
 import { useState, useEffect} from "react";
 import ClipLoader from "react-spinners/ClipLoader";
+import Link from '@mui/material/Link';
 
 
 
@@ -36,10 +37,12 @@ const StyledBreadcrumb = styled(Chip)(({ theme }) => {
   };
 }); // TypeScript only: need a type cast here because https://github.com/Microsoft/TypeScript/issues/26591
 
-function handleClick(event) {
+
+function handleClick(event: React.MouseEvent<HTMLDivElement, MouseEvent>) {
   event.preventDefault();
   console.info('You clicked a breadcrumb.');
 }
+
 
 const override: CSSProperties = {
   display: "block",
@@ -50,7 +53,7 @@ const override: CSSProperties = {
 
 
 
-const DashboardProf = () => {
+const DashboardCoach = () => {
 
   const [loading, setLoading] = useState(false);
 useEffect(()=>{
@@ -81,7 +84,7 @@ useEffect(()=>{
         <Sidebar/>
         {
            loading ?
-        < ClipLoader
+        < ClipLoader  
         loading={loading}
         cssOverride={override}
         size={70}
@@ -108,18 +111,11 @@ useEffect(()=>{
        <br/>
 
        <div role="presentation" style={{marginLeft:35}}>
-      <Breadcrumbs aria-label="breadcrumb">
-        <StyledBreadcrumb
-               sx={{p:2,borderRadius:2,marginLeft:"2"}}
-          component="a"
-          href="#"
-          label="Tableau de bord"
-          onClick={()=>{navigate('/')}}
-         
-          icon={<DashboardIcon fontSize="small" />}
-        />
 
+      <Breadcrumbs aria-label="breadcrumb">
+        <Typography color="text.primary">Dashboard</Typography>
       </Breadcrumbs>
+
     </div>
 
        </Typography>
@@ -135,7 +131,7 @@ useEffect(()=>{
 				<div class="d-flex align-items-center">
 					<div>
 						<p class="mb-0 text-secondary">Total Elèves</p>
-						<h4 class="my-1 text-info">4805</h4>
+						<h4 class="my-1 text-info">3</h4>
 						<p class="mb-0 font-13"></p>
 					</div>
 					<div class="widgets-icons-2 rounded-circle bg-gradient-scooter text-white ms-auto"> <i class="fa fa-users"></i>
@@ -150,7 +146,7 @@ useEffect(()=>{
 			   <div class="d-flex align-items-center">
 				   <div>
 					   <p class="mb-0 text-secondary">Total Fille</p>
-					   <h4 class="my-1 text-danger">4245</h4>
+					   <h4 class="my-1 text-danger">1</h4>
 					   <p class="mb-0 font-13"></p>
 				   </div>
 				   <div class="widgets-icons-2 rounded-circle bg-gradient-bloody text-white ms-auto"> <i class="fa fa-users"></i>
@@ -165,7 +161,7 @@ useEffect(()=>{
 			   <div class="d-flex align-items-center">
 				   <div>
 					   <p class="mb-0 text-secondary">Total Graçon</p>
-					   <h4 class="my-1 text-success">3446</h4>
+					   <h4 class="my-1 text-success">2</h4>
 					   <p class="mb-0 font-13"></p>
 				   </div>
 				   <div class="widgets-icons-2 rounded-circle bg-gradient-ohhappiness text-white ms-auto"> <i class="fa fa-users"></i>
@@ -180,7 +176,7 @@ useEffect(()=>{
 			   <div class="d-flex align-items-center">
 				   <div>
 					   <p class="mb-0 text-secondary">Total Classe</p>
-					   <h4 class="my-1 text-warning">8444</h4>
+					   <h4 class="my-1 text-warning">1</h4>
 					   <p class="mb-0 font-13"></p>
 				   </div>
 				   <div class="widgets-icons-2 rounded-circle bg-gradient-blooker text-white ms-auto"><i class="fa fa-users"></i>
@@ -234,4 +230,4 @@ useEffect(()=>{
      );
 }
  
-export default DashboardProf;
+export default DashboardCoach;

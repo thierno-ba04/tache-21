@@ -50,20 +50,8 @@ const Agenda = () => {
             {
                 date: today.toISOString().split('T')[0],
                 time: '09:00',
-                title: 'Réunion d\'équipe',
-                description: 'Réunion hebdomadaire de l\'équipe'
-            },
-            {
-                date: today.toISOString().split('T')[0],
-                time: '14:00',
-                title: 'Présentation client',
-                description: 'Présentation du nouveau projet au client'
-            },
-            {
-                date: tomorrow.toISOString().split('T')[0],
-                time: '11:00',
-                title: 'Déjeuner d\'affaires',
-                description: 'Déjeuner avec le partenaire commercial'
+                title: "Réunion  avec les parent d'éleves",
+                description: "Réunion hebdomadaire avec les parent d'éleves"
             }
         ];
     };
