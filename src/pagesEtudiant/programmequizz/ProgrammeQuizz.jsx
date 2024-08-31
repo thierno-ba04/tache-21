@@ -75,7 +75,10 @@ const ProgrammeQuizz = () => {
                 <h6 className="text-center">
                     REACTJS DEBUTANT
                 </h6>
-                <Button variant="primary"  className="ms-3">Commencer le Quizz</Button>
+                <Link to="/quizzreact">
+                <Button variant="primary">Commencer le Quizz</Button>
+
+                </Link>
               </Card.Body>
             </Card>
           </Col>

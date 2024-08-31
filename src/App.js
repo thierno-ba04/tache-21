@@ -18,6 +18,7 @@ import ProgrammeQuizz from './pagesEtudiant/programmequizz/ProgrammeQuizz';
 import QuizzHtmlcss from './pagesEtudiant/quizzhtmlcss/QuizzHtmlcss';
 import QuizzBootstrap from './pagesEtudiant/quizzbootstrap/QuizzBootstrap';
 import QuizzJavascript from './pagesEtudiant/quizzjavascript/QuizzJavascript';
+import QuizzReact from './pagesEtudiant/quizzreact/QuizzReact';
 
 import Login from "./pages/auth/Login";
 import ForgotPssWrd from "./pages/forgotpasseword/ForgotPssWrd";
@@ -77,6 +78,15 @@ function App() {
             <Route path="/quizzhtmlcss" element={<QuizzHtmlcss />} />
             <Route path="/quizzbootstrap" element={<QuizzBootstrap />} />
             <Route path="/quizzjavascript" element={<QuizzJavascript />} />
+            <Route path="/quizzreact" element={<QuizzReact />} />
+
+
+
+
+
+
+
+
           </Route>
 
           {/* Routes pour les admins */}
