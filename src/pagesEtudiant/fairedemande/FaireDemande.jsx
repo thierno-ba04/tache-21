@@ -15,6 +15,12 @@ const FaireDemande = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        // Vérifier que tous les champs sont remplis
+        if (!demandeType || !demandeMotif || !dateDebut || !dateFin) {
+            toast.error('Veuillez remplir tous les champs.'); // Notification d'erreur
+            return;
+        }
+
         try {
             await addDoc(collection(db, 'demande'), {
                 demandeType,
@@ -57,12 +63,14 @@ const FaireDemande = () => {
                                                 as="select"
                                                 value={demandeType}
                                                 onChange={(e) => setDemandeType(e.target.value)}
+                                                required
                                             >
-                                                <option>Absence</option>
-                                                <option>Changement d'horaire</option>
-                                                <option>Abandon</option>
-                                                <option>Pause</option>
-                                                <option>Formation</option>
+                                                <option value="">Sélectionnez un type de demande</option>
+                                                <option value="Absence">Absence</option>
+                                                <option value="Changement d'horaire">Changement d'horaire</option>
+                                                <option value="Abandon">Abandon</option>
+                                                <option value="Pause">Pause</option>
+                                                <option value="Formation">Formation</option>
                                             </Form.Control>
                                         </Form.Group>
                                     </td>
@@ -76,6 +84,7 @@ const FaireDemande = () => {
                                                 placeholder="Entrez le motif de votre demande"
                                                 value={demandeMotif}
                                                 onChange={(e) => setDemandeMotif(e.target.value)}
+                                                required
                                             />
                                         </Form.Group>
                                     </td>
@@ -90,6 +99,7 @@ const FaireDemande = () => {
                                                         type="date"
                                                         value={dateDebut}
                                                         onChange={(e) => setDateDebut(e.target.value)}
+                                                        required
                                                     />
                                                 </Form.Group>
                                             </Col>
@@ -100,6 +110,7 @@ const FaireDemande = () => {
                                                         type="date"
                                                         value={dateFin}
                                                         onChange={(e) => setDateFin(e.target.value)}
+                                                        required
                                                     />
                                                 </Form.Group>
                                             </Col>
