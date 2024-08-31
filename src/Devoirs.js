@@ -1,19 +1,19 @@
 import React from "react";
 import Sidebar from "./Sidebar";
-import { Box, Typography } from "@mui/material";
-import Paper from '@mui/material/Paper';
+import { Box,  Typography } from "@mui/material";
 import {  createTheme, ThemeProvider } from '@mui/system';
 import {  useNavigate } from "react-router-dom";
-
 import { emphasize, styled } from '@mui/material/styles';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
 import Chip from '@mui/material/Chip';
-import DashboardIcon from '@mui/icons-material/Dashboard';
-import AddToDriveIcon from '@mui/icons-material/AddToDrive';
 import'./App.css';
 import Img1 from './google-drive.png';
 import { useState,useEffect,CSSProperties } from "react";
 import ClipLoader from "react-spinners/ClipLoader";
+import DashboardIcon from '@mui/icons-material/Dashboard';
+
+
+
 
 const override: CSSProperties = {
   display: "block",
@@ -43,7 +43,7 @@ const StyledBreadcrumb = styled(Chip)(({ theme }) => {
   };
 }); // TypeScript only: need a type cast here because https://github.com/Microsoft/TypeScript/issues/26591
 
-function handleClick(event) {
+function handleClick(event: React.MouseEvent<HTMLDivElement, MouseEvent>) {
   event.preventDefault();
   console.info('You clicked a breadcrumb.');
 }
@@ -143,14 +143,14 @@ const Devoirs= () => {
        <Typography sx={{p:2,textAlign:'justify',mb:5}}> 
       
        <br/>
-       <div role="presentation">
+       <div role="presentation" onClick={handleClick} style={{marginLeft:"35px"}}>
       <Breadcrumbs aria-label="breadcrumb">
         <StyledBreadcrumb
            sx={{p:2,borderRadius:2}}
           component="a"
           href="#"
           label="Tableau de bord"
-          onClick={()=>{navigate('/dashboardprof')}}
+          onClick={()=>{navigate('/')}}
 
           icon={<DashboardIcon fontSize="small" />}
         />

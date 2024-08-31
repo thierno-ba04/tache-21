@@ -1,13 +1,10 @@
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { getStorage } from "firebase/storage";
-import { getFirestore } from "firebase/firestore";
+// Import des fonctions nécessaires depuis les SDK Firebase
+import { initializeApp, getApp, getApps } from 'firebase/app';
+import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth';
+import { getFirestore, collection, getDocs, onSnapshot, addDoc } from 'firebase/firestore';
+import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 
-
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
+// Configuration de votre application Firebase
 const firebaseConfig = {
   apiKey: "AIzaSyAE18AIjip3S6jJC3Hhsdla9hctkwz53MM",
   authDomain: "tache-21-a9241.firebaseapp.com",
@@ -17,11 +14,13 @@ const firebaseConfig = {
   appId: "1:571795702707:web:f62e57ab23a6ce393b81c6"
 };
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-// Initialize Firebase Storage
-const storage = getStorage(app);
+// Initialiser Firebase seulement si aucune instance n'existe déjà
+const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
+
+// Initialiser les services Firebase
+const auth = getAuth(app);
 const db = getFirestore(app);
+const storage = getStorage(app);
 
-
-export { db, storage };
+// Exporter les services et les fonctions nécessaires
+export { auth, db, storage, signInWithEmailAndPassword, createUserWithEmailAndPassword, collection, getDocs, onSnapshot, addDoc, ref, uploadBytes, getDownloadURL };

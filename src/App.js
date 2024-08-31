@@ -9,7 +9,7 @@ import Programme from './pagesEtudiant/progamme/Programme';
 import Demande from './pagesEtudiant/demande/Demande';
 import Bulletinelv from './pagesEtudiant/bulletin/Bulletinelv';
 import Livraison from './pagesEtudiant/livraison/Livraison';
-import UpdProfileCoach from './pagesEtudiant/updProfileEtudiant/UpdProfileEtudiant';
+import UpdProfileEtudiant from './pagesEtudiant/updProfileEtudiant/UpdProfileEtudiant';
 import FaireDemande from './pagesEtudiant/fairedemande/FaireDemande';
 import VoirBulletin from './pagesEtudiant/voirbulletin/VoirBulletin';
 import TacheValide from './pagesEtudiant/tache-valide/TacheValide';
@@ -49,17 +49,11 @@ import VoixClasse from './pages/pageadmine/users/vuclasse/VoixClasse';
 import UpdateClasse from './pages/pageadmine/users/modifierclasse/UpdateClasse';
 import Page404 from './Page404';
 import { MyContextProvider } from './context/MyContext';
-import DashboardProf from './DashboardProf';
-// import Eleves from './Eleves';
 import Devoirs from './Devoirs';
-import Relevedenote from './Relevedenote'
-import Elevess from './Eleves';
-
-
-
-
-
-
+import Relevedenote from './Relevedenote';
+import NotificationAdmin from './NotificationAdmin';
+import FormulaireAjoutEleves from './FormulaireAjoutEleves';
+import DashboardProf from './DashboardCoach';
 
 function App() {
   return (
@@ -75,7 +69,7 @@ function App() {
             <Route path="/livraison" element={<Livraison />} />
             <Route path="/bulletinelv" element={<Bulletinelv />} />
             <Route path="/voirbulletin" element={<VoirBulletin />} />
-            <Route path="/updProfileEtudiant" element={<UpdProfileCoach />} />
+            <Route path="/updProfileEtudiant" element={<UpdProfileEtudiant />} />
             <Route path="/fairedemande" element={<FaireDemande />} />
             <Route path="/tachevalide" element={<TacheValide />} />
             <Route path="/agentlist" element={<AgentList />} />
@@ -109,19 +103,19 @@ function App() {
             <Route path="/ajoutcours" element={<AjoutCours />} />
             <Route path="/classe" element={<Classe />} />
             <Route path="/ajoutclasse" element={<AjoutClasse />} />
-            <Route path="classes/voix/:id" element={<VoixClasse />} />
-            <Route path="classes/update/:id" element={<UpdateClasse />} />
+            <Route path="/classes/voix/:id" element={<VoixClasse />} />
+            <Route path="/classes/update/:id" element={<UpdateClasse />} />
             <Route path="/voix/:id" element={<Voix />} />
             <Route path="/updateStudent/:id" element={<UpdateStudent />} />
             <Route path="/archiveUsers" element={<ArchiveUsers />} />
           </Route>
 
           {/* Routes pour les professeurs */}
-          {/* <Route path="/LoginProf" element={<LoginProf />} />  */}
           <Route path="/dashboardProf" element={<DashboardProf />} />
-          <Route path="/Elevess" element={<Elevess />} />
-          <Route path="/Devoirs" element={<Devoirs />} />
-          <Route path="/Relevedenote" element={<Relevedenote />} />
+          <Route path="/devoirs" element={<Devoirs />} />
+          <Route path="/relevedenote" element={<Relevedenote />} />
+          <Route path="/notificationAdmin" element={<NotificationAdmin />} />
+          <Route path="/formulaireAjoutEleves" element={<FormulaireAjoutEleves />} />
 
           {/* Route 404 */}
           <Route path="*" element={<Page404 />} />

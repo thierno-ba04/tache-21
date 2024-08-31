@@ -2,12 +2,12 @@ import React from "react";
 import Sidebar from "./Sidebar";
 import { Box, Typography } from "@mui/material";
 import {  createTheme} from '@mui/system';
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { emphasize, styled } from '@mui/material/styles';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
 import Chip from '@mui/material/Chip';
-import DashboardIcon from '@mui/icons-material/Dashboard';
 import './App.css';
+
 
 const StyledBreadcrumb = styled(Chip)(({ theme }) => {
   const backgroundColor =
@@ -101,25 +101,12 @@ const Notedeservice = () => {
        <Typography sx={{textAlign:'justify',p:5}}> 
       
        <br/>
-       <div role="presentation">
+       <div role="presentation" onClick={handleClick} style={{marginLeft:"35px"}}>
       <Breadcrumbs aria-label="breadcrumb">
-        <StyledBreadcrumb
-         sx={{p:2}}
-
-          component="a"
-          href="#"
-          label="Dashaord"
-          onClick={()=>{navigate('/')}}
-
-          icon={<DashboardIcon fontSize="small" />}
-        />
-        
-        <StyledBreadcrumb
-           sx={{p:2}}
-
-          label="Note de service"
-          onClick={()=>{navigate('/Notedeservice')}}
-        />
+        <Link underline="hover" color="inherit" href="/"  onClick={()=>{navigate('/')}}>
+          Dashboard
+        </Link>
+        <Typography color="text.primary">Relevedenote</Typography>
       </Breadcrumbs>
     </div>
     <br/>  

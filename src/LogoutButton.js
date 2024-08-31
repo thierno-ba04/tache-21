@@ -15,7 +15,7 @@ const LogoutButton = ({ onLogout }) => {
       setTimeout(() => {
         setIsLoggingOut(false);
         if (onLogout) {
-          navigate('/LoginProf');
+          navigate('/Login');
         }
       }, 2000); // Simule une déconnexion qui prend 2 secondes
     };
