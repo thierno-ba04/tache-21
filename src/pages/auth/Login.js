@@ -54,7 +54,7 @@ function Login() {
             <h2 className='text-dark fw-bold'>Connexion</h2>
             <p className="title" style={{ color: "grey" }}>Connectez-vous à votre compte</p>
             <form className="form" onSubmit={handleLogin}>
-              <div className='icone1 ps-3'>
+              <div className='icone1 ps-3 mt-4'>
                 <IoMailOutline />
               </div>
               <input
@@ -65,7 +65,7 @@ function Login() {
                 onChange={handleEmailChange}
                 required
               />
-              <div className='icone2 ps-3'>
+              <div className='icone2 ps-3 mt-4'>
                 <FiKey />
               </div>
               <input

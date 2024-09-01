@@ -55,6 +55,7 @@ import Relevedenote from './Relevedenote';
 import NotificationAdmin from './NotificationAdmin';
 import FormulaireAjoutEleves from './FormulaireAjoutEleves';
 import DashboardProf from './DashboardCoach';
+import PrivateRoute from './pages/privateroute/PrivateRoute';
 
 function App() {
   return (
@@ -62,8 +63,10 @@ function App() {
       <Router>
         <Routes>
           {/* Routes pour les étudiants */}
+          <Route element={<PrivateRoute allowedRoles={['student']} />}>
+
           <Route element={<LayoutEtudiant />}>
-            <Route path="/" element={<DashboardEtudiant />} />
+            <Route path="/dashboardetudiant" element={<DashboardEtudiant />} />
             <Route path="/tache" element={<Tache />} />
             <Route path="/programme" element={<Programme />} />
             <Route path="/demande" element={<Demande />} />
@@ -79,20 +82,17 @@ function App() {
             <Route path="/quizzbootstrap" element={<QuizzBootstrap />} />
             <Route path="/quizzjavascript" element={<QuizzJavascript />} />
             <Route path="/quizzreact" element={<QuizzReact />} />
-
-
-
-
-
-
-
-
+          </Route>
           </Route>
 
+
           {/* Routes pour les admins */}
+          
           <Route path="/" element={<Login />} />
           <Route path="/forgot" element={<ForgotPssWrd />} />
           <Route path="/inscrire" element={<Registe />} />
+
+          <Route element={<PrivateRoute allowedRoles={['admin']} />}>
           <Route element={<LayoutAdmin />}>
             <Route path="/dashboardadmin" element={<DashboardAdmin />} />
             <Route path="/users" element={<UsersAdmin />} />
@@ -119,13 +119,19 @@ function App() {
             <Route path="/updateStudent/:id" element={<UpdateStudent />} />
             <Route path="/archiveUsers" element={<ArchiveUsers />} />
           </Route>
+          </Route>
+
 
           {/* Routes pour les professeurs */}
+          <Route element={<PrivateRoute allowedRoles={['professor']} />}>
+
+
           <Route path="/dashboardProf" element={<DashboardProf />} />
           <Route path="/devoirs" element={<Devoirs />} />
           <Route path="/relevedenote" element={<Relevedenote />} />
           <Route path="/notificationAdmin" element={<NotificationAdmin />} />
           <Route path="/formulaireAjoutEleves" element={<FormulaireAjoutEleves />} />
+          </Route>
 
           {/* Route 404 */}
           <Route path="*" element={<Page404 />} />
