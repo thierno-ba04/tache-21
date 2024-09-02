@@ -10,6 +10,7 @@ import'./App.css';
 import Img1 from './google-drive.png';
 import { useState,useEffect,CSSProperties } from "react";
 import ClipLoader from "react-spinners/ClipLoader";
+import StudentWorkViewer from "./StudentWorkVierwer";
 
 
 
@@ -136,7 +137,7 @@ const Devoirs= () => {
             <Typography>
             
       <Typography
-      sx={{textAlign:'center',mt:3,mb:5}} >
+      sx={{mt:3,mb:5}} >
       <div style={{ width: '100%' }}>
        <Typography sx={{p:2,textAlign:'justify',mb:5}}> 
       
@@ -146,42 +147,18 @@ const Devoirs= () => {
         <Link underline="hover" color="inherit" href="/"  onClick={()=>{navigate('/')}}>
           Dashboard
         </Link>
-        <Typography color="text.primary">Devoirs</Typography>
+        <Typography color="text.primary">Livraisons</Typography>
       </Breadcrumbs>
     </div>
 
        
          <br/>
        </Typography>
+       <StudentWorkViewer/>
 
 
     </div>
 
-     <Typography sx={{p:5}} className="bg ">
-
-     <ThemeProvider theme={customTheme}>
-      <MyThemeComponent sx={{ m: 1 }} color="primary" variant="dashed" style={{height:400}}>
-        
-      <Box sx={{ textAlign: 'center', m: 1 ,margin:10,}} >
-
-      
-
-       Clickez sur le button pour recuperez les devoirs <br/><br/>
-    
-    <a href={"https://drive.google.com/drive/home?sjid=200973102585411076-EU"}><img src={Img1}  width={35} height={35}/>  </a>
-  
-
-      </Box>
-
-
-
-
-
-      </MyThemeComponent>
-      
-    </ThemeProvider>
-
-    </Typography>
 
 
 

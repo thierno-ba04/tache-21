@@ -11,6 +11,8 @@ import Page404 from './Page404';
 import NotificationAdmin from './NotificationAdmin';
 import ForgotPssWrd from './ForgotPssWrd';
 import FormulaireAjoutEleves from './FormulaireAjoutEleves';
+import ProfilEtudiant from './ProfilEtudiant';
+import AjouteruneTache from './AjouteruneTache';
 
 function App() {
   return (
@@ -25,6 +27,10 @@ function App() {
           <Route path="/Forgot" element={<ForgotPssWrd/>} />
           <Route path="/*" element={<Page404/>} />
           <Route path="/NotificationAdmin" element={<NotificationAdmin/>} />
+          <Route path="/ProfilEtudiant/:id" element={<ProfilEtudiant/>} />
+          <Route path="/AjouteruneTache" element={<AjouteruneTache/>} />
+
+
           <Route path="/FormulaireAjoutEleves" element={<FormulaireAjoutEleves/>} />
 
 
