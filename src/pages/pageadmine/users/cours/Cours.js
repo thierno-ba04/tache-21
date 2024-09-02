@@ -14,7 +14,7 @@ function Cours() {
         <div className="courstitre">
           <Col lg={1} md={1}></Col>
           <Col lg={11} md={11}>
-            <h2>Mes cours</h2>
+            <h2>Mes programmes</h2>
           </Col>
         </div>
         <Col lg={1} md={1}></Col>

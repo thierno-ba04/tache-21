@@ -136,21 +136,21 @@ const Bulletin = () => {
             </Table>
           </Col>
           <Col lg={1} md={1} className="mt-3"></Col>
-          <Col lg={11} md={11} className="mt-5">
-            <div className="div_bultin">
+          {/* <Col lg={11} md={11} className="mt-5"> */}
+            {/* <div className="div_bultin">
               <div>
                 <h6>E-leaning formation</h6>
                 <p>
                   Bargny, villa n°241 <br />
                   Tel : +221 77 777 67 88
                 </p>
-              </div>
-              <div>
+              </div> */}
+              {/* <div>
                 <h6>République du SENEGAL</h6>
                 <p>Ministère de la formation professionnelle</p>
-              </div>
-            </div>
-            <form className="mt-3">
+              </div> */}
+            {/* </div> */}
+            {/* <form className="mt-3">
               <div className="div-form">
                 <input
                   type="name"
@@ -174,9 +174,9 @@ const Bulletin = () => {
                 />
                 <label htmlFor="">776557697</label>
               </div>
-            </form>
+            </form> */}
 
-            <Table striped bordered hover className="table-shadow">
+            {/* <Table striped bordered hover className="table-shadow">
               <thead>
                 <tr>
                   <th>Motif</th>
@@ -214,8 +214,8 @@ const Bulletin = () => {
                 </tr>
               </tbody>
             </Table>
-            <Table>
-              <thead>
+            <Table> */}
+              {/* <thead>
                 <tbody className="resultat">
                   <tr>
                     <th>Moyenne conduite :</th>
@@ -226,13 +226,13 @@ const Bulletin = () => {
                     <th>15</th>
                   </tr>
                 </tbody>
-              </thead>
-            </Table>
-          </Col>
+              </thead> */}
+            {/* </Table> */}
+          {/* </Col> */}
         </Row>
         <Row>
-          <Col lg={1} md={1} className="mt-3"></Col>
-          <Col lg={11} md={11} className="mt-4">
+          <Col lg={2} md={2} className="mt-3"></Col>
+          <Col lg={10} md={10} className="mt-4">
             <Pagination>{renderPaginationItems()}</Pagination>
           </Col>
         </Row>

@@ -175,9 +175,7 @@
     justify-content: center;
     align-items: center;
     border-collapse: collapse;
-    /* min-width: 600px; */
     cursor: pointer;
-    /* margin: auto; */
     margin-top: 100px;
   }
   
@@ -210,21 +208,21 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
+    /* width: 100%; */
     gap: 40rem;
   }
   .showing h6{
-    font-size: 14px;
-    margin-left: 1%;
+    font-size: 10px;
+    margin: auto;
 
   }
   .showing p{
-    font-size: 13px;
+    /* font-size: 13px; */
   }
 
 .pagination {
   display: flex;
-  margin-left: -13%;
+  /* margin-left: -13%; */
   padding: 0;
 }
 
@@ -253,12 +251,12 @@
   border-color: #007bff;
 }
 
-.data-grid-container {
+/* .data-grid-container {
     width: 100%;
   height: 420px; 
   overflow: hidden;
   margin-top: 3rem; 
-}
+} */
 
 /* Assure que le tableau n'affecte pas les autres éléments */
 .main {
