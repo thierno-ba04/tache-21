@@ -19,9 +19,9 @@ function Professeurs() {
     <Container>
       <Row className="professeurs g-4">
         <Row>
-      <Col lg={1} md={1} className="mt-2"></Col>
-          <Col lg={4} md={4}>
-            <div className="bulletin">
+      <Col lg={1} md={1}></Col>
+          <Col lg={4} md={4} className="mt-5">
+            <div className="bulletin mt-5">
               <p>dashboard / Utilisateurs</p>
             </div>
           </Col>

@@ -216,9 +216,6 @@
     margin: auto;
 
   }
-  .showing p{
-    /* font-size: 13px; */
-  }
 
 .pagination {
   display: flex;
@@ -317,6 +314,19 @@ Link .button-add{
         gap: 2rem;
         margin: auto;
     }
+    .tableau-style{
+        display: block;
+        width: 50%;
+        justify-content: center;
+        align-items: center;
+        border-collapse: collapse;
+        cursor: pointer;
+        margin-top: 100px;
+      }
+      
+      th, td {
+        padding:  5px;
+      }
   }
 
   @media screen and (max-width: 768px){
@@ -344,7 +354,19 @@ Link .button-add{
     font-size: 11px; 
     height: 40px;       
 }
-
+.tableau-style{
+    display: block;
+    width: 50%;
+    justify-content: center;
+    align-items: center;
+    border-collapse: collapse;
+    cursor: pointer;
+    margin-top: 100px;
+  }
+  
+  th, td {
+    padding:  5px;
+  }
 
   }
 

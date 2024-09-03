@@ -50,10 +50,10 @@ function ForgotPssWrd() {
   return (
     <div>
       <Container fluid>
-        <Row className="password shadow">
+        <Row className="password ">
           <Col sm={6} md={6} className="forgotBox">
             <div className="text-center">
-              <h3 className="shadow header-pwd p-1">
+              <h3 className="shadow header-pwd p-0">
                 <span>Récupération du mot de passe</span>
               </h3>
               <p className="bg-text text-center">

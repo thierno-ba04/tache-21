@@ -12,7 +12,7 @@ function MesCours() {
     <Container>
 
     <Row>
-      <div className="courstitre">
+      <div className="courstitre mt-5">
         <h3>Lites des Programmes</h3>
       </div>
           <Col lg={6} md={6} className="courshtml">
@@ -69,6 +69,36 @@ function MesCours() {
                 odit explicabo voluptate dolorum error laborum debitis?</p>
           </div>
           <a href="https://react-pdf.org">
+            <button className="btn btn-primary">
+                
+                Fichier Pdf
+
+            </button>
+            </a>
+          </Col>
+          <Col lg={6} md={6} className="mt-5">
+          <div className="divmescours">
+            <h4> Déscription Node.js</h4>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                Earum quasi qui, neque quod cumque ullam labore 
+                odit explicabo voluptate dolorum error laborum debitis?</p>
+          </div>
+          <a href="https://www.reveillere.fr/M2WEB/cours/nodeJs.pdf">
+            <button className="btn btn-primary">
+                
+                Fichier Pdf
+
+            </button>
+            </a>
+          </Col>
+          <Col lg={6} md={6} className="mt-5">
+          <div className="divmescours">
+            <h4> Déscription PHP</h4>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                Earum quasi qui, neque quod cumque ullam labore 
+                odit explicabo voluptate dolorum error laborum debitis?</p>
+          </div>
+          <a href="https://www.univ-orleans.fr/iut-orleans/informatique/intra/tuto/php/FastPHP.pdf">
             <button className="btn btn-primary">
                 
                 Fichier Pdf
