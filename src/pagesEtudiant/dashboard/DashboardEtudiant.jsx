@@ -88,7 +88,7 @@ const DashboardEtudiant = () => {
   return (
     <div className="main">
       <Container>
-      <Row>
+        <Row>
 <Col lg={4} md={4}>
   <div className="main-card">
     <h6>Année Scolaire 2020/2021</h6>

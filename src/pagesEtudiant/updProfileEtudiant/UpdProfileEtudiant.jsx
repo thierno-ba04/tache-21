@@ -1,161 +1,183 @@
-import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { Col, Container, Row, Button } from "react-bootstrap";
-import { doc, getDoc, updateDoc } from "firebase/firestore";
-import { getAuth } from "firebase/auth";
-import { db, imageDb } from "../../firebase/firebase"; // Importation des données depuis Firebase
-import { useAuthState } from "react-firebase-hooks/auth";
-import { getDownloadURL, uploadBytesResumable, ref } from "firebase/storage";
-// import "./profile.css";
+import { useState, useEffect } from 'react';
+import { Col, Container, Row, Form, Button } from 'react-bootstrap';
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { storage, db, auth } from '../../firebase/firebase'; // Assurez-vous que auth est importé
+import { doc, setDoc, getDoc } from "firebase/firestore";
+import imgprofil from "../../assets/img/téléchargement.jpg";
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import "./updProfileEtudiant.css";
 
 const UpdProfileEtudiant = () => {
-  const [user] = useAuthState(getAuth());
-  const [donnee, setDonnee] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState('');
-  const [newRole, setNewRole] = useState('');
-  const [photo, setPhoto] = useState(null);
-  const [photoURL, setPhotoURL] = useState('');
-  const navigate = useNavigate();
+    const [profile, setProfile] = useState({
+        firstName: '',
+        lastName: '',
+        phoneNumber: '',
+        photo: null
+    });
 
-  useEffect(() => {
-    const fetchUserProfile = async () => {
-      if (user) {
-        setLoading(true);
-        try {
-          const docRef = doc(db, 'users-rôles', user.uid); // Assurez-vous que la collection et les documents existent
-          const docSnap = await getDoc(docRef);
-          if (docSnap.exists()) {
-            setDonnee(docSnap.data());
-            setPhotoURL(docSnap.data().photoURL || ''); // Load existing photo URL
-          } else {
-            setError('Aucune donnée trouvée.');
-          }
-        } catch (error) {
-          setError('Erreur lors de la récupération des données: ' + error.message);
-        } finally {
-          setLoading(false);
-        }
-      } else {
-        setError('Utilisateur non connecté.');
-        setLoading(false);
-      }
+    const [photoPreview, setPhotoPreview] = useState(imgprofil); // État pour l'aperçu de la photo
+
+    // Fonction pour récupérer les informations utilisateur depuis Firestore
+    useEffect(() => {
+        const fetchUserProfile = async () => {
+            try {
+                const user = auth.currentUser;
+                if (user) {
+                    const docRef = doc(db, "users-rôles", user.uid); // Utilisation de l'ID de l'utilisateur connecté
+                    const docSnap = await getDoc(docRef);
+
+                    if (docSnap.exists()) {
+                        const userData = docSnap.data();
+                        setProfile({
+                            firstName: userData.prenom || '',
+                            lastName: userData.nom || '',
+                            phoneNumber: userData.number || '',
+                            photo: userData.photoURL || imgprofil,
+                        });
+                        setPhotoPreview(userData.photoURL || imgprofil);
+                    } else {
+                        console.log("Aucune donnée d'utilisateur trouvée.");
+                    }
+                } else {
+                    console.log("Utilisateur non authentifié.");
+                }
+            } catch (error) {
+                console.error("Erreur lors de la récupération du profil utilisateur:", error);
+            }
+        };
+
+        fetchUserProfile();
+    }, []);
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setProfile({
+            ...profile,
+            [name]: value
+        });
     };
 
-    fetchUserProfile();
-  }, [user]);
+    const handlePhotoChange = (e) => {
+        const file = e.target.files[0];
+        setProfile({
+            ...profile,
+            photo: file
+        });
 
-  const handleRoleChange = async () => {
-    if (user && newRole.trim()) {
-      try {
-        const docRef = doc(db, 'users-rôles', user.uid);
-        await updateDoc(docRef, { role: newRole });
-        setDonnee(prev => ({ ...prev, role: newRole }));
-        setNewRole('');
-        alert('Rôle mis à jour avec succès');
-      } catch (error) {
-        setError('Erreur lors de la mise à jour du rôle: ' + error.message);
-      }
-    } else {
-      setError('Veuillez entrer un nouveau rôle.');
-    }
-  };
+        setPhotoPreview(URL.createObjectURL(file));
+    };
 
-  const handlePhotoUpload = async (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      const storageRef = ref(imageDb, `profile_photos/${user.uid}/${file.name}`);
-      const uploadTask = uploadBytesResumable(storageRef, file);
+    const handleSubmit = async (e) => {
+        e.preventDefault();
 
-      uploadTask.on(
-        'state_changed',
-        (snapshot) => {
-          // Optionally, handle progress
-        },
-        (error) => {
-          setError('Erreur lors du téléversement de la photo: ' + error.message);
-        },
-        async () => {
-          try {
-            const url = await getDownloadURL(uploadTask.snapshot.ref);
-            await updateDoc(doc(db, 'users-rôles', user.uid), { photoURL: url });
-            setPhotoURL(url);
-            alert('Photo mise à jour avec succès');
-          } catch (error) {
-            setError('Erreur lors de la mise à jour de la photo: ' + error.message);
-          }
+        try {
+            let photoURL = profile.photo;
+            if (profile.photo && typeof profile.photo !== "string") {
+                const photoRef = ref(storage, `profilePhotos/${Date.now()}_${profile.photo.name}`);
+                await uploadBytes(photoRef, profile.photo);
+                photoURL = await getDownloadURL(photoRef);
+            }
+
+            await setDoc(doc(db, "users-rôles", auth.currentUser.uid), {
+                nom: profile.lastName,
+                prenom: profile.firstName,
+                number: profile.phoneNumber,
+                photoURL,
+            });
+
+            toast.success('Profil mis à jour avec succès !', {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+
+            setPhotoPreview(photoURL);
+
+        } catch (error) {
+            console.error('Erreur lors de la mise à jour du profil:', error);
+            toast.error('Erreur lors de la mise à jour de la photo', {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
         }
-      );
-    }
-  };
+    };
 
-  return (
-    <Container>
-      <Row className="shadow bg-body rounded profile">
-        <Col lg={1} md={1}></Col>
+    return (
+        <div style={{ marginTop: "120px" }}>
+            <Container>
+                <Row className="justify-content-md-center">
+                    <Col md={6} className='imguprofile'>
+                        <img 
+                            src={photoPreview}
+                            alt="Profile"
+                            style={{ width: "50%", height: "75%" }} 
+                        />
+                    </Col>
+                    <Col md={6}>
+                        <h2>Mettre à Jour</h2>
+                        <Form onSubmit={handleSubmit}>
+                            <Form.Group controlId="formFirstName">
+                                <Form.Label>Prénom</Form.Label>
+                                <Form.Control 
+                                    type="text" 
+                                    placeholder="Votre Prénom" 
+                                    name="firstName" 
+                                    value={profile.firstName} 
+                                    onChange={handleChange} 
+                                />
+                            </Form.Group>
 
-        <Col lg={5} md={5}>
-          <div className="profile-img">
-            <img src={photoURL || "image"} alt="Photo de profil" className="profile-photo" />
-           
-          </div>
-          <div className="update-profile-form">
-            <button
-              type="button"
-              onClick={() => navigate('/DashboardAdmin')}
-              className="btn btn-secondary mt-5"
-            >
-              Retour
-            </button>
-          </div>
-        </Col>
+                            <Form.Group controlId="formLastName">
+                                <Form.Label>Nom</Form.Label>
+                                <Form.Control 
+                                    type="text" 
+                                    placeholder="Nom" 
+                                    name="lastName" 
+                                    value={profile.lastName} 
+                                    onChange={handleChange} 
+                                />
+                            </Form.Group>
 
-        <Col lg={5} md={5}>
-          <h1 className="titr_profile mb-4">Mon Profil</h1>
-          <div className="profile-details">
-            {loading ? (
-              <p>Chargement des données...</p>
-            ) : error ? (
-              <p className="text-danger">{error}</p>
-            ) : donnee ? (
-              <div>
-                <p>Prénom: {donnee.prenom}</p>
-                <p>Nom: {donnee.nom}</p>
-                <p>Email: {donnee.email}</p>
-                <p>Téléphone: {donnee.number}</p>
-                <p>Rôle: {donnee.role || 'Non défini'}</p>
-                <input
-              type="file"
-              accept="image/*"
-              onChange={handlePhotoUpload}
-            />
-              </div>
-              
-            ) : (
-              <p>Aucune donnée trouvée.</p>
-            )}
-            
-          </div>
-          <input
-            type="text"
-            placeholder="Nouveau rôle"
-            value={newRole}
-            onChange={(e) => setNewRole(e.target.value)}
-            className="mt-3"
-          />
-          <Button onClick={handleRoleChange} className="mt-3">
-            Mettre à jour le rôle
-          </Button>
-          <Link to="/forgot" className="change-password-button">
-            Modifier mon mot de passe !
-          </Link>
-         
-        </Col>
+                            <Form.Group controlId="formPhoneNumber">
+                                <Form.Label>Numéro de téléphone</Form.Label>
+                                <Form.Control 
+                                    type="text" 
+                                    placeholder="Numéro de téléphone" 
+                                    name="phoneNumber" 
+                                    value={profile.phoneNumber} 
+                                    onChange={handleChange} 
+                                />
+                            </Form.Group>
 
-        <Col lg={1} md={1}></Col>
-      </Row>
-    </Container>
-  );
+                            <Form.Group controlId="formPhoto">
+                                <Form.Label>Photo</Form.Label>
+                                <Form.Control 
+                                    type="file" 
+                                    name="photo" 
+                                    onChange={handlePhotoChange} 
+                                />
+                            </Form.Group>
+
+                            <Button variant="primary" type="submit" className='mt-5'>
+                                Mettre à Jour le Profil
+                            </Button>
+                        </Form>
+                    </Col>
+                </Row>
+                <ToastContainer />
+            </Container>
+        </div>
+    );
 };
 
 export default UpdProfileEtudiant;

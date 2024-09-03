@@ -65,6 +65,7 @@ import Login from "./pages/auth/Login";
 import ForgotPssWrd from "./pages/forgotpasseword/ForgotPssWrd";
 import Registe from './pages/inscription/Registe';
 import Page404 from './Page404';
+import { ToastContainer } from 'react-toastify';
 
 function App() {
   return (
@@ -141,6 +142,7 @@ function App() {
           <Route path="*" element={<Page404 />} />
         </Routes>
       </Router>
+      <ToastContainer />
     </MyContextProvider>
   );
 }
