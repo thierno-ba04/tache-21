@@ -1,9 +1,10 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { MyContextProvider } from './context/MyContext';
 
-// Importations des pages et composants
-import DashboardEtudiant from './pagesEtudiant/dashboard/DashboardEtudiant';
+// Import student components
 import LayoutEtudiant from './layout/LayoutEtudiant';
+import DashboardEtudiant from './pagesEtudiant/dashboard/DashboardEtudiant';
 import Tache from './pagesEtudiant/tache/Tache';
 import Programme from './pagesEtudiant/progamme/Programme';
 import Demande from './pagesEtudiant/demande/Demande';
@@ -19,10 +20,10 @@ import QuizzHtmlcss from './pagesEtudiant/quizzhtmlcss/QuizzHtmlcss';
 import QuizzBootstrap from './pagesEtudiant/quizzbootstrap/QuizzBootstrap';
 import QuizzJavascript from './pagesEtudiant/quizzjavascript/QuizzJavascript';
 import QuizzReact from './pagesEtudiant/quizzreact/QuizzReact';
+import ProfilEtudiant from './ProfilEtudiant';
+import AjouteruneTache from './AjouteruneTache';
 
-import Login from "./pages/auth/Login";
-import ForgotPssWrd from "./pages/forgotpasseword/ForgotPssWrd";
-import Registe from './pages/inscription/Registe';
+// Import admin components
 import LayoutAdmin from './layout/LayoutAdmin';
 import DashboardAdmin from './pages/pageadmine/dashboardadmin/DashboardAdmin';
 import UsersAdmin from "./pages/pageadmine/users/Users"; 
@@ -44,28 +45,38 @@ import AjoutCours from './pages/pageadmine/users/ajoutcours/AjoutCours';
 import AjoutClasse from './pages/pageadmine/users/ajoutclasse/AjoutClasse';
 import UpdateStudent from './pages/pageadmine/users/updateUsers/UpdateStudent';
 import VoixClasse from './pages/pageadmine/users/vuclasse/VoixClasse';
-import Page404 from './Page404';
-import { MyContextProvider } from './context/MyContext';
-import Devoirs from './Devoirs';
-import Relevedenote from './Relevedenote';
-import NotificationAdmin from './NotificationAdmin';
-import FormulaireAjoutEleves from './FormulaireAjoutEleves';
-import DashboardProf from './DashboardCoach';
-import Archived from './pages/pageadmine/dashboardadmin/arhiver/Archived';
 import ArchivePrfs from './pages/pageadmine/users/archiver/ArchivePrfs';
 import AjoutPrfs from './pages/pageadmine/users/ajoutprfs/AjoutPrfs';
 import VoixPrs from './pages/pageadmine/users/voirperso/VoixPrs';
 import UpdatePrsnl from './Updateperso/UpdatePrsnl';
 import EditClasse from './pages/pageadmine/users/modifierclasse/EditClasse';
+import Archived from './pages/pageadmine/dashboardadmin/arhiver/Archived';
+
+// Import professor components
+import DashboardProf from './DashboardCoach';
+import Devoirs from './Devoirs';
+import Relevedenote from './Relevedenote';
+import NotificationAdmin from './NotificationAdmin';
+import FormulaireAjoutEleves from './FormulaireAjoutEleves';
+
+// Import authentication components
+import Login from "./pages/auth/Login";
+import ForgotPssWrd from "./pages/forgotpasseword/ForgotPssWrd";
+import Registe from './pages/inscription/Registe';
+import Page404 from './Page404';
 
 function App() {
   return (
     <MyContextProvider>
       <Router>
         <Routes>
-          {/* Routes pour les étudiants */}
-          {/* <Route element={<PrivateRoute allowedRoles={['student']} />}> */}
 
+          {/* Authentication Routes */}
+          <Route path="/" element={<Login />} />
+          <Route path="/forgot" element={<ForgotPssWrd />} />
+          <Route path="/inscrire" element={<Registe />} />
+
+          {/* Student Routes */}
           <Route element={<LayoutEtudiant />}>
             <Route path="/dashboardetudiant" element={<DashboardEtudiant />} />
             <Route path="/tache" element={<Tache />} />
@@ -83,17 +94,11 @@ function App() {
             <Route path="/quizzbootstrap" element={<QuizzBootstrap />} />
             <Route path="/quizzjavascript" element={<QuizzJavascript />} />
             <Route path="/quizzreact" element={<QuizzReact />} />
+            <Route path="/ProfilEtudiant/:id" element={<ProfilEtudiant />} />
+            <Route path="/AjouteruneTache" element={<AjouteruneTache />} />
           </Route>
-          {/* </Route> */}
 
-
-          {/* Routes pour les admins */}
-          
-          <Route path="/" element={<Login />} />
-          <Route path="/forgot" element={<ForgotPssWrd />} />
-          <Route path="/inscrire" element={<Registe />} />
-
-          {/* <Route element={<PrivateRoute allowedRoles={['admin']} />}> */}
+          {/* Admin Routes */}
           <Route element={<LayoutAdmin />}>
             <Route path="/dashboardadmin" element={<DashboardAdmin />} />
             <Route path="/users" element={<UsersAdmin />} />
@@ -105,7 +110,7 @@ function App() {
             <Route path="/calendar" element={<Calendrier />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/ajoutelv" element={<AjoutElv />} />
-            <Route path="/archived" element={<Archived />}/>
+            <Route path="/archived" element={<Archived />} />
             <Route path="/bulletin" element={<Bulletin />} />
             <Route path="/cours" element={<Cours />} />
             <Route path="/mescours" element={<MesCours />} />
@@ -115,37 +120,28 @@ function App() {
             <Route path="/classe" element={<Classe />} />
             <Route path="/ajoutclasse" element={<AjoutClasse />} />
             <Route path="/classes/voix/:id" element={<VoixClasse />} />
-            <Route path="classes/voixclasse/:id" element={<VoixClasse />} />
-            <Route path="classes/editclasse/:id" element={<EditClasse />} />
-            <Route path="classes/ajoutclss" element={<AjoutClasse />} />
+            <Route path="/classes/editclasse/:id" element={<EditClasse />} />
             <Route path="/voix/:id" element={<Voix />} />
             <Route path="/updateStudent/:id" element={<UpdateStudent />} />
             <Route path="/archivePrfs" element={<ArchivePrfs />} />
             <Route path="/voixprs/:id" element={<VoixPrs />} />
             <Route path="/updateprsnl/:id" element={<UpdatePrsnl />} />
           </Route>
-          {/* </Route> */}
 
-
-          {/* Routes pour les professeurs */}
-          {/* <Route element={<PrivateRoute allowedRoles={['professor']} />}> */}
-
-
-          <Route path="/dashboardProf" element={<DashboardProf />} />
-          {/* <Route path="/elevess" element={<Eleves />} /> */}
+          {/* Professor Routes */}
+          <Route path="/dashboardcoach" element={<DashboardProf />} />
           <Route path="/devoirs" element={<Devoirs />} />
           <Route path="/relevedenote" element={<Relevedenote />} />
           <Route path="/notificationAdmin" element={<NotificationAdmin />} />
           <Route path="/formulaireAjoutEleves" element={<FormulaireAjoutEleves />} />
- 
+
           {/* Route 404 */}
           <Route path="*" element={<Page404 />} />
+          
         </Routes>
       </Router>
     </MyContextProvider>
-    
   );
-  
 }
 
 export default App;

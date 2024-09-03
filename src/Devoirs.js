@@ -2,7 +2,7 @@ import React from "react";
 import Sidebar from "./Sidebar";
 import { Box,  Typography } from "@mui/material";
 import {  createTheme, ThemeProvider } from '@mui/system';
-import {  useNavigate } from "react-router-dom";
+import {  Link, useNavigate } from "react-router-dom";
 import { emphasize, styled } from '@mui/material/styles';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
 import Chip from '@mui/material/Chip';
@@ -12,6 +12,7 @@ import { useState,useEffect,CSSProperties } from "react";
 import ClipLoader from "react-spinners/ClipLoader";
 import DashboardIcon from '@mui/icons-material/Dashboard';
 
+import StudentWorkViewer from "./StudentWorkVierwer";
 
 
 
@@ -138,7 +139,7 @@ const Devoirs= () => {
             <Typography>
             
       <Typography
-      sx={{textAlign:'center',mt:3,mb:5}} >
+      sx={{mt:3,mb:5}} >
       <div style={{ width: '100%' }}>
        <Typography sx={{p:2,textAlign:'justify',mb:5}}> 
       
@@ -161,41 +162,21 @@ const Devoirs= () => {
           label="Devoirs"
           onClick={()=>{navigate('/Devoirs')}}
         />
+        <Link underline="hover" color="inherit" href="/"  onClick={()=>{navigate('/')}}>
+          Dashboard
+        </Link>
+        <Typography color="text.primary">Livraisons</Typography>
       </Breadcrumbs>
     </div>
 
        
          <br/>
        </Typography>
+       <StudentWorkViewer/>
 
 
     </div>
 
-     <Typography sx={{p:5}} className="bg ">
-
-     <ThemeProvider theme={customTheme}>
-      <MyThemeComponent sx={{ m: 1 }} color="primary" variant="dashed" style={{height:400}}>
-        
-      <Box sx={{ textAlign: 'center', m: 1 ,margin:10,}} >
-
-      
-
-       Clickez sur le button pour recuperez les devoirs <br/><br/>
-    
-    <a href={"https://drive.google.com/drive/home?sjid=200973102585411076-EU"}><img src={Img1}  width={35} height={35}/>  </a>
-  
-
-      </Box>
-
-
-
-
-
-      </MyThemeComponent>
-      
-    </ThemeProvider>
-
-    </Typography>
 
 
 

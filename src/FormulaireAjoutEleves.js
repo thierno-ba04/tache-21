@@ -1,11 +1,47 @@
-import React from "react";
-import {db} from "../src/firebase/firebase";
+import React, { useEffect, useState } from "react";
+import {db} from "./firebase/firebase";
 import {addDoc ,collection,doc, getDoc, getDocs} from "firebase/firestore";
 import'./FormulaireAjoutEleves.css'
+import { storage } from "./firebase/firebase";
+import { getDownloadURL, listAll, ref } from "firebase/storage";
+import {v4} from 'uuid';
+import {uploadBytes} from "firebase/storage";
+import { ImageListItem } from "@mui/material";
+
+  
+
+
+const FormulaireAjoutEleves = () => {
+
+	const [img, setImage] = useState('');
+	const [imgUrl, setImgUrl] = useState([]);
 
 
 
-const formulaireAjoutEleves = () => {
+	const handleClick=(e)=>{
+
+	const imageRef = ref(storage,`files/${v4()}`)
+
+	uploadBytes(imageRef,img)
+
+
+	}
+
+	useEffect(()=>{
+
+		listAll(ref(storage,"files")).then( imgs=>{
+			imgs.items.forEach(val => {
+				getDownloadURL(val).then(url=>{
+					setImgUrl(data=>[...data,url])
+				})});
+	
+		})
+	
+		},[])
+
+	
+
+
     const handleAdds =(e)=>{
         e.preventDefault()
     
@@ -73,13 +109,29 @@ const formulaireAjoutEleves = () => {
 										<input class="form-control form-control-lg" type="text" name="niveauclasse"  placeholder="Entrez la classe"/>
 									</div>
 									<br/>
+									<div class="" onClick={handleClick}>
+									< input type="file" onChange={(e) => setImage(e.target.files[0]) } />
+										    <button onClick={handleClick}>Upload</button>
+											</div>
 
-
-
+                                       <br/>
 									<div class="text-center mt-3">
 										 <button type="submit" class="btn btn-lg btn-primary">Ajouter un Elève</button> 
+										 {
+          imgUrl.map(dataval=><div>
+          <img src={dataval} height="200px" width="200px"/>
+
+		  </div>)
+
+
+		}
+
+									
 									</div>
 								</form>
+
+
+
 							</div>
 						</div>
 					</div>
@@ -94,5 +146,4 @@ const formulaireAjoutEleves = () => {
 
       );
 }
- 
-export default formulaireAjoutEleves;
+export default FormulaireAjoutEleves;

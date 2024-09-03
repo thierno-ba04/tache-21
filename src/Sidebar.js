@@ -276,7 +276,7 @@ export default function Sidebar() {
               </ListItemButton>
             </ListItem>
 
-            <ListItem  disablePadding sx={{ display: 'block' }} onClick={()=>{navigate('/Elevess')}}>
+            <ListItem  disablePadding sx={{ display: 'block' }} onClick={()=>{navigate('/formulaireAjoutEleves')}}>
               <ListItemButton
                 sx={{
                   minHeight: 48,
@@ -296,7 +296,7 @@ export default function Sidebar() {
                 >
                   <PeopleAltIcon/> 
                 </ListItemIcon>
-                <ListItemText primary="Elèves" sx={{ opacity: open ? 1 : 0 ,color:'white'}} />
+                <ListItemText primary="Etudiants" sx={{ opacity: open ? 1 : 0 ,color:'white'}} />
               </ListItemButton>
             </ListItem>
 
@@ -321,7 +321,7 @@ export default function Sidebar() {
                   <LibraryBooksIcon/>
 
                 </ListItemIcon>
-                <ListItemText primary="Devoirs" sx={{ opacity: open ? 1 : 0,color:'white' }} />
+                <ListItemText primary="Livraisons" sx={{ opacity: open ? 1 : 0,color:'white' }} />
               </ListItemButton>
             </ListItem>
 

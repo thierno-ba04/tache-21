@@ -8,11 +8,49 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import ClipLoader from "react-spinners/ClipLoader";
 import { useNavigate } from "react-router-dom";
+import { Box, Typography} from "@mui/material";
+import { Avatar } from '@mui/material';
+import Stack from '@mui/material/Stack';
+import IconButton from '@mui/material/IconButton';
+import Img from"./1.jpg";
+import dayjs from 'dayjs';
+import Button from '@mui/material/Button';
+import Modal from '@mui/material/Modal';
+import {  useNavigate, useParams } from "react-router-dom";
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
 import { emphasize, styled } from '@mui/material/styles';
 import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 import'./Notification.css';
 import { useState, useEffect} from "react";
 import ClipLoader from "react-spinners/ClipLoader";
+import Autocomplete from '@mui/material/Autocomplete';
+import TextField from '@mui/material/TextField';
+import {addDoc ,collection,doc, getDoc, getDocs} from "firebase/firestore";
+import {database} from "./firebase";
+import'./Eleves.css';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import ProfilEtudiant from "./ProfilEtudiant";
+import { Link } from 'react-router-dom';
+import DeleteIcon from '@mui/icons-material/Delete';
+import AutoFixHighIcon from '@mui/icons-material/AutoFixHigh';
+import { BsEraser } from "react-icons/bs";
+
+
+
+
+const Notification = ({ message, onClose }) => {
+  return (
+    <div className="notification">
+      <span>{message}</span>
+      <button className="notification-close" onClick={onClose}>&times;</button>
+    </div>
+  );
+};
+
+
 
 
 const Notification = ({ message, onClose }) => (
@@ -75,6 +113,9 @@ const override: CSSProperties = {
 
 const Eleves = () => {
 
+  const{id}=useParams();
+  const[data,setData]=useState([]);
+
   const [loading, setLoading] = useState(false);
   useEffect(()=>{
     setLoading(true)
@@ -82,6 +123,29 @@ const Eleves = () => {
       setLoading(false)
     },3000)
   },[])
+
+  useEffect(()=>{
+    const getvalue =async()=>{
+      const val = doc(database, "eleves",'posts')
+      const collectinval =collection(val,"feedbacks")
+     
+      const getvalue = await getDocs(collectinval)
+      setData(getvalue.docs.map((doc)=>({...doc.data(),id:doc.id})))
+  
+     }
+     getvalue()
+  
+  },[]);
+
+
+
+
+const hanledelete =async(id)=>{
+
+  const deleval=doc(database,"eleves",id)
+  setData(data.filter((item)=>item.id!==id))}
+
+  
   
 
   const [showNotification, setShowNotification] = React.useState(false);
@@ -116,200 +180,9 @@ const Eleves = () => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const columns = [
-    {
-      field: 'photoULR',
-      headerName: 'Profil',
-      width: 90,
-      renderCell: () => <Avatar src={Img} sx={{ mt: 1 }} />,
-      sortable: false,
-      filterrable: false
-    },
-    { field: 'Nom', headerName: 'Nom', width: 130 },
-    { field: 'Prenom', headerName: 'Prenom', width: 130 },
-  
-  
-    { field: 'Mail',headerName: 'mail', width: 230 },
-    {
-      field: 'Numero',
-      headerName: 'Numero',
-      type: 'number',
-      width: 120,
-      editable: true,
-    },
-  
-    { field: 'Adresse',headerName: 'Adresse', width: 150 },
-  
-    { field: 'Statut',headerName: 'statut', width: 150 },
-    
-    { field: 'Actions',
-    headerName: 'Liste de presence', 
-    renderCell: (params) =>  
-    
-<Stack spacing={0} direction="row">
 
-<div>
-  <IconButton sx={{fontSize:30,ml: 3}} onClick={handleOpen} ><FormatListBulletedIcon/></IconButton> 
-        <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box sx={style}>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
-          <LocalizationProvider dateAdapter={AdapterDayjs} >
-      <DemoContainer components={['DatePicker', 'DatePicker']} >
-        <DatePicker
-          
-          label="Controlled picker"
-          value={value}
-          onChange={(newValue) => setValue(newValue)}
-        />
-      </DemoContainer>
-    </LocalizationProvider>
-          </Typography>
-       
-       <br/>
-          <Typography>
-
-               <Box sx={{ minWidth: 120 }}>
-      <FormControl sx={{width:245}}>
-        <InputLabel id="demo-simple-select-label">presence</InputLabel>
-        <Select
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
-          value={listpresence}
-          label="liste presence"
-          onChange={handleChange}
-        >
-          <MenuItem value={'Présent'}>Présent</MenuItem>
-          <MenuItem value={'Absent'}>Absent</MenuItem>
-        </Select>
-      </FormControl>
-    </Box>
-
-          </Typography>
-
-
-
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-    
-          
-    
-      <button onClick={() => displayNotification(' Enregistrer avec succes!')}>
-        envoyer
-      </button>
-
-      {showNotification && (
-        <Notification
-          message={notificationMessage}
-          onClose={() => setShowNotification(false)}
-        />
-      )}
-    
-          </Typography>
-        </Box>
-      </Modal>
-    </div>
-
-
-
-  
-  
-  </Stack>,
-  
-    width: 150},
-
-  
-  
-  ];
-
-  const rows = [
-    { id: 1, Nom: 'Snow', 
-    Prenom: 'Gervais',
-  
-    Mail: 'akoinenzegervais7@gmail.com',
-    Numero:771001897,
-     Adresse:'zone captage',
-     Statut:'prof anglais',
-     age:771001897 
-    },
-    
-    { id: 2, Nom: 'Lannister', 
-    Prenom: 'Gervais',
-  
-    Mail: 'akoinenzegervais7@gmail.com',
-    Numero: 771001897,
-    Adresse:'zone captage',
-    Statut:'prof anglais'
-  },
-  
-    { id: 3, Nom: 'Lannister',
-    Prenom: 'Gervais',
-  
-     Mail: 'akoinenzegervais7@gmail.com',
-     Numero: '771001897',
-     Adresse:'zone captage',
-     Statut:'prof anglais'
-    },
-  
-    { id: 4, Nom: 'Stark', 
-    Prenom: 'Gervais',
-  
-    Mail: 'akoinenzegervais7@gmail.com',
-    Numero: 771001897,
-    Adresse:'zone captage',
-    Statut:'prof anglais'
-  },
-  
-  
-    { id: 5, Nom: 'Targaryen',
-    Prenom: 'Gervais',
-  
-     Mail: 'akoinenzegervais7@gmail.com',
-     Numero: 771001897,
-     Adresse:'zone captage',
-     Statut:'prof anglais' },
-  
-    { id: 6, Nom: 'Melisandre',
-    Prenom: 'Gervais',
-  
-     Mail:'akoinenzegervais7@gmail.com',
-     Numero: 771001897,
-     Adresse:'zone captage',
-     Statut:'prof anglais'},
-  
-    { id: 7, Nom: 'Clifford',
-    Prenom: 'Gervais',
-  
-    Mail: 'akoinenzegervais7@gmail.com',
-    Numero: 771001897,
-    Adresse:'zone captage',
-    Statut:'prof anglais'
-  },
-  
-    { id: 8, Nom: 'Frances',
-    Prenom: 'Gervais',
-  
-     Mail: 'akoinenzegervais7@gmail.com',
-     Numero: 771001897,
-     Adresse:'zone captage',
-     Statut:'prof anglais'
-    },
-  
-    { id: 9, Nom: 'Nze',
-    Prenom: 'Gervais',
-    Mail: 'akoinenzegervais7@gmail.com',
-    Numero: 771001897,
-    Adresse:'zone captage',
-    Statut:'prof anglais' 
-  },
-    
-  ];
     return ( 
-
-
+       
       <div>
 
 
@@ -343,12 +216,11 @@ const Eleves = () => {
 
        <div role="presentation">
       <Breadcrumbs aria-label="breadcrumb">
-        <StyledBreadcrumb
-           sx={{p:2,borderRadius:2}}
-          component="a"
-          href="#"
-          label="Tableau de bord"
-          onClick={()=>{navigate('/')}}
+        <a underline="hover"  href="/" style={{textDecoration:"none",color:'black'}} onClick={()=>{navigate('/')}}>
+          Dashboard
+        </a>
+        <Typography color="text.primary">Etudiants</Typography>
+
 
           icon={<DashboardIcon fontSize="small" />}
         />
@@ -365,18 +237,76 @@ const Eleves = () => {
    </Typography>
 
 
-      <DataGrid  sx={{m:5}}
-        rows={rows}
-        columns={columns}
-        
-        initialState={{
-   
-          pagination: {
-            paginationModel: { page: 0, pageSize: 5 },
-          },
-        }}
-        pageSizeOptions={[5, 10]}  
-      />
+
+
+<div class="container">
+
+    <div class="row">
+        <div class="col-12 mb-3 mb-lg-5">
+            <div class="overflow-hidden card table-nowrap table-card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0"></h5>
+                    <Button variant="contained" sx={{float:"rigth",mb:1,}} onClick={()=>{Navigate('/FormulaireAjoutEleves')}} >Ajouter</Button>
+
+                </div>
+                <div class="table-responsive">
+                    <table class="table mb-0">
+                        <thead class="small text-uppercase bg-body text-muted " >
+                            <tr>
+                                <th class="text-start">Name</th>
+                                <th >Email</th>
+                                <th>Adresse</th>
+                                <th>Numero</th>
+                                <th>Niveau classe</th>
+                                <th class="text-end">Action</th>
+                            </tr>
+                        </thead>
+
+    {data.map((applicant) => (
+
+  
+                                <tbody key={applicant.id} >
+                            <tr class="align-middle">
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="avatar sm rounded-pill me-3 flex-shrink-0" alt="Customer"/>
+                                        <div>
+                                            <div class="h6 mb-0 lh-1">{applicant.nom}</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>{applicant.email}</td>
+                                <td> <span class="d-inline-block align-middle">{applicant.adresse}</span></td>
+                                <td><span>{applicant.numero}</span></td>
+                                <td>{applicant.niveauclasse}</td>
+                                <td class="text-end">
+                                    <div class="drodown">
+                                   <Link to={`/ProfilEtudiant/${applicant.id}`}><IconButton ><VisibilityIcon/></IconButton></Link>
+                                   <IconButton ><DeleteIcon/></IconButton>
+                                   <IconButton ><BsEraser/></IconButton>
+
+
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+
+
+
+
+
+  
+
+    ))}
+  
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
       <br/>
     </div>
 

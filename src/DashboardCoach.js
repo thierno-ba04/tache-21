@@ -114,7 +114,7 @@ useEffect(()=>{
           component="a"
           href="#"
           label="Tableau de bord"
-          onClick={()=>{navigate('/')}}
+          onClick={()=>{navigate('/dashboardcoach')}}
          
           icon={<DashboardIcon fontSize="small" />}
         />
