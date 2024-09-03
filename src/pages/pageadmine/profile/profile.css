@@ -1,10 +1,10 @@
 .profiles{
     display: flex;
-    margin: auto;
+    /* margin: auto; */
 
     justify-content: center;
     align-items: center;
-    padding: 40px;
+    padding: 30px;
     width: 80%;
     margin-top: 3rem;
 }

@@ -79,11 +79,11 @@ function AjoutPrfs() {
   return (
     <Container>
       <Row className="justify-content-center">
-        <div className="laclasses">
-          <h2 className="mt-0">Le Personnels</h2>
+        <div className="laclasses mt-5">
+          <h2 className="mt-2">Le Personnels</h2>
         </div>
         <Col lg={10} md={10} className="addetudiant">
-          <h2>Ajouter un Professeur</h2>
+          <h2>Ajouter un Coach</h2>
           <Form onSubmit={handleSubmit}>
             <Row>
               <Col md={6}>
