@@ -78,7 +78,7 @@ const AjoutElv = (props) => {
   return (
     <Container>
       <Row className="justify-content-center">
-        <div className="laclasses">
+        <div className="laclasses mt-5">
           <h2 className="mt-2">Les élèves de la classe</h2>
         </div>
         <Col md={10} className="addetudiant">
