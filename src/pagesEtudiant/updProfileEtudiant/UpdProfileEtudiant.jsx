@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
 import { Col, Container, Row, Form, Button } from 'react-bootstrap';
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
-import { storage, db } from '../../firebase/firebase'; // Importer Firestore et Storage depuis votre fichier Firebase
-import { doc, setDoc, getDoc } from "firebase/firestore"; // Importer Firestore pour gérer les documents
+import { storage, db, auth } from '../../firebase/firebase'; // Assurez-vous que auth est importé
+import { doc, setDoc, getDoc } from "firebase/firestore";
 import imgprofil from "../../assets/img/téléchargement.jpg";
-import { toast, ToastContainer } from 'react-toastify'; // Importer react-toastify
-import 'react-toastify/dist/ReactToastify.css'; // Importer les styles de react-toastify
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import "./updProfileEtudiant.css";
 
 const UpdProfileEtudiant = () => {
@@ -18,31 +18,36 @@ const UpdProfileEtudiant = () => {
 
     const [photoPreview, setPhotoPreview] = useState(imgprofil); // État pour l'aperçu de la photo
 
-    // Fonction pour récupérer l'URL de la photo depuis Firestore au chargement du composant
+    // Fonction pour récupérer les informations utilisateur depuis Firestore
     useEffect(() => {
-        const fetchPhoto = async () => {
+        const fetchUserProfile = async () => {
             try {
-                const docRef = doc(db, "users", "userId"); // Remplacez "userId" par l'identifiant de l'utilisateur
-                const docSnap = await getDoc(docRef);
+                const user = auth.currentUser;
+                if (user) {
+                    const docRef = doc(db, "users-rôles", user.uid); // Utilisation de l'ID de l'utilisateur connecté
+                    const docSnap = await getDoc(docRef);
 
-                if (docSnap.exists()) {
-                    const userData = docSnap.data();
-                    if (userData.photoURL) {
-                        setProfile((prevState) => ({
-                            ...prevState,
-                            photo: userData.photoURL
-                        }));
-                        setPhotoPreview(userData.photoURL);
+                    if (docSnap.exists()) {
+                        const userData = docSnap.data();
+                        setProfile({
+                            firstName: userData.prenom || '',
+                            lastName: userData.nom || '',
+                            phoneNumber: userData.number || '',
+                            photo: userData.photoURL || imgprofil,
+                        });
+                        setPhotoPreview(userData.photoURL || imgprofil);
+                    } else {
+                        console.log("Aucune donnée d'utilisateur trouvée.");
                     }
                 } else {
-                    console.log("Aucune photo trouvée.");
+                    console.log("Utilisateur non authentifié.");
                 }
             } catch (error) {
-                console.error("Erreur lors de la récupération de la photo:", error);
+                console.error("Erreur lors de la récupération du profil utilisateur:", error);
             }
         };
 
-        fetchPhoto();
+        fetchUserProfile();
     }, []);
 
     const handleChange = (e) => {
@@ -57,10 +62,9 @@ const UpdProfileEtudiant = () => {
         const file = e.target.files[0];
         setProfile({
             ...profile,
-            photo: file  // Stocker le fichier objet dans l'état
+            photo: file
         });
 
-        // Créer une URL d'aperçu de l'image et la stocker dans l'état photoPreview
         setPhotoPreview(URL.createObjectURL(file));
     };
 
@@ -68,39 +72,32 @@ const UpdProfileEtudiant = () => {
         e.preventDefault();
 
         try {
+            let photoURL = profile.photo;
             if (profile.photo && typeof profile.photo !== "string") {
                 const photoRef = ref(storage, `profilePhotos/${Date.now()}_${profile.photo.name}`);
-                
-                // Télécharger la photo sur Firebase Storage
                 await uploadBytes(photoRef, profile.photo);
-
-                // Récupérer l'URL de la photo
-                const photoURL = await getDownloadURL(photoRef);
-
-                // Mettre à jour l'état avec l'URL de la photo
-                setProfile({
-                    ...profile,
-                    photo: photoURL
-                });
-
-                setPhotoPreview(photoURL); // Mettre à jour l'aperçu avec l'URL stockée
-
-                // Enregistrer l'URL dans Firestore
-                await setDoc(doc(db, "users", "userId"), { photoURL }); // Remplacez "userId" par l'identifiant de l'utilisateur
-
-                // Afficher une notification de succès
-                toast.success('Photo mise à jour avec succès !', {
-                    position: "top-right",
-                    autoClose: 3000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                });
-
-                console.log('Profil mis à jour:', profile);
+                photoURL = await getDownloadURL(photoRef);
             }
+
+            await setDoc(doc(db, "users-rôles", auth.currentUser.uid), {
+                nom: profile.lastName,
+                prenom: profile.firstName,
+                number: profile.phoneNumber,
+                photoURL,
+            });
+
+            toast.success('Profil mis à jour avec succès !', {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+
+            setPhotoPreview(photoURL);
+
         } catch (error) {
             console.error('Erreur lors de la mise à jour du profil:', error);
             toast.error('Erreur lors de la mise à jour de la photo', {
@@ -121,8 +118,8 @@ const UpdProfileEtudiant = () => {
                 <Row className="justify-content-md-center">
                     <Col md={6} className='imguprofile'>
                         <img 
-                            src={photoPreview} // Utiliser l'URL de l'aperçu stockée dans l'état
-                            alt="Profile" 
+                            src={photoPreview}
+                            alt="Profile"
                             style={{ width: "50%", height: "75%" }} 
                         />
                     </Col>
@@ -177,7 +174,7 @@ const UpdProfileEtudiant = () => {
                         </Form>
                     </Col>
                 </Row>
-                <ToastContainer /> {/* Ajouter le conteneur de Toast */}
+                <ToastContainer />
             </Container>
         </div>
     );

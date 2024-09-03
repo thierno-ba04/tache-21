@@ -252,7 +252,7 @@ export default function Sidebar() {
           </IconButton>
         </DrawerHeader>
         <List>
-            <ListItem  disablePadding sx={{ display: 'block' } }  onClick={()=>{navigate('/dashboardProf')}}>
+            <ListItem  disablePadding sx={{ display: 'block' } }  onClick={()=>{navigate('/dashboardcoach')}}>
               <ListItemButton
                 sx={{
                   minHeight: 48,
