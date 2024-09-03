@@ -22,7 +22,7 @@ function Professeurs() {
       <Col lg={1} md={1} className="mt-2"></Col>
           <Col lg={4} md={4}>
             <div className="bulletin">
-              <p>dashboard / Professeurs</p>
+              <p>dashboard / Utilisateurs</p>
             </div>
           </Col>
           </Row>
@@ -52,7 +52,7 @@ function Professeurs() {
               onClick={() => handleShowContent('coursprfs')}
               style={{ cursor: 'pointer' }}
             >
-              Cours
+              Domaines
             </Link>
           </div>
         </Col>

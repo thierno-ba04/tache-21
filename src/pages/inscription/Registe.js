@@ -18,37 +18,39 @@ function Registe() {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
+  const [role, setRole] = useState('etudiant'); // Valeur par défaut
   const navigate = useNavigate();
 
   const isFormValid = nom !== '' && prenom !== '' && email !== '' && number !== '' && password !== '' && password === confirmPassword;
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+
     if (password !== confirmPassword) {
       setError("Les mots de passe ne correspondent pas.");
       return;
     }
+
     try {
       // Crée un nouvel utilisateur avec email et mot de passe
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
 
       // Stocke des informations supplémentaires dans Firestore
-      await setDoc(doc(db, "admins", user.uid), {
+      await setDoc(doc(db, "users-rôles", user.uid), {
         nom,
         prenom,
         email,
         number,
-        password
-        // Ajouter d'autres champs si nécessaire
+        role
       });
 
-      navigate('/'); // Redirige l'utilisateur après l'inscription
+      // Redirige vers la page de connexion après l'inscription
+      navigate('/');
     } catch (error) {
       setError(error.message);
     }
   };
-
   return (
     <div>
       <Container fluid>
@@ -123,6 +125,25 @@ function Registe() {
                   onChange={(e) => setPassword(e.target.value)}
                 />
               </Col>
+
+<div className="md-3">
+  <Col className="form-control border-0">
+    <div className="icone3 ps-2">
+      <MdOutlinePermIdentity className="" />
+    </div>
+    <select
+      className="input rounded-pill"
+      value={role}
+      onChange={(e) => setRole(e.target.value)}
+    >
+      <option value="etudiant">Étudiant</option>
+      <option value="coach">Coach</option>
+      <option value="admin">Administrateur</option>
+    </select>
+  </Col>
+</div>
+
+
               <Col className="form-control border-0">
                 <div className="icone6 ps-3">
                   <FiKey />

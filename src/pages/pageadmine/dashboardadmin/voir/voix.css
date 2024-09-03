@@ -1,5 +1,5 @@
-.Détails{
-    width: 85%;
+.détails{
+    width: 100%;
     height: 65vh;
     margin: auto;
 }
@@ -7,7 +7,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 9rem;
+    margin-top: 5rem;
     color: #179fd4;
     font-weight: 600;
     padding-top: 20px;
@@ -18,6 +18,14 @@
     align-items: center;
     margin-top: 2rem;
 }
-.btnvoir{
-    margin-top: 20px;
+.student-details .detail-item{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: start;
 }
+.btnvoir{
+    display: flex;
+    margin-top: 1rem;
+    justify-content: center;
+}
+

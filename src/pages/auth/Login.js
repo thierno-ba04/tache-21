@@ -6,7 +6,8 @@ import { IoMailOutline } from 'react-icons/io5';
 import { FiKey } from 'react-icons/fi';
 import imglearning from '../../assets/img/education-technology-logo-design-vector.jpg';
 import { toast } from 'react-toastify';
-import { auth, signInWithEmailAndPassword } from '../../firebase/firebase';
+import { doc, getDoc } from 'firebase/firestore';
+import { auth, db, signInWithEmailAndPassword } from '../../firebase/firebase';
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -23,10 +24,34 @@ function Login() {
 
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      // Redirect to the dashboard upon successful login
-      navigate('/dashboardadmin');
+      const user = auth.currentUser;
+
+      if (user) {
+        // Récupérer le document utilisateur depuis Firestore
+        const userRef = doc(db, 'users-rôles', user.uid);
+        const userDoc = await getDoc(userRef);
+        
+        if (userDoc.exists()) {
+          const role = userDoc.data().role;
+          switch (role) {
+            case 'admin':
+              navigate('/dashboardadmin');
+              break;
+            case 'coach':
+              navigate('/dashboardcoach');
+              break;
+            case 'etudiant':
+              navigate('/dashboardetudiant');
+              break;
+            default:
+              navigate('/'); // Page d'accueil ou erreur
+              break;
+          }
+        } else {
+          navigate('/'); // Page d'accueil ou erreur si utilisateur non trouvé
+        }
+      }
     } catch (error) {
-      // Handle different error codes and show appropriate messages
       let errorMessage = 'Une erreur est survenue. Veuillez réessayer.';
       switch (error.code) {
         case 'auth/wrong-password':

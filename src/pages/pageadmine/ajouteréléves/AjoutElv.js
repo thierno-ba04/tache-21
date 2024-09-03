@@ -1,102 +1,140 @@
-import React from 'react';
-import { useForm } from 'react-hook-form';
+import React, { useState } from 'react';
+import { addDoc, collection } from 'firebase/firestore';
 import { Container, Row, Col, Button, Form } from 'react-bootstrap';
 import { TbSelector } from 'react-icons/tb';
-import { useMyContext } from '../../../context/MyContext';
+import { db, imageDb } from '../../../firebase/firebase';
+import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { v4 } from 'uuid';
+import { Link, useNavigate } from 'react-router-dom';
 import './ajoutelv.css';
-import { useNavigate } from 'react-router-dom';
 
-function AjoutElv() {
-  const { register, handleSubmit, formState: { errors }, setValue } = useForm();
-  const { addStudent } = useMyContext();
+const AjoutElv = (props) => {
+  const [img, setImg] = useState(null);
   const navigate = useNavigate(); 
 
-  const onSubmit = async (data) => {
+  const [newTable, setNewTable] = useState({
+    Nom: '',
+    Prenom: '',
+    Mail: '',
+    Genre: '',
+    Adress: '',
+    Niveau_classe: '',
+  });
+
+  const handleChange = (e) => {
+    setNewTable({ ...newTable, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const { Nom, Prenom, Mail, Genre, Adress, Niveau_classe } = newTable;
+
+    // Vérification des champs vides
+    if (!Nom || !Prenom || !Mail || !Genre || !Adress || !Niveau_classe) {
+      toast.error('Veuillez remplir tous les champs', {
+        position: 'top-center',
+      });
+      return;
+    }
+
     try {
-      // Traiter le téléchargement de la photo si nécessaire
-      let photoURL = '';
-      if (data.photo && data.photo[0]) {
-        // Ajoutez ici le code pour uploader la photo et obtenir l'URL
-        // Exemple : photoURL = await uploadPhoto(data.photo[0]);
+      let imgUrl = null;
+
+      // Upload image s'il existe et puis obtenir l'URL
+      if (img) {
+        const imgRef = ref(imageDb, `files/${v4()}`);
+        const uploadResult = await uploadBytes(imgRef, img);
+        imgUrl = await getDownloadURL(uploadResult.ref);
       }
 
-      // Préparer les données de l'étudiant
-      const studentData = { ...data, photoURL };
-      
+      // Ajouter le document dans Firebase
+      await addDoc(collection(db, 'students'), {
+        Nom,
+        Prenom,
+        Mail,
+        Genre,
+        Adress,
+        Niveau_classe,
+        imgUrl,
+      });
 
-      // Ajouter l'étudiant via le contexte
-      if (addStudent) {
-        await addStudent(studentData); // Attendre la réponse si nécessaire
-        navigate('/dashboardadmin'); 
-      } else {
-        console.error('addStudent function is not available');
-      }
+      toast.success('Utilisateur ajouté avec succès', {
+        position: 'top-center',
+      });
+      setTimeout(() => {
+        navigate('/dashboardadmin');
+      }, 1000);
     } catch (error) {
-      console.error('Erreur lors de l\'ajout de l\'élève :', error);
+      console.error('Erreur lors de l\'ajout :', error);
+      toast.error('Erreur lors de l\'ajout de l\'utilisateur', {
+        position: 'top-center',
+      });
     }
   };
 
   return (
     <Container>
       <Row className="justify-content-center">
-        <div className='laclasses'>
-          <h2 className='mt-2'>Les élèves de la classe</h2>
+        <div className="laclasses">
+          <h2 className="mt-2">Les élèves de la classe</h2>
         </div>
-        <Col md={10} className='addetudiant'>
+        <Col md={10} className="addetudiant">
           <h2>Ajouter un Élève</h2>
-          <Form onSubmit={handleSubmit(onSubmit)}>
+          <Form onSubmit={handleSubmit}>
             <Row>
               <Col md={6}>
                 <Form.Group controlId="formName">
                   <Form.Label>Nom</Form.Label>
                   <Form.Control 
-                    className='forme-input'
+                    className="forme-input"
                     type="text"
-                    placeholder="Entrez le nom"
-                    {...register('lastName', { required: 'Nom est requis' })}
-                    isInvalid={!!errors.lastName}
+                    name="Nom"
+                    id="Nom"
+                    value={newTable.Nom}
+                    onChange={handleChange}
+                    placeholder="Nom"
                   />
-                  <Form.Control.Feedback type="invalid">
-                    {errors.lastName?.message}
-                  </Form.Control.Feedback>
                 </Form.Group>
 
                 <Form.Group controlId="formFirstName">
                   <Form.Label>Prénom</Form.Label>
                   <Form.Control 
-                    className='forme-input'
+                    className="forme-input"
                     type="text"
-                    placeholder="Entrez le prénom"
-                    {...register('firstName', { required: 'Prénom est requis' })}
-                    isInvalid={!!errors.firstName}
+                    name="Prenom"
+                    id="Prenom"
+                    value={newTable.Prenom}
+                    onChange={handleChange}
+                    placeholder="Prénom"
                   />
-                  <Form.Control.Feedback type="invalid">
-                    {errors.firstName?.message}
-                  </Form.Control.Feedback>
                 </Form.Group>
 
                 <Form.Group controlId="formEmail">
                   <Form.Label>Mail</Form.Label>
                   <Form.Control 
-                    className='forme-input'
+                    className="forme-input"
                     type="email"
-                    placeholder="Entrez votre mail"
-                    {...register('email', { required: 'E-mail est requise' })}
-                    isInvalid={!!errors.email}
+                    name="Mail"
+                    id="Mail"
+                    value={newTable.Mail}
+                    onChange={handleChange}
+                    placeholder="Entrer votre mail"
                   />
-                  <Form.Control.Feedback type="invalid">
-                    {errors.email?.message}
-                  </Form.Control.Feedback>
                 </Form.Group>
 
                 <Form.Group controlId="formGender">
                   <Form.Label>Genre</Form.Label>
                   <div className="select-container">
                     <Form.Control 
-                      className='forme-input select-input'
+                      className="forme-input select-input"
                       as="select"
-                      {...register('gender', { required: 'Genre est requis' })}
-                      isInvalid={!!errors.gender}
+                      name="Genre"
+                      id="Genre"
+                      value={newTable.Genre}
+                      onChange={handleChange}
                     >
                       <option value="">Choisissez...</option>
                       <option value="male">Homme</option>
@@ -104,9 +142,6 @@ function AjoutElv() {
                     </Form.Control>
                     <TbSelector className="select-icon" />
                   </div>
-                  <Form.Control.Feedback type="invalid">
-                    {errors.gender?.message}
-                  </Form.Control.Feedback>
                 </Form.Group>
               </Col>
 
@@ -115,62 +150,75 @@ function AjoutElv() {
               </Col>
 
               <Col md={5}>
-                <Form.Group controlId="formBirthPlace">
-                  <Form.Label>Lieu de naissance</Form.Label>
+                <Form.Group controlId="formAddress">
+                  <Form.Label>Adresse</Form.Label>
                   <Form.Control 
-                    className='forme-input'
+                    className="forme-input"
                     type="text"
-                    placeholder="Entrez le lieu de naissance"
-                    {...register('birthPlace', { required: 'Lieu de naissance est requis' })}
-                    isInvalid={!!errors.birthPlace}
+                    name="Adress"
+                    id="Adress"
+                    value={newTable.Adress}
+                    onChange={handleChange}
+                    placeholder="Entrer l'adresse"
                   />
-                  <Form.Control.Feedback type="invalid">
-                    {errors.birthPlace?.message}
-                  </Form.Control.Feedback>
                 </Form.Group>
 
                 <Form.Group controlId="formGrade">
                   <Form.Label>Niveau de classe</Form.Label>
                   <div className="select-container">
                     <Form.Control 
-                      className='forme-input select-input'
+                      className="forme-input select-input"
                       as="select"
-                      {...register('grade', { required: 'Niveau de classe est requis' })}
-                      isInvalid={!!errors.grade}
+                      name="Niveau_classe"
+                      id="Niveau_classe"
+                      value={newTable.Niveau_classe}
+                      onChange={handleChange}
                     >
                       <option value="">Choisissez...</option>
-                      <option value="3eme">3ème</option>
-                      <option value="2nde">2nde</option>
-                      <option value="1ere">1ère</option>
-                      <option value="Terminale">Terminale</option>
+                      <option value="Licence1">Licence1</option>
+                      <option value="Licence2">Licence2</option>
+                      <option value="Licence3">Licence3</option>
+                      <option value="Master">Master</option>
                     </Form.Control>
                     <TbSelector className="select-icon" />
                   </div>
-                  <Form.Control.Feedback type="invalid">
-                    {errors.grade?.message}
-                  </Form.Control.Feedback>
                 </Form.Group>
-
                 <Form.Group controlId="formPhoto">
                   <Form.Label>Photo</Form.Label>
                   <Form.Control 
-                    className='forme-input'
+                    className="forme-input"
                     type="file"
                     accept="image/*"
-                    onChange={(e) => setValue('photo', e.target.files[0])}
+                    onChange={(e) => setImg(e.target.files[0])}       
                   />
                 </Form.Group>
-
-                <Button variant="primary" type="submit" className="add-btn-container">
-                  Ajouter
-                </Button>
+                <div className="d-flex add_ajouts">
+                  <Button variant="primary" type="submit" className="mt-4">
+                    Ajouter
+                  </Button>
+                  <Link to="/dashboardAdmin">
+                    <Button variant="secondary" className=" mt-4">Go Back</Button>
+                  </Link>
+                </div>
               </Col>
             </Row>
           </Form>
         </Col>
       </Row>
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        style={{ width: 'auto', textAlign: 'center' }}
+      />
     </Container>
   );
-}
+};
 
 export default AjoutElv;

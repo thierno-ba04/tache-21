@@ -26,12 +26,12 @@ function Eleves() {
         <Col lg={1} md={1} className=""></Col>
 
         <Col lg={5} md={5} className="">
-          <h2>Cours</h2>
+          <h2>Programmes</h2>
           <Card>
             <Card.Img variant="top" src={imgbcours} className="imgeleves" />
             <Link to="/cours">
             <Card.Body>
-              <Button variant="primary">Voir mes cours</Button>
+              <Button variant="primary">Voir mes programmes</Button>
             </Card.Body>
             </Link>
           </Card>

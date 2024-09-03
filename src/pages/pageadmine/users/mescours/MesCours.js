@@ -13,7 +13,7 @@ function MesCours() {
 
     <Row>
       <div className="courstitre">
-        <h3>Lites des cours</h3>
+        <h3>Lites des Programmes</h3>
       </div>
           <Col lg={6} md={6} className="courshtml">
           <div className="divmescours">

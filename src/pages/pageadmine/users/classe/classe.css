@@ -2,23 +2,12 @@
     display:flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 30px;
 }
-.classe h6{
+ .h6{
+  margin-top: 6rem;
+
    color: #179fd4;
     font-weight: 600; 
     font-size: 1.5rem;
 }
-.DataGrid{
-    width: 100%;
-}
-
-.MuiDataGrid-columnHeader {
-    background-color: #179fd4;
-    color: white;
-  }
-  
-  .MuiDataGrid-columnHeaderTitle {
-    font-weight: bold;
-  }
   

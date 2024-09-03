@@ -43,12 +43,19 @@
     overflow: hidden; 
 }
 
-.add-btn-container {
+.add_ajouts{
     display: flex;
-    justify-content: flex-end; 
-    margin-top: 1rem; 
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
 }
 
-.add-btn-container button {
-    margin: 0;
-}
+/* .add-btn-container {
+    display: flex;
+    justify-content: center; 
+    margin-top: 1rem; 
+} */
+
+/* .add-btn-container button {
+    margin-right: auto;
+} */
