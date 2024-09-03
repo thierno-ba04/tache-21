@@ -14,7 +14,7 @@ const Profile = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [newRole, setNewRole] = useState('');
-  const [photo, setPhoto] = useState(null);
+  // const [photo, setPhoto] = useState(null);
   const [photoURL, setPhotoURL] = useState('');
   const navigate = useNavigate();
 
@@ -91,7 +91,7 @@ const Profile = () => {
 
   return (
     <Container>
-      <Row className="shadow bg-body rounded profile">
+      <Row className="shadow bg-body rounded profiles">
         <Col lg={1} md={1}></Col>
 
         <Col lg={5} md={5}>
@@ -112,7 +112,7 @@ const Profile = () => {
 
         <Col lg={5} md={5}>
           <h1 className="titr_profile mb-4">Mon Profil</h1>
-          <div className="profile-details">
+          <div className="profiles-details">
             {loading ? (
               <p>Chargement des données...</p>
             ) : error ? (
@@ -145,7 +145,7 @@ const Profile = () => {
           />
           <Button onClick={handleRoleChange} className="mt-3">
             Mettre à jour le rôle
-          </Button>
+          </Button> <br />
           <Link to="/forgot" className="change-password-button">
             Modifier mon mot de passe !
           </Link>

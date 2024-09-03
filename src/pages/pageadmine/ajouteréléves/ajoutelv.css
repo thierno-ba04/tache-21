@@ -1,11 +1,13 @@
-.laclasses {
-    margin-top: 5rem;
+.laclasses{
     width: 80%;
     background-color: #179fd4;
+    margin-top: 2rem;
+
     box-sizing: border-box;
     color: aliceblue;
     border-radius: 10px;
-    padding: 0.2rem; 
+    /* padding: 5rem;  */
+    /* padding-top: 4rem; */
 }
 
 .addetudiant {
