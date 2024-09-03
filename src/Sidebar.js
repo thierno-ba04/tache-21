@@ -16,7 +16,7 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import React from 'react';
 import SpaceDashboardIcon from '@mui/icons-material/SpaceDashboard';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import LibraryBooksIcon from '@mui/icons-material/LibraryBooks';
 import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
 import'./App.css';
@@ -31,8 +31,8 @@ import {addDoc ,collection,doc, getDoc, getDocs} from "firebase/firestore";
 import { useState } from "react";
 import {database} from "./firebase";
 import { useEffect } from 'react';
-
-
+import Avatar from '@mui/material/Avatar';
+import { Dropdown, Image } from 'react-bootstrap';
 
 
 
@@ -113,6 +113,9 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 export default function Sidebar() {
 
 
+  const avatarUrl = 'https://via.placeholder.com/40'; // Remplacez par l'URL de l'avatar de l'utilisateur
+
+  
 
 
   const[data,setData]=useState([]);
@@ -152,6 +155,8 @@ export default function Sidebar() {
   },[])
   
 
+  
+
 
   return (
     
@@ -181,10 +186,6 @@ export default function Sidebar() {
             
           </Typography>
           <Stack direction="row" spacing={3}>
-         
-                  
-   
-
         <PopupState variant="popover" popupId="demo-popup-popover">
       {(popupState) => (
         <div>
@@ -234,11 +235,31 @@ export default function Sidebar() {
     </PopupState>
 
 
-          <LogoutButton onLogout={handleLogout} />
 
-        
+
+
+    <Dropdown >
+      <Dropdown.Toggle as="div" id="dropdown-avatar" className="d-flex align-items-center" style={{ cursor: 'pointer' }}>
+        <Image
+          src={avatarUrl}
+          roundedCircle
+          alt="Avatar"
+          width={40}
+          height={40}
+        />
+      </Dropdown.Toggle>
+
+      <Dropdown.Menu align="end">
+        <Dropdown.Item onClick={(e)=>{navigate("/Profile")}}>Mon compte</Dropdown.Item>
+        <Dropdown.Item eventKey="2">Reglement interieur</Dropdown.Item>
+        <Dropdown.Item eventKey="3">Déconnexion</Dropdown.Item>
+      </Dropdown.Menu>
+    </Dropdown>
+
+
+
+
     </Stack>
-
 
 
         </Toolbar>

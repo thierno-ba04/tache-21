@@ -10,9 +10,14 @@ import Login from './Login ';
 import Page404 from './Page404';
 import NotificationAdmin from './NotificationAdmin';
 import ForgotPssWrd from './ForgotPssWrd';
-import FormulaireAjoutEleves from './FormulaireAjoutEleves';
+import FormulaireAjoutEleves from './FeedbacksManager';
 import ProfilEtudiant from './ProfilEtudiant';
 import AjouteruneTache from './AjouteruneTache';
+import Profile from './Profile';
+import Registe from './Registre';
+import FeedbackForm from "./FeedbackForm";
+import FeedbacksManager from "./FeedbacksManager"; // Autres composants existants
+
 
 function App() {
   return (
@@ -29,7 +34,10 @@ function App() {
           <Route path="/NotificationAdmin" element={<NotificationAdmin/>} />
           <Route path="/ProfilEtudiant/:id" element={<ProfilEtudiant/>} />
           <Route path="/AjouteruneTache" element={<AjouteruneTache/>} />
-
+          <Route path="/Profile" element={<Profile/>} />
+          <Route path="/Registre" element={<Registe/>} />
+          <Route path="/FeebacksManager" element={<FeedbacksManager />} />
+        <Route path="/FeedbackForm" element={<FeedbackForm />} />
 
           <Route path="/FormulaireAjoutEleves" element={<FormulaireAjoutEleves/>} />
 

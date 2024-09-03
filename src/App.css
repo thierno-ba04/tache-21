@@ -632,3 +632,4 @@ body{
     break-inside: avoid;
     --rowBorderColor: var(--DataGrid-rowBorderColor); 
 }
+

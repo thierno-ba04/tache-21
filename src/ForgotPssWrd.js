@@ -1,8 +1,7 @@
 import React, { useState, useRef } from "react";
 import { Col, Container, Row, ToastContainer } from "react-bootstrap";
 import { toast } from "react-toastify";
-import imglearning from "./education-technology-logo-design-vector.jpg";
-import './forgotPssWrd.css';
+import"./forgotPssWrd.css";
 
 function ForgotPssWrd() {
   const [email, setEmail] = useState("");
@@ -92,7 +91,6 @@ function ForgotPssWrd() {
           </Col>
           <Col sm={6} md={6} className="body">
             <div className="text-center align-items-center pt-4">
-              <img src={imglearning} alt="e-learning" className="learningimg" />
               <h3>Oneline E-Learning</h3>
             </div>
           </Col>

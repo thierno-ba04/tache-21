@@ -1,21 +1,15 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Sidebar from "./Sidebar";
-import { Box, Typography } from "@mui/material";
-import'./App.css';
+import { Box, Typography, Grid, Container } from "@mui/material";
+import './App.css';
 import { useNavigate } from "react-router-dom";
 import { emphasize, styled } from '@mui/material/styles';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
 import Chip from '@mui/material/Chip';
-import DashboardIcon from '@mui/icons-material/Dashboard';
-import Agenda from'./Agenda';
+import Agenda from './Agenda';
 import AgentList from "./AgentList";
-import { useState, useEffect} from "react";
 import ClipLoader from "react-spinners/ClipLoader";
-import Link from '@mui/material/Link';
-
-
-
-
+import { getStudentData } from './firebaseService'; // Chemin d'importation correct
 
 const StyledBreadcrumb = styled(Chip)(({ theme }) => {
   const backgroundColor =
@@ -35,199 +29,152 @@ const StyledBreadcrumb = styled(Chip)(({ theme }) => {
       backgroundColor: emphasize(backgroundColor, 0.12),
     },
   };
-}); // TypeScript only: need a type cast here because https://github.com/Microsoft/TypeScript/issues/26591
+});
 
-
-function handleClick(event: React.MouseEvent<HTMLDivElement, MouseEvent>) {
-  event.preventDefault();
-  console.info('You clicked a breadcrumb.');
-}
-
-
-const override: CSSProperties = {
+const override = {
   display: "block",
   margin: "0 auto",
-  borderColor: "2979ff",
-  marginTop:300
+  borderColor: "#2979ff",
+  marginTop: "300px"
 };
 
-
-
 const DashboardCoach = () => {
+  const [loading, setLoading] = useState(true);
+  const [students, setStudents] = useState([]);
 
-  const [loading, setLoading] = useState(false);
-useEffect(()=>{
-  setLoading(true)
-  setTimeout(()=>{
-    setLoading(false)
-  },3000)
-},[])
+  useEffect(() => {
+    const fetchData = async () => {
+      const studentData = await getStudentData();
+      setStudents(studentData);
+      setLoading(false);
+    };
 
-  
+    fetchData();
+  }, []);
 
+  const calculateStats = () => {
+    let totalStudents = 0;
+    let totalGirls = 0;
+    let totalBoys = 0;
+    let totalClasses = new Set();
 
-   const navigate=useNavigate();
+    students.forEach(student => {
+      totalStudents++;
+      if (student.gender === 'F') totalGirls++;
+      if (student.gender === 'M') totalBoys++;
+      totalClasses.add(student.class);
+    });
 
-   const [open, setOpen] = React.useState(false);
-   const handleOpen = () => setOpen(true);
-   const handleClose = () => setOpen(false);
- 
-   const [name, setName] = React.useState();
+    return {
+      totalStudents,
+      totalGirls,
+      totalBoys,
+      totalClasses: totalClasses.size
+    };
+  };
 
-    return ( 
-      <div>
+  const stats = calculateStats();
 
+  return (
+    <Box sx={{ display: "flex" }}>
+      <Sidebar />
+      {loading ? (
+        <ClipLoader
+          loading={loading}
+          cssOverride={override}
+          size={70}
+          aria-label="Loading Spinner"
+          data-testid="loader"
+          color="#2979ff"
+        />
+      ) : (
+        <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+          <Container maxWidth="xl">
+            <Typography sx={{ mt: 3, mb: 3,mt:6 }}>
+              <Breadcrumbs aria-label="breadcrumb">
+                <Typography color="text.primary">Dashboard</Typography>
+              </Breadcrumbs>
+            </Typography>
 
+            <Grid container spacing={2}>
+              <Grid item xs={12} sm={6} md={3}>
+                <Box className="card radius-10 border-start border-0 border-3 border-info">
+                  <Box className="card-body">
+                    <Box className="d-flex align-items-center">
+                      <Box>
+                        <Typography variant="body2" color="textSecondary">Total Elèves</Typography>
+                        <Typography variant="h4" color="info.main">{stats.totalStudents}</Typography>
+                      </Box>
+                      <Box className="widgets-icons-2 rounded-circle bg-gradient-scooter text-white ms-auto">
+                        <i className="fa fa-users"></i>
+                      </Box>
+                    </Box>
+                  </Box>
+                </Box>
+              </Grid>
 
+              <Grid item xs={12} sm={6} md={3}>
+                <Box className="card radius-10 border-start border-0 border-danger">
+                  <Box className="card-body">
+                    <Box className="d-flex align-items-center">
+                      <Box>
+                        <Typography variant="body2" color="textSecondary">Total Filles</Typography>
+                        <Typography variant="h4" color="error.main">{stats.totalGirls}</Typography>
+                      </Box>
+                      <Box className="widgets-icons-2 rounded-circle bg-gradient-bloody text-white ms-auto">
+                        <i className="fa fa-users"></i>
+                      </Box>
+                    </Box>
+                  </Box>
+                </Box>
+              </Grid>
 
-        <Box sx={{display:"flex"}}>
-        <Sidebar/>
-        {
-           loading ?
-        < ClipLoader  
-        loading={loading}
-        cssOverride={override}
-        size={70}
-        aria-label="Loading Spinner"
-        data-testid="loader"
-        color="#2979ff"
-      />
-   
-       :
-         <Box component="main"  
-         sx={{flexGrow:1 }}>
-            <Typography>
-          
-           <Typography
-            sx={{textAlign:''
-            ,mt:3,
-             mb:3}}
-            >
-       
-    
-      <div style={{ width: '100%' }}>
-       <Typography 
-       sx={{p:2,textAlign:'justify'}}> 
-       <br/>
+              <Grid item xs={12} sm={6} md={3}>
+                <Box className="card radius-10 border-start border-0 border-success">
+                  <Box className="card-body">
+                    <Box className="d-flex align-items-center">
+                      <Box>
+                        <Typography variant="body2" color="textSecondary">Total Garçons</Typography>
+                        <Typography variant="h4" color="success.main">{stats.totalBoys}</Typography>
+                      </Box>
+                      <Box className="widgets-icons-2 rounded-circle bg-gradient-ohhappiness text-white ms-auto">
+                        <i className="fa fa-users"></i>
+                      </Box>
+                    </Box>
+                  </Box>
+                </Box>
+              </Grid>
 
-       <div role="presentation" style={{marginLeft:35}}>
+              <Grid item xs={12} sm={6} md={3}>
+                <Box className="card radius-10 border-start border-0 border-warning">
+                  <Box className="card-body">
+                    <Box className="d-flex align-items-center">
+                      <Box>
+                        <Typography variant="body2" color="textSecondary">Total Classes</Typography>
+                        <Typography variant="h4" color="warning.main">{stats.totalClasses}</Typography>
+                      </Box>
+                      <Box className="widgets-icons-2 rounded-circle bg-gradient-blooker text-white ms-auto">
+                        <i className="fa fa-users"></i>
+                      </Box>
+                    </Box>
+                  </Box>
+                </Box>
+              </Grid>
+            </Grid>
 
-      <Breadcrumbs aria-label="breadcrumb">
-        <Typography color="text.primary">Dashboard</Typography>
-      </Breadcrumbs>
+            <Grid container spacing={2} sx={{ mt: 4 }}>
+              <Grid item xs={12} md={8}>
+                <Agenda />
+              </Grid>
+              <Grid item xs={12} md={4}>
+                <AgentList />
+              </Grid>
+            </Grid>
+          </Container>
+        </Box>
+      )}
+    </Box>
+  );
+};
 
-    </div>
-
-       </Typography>
-    </div>
-    <div className="cardDashboard" style={{margin:20}}>
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
-
-<div class="container">
-<div class="row row-cols-1 row-cols-md-2 row-cols-xl-4">
-       <div class="col">
-		 <div class="card radius-10 border-start border-0 border-3 border-info">
-			<div class="card-body">
-				<div class="d-flex align-items-center">
-					<div>
-						<p class="mb-0 text-secondary">Total Elèves</p>
-						<h4 class="my-1 text-info">3</h4>
-						<p class="mb-0 font-13"></p>
-					</div>
-					<div class="widgets-icons-2 rounded-circle bg-gradient-scooter text-white ms-auto"> <i class="fa fa-users"></i>
-					</div>
-				</div>
-			</div>
-		 </div>
-	   </div>
-	   <div class="col">
-		<div class="card radius-10 border-start border-0 border-3 border-danger">
-		   <div class="card-body">
-			   <div class="d-flex align-items-center">
-				   <div>
-					   <p class="mb-0 text-secondary">Total Fille</p>
-					   <h4 class="my-1 text-danger">1</h4>
-					   <p class="mb-0 font-13"></p>
-				   </div>
-				   <div class="widgets-icons-2 rounded-circle bg-gradient-bloody text-white ms-auto"> <i class="fa fa-users"></i>
-				   </div>
-			   </div>
-		   </div>
-		</div>
-	  </div>
-	  <div class="col">
-		<div class="card radius-10 border-start border-0 border-3 border-success">
-		   <div class="card-body">
-			   <div class="d-flex align-items-center">
-				   <div>
-					   <p class="mb-0 text-secondary">Total Graçon</p>
-					   <h4 class="my-1 text-success">2</h4>
-					   <p class="mb-0 font-13"></p>
-				   </div>
-				   <div class="widgets-icons-2 rounded-circle bg-gradient-ohhappiness text-white ms-auto"> <i class="fa fa-users"></i>
-				   </div>
-			   </div>
-		   </div>
-		</div>
-	  </div>
-	  <div class="col">
-		<div class="card radius-10 border-start border-0 border-3 border-warning">
-		   <div class="card-body">
-			   <div class="d-flex align-items-center">
-				   <div>
-					   <p class="mb-0 text-secondary">Total Classe</p>
-					   <h4 class="my-1 text-warning">1</h4>
-					   <p class="mb-0 font-13"></p>
-				   </div>
-				   <div class="widgets-icons-2 rounded-circle bg-gradient-blooker text-white ms-auto"><i class="fa fa-users"></i>
-				   </div>
-			   </div>
-		   </div>
-		</div>
-	  </div> 
-	</div>
-  </div>
-
-
-  </div>
-
-  <br/>
-  <div className="Agenda" style={{margin:20}}>
-
-<div class="container">
-  <div class='row'>
-  <div className="col-8">
-   <Agenda/>
-  </div>
-  <div className="col">
-  <AgentList/>
-   
-
-  </div>
-  </div>
-
-  </div>
-
-
-  </div>
-
-
-
-<br/>
-
-
-    </Typography>
-     
-   
-     </Typography>
-
-     </Box >
-             }
-
-     </Box>
-
-     </div>
-     );
-}
- 
 export default DashboardCoach;

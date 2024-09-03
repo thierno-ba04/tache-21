@@ -3,8 +3,18 @@ import {initializeApp} from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword,} from 'firebase/auth';
 import { doc, deleteDoc } from "firebase/firestore";
-
 import { getStorage } from "firebase/storage";
+import {
+  collection,
+  getDocs,
+  onSnapshot,
+  addDoc,
+} from "firebase/firestore";
+
+
+
+
+
 
 // Configuration Firebase
 // Your web app's Firebase configuration
@@ -27,5 +37,11 @@ const database = getFirestore(app);
 const db = getFirestore(app);
 
 export{database}
-export { auth, db, signInWithEmailAndPassword, createUserWithEmailAndPassword, doc,deleteDoc};
+export { auth,db,addDoc, signInWithEmailAndPassword, createUserWithEmailAndPassword, doc,deleteDoc,  collection,
+  getDocs,
+  onSnapshot,
+};
 export const storage = getStorage();
+
+export const imageDb = getStorage();
+
