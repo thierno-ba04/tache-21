@@ -91,7 +91,7 @@ const Profile = () => {
 
   return (
     <Container>
-      <Row className="shadow bg-body rounded profiles ms-auto mt-5">
+      <Row className="shadow bg-body rounded profiles m-auto mt-5">
         <Col lg={1} md={1}></Col>
 
         <Col lg={5} md={5}>
