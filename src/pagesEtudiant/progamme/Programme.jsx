@@ -19,7 +19,7 @@ const Programme = () => {
         <Row>
           <Col md={4}>
             <div className="dashboarddemaandeabsences">
-              <p>Programme / Quizz Html & Css</p>
+              <p>Programme</p>
             </div>
           </Col>
         </Row>{" "}

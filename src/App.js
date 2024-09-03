@@ -63,7 +63,7 @@ function App() {
       <Router>
         <Routes>
           {/* Routes pour les étudiants */}
-          <Route element={<PrivateRoute allowedRoles={['student']} />}>
+          {/* <Route element={<PrivateRoute allowedRoles={['student']} />}> */}
 
           <Route element={<LayoutEtudiant />}>
             <Route path="/dashboardetudiant" element={<DashboardEtudiant />} />
@@ -83,7 +83,7 @@ function App() {
             <Route path="/quizzjavascript" element={<QuizzJavascript />} />
             <Route path="/quizzreact" element={<QuizzReact />} />
           </Route>
-          </Route>
+          {/* </Route> */}
 
 
           {/* Routes pour les admins */}
@@ -92,7 +92,7 @@ function App() {
           <Route path="/forgot" element={<ForgotPssWrd />} />
           <Route path="/inscrire" element={<Registe />} />
 
-          <Route element={<PrivateRoute allowedRoles={['admin']} />}>
+          {/* <Route element={<PrivateRoute allowedRoles={['admin']} />}> */}
           <Route element={<LayoutAdmin />}>
             <Route path="/dashboardadmin" element={<DashboardAdmin />} />
             <Route path="/users" element={<UsersAdmin />} />
@@ -119,20 +119,20 @@ function App() {
             <Route path="/updateStudent/:id" element={<UpdateStudent />} />
             <Route path="/archiveUsers" element={<ArchiveUsers />} />
           </Route>
-          </Route>
+          {/* </Route> */}
 
 
           {/* Routes pour les professeurs */}
-          <Route element={<PrivateRoute allowedRoles={['professor']} />}>
+          {/* <Route element={<PrivateRoute allowedRoles={['professor']} />}> */}
 
 
           <Route path="/dashboardProf" element={<DashboardProf />} />
+          {/* <Route path="/elevess" element={<Eleves />} /> */}
           <Route path="/devoirs" element={<Devoirs />} />
           <Route path="/relevedenote" element={<Relevedenote />} />
           <Route path="/notificationAdmin" element={<NotificationAdmin />} />
           <Route path="/formulaireAjoutEleves" element={<FormulaireAjoutEleves />} />
-          </Route>
-
+ 
           {/* Route 404 */}
           <Route path="*" element={<Page404 />} />
         </Routes>

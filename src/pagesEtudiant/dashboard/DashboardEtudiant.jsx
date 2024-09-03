@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Col, Container, Row } from "react-bootstrap";
+import { Col, Container, Row, Button } from "react-bootstrap";
 import { MdOutlineDoneOutline } from "react-icons/md";
 import "./dashboard.css";
 import { FaFileAlt, FaSearch } from "react-icons/fa";
@@ -30,6 +30,9 @@ const DashboardEtudiant = () => {
     },
   ]);
 
+  const [replyingTo, setReplyingTo] = useState({ livraisonId: null, commentIndex: null });
+  const [replyText, setReplyText] = useState("");
+
   const handleCommentSubmit = (e, livraisonId) => {
     e.preventDefault();
     setLivraisons((prevLivraisons) =>
@@ -37,7 +40,7 @@ const DashboardEtudiant = () => {
         livraison.id === livraisonId && livraison.commentaireTexte.trim() !== ""
           ? {
               ...livraison,
-              commentaires: [...livraison.commentaires, livraison.commentaireTexte],
+              commentaires: [...livraison.commentaires, { text: livraison.commentaireTexte, replies: [] }],
               commentaireTexte: "",
             }
           : livraison
@@ -56,71 +59,96 @@ const DashboardEtudiant = () => {
     );
   };
 
+  const handleReplyClick = (livraisonId, commentIndex) => {
+    setReplyingTo({ livraisonId, commentIndex });
+  };
+
+  const handleReplySubmit = (e, livraisonId, commentIndex) => {
+    e.preventDefault();
+    if (replyText.trim() !== "") {
+      setLivraisons((prevLivraisons) =>
+        prevLivraisons.map((livraison) =>
+          livraison.id === livraisonId
+            ? {
+                ...livraison,
+                commentaires: livraison.commentaires.map((comm, index) =>
+                  index === commentIndex
+                    ? { ...comm, replies: [...comm.replies, replyText] }
+                    : comm
+                ),
+              }
+            : livraison
+        )
+      );
+      setReplyText("");
+      setReplyingTo({ livraisonId: null, commentIndex: null });
+    }
+  };
+
   return (
     <div className="main">
       <Container>
-        <Row>
-          <Col lg={4} md={4}>
-            <div className="main-card">
-              <h6>Année Scolaire 2020/2021</h6>
-              <div className="div_mer">
-                <div className="div-1">
-                  <h5>TACHE</h5>
-                  <p>Nombre de toutes les taches</p>
-                  <h1>69</h1>
-                  <span className="icones-perso">
-                    <BsBook size={50} />
-                  </span>
-                </div>
-                <div className="border"></div>
-                <div className="div-2">
-                  <h2>69</h2>
-                </div>
-              </div>
-            </div>
-          </Col>
-          <Col lg={4} md={4}>
-            <div className="main-card2-bgg main-card2">
-              <h5>Taches Validées</h5>
-              <p>Nombre de Taches validées</p>
-              <h4>37/68</h4>
-              <span className="icones-perso2">
-                <MdOutlineDoneOutline size={55} />
-              </span>
-            </div>
-          </Col>
-          <Col lg={4} md={4}>
-            <div className="main-card main-card2">
-              <h5>Programme</h5>
-              <p>Liste Programme</p>
-              <h4>6</h4>
-              <span className="icones-perso2">
-                <FaFileAlt size={55} />
-              </span>
-            </div>
-          </Col>
-        </Row>
+      <Row>
+<Col lg={4} md={4}>
+  <div className="main-card">
+    <h6>Année Scolaire 2020/2021</h6>
+    <div className="div_mer">
+      <div className="div-1">
+        <h5>TACHE</h5>
+        <p>Nombre de toutes les taches</p>
+        <h1>69</h1>
+        <span className="icones-perso">
+          <BsBook size={50} />
+        </span>
+      </div>
+      <div className="border"></div>
+      <div className="div-2">
+        <h2>69</h2>
+      </div>
+    </div>
+  </div>
+</Col>
+<Col lg={4} md={4}>
+  <div className="main-card2-bgg main-card2">
+    <h5>Taches Validées</h5>
+    <p>Nombre de Taches validées</p>
+    <h4>37/68</h4>
+    <span className="icones-perso2">
+      <MdOutlineDoneOutline size={55} />
+    </span>
+  </div>
+</Col>
+<Col lg={4} md={4}>
+  <div className="main-card main-card2">
+    <h5>Programme</h5>
+    <p>Liste Programme</p>
+    <h4>6</h4>
+    <span className="icones-perso2">
+      <FaFileAlt size={55} />
+    </span>
+  </div>
+</Col>
+</Row>
 
-        <Row className="">
-          <Col md={12} className="mt-5">
-            <div className="searchdate d-flex">
-              <div className="input-search mt-4 ms-5">
-                <FaSearch size={20} />
-              </div>
-              <div className="input-search mt-4">
-                <input
-                  type="search"
-                  className="search-input"
-                  placeholder="Recherche"
-                   />
-              </div>
-              <div className="date-input-container mt-4">
-                <input type="date" />
-              </div>
-            </div>
-          </Col>
-        </Row>
-
+<Row className="">
+<Col md={12} className="mt-5">
+  <div className="searchdate d-flex">
+    <div className="input-search mt-4 ms-5">
+      <FaSearch size={20} />
+    </div>
+    <div className="input-search mt-4">
+      <input
+        type="search"
+        className="search-input"
+        placeholder="Recherche"
+         />
+    </div>
+    <div className="date-input-container mt-4">
+      <input type="date" />
+    </div>
+  </div>
+</Col>
+</Row>
         {livraisons.map((livraison) => (
           <div key={livraison.id} className="mere-dashboard-livr mt-5">
             <Row className="mt-5">
@@ -153,11 +181,44 @@ const DashboardEtudiant = () => {
                 </Col>
               ))}
             </Row>
-                <Row>
+            <Row>
               <Col md={12} className="mt-3">
                 {livraison.commentaires.map((comm, index) => (
                   <div key={index} className="commentaire mt-3">
-                    <p>{comm}</p>
+                    <div className="d-flex justify-content-between align-items-center">
+                      <p>{comm.text}</p>
+                      <Button
+                        variant="link"
+                        className="reply-button"
+                        onClick={() => handleReplyClick(livraison.id, index)}
+                      >
+                        Répondre
+                      </Button>
+                    </div>
+                    {comm.replies.map((reply, idx) => (
+                      <div key={idx} className="reply mt-2 ms-4">
+                        <p><strong>Réponse:</strong> {reply}</p>
+                      </div>
+                    ))}
+                    {replyingTo.livraisonId === livraison.id &&
+                      replyingTo.commentIndex === index && (
+                        <form
+                          onSubmit={(e) =>
+                            handleReplySubmit(e, livraison.id, index)
+                          }
+                        >
+                          <input
+                            type="text"
+                            className="form-control mt-2 ms-4"
+                            placeholder="Votre réponse"
+                            value={replyText}
+                            onChange={(e) => setReplyText(e.target.value)}
+                          />
+                          <Button type="submit" className="mt-2 ms-4">
+                            Envoyer
+                          </Button>
+                        </form>
+                      )}
                   </div>
                 ))}
               </Col>
@@ -183,8 +244,6 @@ const DashboardEtudiant = () => {
                 </div>
               </Col>
             </Row>
-
-          
           </div>
         ))}
       </Container>
@@ -193,3 +252,9 @@ const DashboardEtudiant = () => {
 };
 
 export default DashboardEtudiant;
+
+
+
+
+
+
