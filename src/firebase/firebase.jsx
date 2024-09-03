@@ -23,6 +23,7 @@ const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
 const auth = getAuth(app);
 const db = getFirestore(app);
 const storage = getStorage(app);
+
 export const imageDb = getStorage();
 
 // Exporter les services et les fonctions nécessaires

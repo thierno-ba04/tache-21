@@ -185,9 +185,27 @@
     color: white;
     padding: 100px 0;
   }
-  .profile-img {
-    width: 150px;
-    height: 150px;
-    object-fit: cover;
-    border: 5px solid white;
-  }
+
+
+
+
+  .profile-sidebar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.profile-sidebar .MuiAvatar-root {
+    transition: transform 0.3s ease;
+}
+
+.profile-sidebar .MuiAvatar-root:hover {
+    transform: scale(1.05);
+}
+
+.profile-sidebar .MuiButton-root {
+    margin-bottom: 10px;
+}
+
+
