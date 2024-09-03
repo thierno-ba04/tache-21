@@ -2,8 +2,11 @@ import React, { useState } from 'react';
 import { Modal, Box, Typography, Button, Divider, Tabs, Tab, TextField, Table, TableBody, TableCell, TableRow } from '@mui/material';
 import { doc, updateDoc } from 'firebase/firestore';
 import { db } from './firebase'; // Ensure this path is correct
+import { useNavigate } from 'react-router-dom';
 
 const DetailModal = ({ open, onClose, applicant, onUpdate }) => {
+
+    const navigate = useNavigate();
   const [tabIndex, setTabIndex] = useState(0);
   const [formValues, setFormValues] = useState({
     nom: applicant?.nom || '',
@@ -73,7 +76,7 @@ const DetailModal = ({ open, onClose, applicant, onUpdate }) => {
         <Tabs value={tabIndex} onChange={handleTabChange} centered>
           <Tab label="Profile" />
           <Tab label="Messages" />
-          <Tab label="Feedbacks" />
+          <Tab label="Ajouter un cours" />
         </Tabs>
 
         {tabIndex === 0 && (
@@ -154,7 +157,7 @@ const DetailModal = ({ open, onClose, applicant, onUpdate }) => {
 
         {tabIndex === 3 && (
           <Box sx={{ p: 2 }}>
-            <Typography variant="h6">Feedbacks</Typography>
+            <Typography variant="h6">Ajouter un cours</Typography>
             <Box sx={{ mb: 2 }}>
               <TextField
                 label="New Feedback"
@@ -198,7 +201,7 @@ const DetailModal = ({ open, onClose, applicant, onUpdate }) => {
             <Button
               variant="contained"
               color="primary"
-              onClick={() => setTabIndex(2)} // Switch to Edit tab
+              onClick={(e)=>{navigate("/FeedbackForm")}} // Switch to Edit tab
             >
               Modifier
             </Button>
