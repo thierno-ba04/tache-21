@@ -168,7 +168,7 @@ const UpdProfileEtudiant = () => {
                                 />
                             </Form.Group>
 
-                            <Button variant="primary" type="submit">
+                            <Button variant="primary" type="submit" className='mt-5'>
                                 Mettre à Jour le Profil
                             </Button>
                         </Form>

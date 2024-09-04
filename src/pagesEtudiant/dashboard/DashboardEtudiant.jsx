@@ -32,6 +32,7 @@ const DashboardEtudiant = () => {
 
   const [replyingTo, setReplyingTo] = useState({ livraisonId: null, commentIndex: null });
   const [replyText, setReplyText] = useState("");
+  const [searchTerm, setSearchTerm] = useState("");
 
   const handleCommentSubmit = (e, livraisonId) => {
     e.preventDefault();
@@ -85,71 +86,78 @@ const DashboardEtudiant = () => {
     }
   };
 
+  // Filtrer les livraisons en fonction de la recherche
+  const filteredLivraisons = livraisons.filter((livraison) =>
+    livraison.nom.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
     <div className="main">
       <Container>
-      <Row>
-<Col lg={4} md={4}>
-  <div className="main-card">
-    <h6>Année Scolaire 2020/2021</h6>
-    <div className="div_mer">
-      <div className="div-1">
-        <h5>TACHE</h5>
-        <p>Nombre de toutes les taches</p>
-        <h1>69</h1>
-        <span className="icones-perso">
-          <BsBook size={50} />
-        </span>
-      </div>
-      <div className="border"></div>
-      <div className="div-2">
-        <h2>69</h2>
-      </div>
-    </div>
-  </div>
-</Col>
-<Col lg={4} md={4}>
-  <div className="main-card2-bgg main-card2">
-    <h5>Taches Validées</h5>
-    <p>Nombre de Taches validées</p>
-    <h4>37/68</h4>
-    <span className="icones-perso2">
-      <MdOutlineDoneOutline size={55} />
-    </span>
-  </div>
-</Col>
-<Col lg={4} md={4}>
-  <div className="main-card main-card2">
-    <h5>Programme</h5>
-    <p>Liste Programme</p>
-    <h4>6</h4>
-    <span className="icones-perso2">
-      <FaFileAlt size={55} />
-    </span>
-  </div>
-</Col>
-</Row>
+        <Row>
+          <Col lg={4} md={4}>
+            <div className="main-card">
+              <h6>Année Scolaire 2020/2021</h6>
+              <div className="div_mer">
+                <div className="div-1">
+                  <h5>TACHE</h5>
+                  <p>Nombre de toutes les taches</p>
+                  <h1>69</h1>
+                  <span className="icones-perso">
+                    <BsBook size={50} />
+                  </span>
+                </div>
+                <div className="border"></div>
+                <div className="div-2">
+                  <h2>69</h2>
+                </div>
+              </div>
+            </div>
+          </Col>
+          <Col lg={4} md={4}>
+            <div className="main-card2-bgg main-card2">
+              <h5>Taches Validées</h5>
+              <p>Nombre de Taches validées</p>
+              <h4>37/68</h4>
+              <span className="icones-perso2">
+                <MdOutlineDoneOutline size={55} />
+              </span>
+            </div>
+          </Col>
+          <Col lg={4} md={4}>
+            <div className="main-card main-card2">
+              <h5>Programme</h5>
+              <p>Liste Programme</p>
+              <h4>6</h4>
+              <span className="icones-perso2">
+                <FaFileAlt size={55} />
+              </span>
+            </div>
+          </Col>
+        </Row>
 
-<Row className="">
-<Col md={12} className="mt-5">
-  <div className="searchdate d-flex">
-    <div className="input-search mt-4 ms-5">
-      <FaSearch size={20} />
-    </div>
-    <div className="input-search mt-4">
-      <input
-        type="search"
-        className="search-input"
-        placeholder="Recherche"
-         />
-    </div>
-    <div className="date-input-container mt-4">
-      <input type="date" />
-    </div>
-  </div>
-</Col>
-</Row>
-        {livraisons.map((livraison) => (
+        <Row className="">
+          <Col md={12} className="mt-5">
+            <div className="searchdate d-flex">
+              <div className="input-search mt-4 ms-5">
+                <FaSearch size={20} />
+              </div>
+              <div className="input-search mt-4">
+                <input
+                  type="search"
+                  className="search-input"
+                  placeholder="Recherche"
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                />
+              </div>
+              <div className="date-input-container mt-4">
+                <input type="date" />
+              </div>
+            </div>
+          </Col>
+        </Row>
+        {filteredLivraisons.map((livraison) => (
           <div key={livraison.id} className="mere-dashboard-livr mt-5">
             <Row className="mt-5">
               <Col md={4} className="mt-5">
@@ -252,9 +260,3 @@ const DashboardEtudiant = () => {
 };
 
 export default DashboardEtudiant;
-
-
-
-
-
-

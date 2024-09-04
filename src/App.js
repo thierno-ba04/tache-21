@@ -20,8 +20,6 @@ import QuizzHtmlcss from './pagesEtudiant/quizzhtmlcss/QuizzHtmlcss';
 import QuizzBootstrap from './pagesEtudiant/quizzbootstrap/QuizzBootstrap';
 import QuizzJavascript from './pagesEtudiant/quizzjavascript/QuizzJavascript';
 import QuizzReact from './pagesEtudiant/quizzreact/QuizzReact';
-import ProfilEtudiant from './ProfilEtudiant';
-import AjouteruneTache from './AjouteruneTache';
 
 // Import admin components
 import LayoutAdmin from './layout/LayoutAdmin';
@@ -48,29 +46,32 @@ import VoixClasse from './pages/pageadmine/users/vuclasse/VoixClasse';
 import ArchivePrfs from './pages/pageadmine/users/archiver/ArchivePrfs';
 import AjoutPrfs from './pages/pageadmine/users/ajoutprfs/AjoutPrfs';
 import VoixPrs from './pages/pageadmine/users/voirperso/VoixPrs';
-import UpdatePrsnl from './Updateperso/UpdatePrsnl';
+
 import EditClasse from './pages/pageadmine/users/modifierclasse/EditClasse';
 import Archived from './pages/pageadmine/dashboardadmin/arhiver/Archived';
 
 // Import professor components
-import DashboardProf from './DashboardCoach';
+import DashboardCoach from './DashboardCoach';
 import Devoirs from './Devoirs';
 import Relevedenote from './Relevedenote';
 import NotificationAdmin from './NotificationAdmin';
-import FormulaireAjoutEleves from './FormulaireAjoutEleves';
+import FeedbackForm from "./FeedbackForm";
+import FeedbacksManager from "./FeedbacksManager";
 
 // Import authentication components
 import Login from "./pages/auth/Login";
 import ForgotPssWrd from "./pages/forgotpasseword/ForgotPssWrd";
 import Registe from './pages/inscription/Registe';
 import Page404 from './Page404';
+import { ToastContainer } from 'react-toastify';
+import Etudiantts from './Etudiantts';
+import FormulaireAjoutEleves from './FormulaireAjoutEleves';
 
 function App() {
   return (
     <MyContextProvider>
       <Router>
         <Routes>
-
           {/* Authentication Routes */}
           <Route path="/" element={<Login />} />
           <Route path="/forgot" element={<ForgotPssWrd />} />
@@ -94,8 +95,6 @@ function App() {
             <Route path="/quizzbootstrap" element={<QuizzBootstrap />} />
             <Route path="/quizzjavascript" element={<QuizzJavascript />} />
             <Route path="/quizzreact" element={<QuizzReact />} />
-            <Route path="/ProfilEtudiant/:id" element={<ProfilEtudiant />} />
-            <Route path="/AjouteruneTache" element={<AjouteruneTache />} />
           </Route>
 
           {/* Admin Routes */}
@@ -125,21 +124,26 @@ function App() {
             <Route path="/updateStudent/:id" element={<UpdateStudent />} />
             <Route path="/archivePrfs" element={<ArchivePrfs />} />
             <Route path="/voixprs/:id" element={<VoixPrs />} />
-            <Route path="/updateprsnl/:id" element={<UpdatePrsnl />} />
+            {/* <Route path="/updateprsnl/:id" element={<UpdatePrsnl />} /> */}
           </Route>
 
           {/* Professor Routes */}
-          <Route path="/dashboardcoach" element={<DashboardProf />} />
+          <Route path="/dashboardcoach" element={<DashboardCoach />} />
           <Route path="/devoirs" element={<Devoirs />} />
           <Route path="/relevedenote" element={<Relevedenote />} />
           <Route path="/notificationAdmin" element={<NotificationAdmin />} />
-          <Route path="/formulaireAjoutEleves" element={<FormulaireAjoutEleves />} />
+          <Route path="/Etudiantts" element={<Etudiantts />} />
+          {/* <Route path="/FormulaireAjoutEleves" element={<FormulaireAjoutEleves />} /> */}
+
+          {/* Miscellaneous Routes */}
+          <Route path="/FeedbackForm" element={<FeedbackForm />} />
+          <Route path="/FeedbacksManager" element={<FeedbacksManager />} />
 
           {/* Route 404 */}
           <Route path="*" element={<Page404 />} />
-          
         </Routes>
       </Router>
+      <ToastContainer />
     </MyContextProvider>
   );
 }

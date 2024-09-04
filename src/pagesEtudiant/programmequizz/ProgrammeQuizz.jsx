@@ -62,7 +62,7 @@ const ProgrammeQuizz = () => {
                     JAVASCRIPT DEBUTANT
                 </h6>
                 <Link to="/quizzjavascript">
-                <Button variant="primary">Commencer le Quizz</Button>
+                <Button variant="primary" className="ms-3">Commencer le Quizz</Button>
                 </Link>
               </Card.Body>
             </Card>
@@ -76,7 +76,7 @@ const ProgrammeQuizz = () => {
                     REACTJS DEBUTANT
                 </h6>
                 <Link to="/quizzreact">
-                <Button variant="primary">Commencer le Quizz</Button>
+                <Button variant="primary" className="ms-3">Commencer le Quizz</Button>
 
                 </Link>
               </Card.Body>

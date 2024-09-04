@@ -1,17 +1,51 @@
-import { useState } from "react";
-import { Button, Col, Container, Row } from "react-bootstrap";
+import React, { useState } from "react";
+import { Button, Col, Container, Row, Pagination } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./tache.css";
 
 const Tache = () => {
-  // State to manage each task's status, countdown time, and completion status
   const [tasks, setTasks] = useState([
-    { id: 1, name: "Tache N:1", duration: 120, started: false, countdown: 0, completed: false },
-    { id: 2, name: "Tache N:2", duration: 120, started: false, countdown: 0, completed: false },
-    { id: 3, name: "Tache N:3", duration: 120, started: false, countdown: 0, completed: false },
+    { id: 1, name: "Tache N:1", duration: 120, started: false, countdown: 0, completed: false, elapsedTime: 0 },
+    { id: 2, name: "Tache N:2", duration: 120, started: false, countdown: 0, completed: false, elapsedTime: 0 },
+    { id: 3, name: "Tache N:3", duration: 120, started: false, countdown: 0, completed: false, elapsedTime: 0 },
+    { id: 4, name: "Tache N:4", duration: 120, started: false, countdown: 0, completed: false, elapsedTime: 0 },
+    { id: 5, name: "Tache N:5", duration: 120, started: false, countdown: 0, completed: false, elapsedTime: 0 },
+    { id: 6, name: "Tache N:6", duration: 120, started: false, countdown: 0, completed: false, elapsedTime: 0 },
+    { id: 7, name: "Tache N:7", duration: 120, started: false, countdown: 0, completed: false, elapsedTime: 0 },
+    { id: 8, name: "Tache N:8", duration: 120, started: false, countdown: 0, completed: false, elapsedTime: 0 },
+    { id: 9, name: "Tache N:9", duration: 120, started: false, countdown: 0, completed: false, elapsedTime: 0 },
+    { id: 10, name: "Tache N:10", duration: 120, started: false, countdown: 0, completed: false, elapsedTime: 0 },
+    { id: 11, name: "Tache N:11", duration: 120, started: false, countdown: 0, completed: false, elapsedTime: 0 },
+    { id: 12, name: "Tache N:12", duration: 120, started: false, countdown: 0, completed: false, elapsedTime: 0 },
+    { id: 13, name: "Tache N:13", duration: 120, started: false, countdown: 0, completed: false, elapsedTime: 0 },
+    { id: 14, name: "Tache N:14", duration: 120, started: false, countdown: 0, completed: false, elapsedTime: 0 },
+    // Ajoutez le reste des tâches ici...
   ]);
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const tasksPerPage = 6;
+
+  const indexOfLastTask = currentPage * tasksPerPage;
+  const indexOfFirstTask = indexOfLastTask - tasksPerPage;
+  const currentTasks = tasks.slice(indexOfFirstTask, indexOfLastTask);
+
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
+  const renderPaginationItems = () => {
+    let items = [];
+    for (let number = 1; number <= Math.ceil(tasks.length / tasksPerPage); number++) {
+      items.push(
+        <Pagination.Item key={number} active={number === currentPage} onClick={() => handlePageChange(number)}>
+          {number}
+        </Pagination.Item>
+      );
+    }
+    return items;
+  };
 
   const startTask = (taskId) => {
     setTasks((prevTasks) =>
@@ -20,8 +54,9 @@ const Tache = () => {
           ? {
               ...task,
               started: true,
-              countdown: task.duration, // Initialize the countdown with the task's duration
-              completed: false, // Ensure the task is not marked as completed
+              countdown: task.duration,
+              completed: false,
+              elapsedTime: 0, // Initialiser le temps écoulé à 0
             }
           : task
       )
@@ -29,18 +64,20 @@ const Tache = () => {
 
     toast.info(`Tâche ${taskId} a démarré!`);
 
-    // Start the countdown timer
     const timer = setInterval(() => {
       setTasks((prevTasks) =>
         prevTasks.map((task) =>
           task.id === taskId && task.started && task.countdown > 0
-            ? { ...task, countdown: task.countdown - 1 }
+            ? {
+                ...task,
+                countdown: task.countdown - 1,
+                elapsedTime: task.elapsedTime + 1, // Augmenter le temps écoulé
+              }
             : task
         )
       );
-    }, 60000); // 60000ms = 1 minute
+    }, 60000);
 
-    // Clear interval when countdown reaches zero
     setTimeout(
       () => clearInterval(timer),
       tasks.find((task) => task.id === taskId).duration * 60000
@@ -51,7 +88,7 @@ const Tache = () => {
     setTasks((prevTasks) =>
       prevTasks.map((task) =>
         task.id === taskId
-          ? { ...task, started: false, countdown: 0, completed: true } // Mark the task as completed
+          ? { ...task, started: false, countdown: 0, completed: true }
           : task
       )
     );
@@ -74,13 +111,13 @@ const Tache = () => {
         theme="light"
       />
       <Container>
-        <Row className="mt-3 ">
+        <Row className="mt-3">
           <Col lg={2} md={4}>
             <div className="liste-des-taches">
               <h4>Listes des Taches</h4>
             </div>
           </Col>
-          <Col md={6} className=" Tache-Validés">
+          <Col md={6} className="Tache-Validés">
             <div className="button-des-tache-valides">
               <Link to="/tachevalide">
                 <Button className="btn btn-success">Tache Validés</Button>
@@ -89,7 +126,7 @@ const Tache = () => {
           </Col>
         </Row>
 
-        {tasks.map((task) => (
+        {currentTasks.map((task) => (
           <Row key={task.id} className="d-flex justify-content-center">
             <Col lg={8} md={12} className="col-bottom">
               <div className="bg-tache d-md-flex">
@@ -133,7 +170,7 @@ const Tache = () => {
                       </div>
                     ) : (
                       <div>
-                        <p>Tache demarrer: {task.countdown} min</p>
+                        <p>Temps écoulé: {task.elapsedTime} min</p>
                       </div>
                     )}
                     <div>
@@ -151,6 +188,12 @@ const Tache = () => {
             </Col>
           </Row>
         ))}
+
+        <Row>
+          <Col className="d-flex justify-content-center mt-4">
+            <Pagination>{renderPaginationItems()}</Pagination>
+          </Col>
+        </Row>
       </Container>
     </div>
   );

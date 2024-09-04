@@ -1,11 +1,8 @@
 // Import des fonctions nécessaires depuis les SDK Firebase
 import { initializeApp, getApp, getApps } from 'firebase/app';
 import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth';
-import { getFirestore, collection, getDocs, onSnapshot, addDoc } from 'firebase/firestore';
+import { getFirestore, collection, getDocs, onSnapshot, addDoc, query, where } from 'firebase/firestore'; // Importer `query` et `where`
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
-
-
-
 
 // Configuration de votre application Firebase
 const firebaseConfig = {
@@ -24,8 +21,8 @@ const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
 const auth = getAuth(app);
 const db = getFirestore(app);
 const storage = getStorage(app);
+
 export const imageDb = getStorage();
 
 // Exporter les services et les fonctions nécessaires
-export { auth, db, storage, signInWithEmailAndPassword, createUserWithEmailAndPassword, collection, getDocs, onSnapshot, addDoc, ref, uploadBytes, getDownloadURL };
-
+export { auth, db, storage, signInWithEmailAndPassword, createUserWithEmailAndPassword, collection, getDocs, onSnapshot, addDoc, query, where, ref, uploadBytes, getDownloadURL };

@@ -11,6 +11,7 @@ import imgpython from "../../assets/img/logo-python-removebg-preview.png";
 import "./programme.css";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
+import { Link } from "react-router-dom";
 
 const Programme = () => {
   return (
@@ -35,9 +36,11 @@ const Programme = () => {
               <Card.Body>
                 <h3 className="text-center">HTML5/CSS3</h3>
                 <h6 className="text-center">Les bases du HTML/CSS</h6>
+                <Link to="/tache">
                 <Button variant="primary" className="ms-5">
                   Voir les cours
                 </Button>
+                </Link>
               </Card.Body>
             </Card>
           </Col>
