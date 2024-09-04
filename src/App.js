@@ -65,7 +65,7 @@ import Registe from './pages/inscription/Registe';
 import Page404 from './Page404';
 import { ToastContainer } from 'react-toastify';
 import Etudiantts from './Etudiantts';
-import FormulaireAjoutEleves from './FormulaireAjoutEleves';
+// import FormulaireAjoutEleves from './FormulaireAjoutEleves';
 
 function App() {
   return (
