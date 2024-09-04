@@ -57,6 +57,7 @@ import Relevedenote from './Relevedenote';
 import NotificationAdmin from './NotificationAdmin';
 import FeedbackForm from "./FeedbackForm";
 import FeedbacksManager from "./FeedbacksManager";
+import Etudiants from "./Etudiants";
 
 // Import authentication components
 import Login from "./pages/auth/Login";
@@ -64,8 +65,8 @@ import ForgotPssWrd from "./pages/forgotpasseword/ForgotPssWrd";
 import Registe from './pages/inscription/Registe';
 import Page404 from './Page404';
 import { ToastContainer } from 'react-toastify';
-import Etudiantts from './Etudiantts';
-import FormulaireAjoutEleves from './FormulaireAjoutEleves';
+import AjouteruneTache from './AjouteruneTache';
+
 
 function App() {
   return (
@@ -128,16 +129,17 @@ function App() {
           </Route>
 
           {/* Professor Routes */}
-          <Route path="/dashboardcoach" element={<DashboardCoach />} />
+          <Route path="/Dashboardcoach" element={<DashboardCoach />} />
           <Route path="/devoirs" element={<Devoirs />} />
           <Route path="/relevedenote" element={<Relevedenote />} />
           <Route path="/notificationAdmin" element={<NotificationAdmin />} />
-          <Route path="/Etudiantts" element={<Etudiantts />} />
-          {/* <Route path="/FormulaireAjoutEleves" element={<FormulaireAjoutEleves />} /> */}
+          <Route path="/AjouteruneTache" element={<AjouteruneTache />} />
 
           {/* Miscellaneous Routes */}
           <Route path="/FeedbackForm" element={<FeedbackForm />} />
           <Route path="/FeedbacksManager" element={<FeedbacksManager />} />
+          <Route path="/Etudiants" element={<Etudiants />} />
+
 
           {/* Route 404 */}
           <Route path="*" element={<Page404 />} />
@@ -149,3 +151,4 @@ function App() {
 }
 
 export default App;
+

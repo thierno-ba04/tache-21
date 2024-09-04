@@ -144,29 +144,13 @@ const Devoirs= () => {
        <Typography sx={{p:2,textAlign:'justify',mb:5}}> 
       
        <br/>
-       <div role="presentation" onClick={handleClick} style={{marginLeft:"35px"}}>
-      <Breadcrumbs aria-label="breadcrumb">
-        <StyledBreadcrumb
-           sx={{p:2,borderRadius:2}}
-          component="a"
-          href="#"
-          label="Tableau de bord"
-          onClick={()=>{navigate('/')}}
-
-          icon={<DashboardIcon fontSize="small" />}
-        />
-        
-        <StyledBreadcrumb
-            sx={{p:2,borderRadius:2}}
-
-          label="Devoirs"
-          onClick={()=>{navigate('/Devoirs')}}
-        />
-        <Link underline="hover" color="inherit" href="/"  onClick={()=>{navigate('/')}}>
-          Dashboard
-        </Link>
-        <Typography color="text.primary">Livraisons</Typography>
-      </Breadcrumbs>
+       <div role="presentation" onClick={handleClick} >
+       <Breadcrumbs aria-label="breadcrumb" >
+                     <a underline="hover"  style={{ textDecoration: "none", color: 'black' }} onClick={() => { navigate('/DashboardCoach') }}>
+                       Dashboard
+                     </a>
+                     <Typography color="text.primary">Livraisons</Typography>
+                   </Breadcrumbs>
     </div>
 
        

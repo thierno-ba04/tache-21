@@ -252,7 +252,7 @@ export default function Sidebar() {
       <Dropdown.Menu align="end">
         <Dropdown.Item onClick={(e)=>{navigate("/Profile")}}>Mon compte</Dropdown.Item>
         <Dropdown.Item eventKey="2">Reglement interieur</Dropdown.Item>
-        <Dropdown.Item eventKey="3">Déconnexion</Dropdown.Item>
+        <Dropdown.Item eventKey ="2">Déconnexion</Dropdown.Item>
       </Dropdown.Menu>
     </Dropdown>
 
@@ -288,7 +288,7 @@ export default function Sidebar() {
                     justifyContent: 'center',
                     color:'white'
                   }}
-                  
+                   
                 >
                   <SpaceDashboardIcon/>
                 </ListItemIcon>
@@ -297,7 +297,7 @@ export default function Sidebar() {
               </ListItemButton>
             </ListItem>
 
-            <ListItem  disablePadding sx={{ display: 'block' }} onClick={()=>{navigate('/Etudiantts')}}>
+            <ListItem  disablePadding sx={{ display: 'block' }} onClick={()=>{navigate('/Etudiants')}}>
               <ListItemButton
                 sx={{
                   minHeight: 48,
@@ -347,28 +347,7 @@ export default function Sidebar() {
             </ListItem>
 
 
-            <ListItem  disablePadding sx={{ display: 'block' }} onClick={()=>{navigate('/Relevedenote')}}>
-              <ListItemButton
-                sx={{
-                  minHeight: 48,
-                  justifyContent: open ? 'initial' : 'center',
-                  px: 2.5,
-                }}
-              >
-                <ListItemIcon
-                  sx={{
-                    minWidth: 0,
-                    mr: open ? 3 : 'auto',
-                    justifyContent: 'center',
-                    color:'white',
 
-                  }}
-                >
-                  <AppRegistrationIcon/>
-                    </ListItemIcon>
-                <ListItemText primary="Releve de note" sx={{ opacity: open ? 1 : 0,color:'white' }} />
-              </ListItemButton>
-            </ListItem>
 
 
 

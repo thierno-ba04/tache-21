@@ -1,3 +1,8 @@
+.card {
+    width: 100%;
+    
+}
+
 
 
 .avatar.sm {
@@ -5,14 +10,9 @@
     height: 2.25rem;
     font-size: .818125rem;
 }
-
-
-
-.table-nowrap td, .table-nowrap th {
+.table-nowrap .table td, .table-nowrap .table th {
     white-space: nowrap;
 }
-
-
 .table>:not(caption)>*>* {
     padding: 0.75rem 1.25rem;
     border-bottom-width: 1px;
@@ -21,8 +21,3 @@ table th {
     font-weight: 600;
     background-color: #eeecfd !important;
 }
-
-
-
-
-
