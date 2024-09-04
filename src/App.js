@@ -46,7 +46,6 @@ import VoixClasse from './pages/pageadmine/users/vuclasse/VoixClasse';
 import ArchivePrfs from './pages/pageadmine/users/archiver/ArchivePrfs';
 import AjoutPrfs from './pages/pageadmine/users/ajoutprfs/AjoutPrfs';
 import VoixPrs from './pages/pageadmine/users/voirperso/VoixPrs';
-// import UpdatePrsnl from '.updateperso/UpdatePrsnl';
 
 import EditClasse from './pages/pageadmine/users/modifierclasse/EditClasse';
 import Archived from './pages/pageadmine/dashboardadmin/arhiver/Archived';
@@ -56,7 +55,6 @@ import DashboardCoach from './DashboardCoach';
 import Devoirs from './Devoirs';
 import Relevedenote from './Relevedenote';
 import NotificationAdmin from './NotificationAdmin';
-import FormulaireAjoutEleves from './FormulaireAjoutEleves';
 import FeedbackForm from "./FeedbackForm";
 import FeedbacksManager from "./FeedbacksManager";
 
@@ -66,6 +64,8 @@ import ForgotPssWrd from "./pages/forgotpasseword/ForgotPssWrd";
 import Registe from './pages/inscription/Registe';
 import Page404 from './Page404';
 import { ToastContainer } from 'react-toastify';
+import Etudiantts from './Etudiantts';
+import FormulaireAjoutEleves from './FormulaireAjoutEleves';
 
 function App() {
   return (
@@ -132,7 +132,8 @@ function App() {
           <Route path="/devoirs" element={<Devoirs />} />
           <Route path="/relevedenote" element={<Relevedenote />} />
           <Route path="/notificationAdmin" element={<NotificationAdmin />} />
-          <Route path="/formulaireAjoutEleves" element={<FormulaireAjoutEleves />} />
+          <Route path="/Etudiantts" element={<Etudiantts />} />
+          <Route path="/FormulaireAjoutEleves" element={<FormulaireAjoutEleves />} />
 
           {/* Miscellaneous Routes */}
           <Route path="/FeedbackForm" element={<FeedbackForm />} />

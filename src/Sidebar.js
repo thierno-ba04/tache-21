@@ -297,7 +297,7 @@ export default function Sidebar() {
               </ListItemButton>
             </ListItem>
 
-            <ListItem  disablePadding sx={{ display: 'block' }} onClick={()=>{navigate('/formulaireAjoutEleves')}}>
+            <ListItem  disablePadding sx={{ display: 'block' }} onClick={()=>{navigate('/Etudiantts')}}>
               <ListItemButton
                 sx={{
                   minHeight: 48,

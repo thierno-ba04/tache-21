@@ -8,7 +8,7 @@ import { Modal, Button, Form } from "react-bootstrap";
 import { IoPerson } from "react-icons/io5";
 import { GiBrain } from "react-icons/gi";
 import { toast } from "react-toastify";
-import { getAuth, signOut } from "firebase/auth";
+import { getAuth, signOut, onAuthStateChanged } from "firebase/auth";
 import { db, storage, ref, uploadBytes, getDownloadURL, collection, addDoc, query, where, onSnapshot } from "../firebase/firebase";
 import "./sidebar.css";
 
@@ -21,18 +21,24 @@ const SidebarEtudiant = () => {
   const [comments, setComments] = useState([]);
 
   useEffect(() => {
-    const fetchComments = async () => {
-      const commentsCollection = collection(db, "comments"); // Remplacez par le chemin correct de la collection
-      const q = query(commentsCollection, where("user", "==", getAuth().currentUser.displayName));
-      const unsubscribe = onSnapshot(q, (querySnapshot) => {
-        const commentsData = querySnapshot.docs.map((doc) => doc.data());
-        setComments(commentsData);
-      });
+    const auth = getAuth();
 
-      return () => unsubscribe();
-    };
+    const unsubscribeAuth = onAuthStateChanged(auth, (user) => {
+      if (user && user.displayName) {
+        const commentsCollection = collection(db, "comments");
+        const q = query(commentsCollection, where("user", "==", user.displayName));
+        const unsubscribeComments = onSnapshot(q, (querySnapshot) => {
+          const commentsData = querySnapshot.docs.map((doc) => doc.data());
+          setComments(commentsData);
+        });
 
-    fetchComments();
+        return () => unsubscribeComments();
+      } else {
+        console.error("User is not authenticated or displayName is missing");
+      }
+    });
+
+    return () => unsubscribeAuth();
   }, []);
 
   const toggleSidebar = () => setSidebarActive(!isSidebarActive);
@@ -54,16 +60,23 @@ const SidebarEtudiant = () => {
       await uploadBytes(storageRef, file);
       const fileURL = await getDownloadURL(storageRef);
 
-      await addDoc(collection(db, "livraisons"), {
-        task,
-        description,
-        fileURL,
-        user: getAuth().currentUser.displayName,
-        timestamp: new Date(),
-      });
+      const auth = getAuth();
+      const user = auth.currentUser;
 
-      toast.success("Travail envoyé avec succès!");
-      handleCloseModal();
+      if (user && user.displayName) {
+        await addDoc(collection(db, "livraisons"), {
+          task,
+          description,
+          fileURL,
+          user: user.displayName,
+          timestamp: new Date(),
+        });
+
+        toast.success("Travail envoyé avec succès!");
+        handleCloseModal();
+      } else {
+        toast.error("User is not authenticated or displayName is missing");
+      }
     } catch (error) {
       toast.error("Erreur lors de l'envoi du travail: " + error.message);
     }
