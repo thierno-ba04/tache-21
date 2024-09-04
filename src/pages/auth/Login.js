@@ -90,7 +90,7 @@ function Login() {
                 onChange={handleEmailChange}
                 required
               />
-              <div className='icone2 ps-3 mt-4'>
+              <div className='icone2 ps-3 mt-3'>
                 <FiKey />
               </div>
               <input

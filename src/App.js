@@ -133,7 +133,7 @@ function App() {
           <Route path="/relevedenote" element={<Relevedenote />} />
           <Route path="/notificationAdmin" element={<NotificationAdmin />} />
           <Route path="/Etudiantts" element={<Etudiantts />} />
-          <Route path="/FormulaireAjoutEleves" element={<FormulaireAjoutEleves />} />
+          {/* <Route path="/FormulaireAjoutEleves" element={<FormulaireAjoutEleves />} /> */}
 
           {/* Miscellaneous Routes */}
           <Route path="/FeedbackForm" element={<FeedbackForm />} />
