@@ -18,13 +18,12 @@ import Breadcrumbs from '@mui/material/Breadcrumbs';
 import Chip from '@mui/material/Chip';
 import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 import'./Notification.css';
-import { useState, useEffect} from "react";
 import ClipLoader from "react-spinners/ClipLoader";
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
 import {addDoc ,collection,doc, getDoc, getDocs} from "firebase/firestore";
-import {database} from "./firebase";
-import'./Eleves.css';
+import {db} from "../firebase";
+import'./Etudiants.css';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import DeleteIcon from '@mui/icons-material/Delete';
 import AutoFixHighIcon from '@mui/icons-material/AutoFixHigh';
@@ -117,7 +116,7 @@ const Eleves = () => {
 
   useEffect(()=>{
     const getvalue =async()=>{
-      const val = doc(database, "eleves",'posts')
+      const val = doc(db, "eleves",'posts')
       const collectinval =collection(val,"feedbacks")
      
       const getvalue = await getDocs(collectinval)
@@ -133,7 +132,7 @@ const Eleves = () => {
 
 const hanledelete =async(id)=>{
 
-  const deleval=doc(database,"eleves",id)
+  const deleval=doc(db,"eleves",id)
   setData(data.filter((item)=>item.id!==id))}
 
   
@@ -154,7 +153,6 @@ const hanledelete =async(id)=>{
 
 
 
-  const navigate = useNavigate();
   const [valu, setValu] = React.useState(null);
   const [listpresence, setlistepresence] = React.useState('');
   const [value, setValue] = React.useState(dayjs('2022-04-17'));

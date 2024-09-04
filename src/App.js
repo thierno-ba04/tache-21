@@ -59,6 +59,7 @@ import NotificationAdmin from './NotificationAdmin';
 import FormulaireAjoutEleves from './FormulaireAjoutEleves';
 import FeedbackForm from "./FeedbackForm";
 import FeedbacksManager from "./FeedbacksManager";
+import Etudiants from "./Etudiants"
 
 // Import authentication components
 import Login from "./pages/auth/Login";
@@ -132,11 +133,12 @@ function App() {
           <Route path="/devoirs" element={<Devoirs />} />
           <Route path="/relevedenote" element={<Relevedenote />} />
           <Route path="/notificationAdmin" element={<NotificationAdmin />} />
-          <Route path="/formulaireAjoutEleves" element={<FormulaireAjoutEleves />} />
 
           {/* Miscellaneous Routes */}
           <Route path="/FeedbackForm" element={<FeedbackForm />} />
           <Route path="/FeedbacksManager" element={<FeedbacksManager />} />
+          <Route path="/Etudiants" element={<Etudiants />} />
+
 
           {/* Route 404 */}
           <Route path="*" element={<Page404 />} />

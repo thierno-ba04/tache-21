@@ -252,7 +252,7 @@ export default function Sidebar() {
       <Dropdown.Menu align="end">
         <Dropdown.Item onClick={(e)=>{navigate("/Profile")}}>Mon compte</Dropdown.Item>
         <Dropdown.Item eventKey="2">Reglement interieur</Dropdown.Item>
-        <Dropdown.Item eventKey="3">Déconnexion</Dropdown.Item>
+        <Dropdown.Item eventKey ="2">Déconnexion</Dropdown.Item>
       </Dropdown.Menu>
     </Dropdown>
 
@@ -297,7 +297,7 @@ export default function Sidebar() {
               </ListItemButton>
             </ListItem>
 
-            <ListItem  disablePadding sx={{ display: 'block' }} onClick={()=>{navigate('/formulaireAjoutEleves')}}>
+            <ListItem  disablePadding sx={{ display: 'block' }} onClick={()=>{navigate('/Etudiants')}}>
               <ListItemButton
                 sx={{
                   minHeight: 48,
