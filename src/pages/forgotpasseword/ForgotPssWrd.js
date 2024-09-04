@@ -1,6 +1,7 @@
-import React, { useState, useRef } from "react";
-import { Col, Container, Row, ToastContainer } from "react-bootstrap";
-import { toast } from "react-toastify";
+import React, { useState } from "react";
+import { Col, Container, Row } from "react-bootstrap";
+import { toast, ToastContainer } from "react-toastify";
+import { getAuth, sendPasswordResetEmail } from "firebase/auth";
 import "./forgotpsswrd.css";
 import imglearning from "../../assets/img/education-technology-logo-design-vector.jpg";
 
@@ -9,7 +10,7 @@ function ForgotPssWrd() {
   const [errorMss, setErrorMss] = useState("");
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
 
-  const emailRef = useRef();
+  const auth = getAuth(); // Initialize Firebase Auth
 
   // Fonction pour valider l'email
   const isValidEmail = (email) => {
@@ -32,16 +33,20 @@ function ForgotPssWrd() {
   };
 
   // Fonction pour soumettre le formulaire
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     if (isValidEmail(email)) {
-      // Traitement de la récupération de mot de passe
-      toast.success(
-        "Un email de récupération a été envoyé si l'email est associé à un compte."
-      );
-      // Vous pouvez également réinitialiser le champ email et l'état du bouton
-      setEmail("");
-      setIsButtonDisabled(true);
+      try {
+        await sendPasswordResetEmail(auth, email);
+        toast.success(
+          "Un email de récupération a été envoyé si l'email est associé à un compte."
+        );
+        setEmail(""); // Réinitialiser le champ email
+        setIsButtonDisabled(true); // Désactiver le bouton
+      } catch (error) {
+        console.error("Erreur de récupération de mot de passe :", error);
+        toast.error("Une erreur est survenue. Veuillez réessayer.");
+      }
     } else {
       setErrorMss("Veuillez entrer un email valide");
     }
@@ -50,10 +55,10 @@ function ForgotPssWrd() {
   return (
     <div>
       <Container fluid>
-        <Row className="password shadow">
+        <Row className="password ">
           <Col sm={6} md={6} className="forgotBox">
             <div className="text-center">
-              <h3 className="shadow header-pwd p-1">
+              <h3 className="shadow header-pwd p-0">
                 <span>Récupération du mot de passe</span>
               </h3>
               <p className="bg-text text-center">
@@ -66,8 +71,7 @@ function ForgotPssWrd() {
               className="d-flex flex-column justify-content-center align-items-center"
             >
               <input
-                ref={emailRef}
-                type="text"
+                type="email"
                 placeholder="Entrer votre email"
                 className="input2 rounded-pill"
                 value={email}
@@ -76,7 +80,7 @@ function ForgotPssWrd() {
               <input
                 type="submit"
                 className="my-1 text-white input-rcp rounded-pill"
-                value="Récuperer"
+                value="Récupérer"
                 disabled={isButtonDisabled}
               />
             </form>
@@ -86,9 +90,7 @@ function ForgotPssWrd() {
                 {errorMss}
               </div>
             </div>
-            <div>
-              <ToastContainer />
-            </div>
+            <ToastContainer />
           </Col>
           <Col sm={6} md={6} className="body">
             <div className="text-center align-items-center pt-4">

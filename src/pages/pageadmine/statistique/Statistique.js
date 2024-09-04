@@ -68,7 +68,7 @@ function Statistique() {
       <Row>
         <Col lg={1} md={1} className="mt-5"></Col>
         <Col lg={11} md={11} className="shadow bg-body rounded statistique">
-          <div className="bulletin">
+          <div className="bulletin mt-5">
             <p>Tableau / Statistique</p>
           </div>
           <div className="chartstats">

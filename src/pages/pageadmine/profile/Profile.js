@@ -141,7 +141,7 @@ const Profile = () => {
             placeholder="Nouveau rôle"
             value={newRole}
             onChange={(e) => setNewRole(e.target.value)}
-            className="mt-3"
+            className="mt-3 w-100"
           />
           <Button onClick={handleRoleChange} className="mt-3">
             Mettre à jour le rôle

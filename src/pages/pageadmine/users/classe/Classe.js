@@ -58,7 +58,7 @@ const Classe = () => {
   };
 
   const handleAddClasse = () => {
-    navigate("/classes/ajoutclss");
+    navigate("/ajoutclasse");
   };
 
   const filteredClasses = classes.filter((classe) => {
@@ -113,7 +113,7 @@ const Classe = () => {
               />
             </form>
             <Button className=" mt-3" onClick={handleAddClasse}>
-              <Link to="/classes/ajoutclss" className="rowsbutt">
+              <Link to="ajoutclasse" className="rowsbutt">
                 Ajouter
                 <IoIosAddCircleOutline
                   className="button-add ms-auto"

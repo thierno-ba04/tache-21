@@ -78,9 +78,9 @@ const Archived = () => {
   return (
     <div className="d-block m-auto">
       <Container>
-        <Row className="justify-content-center">
-          <h3 className="text-center text-uppercase h3">Archived Users</h3>
-          <Col lg={7} md={11}>
+        <Row className="justify-content-center archivetitre">
+          <h3 className="text-center text-uppercase">Archived Users</h3>
+          <Col lg={10} md={10}>
             <table className="tableau-style">
               <thead>
                 <tr>
@@ -122,13 +122,13 @@ const Archived = () => {
                     <td>{student.Niveau_classe}</td>
                     <td className="icons">
                       <Link to={`/voir/${student.id}`}>
-                        <EyeFill size={18} color="skyblue" className="ms-2" />
+                        <EyeFill size={18} color="skyblue" className="ms-2 mt-3" />
                       </Link>
                       <Link
                         onClick={() => handleUpdateStudent(student.id)}
                         className="button-edit"
                       >
-                        <PencilFill size={18} color="yellow" className="ms-2" />
+                        <PencilFill size={18} color="yellow" className="ms-2 mt-3" />
                       </Link>
                       <button
                         onClick={() => handleDeleteUser(student.id)}
@@ -137,24 +137,25 @@ const Archived = () => {
                         <TrashFill size={18} color="red" className="ms-2" />
                       </button>
                       <Link to="#" onClick={() => handleUnarchiveUser(student.id)} className="button-unarchive">
-                        <StarFill size={18} color="blue" className="ms-2" aria-hidden="true" />
+                        <StarFill size={18} color="blue" className="ms-2 mt-3" aria-hidden="true" />
                       </Link>
                     </td>
                   </tr>
                 ))}
               </tbody>
             </table>
-          </Col>
-          <div className="d-flex justify-content-center mt-4">
+            <div className="d-flex justify-content-center mt-4">
             <Button
               type="button" // changed from "btn" to "button"
-              className="btn btn-secondary"
+              className="btn btn-secondary me-auto"
               onClick={() => navigate(-1)}
               color="white"
             >
               GO Back
             </Button>
           </div>
+          </Col>
+         
         </Row>
       </Container>
     </div>

@@ -1,224 +1,175 @@
-import React from "react";
-import { Col, Container, Row, Button } from "react-bootstrap";
+// CoursPrfs.js
+import React, { useEffect, useState } from "react";
+import { Col, Container, Row, Button, Form, Modal } from "react-bootstrap";
 import { LiaFileExportSolid } from 'react-icons/lia';
-import { IoIosAddCircleOutline } from 'react-icons/io';
-import imgcour from "../../../../assets/img/CSS3_and_HTML5_logos_and_wordmarks.svg-removebg-preview.png";
-import imgboots from "../../../../assets/img/imagesbootstrap__1_-removebg-preview.png";
-import imgbjs from "../../../../assets/img/kisspng-javascript2503058546-removebg-preview.png";
-import imgreact from "../../../../assets/img/o2switch-deployer-react.js.png";
 import { Link } from "react-router-dom";
-import { useMyContext } from '../../../../context/MyContext';
-import Card from "react-bootstrap/Card";
-import './coursprfs.css'
-
+import { db, collection, getDocs, addDoc, storage, ref, uploadBytes, getDownloadURL } from '../../../../firebase/firebase';
+import './coursprfs.css';
+import { saveAs } from 'file-saver';
 
 function CoursPrfs() {
+  const [courses, setCourses] = useState([]);
+  const [showModal, setShowModal] = useState(false);
+  const [newCourse, setNewCourse] = useState({ name: '', img: '' });
+  const [isButtonDisabled, setIsButtonDisabled] = useState(true);
+  const [imageFile, setImageFile] = useState(null);
   
-  const { CoursPrfs} = useMyContext();
+
+  useEffect(() => {
+    const fetchCourses = async () => {
+      try {
+        const coursesCollection = collection(db, 'courses');
+        const courseSnapshot = await getDocs(coursesCollection);
+        const coursesList = courseSnapshot.docs.map(doc => doc.data());
+        setCourses(coursesList);
+      } catch (error) {
+        console.error('Error fetching courses: ', error);
+      }
+    };
+
+    fetchCourses();
+  }, []);
+
+  // Fonction pour convertir les données en CSV
+const convertToCSV = (data, fields) => {
+  const header = fields.join(',');
+  const rows = data.map(item =>
+    fields.map(field => `"${item[field] || ''}"`).join(',')
+  );
+  return [header, ...rows].join('\n');
+};
+
+  const handleExport = () => {
+    // Fonctionnalité d'exportation en CSV
+    const fields = ['name', 'img']; // Champs à inclure dans le CSV
+    const csv = convertToCSV(courses, fields);
+    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8' });
+    saveAs(blob, 'courses.csv');
+    console.log('Exporting to CSV...');
+  };
+
+  const handleShow = () => setShowModal(true);
+  const handleClose = () => setShowModal(false);
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setNewCourse(prevState => ({ ...prevState, [name]: value }));
+    setIsButtonDisabled(newCourse.name === '' || newCourse.img === '');
+  };
+
+  const handleImageChange = (e) => {
+    setImageFile(e.target.files[0]);
+  };
+
+  const handleAddCourse = async (e) => {
+    e.preventDefault();
+    try {
+      let imageUrl = '';
+      if (imageFile) {
+        // Téléversement de l'image vers Firebase Storage
+        const storageRef = ref(storage, `images/${imageFile.name}`);
+        await uploadBytes(storageRef, imageFile);
+        imageUrl = await getDownloadURL(storageRef);
+      }
+
+      // Ajouter le cours à Firestore
+      await addDoc(collection(db, 'courses'), {
+        name: newCourse.name,
+        img: imageUrl || newCourse.img,
+      });
+
+      // Réinitialiser le formulaire
+      setNewCourse({ name: '', img: '' });
+      setImageFile(null);
+      setShowModal(false);
+
+      // Re-fetch courses to update the list
+      const coursesCollection = collection(db, 'courses');
+      const courseSnapshot = await getDocs(coursesCollection);
+      const coursesList = courseSnapshot.docs.map(doc => doc.data());
+      setCourses(coursesList);
+    } catch (error) {
+      console.error('Error adding course: ', error);
+    }
+  };
+
   return (
     <Container>
       <Row>
-      <Col lg={1} md={1}></Col>
+        <Col lg={1} md={1}></Col>
         <Col lg={10} md={10}>
-          <div className="classe">
+          <div className="classe mt-3">
             <h6>Liste des Domaines</h6>
-            {/* <div className="rowsbutt mt-3">
-              <Link to="/ajoutcours">
-                <Button className="btnajoute">
-                  Ajouter <IoIosAddCircleOutline className="iconajoute ms-2 mb-1" />
-                </Button>
-              </Link>
-            </div> */}
-            <div className="ms-2 mt-3">
-              <Button>
+            <div className="mt-3">
+             
+              <Button className="m-auto" onClick={handleShow}>
+                Ajouter un Cours
+              </Button>
+              <Button className="ms-3" onClick={handleExport}>
                 <LiaFileExportSolid className="buttexport me-2 mb-1" /> Imprimer to CSV
               </Button>
             </div>
           </div>
         </Col>
         <Col lg={1} md={1}></Col>
-        <Col lg={1} md={1}></Col>
-        <Col lg={5} md={5} className="courshtml">
-          <div className="div_h4">
-            <h4>Html/css</h4>
-          </div>
-          <Link to="/mescours">
-            <div className="card">
-              <img src={imgcour} alt="html/css" className="coursimg" />
+
+        {courses.map((course, index) => (
+          <Col lg={5} md={5} className="mt-5 m-auto" key={index}>
+            <div className="div_h4 mt-5">
+              <h4>{course.name}</h4>
             </div>
-          </Link>
-        </Col>
-        <Col lg={1} md={1}></Col>
-        <Col lg={5} md={5} className="coursbootstrap">
-          <div className="div_h4">
-            <h4>Bootstrap</h4>
-          </div>
-          <Link to="/mescours">
-            <div className="card">
-              <img src={imgboots} alt="bootstrap" className="coursimg" />
-            </div>
-          </Link>
-        </Col>
-        <Col lg={1} md={1}></Col>
-        <Col lg={5} md={5} className="mt-5">
-          <div className="div_h4 mt-5">
-            <h4>Javascript</h4>
-          </div>
-          <Link to="/mescours">
-            <div className="card">
-              <img src={imgbjs} alt="javascript" className="coursimg" />
-            </div>
-          </Link>
-        </Col>
-        <Col lg={1} md={1}></Col>
-        <Col lg={5} md={5} className="mt-5">
-          <div className="div_h4 mt-5">
-            <h4>React-Js</h4>
-          </div>
-          <Link to="/mescours">
-            <div className="card">
-              <img src={imgreact} alt="react-js" className="coursimg" />
-            </div>
-          </Link>
-        </Col>
-
-
-        {/* <Row className="gy-5 mt-5">
-          <Col lg={3} md={6}>
-            <Card style={{ width: "18rem", borderRadius: "85px" }}>
-              <Card.Img
-                variant="top"
-                src={imghtmlcss}
-                style={{ width: "90%" }}
-                className="ms-4 mt-4"
-              />
-              <Card.Body>
-                <h3 className="text-center">HTML5/CSS3</h3>
-                <h6 className="text-center">Les bases du HTML/CSS</h6>
-                <Button variant="primary" className="ms-5">
-                  Voir les cours
-                </Button>
-              </Card.Body>
-            </Card>
+            <Link to="/mescours">
+              <div className="card">
+                <img src={course.img} alt={course.name} className="coursimg" />
+              </div>
+            </Link>
           </Col>
-          <Col lg={3} md={6}>
-            <Card style={{ width: "18rem", borderRadius: "85px" }}>
-              <Card.Img
-                variant="top"
-                src={imgboot}
-                style={{ width: "80%" }}
-                className="ms-4 mt-3"
-              />
-              <Card.Body>
-                <h3 className="text-center">BOOTSTRAP</h3>
-                <h6 className="text-center">MAITRISE BOOTSTRAP</h6>
-                <Button variant="primary" className="ms-5">
-                  Voir les cours
-                </Button>
-              </Card.Body>
-            </Card>
-          </Col>
-          <Col lg={3} md={6}>
-            <Card style={{ width: "18rem", borderRadius: "85px" }}>
-              <Card.Img
-                variant="top"
-                src={imgjavas}
-                style={{ width: "110%" }}
-                className=" mt-3"
-              />
-              <Card.Body>
-                <h3 className="text-center">JAVASCRIPT</h3>
-                <h6 className="text-center">JAVASCRIPT DEBUTANT</h6>
-                <Button variant="primary" className="ms-5">
-                  Voir les cours
-                </Button>
-              </Card.Body>
-            </Card>
-          </Col>
-          <Col lg={3} md={6}>
-            <Card
-              style={{ width: "18rem", borderRadius: "85px" }}
-              className="mt-"
-            >
-              <Card.Img variant="top" src={imgreact} />
-              <Card.Body>
-                <h3 className="text-center"> REACTJS</h3>
-                <h6 className="text-center">REACTJS DEBUTANT</h6>
-                <Button variant="primary" className="ms-5">
-                  Voir les cours
-                </Button>
-              </Card.Body>
-            </Card>
-          </Col>
-        </Row>
-        <Row className="mt-5 gy-5">
-          <Col lg={3} md={6}>
-            <Card
-              style={{ width: "18rem", borderRadius: "85px" }}
-              className="mt-"
-            >
-              <Card.Img variant="top" src={imghtache21} />
-              <Card.Body>
-                <h3 className="text-center"> TACHE 21</h3>
-                <h6 className="text-center">DARON DU FRONT-END</h6>
-                <Button variant="primary" className="ms-5">
-                  Voir les cours
-                </Button>
-              </Card.Body>
-            </Card>
-          </Col>
-
-          <Col lg={3} md={6}>
-            <Card
-              style={{ width: "18rem", borderRadius: "85px", height: "24rem" }}
-              className="mt-"
-            >
-              <Card.Img variant="top" src={imgnodejs} className="mt-5" />
-              <Card.Body>
-                <h3 className="text-center"> NODEJS</h3>
-                <h6 className="text-center">Apprendre NodeJS</h6>
-                <Button variant="primary" className="ms-5">
-                  Voir les cours
-                </Button>
-              </Card.Body>
-            </Card>
-          </Col>
-
-          <Col lg={3} md={6}>
-            <Card
-              style={{ width: "18rem", borderRadius: "85px", height: "24rem" }}
-              className="mt-"
-            >
-              <Card.Img variant="top" src={imgphp} className="mt-3" />
-              <Card.Body>
-                <h3 className="text-center mt-4"> PHP</h3>
-                <h6 className="text-center">Apprendre PHP</h6>
-                <Button variant="primary" className="ms-5">
-                  Voir les cours
-                </Button>
-              </Card.Body>
-            </Card>
-          </Col>
-
-          <Col lg={3} md={6}>
-            <Card
-              style={{ width: "18rem", borderRadius: "85px", height: "24rem" }}
-              className="mt-"
-            >
-              <Card.Img variant="top" src={imgpython} className="mt-5" />
-              <Card.Body>
-                <h3 className="text-center mt-4"> PYTHON</h3>
-                <h6 className="text-center">Apprendre PYTHON</h6>
-                <Button variant="primary" className="ms-5">
-                  Voir les cours
-                </Button>
-              </Card.Body>
-            </Card>
-          </Col>
-        </Row> */}
-
-
+        ))}
       </Row>
+
+      {/* Modal for Adding a New Course */}
+      <Modal show={showModal} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Ajouter un Cours</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form onSubmit={handleAddCourse}>
+            <Form.Group className="mb-3" controlId="courseName">
+              <Form.Label>Nom du Cours</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Nom du cours"
+                name="name"
+                value={newCourse.name}
+                onChange={handleInputChange}
+                required
+              />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="courseImg">
+              <Form.Label>URL de l'Image</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="URL de l'image"
+                name="img"
+                value={newCourse.img}
+                onChange={handleInputChange}
+                required
+              />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="courseImageFile">
+              <Form.Label>Choisir une image</Form.Label>
+              <Form.Control
+                type="file"
+                accept="image/*"
+                onChange={handleImageChange}
+              />
+            </Form.Group>
+            <Button variant="primary" type="submit" disabled={isButtonDisabled}>
+              Ajouter
+            </Button>
+          </Form>
+        </Modal.Body>
+      </Modal>
     </Container>
   );
 }

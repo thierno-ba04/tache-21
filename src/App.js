@@ -39,7 +39,7 @@ import MesCours from './pages/pageadmine/users/mescours/MesCours';
 import Voix from './pages/pageadmine/dashboardadmin/voir/Voix';
 import Classe from './pages/pageadmine/users/classe/Classe';
 import CoursPrfs from './pages/pageadmine/users/coursprfs/CoursPrfs';
-import AjoutCours from './pages/pageadmine/users/ajoutcours/AjoutCours';
+import AddCoures from './pages/pageadmine/users/addcoures/AddCoures';
 import AjoutClasse from './pages/pageadmine/users/ajoutclasse/AjoutClasse';
 import UpdateStudent from './pages/pageadmine/users/updateUsers/UpdateStudent';
 import VoixClasse from './pages/pageadmine/users/vuclasse/VoixClasse';
@@ -116,7 +116,7 @@ function App() {
             <Route path="/mescours" element={<MesCours />} />
             <Route path="/ajoutprfs" element={<AjoutPrfs />} />
             <Route path="/coursprfs" element={<CoursPrfs />} />
-            <Route path="/ajoutcours" element={<AjoutCours />} />
+            <Route path="/addcoures" element={<AddCoures />} />
             <Route path="/classe" element={<Classe />} />
             <Route path="/ajoutclasse" element={<AjoutClasse />} />
             <Route path="/classes/voix/:id" element={<VoixClasse />} />

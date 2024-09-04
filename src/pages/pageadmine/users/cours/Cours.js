@@ -5,6 +5,8 @@ import imgcour from "../../../../assets/img/CSS3_and_HTML5_logos_and_wordmarks.s
 import imgboots from "../../../../assets/img/imagesbootstrap__1_-removebg-preview.png";
 import imgbjs from "../../../../assets/img/kisspng-javascript2503058546-removebg-preview.png";
 import imgreact from "../../../../assets/img/o2switch-deployer-react.js.png";
+import imgnodejs from "../../../../assets/img/1200px-Node.js_logo.svg-removebg-preview.png";
+import imgphp from "../../../../assets/img/images-removebg-preview.png";
 import { Link } from "react-router-dom";
 
 function Cours() {
@@ -14,12 +16,12 @@ function Cours() {
         <div className="courstitre">
           <Col lg={1} md={1}></Col>
           <Col lg={11} md={11}>
-            <h2>Mes programmes</h2>
+            <h2>Les programmes</h2>
           </Col>
         </div>
         <Col lg={1} md={1}></Col>
 
-        <Col lg={5} md={5} className="courshtml">
+        <Col lg={5} md={5} className="courshtml mt-4">
           <div className="div_h4">
             <h4>Html/css</h4>
           </div>
@@ -30,7 +32,7 @@ function Cours() {
           </Link>
         </Col>
         <Col lg={1} md={1}></Col>
-        <Col lg={5} md={5} className="coursbootstrap">
+        <Col lg={5} md={5} className="coursbootstrap mt-4">
           <div className="div_h4">
             <h4>Bootstrap</h4>
           </div>
@@ -59,6 +61,30 @@ function Cours() {
           <Link to="/mescours">
             <div className="card">
               <img src={imgreact} alt="react-js" className="coursimg" />
+            </div>
+          </Link>
+        </Col>
+
+        <Col lg={1} md={1}></Col>
+        <Col lg={5} md={5} className="mt-5">
+          <div className="div_h4 mt-5">
+            <h4>React-Js</h4>
+          </div>
+          <Link to="/mescours">
+            <div className="card">
+              <img src={imgnodejs} alt="react-js" className="coursimg" />
+            </div>
+          </Link>
+        </Col>
+
+        <Col lg={1} md={1}></Col>
+        <Col lg={5} md={5} className="mt-5">
+          <div className="div_h4 mt-5">
+            <h4>React-Js</h4>
+          </div>
+          <Link to="/mescours">
+            <div className="card">
+              <img src={imgphp} alt="react-js" className="coursimg" />
             </div>
           </Link>
         </Col>

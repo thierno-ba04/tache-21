@@ -36,19 +36,24 @@ function Login() {
           switch (role) {
             case 'admin':
               navigate('/dashboardadmin');
+              toast.success('Connexion réussie en tant qu\'admin.');
               break;
             case 'coach':
               navigate('/dashboardcoach');
+              toast.success('Connexion réussie en tant que coach.');
               break;
             case 'etudiant':
               navigate('/dashboardetudiant');
+              toast.success('Connexion réussie en tant qu\'étudiant.');
               break;
             default:
               navigate('/'); // Page d'accueil ou erreur
+              toast.error('Rôle inconnu.');
               break;
           }
         } else {
           navigate('/'); // Page d'accueil ou erreur si utilisateur non trouvé
+          toast.error('Utilisateur non trouvé.');
         }
       }
     } catch (error) {
@@ -59,9 +64,6 @@ function Login() {
           break;
         case 'auth/user-not-found':
           errorMessage = 'Aucun utilisateur trouvé avec cet email.';
-          break;
-        case 'auth/too-many-requests':
-          errorMessage = 'Trop de tentatives. Veuillez réessayer plus tard.';
           break;
         default:
           errorMessage = 'Une erreur est survenue. Veuillez réessayer.';
@@ -89,8 +91,9 @@ function Login() {
                 value={email}
                 onChange={handleEmailChange}
                 required
+                autoComplete="username" // Ajouté pour la suggestion d'email
               />
-              <div className='icone2 ps-3 mt-4'>
+              <div className='icone2 ps-3 mt-3'>
                 <FiKey />
               </div>
               <input
@@ -100,6 +103,7 @@ function Login() {
                 value={password}
                 onChange={handlePasswordChange}
                 required
+                autoComplete="current-password" // Ajouté pour la suggestion de mot de passe
               />
               <Link to="/forgot" className="page-link-label">Mot de passe oublié ?</Link>
               <button className="form-btn rounded-pill" type="submit" disabled={!isFormValid}>

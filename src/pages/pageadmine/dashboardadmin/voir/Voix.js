@@ -47,7 +47,7 @@ function Voix() {
   }
 
   return (
-    <div className="shadow bg-body rounded details">
+    <div className="shadow bg-body rounded details mt-5">
       <Container>
         <Row className="justify-content-center">
           <h2 className="titre_details">Détails de l'Étudiant</h2>

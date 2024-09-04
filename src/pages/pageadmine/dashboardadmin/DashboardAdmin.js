@@ -115,7 +115,7 @@ function DashboardAdmin() {
 
   const getUserCount = async () => {
     try {
-      const usersSnapshot = await getDocs(collection(db, "users-functions")); // Utilisez le nom de collection correct
+      const usersSnapshot = await getDocs(collection(db, "classes")); // Utilisez le nom de collection correct
       const userCount = usersSnapshot.size;
       return userCount;
     } catch (error) {
@@ -393,7 +393,7 @@ function DashboardAdmin() {
                           <EyeFill
                             size={18}
                             color="skyblue"
-                            className="ms-4 mt-2"
+                            className="ms-4 mt-3"
                           />
                         </Link>
                         <button
@@ -403,7 +403,7 @@ function DashboardAdmin() {
                           <PencilFill
                             size={18}
                             color="yellow"
-                            className="ms-2"
+                            className="ms-3"
                           />
                         </button>
                         <Button
@@ -411,7 +411,7 @@ function DashboardAdmin() {
                           className="button-delete"
                           variant="link"
                         >
-                          <TrashFill size={18} color="red" className="ms-2" />
+                          <TrashFill size={18} color="red" className="me-2" />
                         </Button>
 
                         <Link
@@ -423,7 +423,7 @@ function DashboardAdmin() {
                           <ArchiveFill
                             size={18}
                             color="green"
-                            className="mt-2"
+                            className="me-2 mt-3"
                           />
                         </Link>
                       </td>
