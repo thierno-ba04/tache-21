@@ -115,7 +115,7 @@ function DashboardAdmin() {
 
   const getUserCount = async () => {
     try {
-      const usersSnapshot = await getDocs(collection(db, "users-functions")); // Utilisez le nom de collection correct
+      const usersSnapshot = await getDocs(collection(db, "classes")); // Utilisez le nom de collection correct
       const userCount = usersSnapshot.size;
       return userCount;
     } catch (error) {

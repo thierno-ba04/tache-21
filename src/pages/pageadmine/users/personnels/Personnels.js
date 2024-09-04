@@ -23,6 +23,16 @@ import { getDownloadURL, listAll, ref } from "firebase/storage";
 import ReactPaginate from "react-paginate";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { saveAs } from 'file-saver';
+
+// Fonction pour convertir les données en CSV
+const convertToCSV = (data, fields) => {
+  const header = fields.join(',');
+  const rows = data.map(item =>
+    fields.map(field => `"${item[field] || ''}"`).join(',')
+  );
+  return [header, ...rows].join('\n');
+};
 
 const addProfesseurToDb = async (personnel) => {
   try {
@@ -141,6 +151,15 @@ const Personnels = () => {
     setCurrentPage(event.selected);
   };
 
+  const handleExport = () => {
+    // Fonctionnalité d'exportation en CSV
+    const fields = ['Nom', 'Prenom', 'Mail', 'Number', 'Genre', 'Adress', 'Domaine']; // Champs à inclure dans le CSV
+    const csv = convertToCSV(personnels, fields);
+    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8' });
+    saveAs(blob, 'personnels.csv');
+    console.log('Exporting to CSV...');
+  };
+
   return (
     <div className="main2">
       <Container>
@@ -151,7 +170,7 @@ const Personnels = () => {
             <h6 className="lsteleves mt-4">Liste des Coachs</h6>
             <div className="deuxbutt">
               <div className="mt-3">
-                <Button>
+                <Button onClick={handleExport}>
                   <LiaFileExportSolid className="buttexport me-2 mb-1" /> Export
                   to CSV
                 </Button>
@@ -173,7 +192,7 @@ const Personnels = () => {
                     color="white"
                     onClick={() =>
                       handleAddPrfs({
-                      
+                        // Ajoutez ici les informations du nouveau personnel si nécessaire
                       })
                     }
                   />
@@ -227,7 +246,7 @@ const Personnels = () => {
                           <EyeFill
                             size={18}
                             color="skyblue"
-                            className="ms-4 mt-2"
+                            className="ms-4 mt-3"
                           />
                         </Link>
                         <button
@@ -256,7 +275,7 @@ const Personnels = () => {
                           <ArchiveFill
                             size={18}
                             color="green"
-                            className="mt-2"
+                            className="mt-3"
                           />
                         </Link>
                       </td>
