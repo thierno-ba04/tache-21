@@ -81,7 +81,7 @@ function Login() {
             <h2 className='text-dark fw-bold'>Connexion</h2>
             <p className="title" style={{ color: "grey" }}>Connectez-vous à votre compte</p>
             <form className="form" onSubmit={handleLogin}>
-              <div className='icone1 ps-3 mt-2'>
+              <div className='icone1 ps-3 mt-1'>
                 <IoMailOutline />
               </div>
               <input
@@ -93,7 +93,7 @@ function Login() {
                 required
                 autoComplete="username" // Ajouté pour la suggestion d'email
               />
-              <div className='icone2 ps-3 mt-2'>
+              <div className='icone2 ps-3 mt-1'>
                 <FiKey />
               </div>
               <input

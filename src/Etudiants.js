@@ -120,7 +120,7 @@ const Etudiants = () => {
              <Typography sx={{ textAlign: 'center', mt: 3, mb: 3 }}>
                <div style={{ width: '100%' }}>
                  <Typography sx={{ p: 2, textAlign: 'justify', mb: 5,mt:6 }}>
-                   <Breadcrumbs aria-label="breadcrumb" >
+                   <Breadcrumbs aria-label="breadcrumb" className="mt-5" >
                      <a underline="hover"  style={{ textDecoration: "none", color: 'black' }} onClick={() => { navigate('/DashboardCoach') }}>
                        Dashboard
                      </a>
