@@ -130,9 +130,9 @@ body{
 body{
     margin-top:20px;
 }
-.bg-light-gray {
+/* .bg-light-gray {
     background-color: #f7f7f7;
-}
+} */
 .table-bordered thead td, .table-bordered thead th {
     border-bottom-width: 2px;
 }
