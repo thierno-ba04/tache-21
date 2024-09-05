@@ -79,10 +79,10 @@ const AjoutElv = (props) => {
     <Container>
       <Row className="laclassesss justify-content-center">
         <div className="laclasses">
-          <h2 className="mt-2">Les élèves de la classe</h2>
+          <h2 className="mt-2">Etudiants</h2>
         </div>
         <Col md={10} className="addetudiant">
-          <h2>Ajouter un Élève</h2>
+          <h2>Ajouter un etudiant</h2>
           <Form onSubmit={handleSubmit}>
             <Row>
               <Col md={6}>
