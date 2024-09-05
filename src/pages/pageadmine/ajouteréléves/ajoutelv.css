@@ -1,8 +1,8 @@
 .laclasses{
+    /* position: relative;
+    top: 20rem; */
     width: 80%;
     background-color: #179fd4;
-    margin-top: 2rem;
-
     box-sizing: border-box;
     color: aliceblue;
     border-radius: 10px;
@@ -10,8 +10,14 @@
     /* padding-top: 4rem; */
 }
 
+.laclassesss{
+    position: relative;
+    top: 90px;
+}
+
 .addetudiant {
-    margin-top: 0rem;
+    margin-top: 20rem;
+   
     padding: 30px;
     background: white;
     box-shadow: rgba(221, 203, 203, 0.6) 0px 0px 10px; 

@@ -78,9 +78,9 @@ function AjoutPrfs() {
 
   return (
     <Container>
-      <Row className="justify-content-center">
+      <Row className="laclassesss justify-content-center">
         <div className="laclasses mt-5">
-          <h2 className="mt-2">Le Personnels</h2>
+          <h2 className="mt-2">COACH</h2>
         </div>
         <Col lg={10} md={10} className="addetudiant">
           <h2>Ajouter un Coach</h2>
