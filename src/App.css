@@ -599,13 +599,11 @@ body{
     max-width: calc(30% - 32px)!important;
     max-height: calc(100% - 32px);
     outline: 0;
-    
-
 }
 
-.ListemButton{
+/* .ListemButton{
     background: #15ca20;
-}
+} */
 
 
 .css-192lqk4-MuiDataGrid-root .MuiDataGrid-columnHeader {
