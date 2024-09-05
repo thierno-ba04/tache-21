@@ -79,8 +79,8 @@ const DashboardCoach = () => {
                 <div style={{ width: '100%' }}>
                   <Typography sx={{ p: 2, textAlign: 'justify' }}>
                     <br />
-                    <div role="presentation" style={{ marginLeft: 35 }}>
-                      <Breadcrumbs aria-label="breadcrumb">
+                    <div role="presentation" >
+                      <Breadcrumbs aria-label="breadcrumb " sx={{mt:2,mb:2}} >
                         <Typography color="text.primary">Dashboard</Typography>
                       </Breadcrumbs>
                     </div>
