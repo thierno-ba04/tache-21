@@ -286,14 +286,14 @@ export default function Sidebar() {
                     minWidth: 0,
                     mr: open ? 3 : 'auto',
                     justifyContent: 'center',
-                    color:'white'
+                    color:'black'
                   }}
                    
                 >
                   <SpaceDashboardIcon/>
                 </ListItemIcon>
                 
-                <ListItemText primary="Dashboard" sx={{ opacity: open ? 1 : 0 ,color:'white'}} />
+                <ListItemText primary="Dashboard" sx={{ opacity: open ? 1 : 0 ,color:'black'}} />
               </ListItemButton>
             </ListItem>
 
@@ -311,13 +311,13 @@ export default function Sidebar() {
                     minWidth: 0,
                     mr: open ? 3 : 'auto',
                     justifyContent: 'center',
-                    color:'white'
+                    color:'black'
 
                   }}
                 >
                   <PeopleAltIcon/> 
                 </ListItemIcon>
-                <ListItemText primary="Etudiants" sx={{ opacity: open ? 1 : 0 ,color:'white'}} />
+                <ListItemText primary="Etudiants" sx={{ opacity: open ? 1 : 0 ,color:'black'}} />
               </ListItemButton>
             </ListItem>
 
@@ -335,14 +335,14 @@ export default function Sidebar() {
                     minWidth: 0,
                     mr: open ? 3 : 'auto',
                     justifyContent: 'center',
-                    color:'white',
+                    color:'black',
 
                   }}
                 >
                   <LibraryBooksIcon/>
 
                 </ListItemIcon>
-                <ListItemText primary="Livraisons" sx={{ opacity: open ? 1 : 0,color:'white' }} />
+                <ListItemText primary="Livraisons" sx={{ opacity: open ? 1 : 0,color:'black' }} />
               </ListItemButton>
             </ListItem>
 
